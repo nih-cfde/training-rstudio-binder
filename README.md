@@ -2,6 +2,15 @@
 
 This repository holds binder files to create an Rstudio binder that can be used for training events.
 
+## Binders
+
+This binder (on `basic-rstudio`) only has R installed:
+
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/basic-rstudio?urlpath=rstudio)
+
+
+## Adding new binders *from this repo*
+
 **For CFDE trainers:** if you'd like to build a new Rstudio binder with other installations from this repo - 
 
 1) create a new branch
@@ -19,11 +28,4 @@ This repository holds binder files to create an Rstudio binder that can be used 
   - specify Github branch to point binder to
   - change "Path to a notebook file (optional)" dropdown to "URL" from "File". Type `rstudio` so the binder opens Rstudio.
 - do not merge branches to `main` or delete branches that existing binders are pointing to, otherwise those binders will not work anymore!
-
-## Binders
-
-This binder (on `basic-rstudio`) only has R installed:
-
-[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/basic-rstudio?urlpath=rstudio)
-
 
