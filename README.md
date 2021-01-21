@@ -5,7 +5,7 @@ This repository holds binder files to create an Rstudio binder that can be used 
 For CFDE trainers: if you'd like to build a new Rstudio binder with other installations from this repo - 
 
 1) create a new branch
-2) edit `environment.yml` file
+2) edit `environment.yml` file in the [./binder](./binder) directory
 3) build a [new pangeo binder](https://binder.pangeo.io/)
 4) add the binder badge + brief description to this readme doc (including the repo branch)
 
