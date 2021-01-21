@@ -9,10 +9,12 @@ For CFDE trainers: if you'd like to build a new Rstudio binder with other instal
 3) build a [new pangeo binder](https://binder.pangeo.io/)
 4) add the binder badge + brief description to this readme doc (including the repo branch)
 
-Important steps:
+Important reminders:
 
 - `r-base` needs to be in the `environment.yml` file so that R is installed
-- in the pangeo binder form, change "Path to a notebook file (optional)" dropdown to "URL" from "File". Type `rstudio` so the binder opens Rstudio.
+- in the pangeo binder form:
+  - specify Github branch to point binder to
+  - change "Path to a notebook file (optional)" dropdown to "URL" from "File". Type `rstudio` so the binder opens Rstudio.
 - do not merge branches to `main` or delete branches that existing binders are pointing to, otherwise those binders will not work anymore!
 
 This binder (on `basic-rstudio`) only has R installed:
