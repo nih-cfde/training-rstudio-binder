@@ -23,7 +23,7 @@ This binder (on `basic-rstudio`) only has R installed:
 
 **Important reminders:**
 
-- `r-base` needs to be in the `environment.yml` file so that R is installed
+- `r-base` or some r package (e.g., `r-ggplot2`) needs to be in the `environment.yml` file so that R is installed during binder build
 - in the pangeo binder form:
   - specify Github branch to point binder to
   - change "Path to a notebook file (optional)" dropdown to "URL" from "File". Type `rstudio` so the binder opens Rstudio.
