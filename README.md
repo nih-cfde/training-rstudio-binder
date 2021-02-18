@@ -15,7 +15,7 @@ This binder (on `basic-rstudio`) only has R installed:
 
 1) create a new branch
 2) edit `environment.yml` file in the [./binder](./binder) directory
-3) build a [new pangeo binder](https://binder.pangeo.io/)
+3) build a [new pangeo binder](https://binder.pangeo.io/) - remember to enter the correct Github branch!
 
 ![](./rstudio-binder-setup.png)
 
