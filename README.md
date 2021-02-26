@@ -8,6 +8,11 @@ This binder (on `basic-rstudio`) only has R installed:
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/basic-rstudio?urlpath=rstudio)
 
+This binder (on `rstudio-snakemake-workflow`) has R, snakemake-minimal, and some variant calling software installed:
+
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/rstudio-snakemake-workflow?urlpath=rstudio)
+
+
 
 ## Adding new binders *from this repo*
 
