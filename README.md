@@ -1,5 +1,5 @@
 # training-rstudio-binder
 
-This repository holds binder files to create an Rstudio binder that can be used for training events.
+This repository holds binder files to create an Rstudio binder that has Snakemake workflow demo.
 
 
