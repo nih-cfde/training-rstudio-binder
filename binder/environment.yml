@@ -1,6 +1,13 @@
+name: demo-vc
 channels:
     - conda-forge
     - bioconda
     - defaults
 dependencies:
     - r-base
+    - bwa
+    - snakemake-minimal=5.8.1
+    - samtools=1.10
+    - bcftools
+
+
