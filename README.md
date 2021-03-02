@@ -12,6 +12,9 @@ This binder (on `rstudio-snakemake-workflow`) has R, snakemake-minimal, and some
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/rstudio-snakemake-workflow?urlpath=rstudio)
 
+This binder (on `conda-workshop-march2021`) has Rstudio, and includes example code files for conda workshop:
+
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/conda-workshop-march2021?urlpath=rstudio)
 
 
 ## Adding new binders *from this repo*
