@@ -1,0 +1,8 @@
+name: qc_yaml #this specifies environment name
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - fastqc
+    - trimmomatic=0.36
