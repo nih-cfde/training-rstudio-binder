@@ -1,4 +1,4 @@
-name: qc_yaml #this specifies environment name
+name: fqc_yaml #this specifies environment name
 channels:
     - conda-forge
     - bioconda
