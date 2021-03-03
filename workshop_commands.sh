@@ -54,7 +54,7 @@ echo $PATH # check path for fqc_trim environment
 conda deactivate
 # click on test.yml in file directory to see how it is formatted
 conda env create -f test.yml #since environment name specified in yml file, we do not need to use -n flag here
-conda activate qc_yaml
+conda activate fqc_yaml
 conda list  # check installed software
 
 # Look at conda environments 
@@ -81,7 +81,7 @@ gunzip -c ERR458493.fastq.gz | head
 fastqc ERR458493.fastq.gz
 
 ## CLEANING UP
-# to remove old conda environments
+# to remove old conda environments (optional!)
 conda env remove --name fqc_trim
 
 
