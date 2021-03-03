@@ -7,6 +7,8 @@ conda config --set auto_activate_base false
 # shorten command prompt to $
 echo "PS1='\w $ '" >> .bashrc
 
+# re-start terminal for the changes to take effect (i.e., type 'exit' and then open a new terminal)
+
 # activate base environment
 conda activate base
 
@@ -41,10 +43,12 @@ conda install -y trimmomatic=0.36
 conda list # check installed software
 
 # Method 2: install both software during environment creation
+echo $PATH # check path for fqc environment
 conda deactivate
 conda create -y --name fqc_trim fastqc trimmomatic=0.36
 conda activate fqc_trim 
 conda list # check installed software
+echo $PATH # check path for fqc_trim environment
 
 # Method 3: specify software to install with a YAML file
 conda deactivate
