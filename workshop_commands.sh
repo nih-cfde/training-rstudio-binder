@@ -1,28 +1,29 @@
 ## SET UP
 # set up conda and initialize settings
-source $(conda info --base)/etc/profile.d/conda.sh
 conda init
-conda config --set auto_activate_base false
 
 # shorten command prompt to $
 echo "PS1='\w $ '" >> .bashrc
 
 # re-start terminal for the changes to take effect (i.e., type 'exit' and then open a new terminal)
 
-# activate base environment
-conda activate base
-
 # configure conda channels
 conda config --show channels
+
+# list packages in current environment
 conda list
 
+# add defaults channel
+conda config --add channels defaults
+# check channel order
+conda config --get channels
 # add bioconda channel
-conda config --prepend channels bioconda
-# check out channel priority changes
+conda config --add channels bioconda
+# check channel order
 conda config --get channels
 # add conda-forge channel
-conda config --prepend channels https://conda.anaconda.org/conda-forge
-# check out channel priority changes
+conda config --add channels conda-forge
+# check channel order
 conda config --get channels
 
 ## INSTALL SOFTWARE and CREATE CONDA ENVIRONMENTS
