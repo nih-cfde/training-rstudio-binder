@@ -61,7 +61,7 @@ conda list  # check installed software
 # Look at conda environments 
 conda env list
 
-## FastQC DEMO
+## Running FastQC in the fqc Environment
 # activate environment
 conda activate fqc
 
