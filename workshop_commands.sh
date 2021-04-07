@@ -1,3 +1,5 @@
+## IMPORTANT: Run one line at a time! 
+
 ## SET UP
 # set up conda and initialize settings
 conda init
@@ -77,6 +79,9 @@ gunzip -c ERR458493.fastq.gz | wc -l
 
 # top of file
 gunzip -c ERR458493.fastq.gz | head
+
+## or use less to scroll through the file contents. type 'q' to exit the page
+less ERR458493.fastq.gz
 
 # Run FastQC!
 fastqc ERR458493.fastq.gz
