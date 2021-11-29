@@ -4,6 +4,7 @@ channels:
     - defaults
 dependencies:
     - r-base
+    - r-irkernel
     - r-devtools
     - r-ggplot2
     - r-dplyr
