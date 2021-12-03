@@ -4,3 +4,12 @@ channels:
     - defaults
 dependencies:
     - r-base
+    - r-devtools
+    - r-ggplot2
+    - r-dplyr
+    - r-tidyr
+    - r-readr
+    - r-forcats
+    - r-cowplot
+    - r-magick
+    - r-lubridate
