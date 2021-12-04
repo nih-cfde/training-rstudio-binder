@@ -4,15 +4,21 @@ This repository holds binder files to create an Rstudio binder that can be used 
 
 ## Binders
 
-- This binder (on `basic-rstudio`) only has R installed:
+This repository contains the resources for creating custom computing environment using [Binder](https://mybinder.org/). 
+
+- The binder on the `data` branch contains data and software tools that are  used for various workshops. 
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
+
+- The binder on the `basic-rstudio` branch has only has R installed:
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/basic-rstudio?urlpath=rstudio)
 
-- This binder (on `rstudio-snakemake-workflow`) has R, snakemake-minimal, and some variant calling software installed:
+- The binder on the `rstudio-snakemake-workflow`branch has R, snakemake-minimal, and some variant calling software installed:
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/rstudio-snakemake-workflow?urlpath=rstudio)
 
-- This binder (on `conda-workshop-march2021`) has Rstudio, and includes example code files for conda workshop:
+- The binder on the`conda-workshop-march2021`branch has Rstudio, and includes example code files for conda workshop:
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/nih-cfde/training-rstudio-binder/conda-workshop-march2021?urlpath=rstudio)
 
@@ -25,7 +31,7 @@ This repository holds binder files to create an Rstudio binder that can be used 
 2) edit `environment.yml` file in the [./binder](./binder) directory
 3) build a [new pangeo binder](https://binder.pangeo.io/) - remember to enter the correct Github branch!
 
-![](./rstudio-binder-setup.png)
+![](./images/rstudio-binder-setup.png)
 
 4) add the binder badge + brief description to this readme doc (including the repo branch)
 
