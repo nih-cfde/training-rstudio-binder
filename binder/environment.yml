@@ -13,3 +13,5 @@ dependencies:
     - r-cowplot
     - r-magick
     - r-lubridate
+    - fastqc
+    - multiqc
