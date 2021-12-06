@@ -12,7 +12,7 @@ mv MiSeq_SOP MiSeq
 
 The [Mauther tutorial](https://mothur.org/wiki/miseq_sop/) provides an overview of the total number of reads for each RNA sequencing sample. 
 
-![numread](~/images/MiSeq-readcount-Mothur.png)
+![numread](../images/MiSeq-readcount-Mothur.png)
 
 
 Using UNIX commands, confirm that the R1 and R2 reads for each sample contain the number of reads listed in the image above.
