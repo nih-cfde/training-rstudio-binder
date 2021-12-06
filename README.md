@@ -1,6 +1,6 @@
 # training-rstudio-binder
 
-This repository holds the files to create a custom computing environment that has all the data and software needed for [Binder](https://mybinder.org/). 
+This repository holds the files to create a custom computing environment, or [Binder](https://mybinder.org/), with data and software that can be used in workshops offered by the [Common Fund Data Ecosystem](https://training.nih-cfde.org/en/latest/).
 
 Click the [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) to generate a Binder from the `data` branch of this repository.
 
