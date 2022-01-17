@@ -4,5 +4,4 @@ channels:
     - defaults
 dependencies:
     - r-base>=4.1.2
-    - fastqc
-    - multiqc
+
