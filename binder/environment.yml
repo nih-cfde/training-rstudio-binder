@@ -7,7 +7,7 @@ dependencies:
     - r-tidyverse
     - r-rtsne
     - r-cowplot
-    - r-ggubbr
+    - r-ggpubr
     - r-magick
     - bioconductor-recount3
     - bioconductor-biomart
