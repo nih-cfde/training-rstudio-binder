@@ -24,3 +24,4 @@ dependencies:
     - bioconductor-recount3
     - bioconductor-biomart
     - bioconductor-deseq2
+update_dependencies: True
