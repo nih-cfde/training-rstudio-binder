@@ -4,7 +4,7 @@ channels:
     - defaults
 dependencies:
     - r-base==4.1.2
-    - r-tidyverse
+    - r-tidyverse==1.2.1
     - r-rtsne
     - r-cowplot
     - r-ggpubr
