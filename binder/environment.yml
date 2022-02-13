@@ -23,6 +23,7 @@ dependencies:
     - r-ggpubr
     - r-magick
     - r-rcpp
+    - bioconductor-biocmanager
     - bioconductor-recount3
     - bioconductor-biomart
     - bioconductor-deseq2
