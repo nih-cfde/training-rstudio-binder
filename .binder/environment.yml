@@ -12,6 +12,7 @@ dependencies:
     - r-dplyr
     - r-tidyr
     - r-readr
+    - r-vroom
     - r-purrr
     - r-tibble
     - r-stringr
