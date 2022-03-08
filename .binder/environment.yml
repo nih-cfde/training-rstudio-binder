@@ -4,4 +4,9 @@ channels:
     - defaults
 dependencies:
     - r-base==4.1.2
-
+    - r-knitr
+    - r-rmarkdown
+    - r-devtools
+    - r-tidyverse
+    - r-cowplot
+    - r-magick
