@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e 
+
+curl -O https://lincs-dcic.s3.amazonaws.com/GTEx_AgeComparison_Tissue_Signatures.zip
+unzip GTEx_AgeComparison_Tissue_Signatures.zip
+mv GTEx_AgeComparison_Tissue_filtered/ data/
+
+exec "$@"
