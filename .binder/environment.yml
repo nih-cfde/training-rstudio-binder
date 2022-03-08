@@ -7,7 +7,15 @@ dependencies:
     - r-knitr
     - r-rmarkdown
     - r-devtools
-    - r-tidyverse
+    - r-devtools
+    - r-ggplot2
+    - r-dplyr
+    - r-tidyr
+    - r-readr
+    - r-purrr
+    - r-tibble
+    - r-stringr
+    - r-forcats
     - r-cowplot
     - r-magick
     - r-biocmanager
