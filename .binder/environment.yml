@@ -10,3 +10,7 @@ dependencies:
     - r-tidyverse
     - r-cowplot
     - r-magick
+    - r-biocmanager
+    - bioconductor-recount3
+    - bioconductor-biomart
+    - bioconductor-deseq2
