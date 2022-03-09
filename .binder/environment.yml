@@ -4,8 +4,6 @@ channels:
     - bioconda
     - defaults
 dependencies:
-    - libgcc-ng
-    - libstdcxx-ng
     - r-base=4.1.2
     - r-knitr
     - r-rmarkdown
@@ -22,7 +20,3 @@ dependencies:
     - r-forcats
     - r-cowplot
     - r-magick
-    - r-biocmanager
-    - bioconductor-recount3
-    - bioconductor-biomart
-    - bioconductor-deseq2
