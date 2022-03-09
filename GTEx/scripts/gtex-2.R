@@ -5,17 +5,20 @@ library(tidyr)
 library(tibble)
 library(readr)
 library(ggplot2)
+library(stringr)
 
 # import
 
 files <- dir(pattern = ".tsv", path = "data",
              full.names = T)
+files
 
 df <- data.frame()
 
 for (myfile in files){
   
-# transform
+
+print(myfile)
 
 df2 <-  read.table(myfile)  %>% 
   mutate(gene = row.names(.),
@@ -29,18 +32,23 @@ head(df2)
 
 df <- rbind(df, df2)
 
+
 }
 
 head(df)
 
 # visualize
 
-p <- ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) +
+
+
+p <- df %>%
+  filter(!tissue %in% c("Bladder", "SalivaryGland", "Uterus", "NA")) %>%
+  ggplot(aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point(aes(color = sig)) + 
   facet_wrap(~group, ncol = 5) +
   theme(legend.position = "bottom")
 
-png(file="fig-2.png", width = 7, height = 7,
+png(file="fig-2.png", width = 9, height = 63,
     units="in", res = 300)
 plot(p)
 dev.off()
