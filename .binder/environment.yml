@@ -4,19 +4,21 @@ channels:
     - bioconda
     - defaults
 dependencies:
-    - r-base=4.1.2
-    - r-knitr
+    - r-base=4.0.5
+    - r-irkernel=1.1
+    - r-devtools
     - r-rmarkdown
-    - r-devtools
-    - r-devtools
+    - r-knitr
     - r-ggplot2
     - r-dplyr
     - r-tidyr
     - r-readr
-    - r-vroom
-    - r-purrr
     - r-tibble
     - r-stringr
     - r-forcats
     - r-cowplot
     - r-magick
+    - bioconductor-tximeta
+    - bioconductor-deseq2
+    - bioconductor-summarizedexperiment
+    - bioconductor-recount3
