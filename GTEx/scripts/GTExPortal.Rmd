@@ -13,9 +13,7 @@ df <- read_csv("../data/GTExPortal.csv")
 
 dim(df)
 
-head(df) %>%
-  kbl() %>%
-  kable_minimal()
+head(df) 
 
 df %>%
   ggplot(aes(x = `Tissue`, 
@@ -33,9 +31,7 @@ df2 <- df %>%
   summarize(TissueCount = length(Tissue)) %>%
   arrange(desc(TissueCount))  
 
-head(df2, 10) %>%
-  kbl() %>%
-  kable_minimal()
+head(df2, 10) 
 
 dim(df2)
 
@@ -51,16 +47,12 @@ df3 <- df2 %>%
   group_by(`Hardy Scale`, `Age Bracket`, Sex) %>%
   summarise(count = length(`Subject ID`)) 
 
-tail(df3,20) %>%
-  kbl() %>%
-  kable_minimal()
+tail(df3,20) 
 
 df4 <- df3 %>%
   pivot_wider(names_from = `Age Bracket`,
               values_from = `count`)
-df4 %>%
-  kbl() %>%
-  kable_minimal()
+df4 
 
 ggplot(df3, aes(x = `Hardy Scale`, y = count,
                 fill = `Age Bracket`,
@@ -75,9 +67,7 @@ df5 <- df2 %>%
   group_by( `Age Bracket`) %>%
   summarise(count = length(`Age Bracket`)) 
 
-df5 %>%
-  kbl() %>%
-  kable_minimal()
+df5 
 
 ggplot(df5, aes(x = `Age Bracket`, y = count,
                 fill = `Age Bracket`,
