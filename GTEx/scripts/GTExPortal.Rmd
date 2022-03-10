@@ -1,0 +1,90 @@
+---
+title: "GTExPortal"
+output: md_document
+always_allow_html: true
+---
+
+```{r GTExPortal, fig.path="../images/"}
+
+library(tidyverse)
+library(kableExtra)
+
+df <- read_csv("../data/GTExPortal.csv")
+
+dim(df)
+
+head(df) %>%
+  kbl() %>%
+  kable_minimal()
+
+df %>%
+  ggplot(aes(x = `Tissue`, 
+             fill = `Sex`)) +
+  geom_bar()  
+
+df %>%
+  ggplot(aes(x = `Tissue`, 
+             fill = `Sex`)) +
+  geom_bar()  +
+  coord_flip()
+
+df2 <- df %>% 
+  group_by(`Subject ID`, `Hardy Scale`, `Age Bracket`, Sex) %>%
+  summarize(TissueCount = length(Tissue)) %>%
+  arrange(desc(TissueCount))  
+
+head(df2, 10) %>%
+  kbl() %>%
+  kable_minimal()
+
+dim(df2)
+
+df2 %>%
+  ggplot(aes(fill = `Hardy Scale`, 
+             x = `Age Bracket`)) +
+  geom_bar() +
+  facet_wrap(~Sex) +
+  theme(axis.text.x =  element_text(angle = 45, hjust = 1))
+
+
+df3 <- df2 %>%
+  group_by(`Hardy Scale`, `Age Bracket`, Sex) %>%
+  summarise(count = length(`Subject ID`)) 
+
+tail(df3,20) %>%
+  kbl() %>%
+  kable_minimal()
+
+df4 <- df3 %>%
+  pivot_wider(names_from = `Age Bracket`,
+              values_from = `count`)
+df4 %>%
+  kbl() %>%
+  kable_minimal()
+
+ggplot(df3, aes(x = `Hardy Scale`, y = count,
+                fill = `Age Bracket`,
+                label = count)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~`Sex`) +
+  coord_flip() +
+  theme(legend.position = "none")
+
+
+df5 <- df2 %>%
+  group_by( `Age Bracket`) %>%
+  summarise(count = length(`Age Bracket`)) 
+
+df5 %>%
+  kbl() %>%
+  kable_minimal()
+
+ggplot(df5, aes(x = `Age Bracket`, y = count,
+                fill = `Age Bracket`,
+                label = count)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = count)) +
+  theme(legend.position = "none")
+
+
+```
