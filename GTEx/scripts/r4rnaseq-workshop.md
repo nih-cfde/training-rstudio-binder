@@ -4,19 +4,10 @@
 
 *Even though you can
 [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ),
-please make changes by editing [this
+please make changes by editing [this .Rmd
 file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/scripts/r4rnaseq-workshop.Rmd).*
 
 ------------------------------------------------------------------------
-
-**When:** Wednesday March 23, 10 am - 12 pm PT **Where:**
-[Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)
-**Instructors:** Dr. Rayna Harris **Helpers:** Jeremy Walter, Dr. Amanda
-Charbonneau, and Jessica Lumian
-
-Click
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
-to generate a computing enviornment for this workshop.
 
 **Description**
 
@@ -30,9 +21,17 @@ practice calculating and visualizing differential gene expression using
 popular open-source packages and public RNA-Seq data from the Gene
 Expression Tissue Project (GTEx).
 
-**Overview**
+**When:** Wednesday March 23, 10 am - 12 pm PT  
+**Where:**
+[Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
+**Instructors:** Dr. Rayna Harris  
+**Helpers:** Jeremy Walter, Dr. Amanda Charbonneau, and Jessica Lumian
 
-`[TOC]`
+Click
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
+to generate a computing enviornment for this workshop.
+
+**Overview**
 
 \`
 
