@@ -32,8 +32,12 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 **Overview**
 
+```{asis}
+[TOC]
+```
 
-<div class="alert alert-info">`
+
+<div class="alert alert-info">
 
 #### Learning Objectives 
 

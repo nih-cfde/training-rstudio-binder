@@ -33,7 +33,7 @@ to generate a computing enviornment for this workshop.
 
 **Overview**
 
-\`
+\[TOC\]
 
 #### Learning Objectives
 
