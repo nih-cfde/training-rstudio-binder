@@ -1,5 +1,7 @@
 # Introduction to R for RNA-Seq Workshop
 
+[![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ)
+
 **When:** Wednesday March 23, 10 am - 12 pm PT **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)
 **Instructors:** Dr. Rayna Harris **Helpers:** Jeremy Walter, Dr. Amanda
