@@ -32,30 +32,27 @@ rse_gtex <- create_rse(gtex)
 rse_gtex
 
 # format data for DESEq2
-countData <- assays(rse_gtex)$raw_counts %>% as.data.frame()
-colData <- colData(rse_gtex) %>% as.data.frame()
-
-# check that rows and samples match
-head(rownames(colData) == colnames(countData))
-
-# variables
-dim(colData)
-dim(countData)
 
 
-colData <-  colData %>%
+colData <- colData(rse_gtex) %>% 
+  as.data.frame()  %>%
   filter(gtex.run_acc != "NA",
          gtex.smnabtcht != "RNA isolation_PAXgene Tissue miRNA") %>%
-  dplyr::select(external_id, study, gtex.run_acc, 
-                gtex.age, gtex.smtsd)
+  dplyr::select(external_id, study, gtex.subjid, gtex.run_acc, 
+                gtex.sex, gtex.age, gtex.smtsd)
 head(colData)
 
 # get countdata for this subset of colData
 
+
+
 ## colData and countData must contain the exact same samples. 
 savecols <- as.character(rownames(colData)) #select the rowsname 
 savecols <- as.vector(savecols) # make it a vector
-countData <- countData %>% dplyr::select(one_of(savecols)) # select just the columns 
+
+countData <- assays(rse_gtex)$raw_counts %>% 
+  as.data.frame() %>% 
+  dplyr::select(one_of(savecols)) # select just the columns 
  
 
 # variables
@@ -65,9 +62,9 @@ dim(countData)
 # check that rows and samples match
 head(rownames(colData) == colnames(countData))
 
+# replace dashes with underscores to that play nice when imported
 names(countData) <- gsub(x = names(countData), pattern = "\\-", replacement = "_")
 rownames(colData) <- gsub(x = rownames(colData) , pattern = "\\-", replacement = "_")
-
 
 # check that rows and samples match
 head(rownames(colData) == colnames(countData))
@@ -75,12 +72,9 @@ head(rownames(colData) == colnames(countData))
 head(colData)[1:5]
 head(countData)[1:5]
 
+# save files for later use
 write.csv(countData, file = paste("../data/countData", params$myproject, "csv", sep = "."),
-          row.names = T)
+              row.names = T)
 write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep = "."),
-          row.names = T)
-
+              row.names = T)
 ```
-
-
-
