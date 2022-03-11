@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+GTEx/scripts/r4rnaseq-workshop_cache/
+GTEx/data/countData.HEART.csv
