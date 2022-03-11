@@ -1,6 +1,13 @@
 # Introduction to R for RNA-Seq Workshop
 
-[![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ)
+------------------------------------------------------------------------
+
+*Even though you can
+[![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ),
+please make changes by editing [this
+file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/scripts/r4rnaseq-workshop.Rmd).*
+
+------------------------------------------------------------------------
 
 **When:** Wednesday March 23, 10 am - 12 pm PT **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)
@@ -25,9 +32,11 @@ Expression Tissue Project (GTEx).
 
 **Overview**
 
-\[TOC\]
+`[TOC]`
 
-**Learning Objectives**
+\`
+
+#### Learning Objectives
 
 1.  Create a gene-level count matrix of gene expression quantification
     using recount3
@@ -196,16 +205,18 @@ lines of each file.
     ## 6 GTEX-1117F-0626    Artery - Co… GTEX-1117F   fema… 60-69         Slow death   
     ## # … with 2 more variables: Pathology Categories <chr>, Pathology Notes <chr>
 
-:::warning
-
 **Challenge**
 
 What are the some differences between the data objects imported by
 `read.csv()` and `read_csv()`?
 
+<details>
+
 1.  Periods versus spaces in column names
 2.  Data frame versus tibble
 3.  Row names allowed versus not allowed
+
+</details>
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
@@ -364,9 +375,10 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts\_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-::: warning
+#### Challenge
 
-**Challenge**
+<details>
+</details>
 
 #### Key functions: Tidy
 
@@ -473,10 +485,6 @@ condition.
       scale_y_continuous(labels = scales::label_number_si()) 
 
 ![recount3-2](https://www.raynamharris.com/images/recount3-gtex-2.png)
-
-::: warning
-
-**Challenge**
 
 ## Model
 
@@ -609,10 +617,6 @@ appendage than the left ventricle.
       theme_linedraw(base_size = 15) +
       theme(legend.position = "bottom", legend.direction = "vertical")
 
-::: warning
-
-**Challenge**
-
 ## Communicate
 
 Communication is a 2-way street. In this section, I encourage you to
@@ -622,12 +626,6 @@ well.
 <https://gtexportal.org/home/gene/BMP10>
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
-
-::: warning
-
-**Challenge**
-
-::: spoiler
 
 ## Functions and/or For Loops?
 
