@@ -33,7 +33,7 @@ to generate a computing enviornment for this workshop.
 
 **Overview**
 
-\[TOC\]
+    ## [TOC]
 
 #### Learning Objectives
 
@@ -374,11 +374,6 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts\_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-#### Challenge
-
-<details>
-</details>
-
 #### Key functions: Tidy
 
 <table>
@@ -631,14 +626,13 @@ well.
 Not sure if I want to include either or both of these advanced beginner
 concepts.
 
-**Key Points**
+#### Key Points
 
 1.  Create a gene-level count matrix of gene expression quantification
     using recount3
 2.  Perform differential expression of a two factor experiment in DESeq2
 3.  Perform quality control and exploratory visualization of RNA-seq
     data in R
-4.  …
 
 ## References
 

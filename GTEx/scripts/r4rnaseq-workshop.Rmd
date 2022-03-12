@@ -32,8 +32,8 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 **Overview**
 
-```{asis}
-[TOC]
+```{bash, echo = F}
+echo "[TOC]"
 ```
 
 
@@ -201,8 +201,6 @@ head(rownames(colData) == colnames(counts))
 ```
 
 
-<div class="alert alert-info">
-
 #### Key functions
 
 | Function | Description |
@@ -214,12 +212,7 @@ head(rownames(colData) == colnames(counts))
 | `head()` and `tail()` |Print the first or last 6 lines of an object  | 
 | `dim()`  | Print the dimensions of an object | 
 
-</div>
-
 ## Tidy and Transform
-
-
-
 
 
 
@@ -231,19 +224,6 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 
 
 
-
-<div class="alert alert-success">
-
-#### Challenge 
-
-<details>
-
-</details>
-</div>
-
-
-<div class="alert alert-info">
-
 #### Key functions: Tidy
 
 | Function | Description |
@@ -253,7 +233,7 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 | `separate()`  |
 | `drop_na()`  |
 
-</div>
+
 
 
 ## Transform
@@ -264,7 +244,7 @@ I prefer to search genes by their common name rather than their Ensemble identif
 
 
 
-<div class="alert alert-info">
+
 
 #### Key functions: Transform
 
@@ -277,7 +257,7 @@ I prefer to search genes by their common name rather than their Ensemble identif
 | `left_join()`  | | 
 | `inner_join()`  | | 
 
-</div>
+
 
 
 
@@ -460,14 +440,14 @@ https://gtexportal.org/home/gene/BMP10
 Not sure if I want to include either or both of these advanced beginner concepts.  
 
 
-:::info
-**Key Points**
+
+#### Key Points
 
 1. Create a gene-level count matrix of gene expression quantification using recount3
 2. Perform differential expression of a two factor experiment in DESeq2
 3. Perform quality control and exploratory visualization of RNA-seq data in R
-4. ...
-:::
+
+
 
 ## References
 
