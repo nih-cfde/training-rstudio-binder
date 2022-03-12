@@ -17,8 +17,3 @@ dependencies:
     - r-stringr
     - r-forcats
     - r-cowplot
-    - r-magick
-    - bioconductor-tximeta
-    - bioconductor-deseq2
-    - bioconductor-summarizedexperiment
-    - bioconductor-recount3

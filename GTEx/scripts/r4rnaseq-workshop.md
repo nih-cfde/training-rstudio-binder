@@ -66,6 +66,11 @@ as we go along!
 
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
+For today’s lesson, we will focus on data from the Gene Expression
+Tissue Project (GTEx). **To explore the data, navigate to the GTEX
+folder then click `GTEx.Rproj`. This will open up an Rproject and set
+the working directory to `~/GTEx/`.**
+
 You can run R-friendly code in the local console:
 
 ``` r
@@ -79,6 +84,12 @@ and it will have an output like this:
 Functions are in a code font and followed by parentheses, like `sum()`,
 or `mean()`.
 
+``` r
+sum(2,2)
+```
+
+    ## [1] 4
+
 The [**Tidyverse**](https://www.tidyverse.org/) R package is a
 collection of functions, data, and documentation that extends the
 capabilities of base R. Using packages is key to the successful use of
@@ -89,16 +100,21 @@ together naturally.
 
 You can install the complete tidyverse with a single line of code. When
 install packages like this, it is a good idea to comment out so that you
-don’t reinstall the package everytime you run the script. However, for
-this workshop, the packages listed in the `.binder/environment.yml` file
-were pre-installed with Conda.
+don’t reinstall the package everytime you run the script.
 
 ``` r
 #install.packages("tidyverse")
 ```
 
-After installing packages, you must load them with the fuction
-`library()` to use the associated functions, objects, and help files.
+However, for this workshop, the packages listed in the
+`.binder/environment.yml` file were pre-installed with Conda. For some
+reason, the tidyverse package doesn’t always install properly, so we
+installed each package individually.
+
+After installing packages, you must load them with the function
+`library()` to use the associated functions, objects, and help files. In
+addition to using the package `ggplot`, we will also use `cowplot`,
+`scales`, and `magick` to make pretty visualizations.
 
 ``` r
 library(ggplot2)
@@ -115,7 +131,8 @@ project developed for the analysis and comprehension of high-throughput
 data in genomics and molecular biology. The project aims to enable
 interdisciplinary research, collaboration and rapid development of
 scientific software. It is based on the statistical programming language
-R.
+R. We will not be using these packages in this class, but they are worth
+getting to know.
 
 ``` r
 library(recount3)
@@ -123,22 +140,12 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-In addition to using the package `ggplot`, we will also use `cowplot`,
-`scales`, and `magick` to make pretty visualizations.
-
-``` r
-library(cowplot)
-library(scales)
-library(magick)
-```
-
 #### Key functions
 
-| Function                 | Description |
-|--------------------------|-------------|
-| `install.packages()`     |             |
-| `library()`              |             |
-| `BiocManager::install()` |             |
+| Function             | Description |
+|----------------------|-------------|
+| `install.packages()` |             |
+| `library()`          |             |
 
 ## Import
 
@@ -179,8 +186,6 @@ head(samplesbaseR)
     ## 4    2 pieces, !5% fibrous connective tissue, delineated (rep)
     ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
     ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
-
-**Challenge**
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
