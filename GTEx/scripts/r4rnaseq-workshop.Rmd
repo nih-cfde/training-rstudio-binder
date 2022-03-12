@@ -2,7 +2,9 @@
 title: "r4rnaseq-workshop"
 author: "Rayna M Harris"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: md_document
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
@@ -32,12 +34,11 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 **Overview**
 
-```{bash, echo = F}
+```{bash, echo = F, indent = ""}
 echo "[TOC]"
 ```
 
 
-<div class="alert alert-info">
 
 #### Learning Objectives 
 
@@ -45,7 +46,7 @@ echo "[TOC]"
 2. Perform differential expression of a two factor experiment in DESeq2
 3. Perform quality control and exploratory visualization of RNA-seq data in R
 
-</div>
+
 
 
 ## Introduction and Setup
@@ -94,7 +95,6 @@ library(stringr)
 library(forcats)
 ```
 
-The mission of the [Bioconductor](https://www.bioconductor.org) project is to develop, support, and disseminate free open source software that facilitates rigorous and reproducible analysis of data from current and emerging biological assays. We are dedicated to building a diverse, collaborative, and welcoming community of developers and data scientists.
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software project developed for the analysis and comprehension of high-throughput data in genomics and molecular biology. The project aims to enable interdisciplinary research, collaboration and rapid development of scientific software. It is based on the statistical programming language R.
 
@@ -127,26 +127,25 @@ library(magick)
 
 ## Import
 
-Data can be imported using packages from base R or from the tidyverse. The `GTExPortal.csv` file in `../data/` contains information about all the samples in the GTEx portal. Let's import this file using both `read.csv()` and `read_csv()`. Then, use `head()` to view the first few lines of each file. 
+Data can be imported using packages from base R or from the tidyverse.  
+
+What are the some differences between the data objects imported by `read.csv()` and `read_csv()`?
+1. Periods versus spaces in column names
+1. Data frame versus tibble
+1. Row names allowed versus not allowed.
+
+The `GTExPortal.csv` file in `../data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. Then, use `head()` to view the first few lines of each file. 
 
 ```{r import-1}
 samplesbaseR <- read.csv("../data/GTExPortal.csv")
 head(samplesbaseR)
-samplestidyR <- read_csv("../data/GTExPortal.csv")
-head(samplestidyR)
+
 ```
-
-
 
 
 **Challenge**
 
-What are the some differences between the data objects imported by `read.csv()` and `read_csv()`?
 
-
-1. Periods versus spaces in column names
-1. Data frame versus tibble
-1. Row names allowed versus not allowed
 
 
 
@@ -160,9 +159,11 @@ head(results)
 
 I find it helpful to import a table of gene names and symbols that can be merged with other tables with gene information or searched for useful information. This table of gene names was downloaded from <https://www.genenames.org/download/custom/>. 
 
+In this case, we use `fill = T` to fill missing fields wiht a NULL value.
+
 ```{r import-3}
-genes <- read.table("../data/genes.txt", 
-                        sep = "\t", header = T, fill = T)
+genes <- read.table("../data/genes.txt", sep = "\t", 
+                    header = T, fill = T)
 head(genes)
 ```
 
