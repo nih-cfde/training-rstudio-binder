@@ -118,15 +118,12 @@ interdisciplinary research, collaboration and rapid development of
 scientific software. It is based on the statistical programming language
 R.
 
-is …
+    library(recount3)
+    library(biomaRt)
+    library(DESeq2)
 
-    library("recount3")
-    library("biomaRt")
-    library("DESeq2")
-
-In addition to using the package `ggplot` (which is part of the
-`tidyverse`), we will also use `cowplot`, `scales`, and `magick` to make
-pretty visualizations.
+In addition to using the package `ggplot`, we will also use `cowplot`,
+`scales`, and `magick` to make pretty visualizations.
 
     library(cowplot)
     library(scales)
@@ -209,13 +206,9 @@ lines of each file.
 What are the some differences between the data objects imported by
 `read.csv()` and `read_csv()`?
 
-<details>
-
 1.  Periods versus spaces in column names
 2.  Data frame versus tibble
 3.  Row names allowed versus not allowed
-
-</details>
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
@@ -400,10 +393,22 @@ file that can be easily subset by tissue and or gene for quick plotting.
 <td><code>drop_na()</code></td>
 <td></td>
 </tr>
+<tr class="odd">
+<td><code>select()</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>arrange()</code></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
 ## Transform
+
+### Mutate
+
+### Summarize
 
 ### Join
 
