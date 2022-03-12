@@ -198,8 +198,7 @@ Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
 
 ``` r
-results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv",
-                      header = TRUE, sep = "\t")
+results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
 head(results)
 ```
 
@@ -361,13 +360,135 @@ file that can be easily subset by tissue and or gene for quick plotting.
 
 ### Mutate
 
-### Summarize
+### Renameing variables
+
+In the next section, we will join two data frames by a shared column.
+Both the results file and the genes file have a column with gene
+symbols, but they do not have the same name.
+
+We can use the `rename` function to rename columns. The first value is
+the new name and the second value is the old name. Just in case we get
+it wrote, let’s save this as a new
+
+``` r
+head(results)
+```
+
+    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+
+``` r
+head(genes)
+```
+
+    ##      HGNC.ID Approved.symbol
+    ## 1     HGNC:5            A1BG
+    ## 2 HGNC:37133        A1BG-AS1
+    ## 3 HGNC:24086            A1CF
+    ## 4     HGNC:6           A1S9T
+    ## 5     HGNC:7             A2M
+    ## 6 HGNC:27057         A2M-AS1
+    ##                                                  Approved.name Chromosome
+    ## 1                                       alpha-1-B glycoprotein   19q13.43
+    ## 2                                         A1BG antisense RNA 1   19q13.43
+    ## 3                               APOBEC1 complementation factor   10q11.23
+    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
+    ## 5                                        alpha-2-macroglobulin   12p13.31
+    ## 6                                          A2M antisense RNA 1   12p13.31
+    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
+    ## 1                                     1 ENSG00000121410
+    ## 2                 BC040926       503538 ENSG00000268895
+    ## 3                 AF271790        29974 ENSG00000148584
+    ## 4                                    NA                
+    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
+    ## 6                                144571 ENSG00000245105
+    ##   Mouse.genome.database.ID
+    ## 1              MGI:2152878
+    ## 2                         
+    ## 3              MGI:1917115
+    ## 4                         
+    ## 5              MGI:2449119
+    ## 6
+
+``` r
+head(results$X)
+```
+
+    ## [1] "A1BG"     "A1BG-AS1" "A2M"      "A2M-AS1"  "A2ML1"    "A2MP1"
+
+``` r
+head(genes$Approved.symbol)
+```
+
+    ## [1] "A1BG"     "A1BG-AS1" "A1CF"     "A1S9T"    "A2M"      "A2M-AS1"
+
+``` r
+results_new <- results %>%
+  dplyr::rename("Approved.symbol" = "X")
+head(results_new)
+```
+
+    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
+    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
+    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
+    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
+    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
+    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
+    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
+    ##           B
+    ## 1 -5.672644
+    ## 2 -5.345563
+    ## 3 -5.956689
+    ## 4 -0.635100
+    ## 5 -4.948617
+    ## 6 -1.358971
 
 ### Join
 
-I prefer to search genes by their common name rather than their Ensemble
-identifier, so I create a file called gene_info and I combine this with
-my countData_long for quickly plotting count data for genes of interest.
+Now that the results and the genes objects both have a column called
+`Approved.symbol` they can be joined. The command `full_join()` will
+keep all rows of both objects. `left_join` will keep all the rows in the
+first object but will drop any rows in the second object that don’t map
+onto the first.
+
+``` r
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
+```
+
+    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
+    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
+    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
+    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
+    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
+    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
+    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
+    ##           B    HGNC.ID                      Approved.name Chromosome
+    ## 1 -5.672644     HGNC:5             alpha-1-B glycoprotein   19q13.43
+    ## 2 -5.345563 HGNC:37133               A1BG antisense RNA 1   19q13.43
+    ## 3 -5.956689     HGNC:7              alpha-2-macroglobulin   12p13.31
+    ## 4 -0.635100 HGNC:27057                A2M antisense RNA 1   12p13.31
+    ## 5 -4.948617 HGNC:23336       alpha-2-macroglobulin like 1   12p13.31
+    ## 6 -1.358971     HGNC:8 alpha-2-macroglobulin pseudogene 1   12p13.31
+    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
+    ## 1                                     1 ENSG00000121410
+    ## 2                 BC040926       503538 ENSG00000268895
+    ## 3 BX647329, X68728, M11313            2 ENSG00000175899
+    ## 4                                144571 ENSG00000245105
+    ## 5                 AK057908       144568 ENSG00000166535
+    ## 6                   M24415            3 ENSG00000256069
+    ##   Mouse.genome.database.ID
+    ## 1              MGI:2152878
+    ## 2                         
+    ## 3              MGI:2449119
+    ## 4                         
+    ## 5                         
+    ## 6
 
 #### Key functions: Transform
 
@@ -604,3 +725,4 @@ concepts.
     Lesson](https://angus.readthedocs.io/en/2019/diff-ex-and-viz.html)
 -   [Software Carpentry R
     Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
+

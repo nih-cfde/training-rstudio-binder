@@ -146,14 +146,12 @@ The `GTExPortal.csv` file in `../data/` contains information about all the sampl
 ```{r import-1}
 samplesbaseR <- read.csv("../data/GTExPortal.csv")
 head(samplesbaseR)
-
 ```
 
 Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. 
 
 ```{r import-2}
-results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv",
-                      header = TRUE, sep = "\t")
+results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
 head(results)
 ```
 
@@ -239,11 +237,35 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 
 ### Mutate
 
-### Summarize
+### Renameing variables
+
+In the next section, we will join two data frames by a shared column. Both the results file and the genes file have a column with gene symbols, but they do not have the same name. 
+
+
+We can use the `rename` function to rename columns. The first value is the new name and the second value is the old name. Just in case we get it wrote, let's save this as a new
+
+```{r rename}
+head(results)
+head(genes)
+
+head(results$X)
+head(genes$Approved.symbol)
+
+results_new <- results %>%
+  dplyr::rename("Approved.symbol" = "X")
+head(results_new)
+```
+
 
 ### Join
 
-I prefer to search genes by their common name rather than their Ensemble identifier, so I create a file called gene_info and I combine this with my countData_long for quickly plotting count data for genes of interest.
+Now that the results and the genes objects both have a column called `Approved.symbol` they can be joined. The command `full_join()` will keep all rows of both objects. `left_join` will keep all the rows in the first object but will drop any rows in the second object that don't map onto the first. 
+
+```{r join}
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
+```
+
 
 
 
@@ -257,12 +279,6 @@ I prefer to search genes by their common name rather than their Ensemble identif
 | `full_join()`  | | 
 | `left_join()`  | | 
 | `inner_join()`  | | 
-
-
-
-
-
-
 
 
 

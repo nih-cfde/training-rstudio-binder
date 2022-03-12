@@ -8,6 +8,8 @@ library(forcats)
 library(cowplot)
 library(scales)
 
+## import
+
 samplesbaseR <- read.csv("./data/GTExPortal.csv")
 head(samplesbaseR)
 
@@ -28,3 +30,17 @@ colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 
 head(rownames(colData) == colnames(counts))
+
+## tidy
+
+## transform
+
+head(results$X)
+head(genes$Approved.symbol)
+
+results_new <- results %>%
+  dplyr::rename("Approved.symbol" = "X")
+head(results_new$Approved.symbol)
+
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
