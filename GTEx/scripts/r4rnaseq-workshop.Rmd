@@ -463,3 +463,10 @@ Not sure if I want to include either or both of these advanced beginner concepts
 - [Angus 2019 Intro to R Lesson](https://angus.readthedocs.io/en/2019/R_Intro_Lesson.html)
 - [Angus 2019 Differential Gene Expression in R Lesson](https://angus.readthedocs.io/en/2019/diff-ex-and-viz.html)
 - [Software Carpentry R Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
+
+# Appendix: All code for this report
+
+_Note: Delete this appendix and save it in `scripts` as `r4rnaseq-workshop.R`._
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```
