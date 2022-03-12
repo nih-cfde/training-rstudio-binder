@@ -67,9 +67,14 @@ as we go along!
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
 For today’s lesson, we will focus on data from the Gene Expression
-Tissue Project (GTEx). **To explore the data, navigate to the GTEX
-folder then click `GTEx.Rproj`. This will open up an Rproject and set
-the working directory to `~/GTEx/`.**
+Tissue Project (GTEx). By the end of today’s workshop, you will crated
+the following plots:
+
+*Add plots :)*
+
+**To begin explore the data, navigate to the GTEX folder then click
+`GTEx.Rproj`.** This will open up an Rproject and set the working
+directory to `~/GTEx/`.
 
 You can run R-friendly code in the local console:
 
@@ -113,8 +118,8 @@ installed each package individually.
 
 After installing packages, you must load them with the function
 `library()` to use the associated functions, objects, and help files. In
-addition to using the package `ggplot`, we will also use `cowplot`,
-`scales`, and `magick` to make pretty visualizations.
+addition to using the package `ggplot`, we will also use `cowplot` and
+`scales` to make pretty visualizations.
 
 ``` r
 library(ggplot2)
@@ -124,6 +129,8 @@ library(readr)
 library(tibble)
 library(stringr)
 library(forcats)
+library(cowplot)
+library(scales)
 ```
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software
@@ -597,4 +604,3 @@ concepts.
     Lesson](https://angus.readthedocs.io/en/2019/diff-ex-and-viz.html)
 -   [Software Carpentry R
     Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
-
