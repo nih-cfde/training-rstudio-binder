@@ -124,6 +124,7 @@ library(DESeq2)
 
 
 ```{asis, comment = ""}
+
 :::info
 #### Key functions
 
@@ -132,6 +133,7 @@ library(DESeq2)
 | `install.packages()` |  |
 | `library()` |  |
 :::
+
 ```
 
 
@@ -200,7 +202,9 @@ head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 ```
 
+```{asis, comment = ""}
 
+:::info
 #### Key functions
 
 | Function | Description |
@@ -211,6 +215,9 @@ head(rownames(colData) == colnames(counts))
 | `read_tsv()`  | A tidyR function for importing .tsv files as tibbles | 
 | `head()` and `tail()` |Print the first or last 6 lines of an object  | 
 | `dim()`  | Print the dimensions of an object | 
+:::
+
+```
 
 ## Tidy and Transform
 
@@ -223,7 +230,9 @@ head(rownames(colData) == colnames(counts))
 Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by tissue and or gene for quick plotting.
 
 
+```{asis, comment = ""}
 
+:::info
 #### Key functions: Tidy
 
 | Function | Description |
@@ -234,7 +243,9 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 | `drop_na()` |  |
 | `select()`|  |
 | `arrange()` |  |
+:::
 
+```
 
 
 

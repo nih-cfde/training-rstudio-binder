@@ -329,6 +329,8 @@ head(rownames(colData) == colnames(counts))
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
 
+<div class="info">
+
 #### Key functions
 
 | Function              | Description                                                     |
@@ -340,6 +342,8 @@ head(rownames(colData) == colnames(counts))
 | `head()` and `tail()` | Print the first or last 6 lines of an object                    |
 | `dim()`               | Print the dimensions of an object                               |
 
+</div>
+
 ## Tidy and Transform
 
 ### Widen
@@ -348,6 +352,8 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format
 where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
+
+<div class="info">
 
 #### Key functions: Tidy
 
@@ -359,6 +365,8 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `drop_na()`      |             |
 | `select()`       |             |
 | `arrange()`      |             |
+
+</div>
 
 ## Transform
 
@@ -752,6 +760,7 @@ library(scales)
 library(recount3)
 library(biomaRt)
 library(DESeq2)
+
 :::info
 #### Key functions
 
@@ -760,6 +769,7 @@ library(DESeq2)
 | `install.packages()` |  |
 | `library()` |  |
 :::
+
 samplesbaseR <- read.csv("../data/GTExPortal.csv")
 head(samplesbaseR)
 results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
@@ -774,6 +784,34 @@ head(counts)[1:5]
 colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
+
+:::info
+#### Key functions
+
+| Function | Description |
+| --- | --- |
+| `read.csv()`  | A base R function for importing comma separated tabular data  |
+| `read_csv()`  | A tidyR function for importing .csv files as tibbles |
+| `read.table()` | A base R function for importing tabular data with any delimiter |
+| `read_tsv()`  | A tidyR function for importing .tsv files as tibbles | 
+| `head()` and `tail()` |Print the first or last 6 lines of an object  | 
+| `dim()`  | Print the dimensions of an object | 
+:::
+
+
+:::info
+#### Key functions: Tidy
+
+| Function | Description |
+| --- | --- |
+| `pivot_wider()` |  |
+| `pivot_longer()` |  |
+| `separate()` |  |
+| `drop_na()` |  |
+| `select()`|  |
+| `arrange()` |  |
+:::
+
 head(results)
 head(genes)
 
