@@ -267,15 +267,15 @@ In the next section, we will join two data frames by a shared column. Both the r
 We can use the `rename` function to rename columns. The first value is the new name and the second value is the old name. Just in case we get it wrong, let's save this as a new object.
 
 ```{r rename}
-head(results)
-head(genes)
+kable(head(results))
+kable(head(genes))
 
-head(results$X)
-head(genes$Approved.symbol)
+kable(head(results$X))
+kable(head(genes$Approved.symbol))
 
 results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+kable(head(results_new))
 ```
 
 

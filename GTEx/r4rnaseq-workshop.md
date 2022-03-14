@@ -33,7 +33,7 @@ to generate a computing environnment for this workshop.
 
 ### Overview
 
-<div class="info">
+:::info
 
 #### Learning Objectives
 
@@ -49,7 +49,7 @@ RNA-sequencing experiments. Specially, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-</div>
+:::
 
 \[TOC\]
 
@@ -167,7 +167,7 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -176,7 +176,7 @@ library(DESeq2)
 | `install.packages()` | An R function to install packages           |
 | `library()`          | The command used to load installed packages |
 
-</div>
+:::
 
 ## Import
 
@@ -1119,7 +1119,7 @@ TRUE
 </tbody>
 </table>
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -1135,7 +1135,7 @@ TRUE
 | `summary()`           | A function that summarizes each variable                        |
 | `as_tibble()`         | Convert dataframes to tibbles                                   |
 
-</div>
+:::
 
 ## Tidy and Transform
 
@@ -1146,7 +1146,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-<div class="success">
+:::success
 
 #### Key functions: Tidy
 
@@ -1159,7 +1159,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-</div>
+:::
 
 ## Transform
 
@@ -1176,82 +1176,627 @@ the new name and the second value is the old name. Just in case we get
 it wrong, let’s save this as a new object.
 
 ``` r
-head(results)
+kable(head(results))
 ```
 
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+X
+</th>
+<th style="text-align:right;">
+logFC
+</th>
+<th style="text-align:right;">
+AveExpr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+P.Value
+</th>
+<th style="text-align:right;">
+adj.P.Val
+</th>
+<th style="text-align:right;">
+B
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:right;">
+0.1033279
+</td>
+<td style="text-align:right;">
+1.3459363
+</td>
+<td style="text-align:right;">
+0.3221575
+</td>
+<td style="text-align:right;">
+0.7482218
+</td>
+<td style="text-align:right;">
+0.8748032
+</td>
+<td style="text-align:right;">
+-5.672644
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:right;">
+0.1360923
+</td>
+<td style="text-align:right;">
+-0.2381928
+</td>
+<td style="text-align:right;">
+0.6395041
+</td>
+<td style="text-align:right;">
+0.5244265
+</td>
+<td style="text-align:right;">
+0.7307806
+</td>
+<td style="text-align:right;">
+-5.345563
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:right;">
+-0.0160518
+</td>
+<td style="text-align:right;">
+9.7981987
+</td>
+<td style="text-align:right;">
+-0.1132389
+</td>
+<td style="text-align:right;">
+0.9101410
+</td>
+<td style="text-align:right;">
+0.9564580
+</td>
+<td style="text-align:right;">
+-5.956689
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:right;">
+0.6050557
+</td>
+<td style="text-align:right;">
+2.5392220
+</td>
+<td style="text-align:right;">
+3.4884410
+</td>
+<td style="text-align:right;">
+0.0008132
+</td>
+<td style="text-align:right;">
+0.0554565
+</td>
+<td style="text-align:right;">
+-0.635100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2ML1
+</td>
+<td style="text-align:right;">
+0.3541353
+</td>
+<td style="text-align:right;">
+-1.1667406
+</td>
+<td style="text-align:right;">
+1.0788316
+</td>
+<td style="text-align:right;">
+0.2840899
+</td>
+<td style="text-align:right;">
+0.5292264
+</td>
+<td style="text-align:right;">
+-4.948617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2MP1
+</td>
+<td style="text-align:right;">
+0.6576474
+</td>
+<td style="text-align:right;">
+-0.7564399
+</td>
+<td style="text-align:right;">
+3.2615528
+</td>
+<td style="text-align:right;">
+0.0016631
+</td>
+<td style="text-align:right;">
+0.0606700
+</td>
+<td style="text-align:right;">
+-1.358971
+</td>
+</tr>
+</tbody>
+</table>
 
 ``` r
-head(genes)
+kable(head(genes))
 ```
 
-    ##      HGNC.ID Approved.symbol
-    ## 1     HGNC:5            A1BG
-    ## 2 HGNC:37133        A1BG-AS1
-    ## 3 HGNC:24086            A1CF
-    ## 4     HGNC:6           A1S9T
-    ## 5     HGNC:7             A2M
-    ## 6 HGNC:27057         A2M-AS1
-    ##                                                  Approved.name Chromosome
-    ## 1                                       alpha-1-B glycoprotein   19q13.43
-    ## 2                                         A1BG antisense RNA 1   19q13.43
-    ## 3                               APOBEC1 complementation factor   10q11.23
-    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
-    ## 5                                        alpha-2-macroglobulin   12p13.31
-    ## 6                                          A2M antisense RNA 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3                 AF271790        29974 ENSG00000148584
-    ## 4                                    NA                
-    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 6                                144571 ENSG00000245105
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:1917115
-    ## 4                         
-    ## 5              MGI:2449119
-    ## 6
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+HGNC.ID
+</th>
+<th style="text-align:left;">
+Approved.symbol
+</th>
+<th style="text-align:left;">
+Approved.name
+</th>
+<th style="text-align:left;">
+Chromosome
+</th>
+<th style="text-align:left;">
+Accession.numbers
+</th>
+<th style="text-align:right;">
+NCBI.Gene.ID
+</th>
+<th style="text-align:left;">
+Ensembl.gene.ID
+</th>
+<th style="text-align:left;">
+Mouse.genome.database.ID
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+HGNC:5
+</td>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:left;">
+alpha-1-B glycoprotein
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+ENSG00000121410
+</td>
+<td style="text-align:left;">
+MGI:2152878
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:37133
+</td>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:left;">
+A1BG antisense RNA 1
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+BC040926
+</td>
+<td style="text-align:right;">
+503538
+</td>
+<td style="text-align:left;">
+ENSG00000268895
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:24086
+</td>
+<td style="text-align:left;">
+A1CF
+</td>
+<td style="text-align:left;">
+APOBEC1 complementation factor
+</td>
+<td style="text-align:left;">
+10q11.23
+</td>
+<td style="text-align:left;">
+AF271790
+</td>
+<td style="text-align:right;">
+29974
+</td>
+<td style="text-align:left;">
+ENSG00000148584
+</td>
+<td style="text-align:left;">
+MGI:1917115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:6
+</td>
+<td style="text-align:left;">
+A1S9T
+</td>
+<td style="text-align:left;">
+symbol withdrawn, see \[HGNC:12469\](/data/gene-symbol-report/
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:7
+</td>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:left;">
+alpha-2-macroglobulin
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+BX647329, X68728, M11313
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ENSG00000175899
+</td>
+<td style="text-align:left;">
+MGI:2449119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:27057
+</td>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:left;">
+A2M antisense RNA 1
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+144571
+</td>
+<td style="text-align:left;">
+ENSG00000245105
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
 
 ``` r
-head(results$X)
+kable(head(results$X))
 ```
 
-    ## [1] "A1BG"     "A1BG-AS1" "A2M"      "A2M-AS1"  "A2ML1"    "A2MP1"
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2ML1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2MP1
+</td>
+</tr>
+</tbody>
+</table>
 
 ``` r
-head(genes$Approved.symbol)
+kable(head(genes$Approved.symbol))
 ```
 
-    ## [1] "A1BG"     "A1BG-AS1" "A1CF"     "A1S9T"    "A2M"      "A2M-AS1"
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1CF
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1S9T
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+</tr>
+</tbody>
+</table>
 
 ``` r
 results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+kable(head(results_new))
 ```
 
-    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
-    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
-    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
-    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
-    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
-    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
-    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
-    ##           B
-    ## 1 -5.672644
-    ## 2 -5.345563
-    ## 3 -5.956689
-    ## 4 -0.635100
-    ## 5 -4.948617
-    ## 6 -1.358971
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Approved.symbol
+</th>
+<th style="text-align:right;">
+logFC
+</th>
+<th style="text-align:right;">
+AveExpr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+P.Value
+</th>
+<th style="text-align:right;">
+adj.P.Val
+</th>
+<th style="text-align:right;">
+B
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:right;">
+0.1033279
+</td>
+<td style="text-align:right;">
+1.3459363
+</td>
+<td style="text-align:right;">
+0.3221575
+</td>
+<td style="text-align:right;">
+0.7482218
+</td>
+<td style="text-align:right;">
+0.8748032
+</td>
+<td style="text-align:right;">
+-5.672644
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:right;">
+0.1360923
+</td>
+<td style="text-align:right;">
+-0.2381928
+</td>
+<td style="text-align:right;">
+0.6395041
+</td>
+<td style="text-align:right;">
+0.5244265
+</td>
+<td style="text-align:right;">
+0.7307806
+</td>
+<td style="text-align:right;">
+-5.345563
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:right;">
+-0.0160518
+</td>
+<td style="text-align:right;">
+9.7981987
+</td>
+<td style="text-align:right;">
+-0.1132389
+</td>
+<td style="text-align:right;">
+0.9101410
+</td>
+<td style="text-align:right;">
+0.9564580
+</td>
+<td style="text-align:right;">
+-5.956689
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:right;">
+0.6050557
+</td>
+<td style="text-align:right;">
+2.5392220
+</td>
+<td style="text-align:right;">
+3.4884410
+</td>
+<td style="text-align:right;">
+0.0008132
+</td>
+<td style="text-align:right;">
+0.0554565
+</td>
+<td style="text-align:right;">
+-0.635100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2ML1
+</td>
+<td style="text-align:right;">
+0.3541353
+</td>
+<td style="text-align:right;">
+-1.1667406
+</td>
+<td style="text-align:right;">
+1.0788316
+</td>
+<td style="text-align:right;">
+0.2840899
+</td>
+<td style="text-align:right;">
+0.5292264
+</td>
+<td style="text-align:right;">
+-4.948617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2MP1
+</td>
+<td style="text-align:right;">
+0.6576474
+</td>
+<td style="text-align:right;">
+-0.7564399
+</td>
+<td style="text-align:right;">
+3.2615528
+</td>
+<td style="text-align:right;">
+0.0016631
+</td>
+<td style="text-align:right;">
+0.0606700
+</td>
+<td style="text-align:right;">
+-1.358971
+</td>
+</tr>
+</tbody>
+</table>
 
 ### Join
 
@@ -1727,15 +2272,15 @@ kable(head(rownames(colData) == colnames(counts)))
 | `arrange()` |  |
 :::
 
-head(results)
-head(genes)
+kable(head(results))
+kable(head(genes))
 
-head(results$X)
-head(genes$Approved.symbol)
+kable(head(results$X))
+kable(head(genes$Approved.symbol))
 
 results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+kable(head(results_new))
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 kable(head(results_genes)) 
 ```
