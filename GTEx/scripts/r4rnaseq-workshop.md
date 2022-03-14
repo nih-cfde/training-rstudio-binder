@@ -147,7 +147,7 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-<div class="info">
+:::info
 
 #### Key functions
 
@@ -156,7 +156,7 @@ library(DESeq2)
 | `install.packages()` |             |
 | `library()`          |             |
 
-</div>
+:::
 
 ## Import
 
@@ -329,7 +329,7 @@ head(rownames(colData) == colnames(counts))
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
 
-<div class="info">
+:::info
 
 #### Key functions
 
@@ -342,7 +342,7 @@ head(rownames(colData) == colnames(counts))
 | `head()` and `tail()` | Print the first or last 6 lines of an object                    |
 | `dim()`               | Print the dimensions of an object                               |
 
-</div>
+:::
 
 ## Tidy and Transform
 
@@ -353,7 +353,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-<div class="info">
+:::info
 
 #### Key functions: Tidy
 
@@ -366,7 +366,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-</div>
+:::
 
 ## Transform
 
