@@ -21,7 +21,7 @@ practice calculating and visualizing differential gene expression using
 popular open-source packages and public RNA-Seq data from the Gene
 Expression Tissue Project (GTEx).
 
-**When:** Wednesday March 23, 10 am - 12 pm PT  
+**When:** Wednesday, March 23, 10 am - 12 pm PT  
 **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
@@ -33,7 +33,7 @@ to generate a computing environnment for this workshop.
 
 ### Overview
 
-:::info
+<div class="info">
 
 #### Learning Objectives
 
@@ -49,7 +49,7 @@ RNA-sequencing experiments. Specially, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-:::
+</div>
 
 \[TOC\]
 
@@ -106,8 +106,8 @@ analysis.
 2.  Navigate to the GTEX folder.
 3.  Click `GTEx.Rproj` and click “Yes” to open up an Rproject. This will
     set the working directory to `~/GTEx/`.
-4.  Open the **r4rnaseq-workshop.R** file which contains all the
-    commands for today’s workshop.
+4.  Open the `r4rnaseq-workshop.R` file which contains all the commands
+    for today’s workshop.
 
 ### Tidyverse packages
 
@@ -116,12 +116,13 @@ collection of functions, data, and documentation that extends the
 capabilities of base R. Using packages is key to the successful use of
 R. The majority of the packages that you will learn in this book are
 part of the so-called tidyverse. The packages in the tidyverse share a
-common philosophy of data and R programming, and are designed to work
+common philosophy of data and R programming and are designed to work
 together naturally.
 
-You can install the complete tidyverse with a single line of code. When
-install packages like this, it is a good idea to comment out so that you
-don’t reinstall the package everytime you run the script.
+You can install the complete tidyverse with a single line of code:
+`install.packages("tidyverse")`. It is a good idea to “comment out” this
+line of code by adding a `#` at the beginning so that you don’t
+re-install the package every time you run the script.
 
 ``` r
 #install.packages("tidyverse")
@@ -155,7 +156,7 @@ library(kableExtra)
 [Bioconductor](https://www.bioconductor.org) is an open-source software
 project developed for the analysis and comprehension of high-throughput
 data in genomics and molecular biology. The project aims to enable
-interdisciplinary research, collaboration and rapid development of
+interdisciplinary research, collaboration, and rapid development of
 scientific software. It is based on the statistical programming language
 R. We will not be using these packages in this class, but they are worth
 getting to know.
@@ -166,22 +167,22 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-:::success
+<div class="success">
 
 #### Key functions
 
-| Function             | Description |
-|----------------------|-------------|
-| `install.packages()` |             |
-| `library()`          |             |
+| Function             | Description                                 |
+|----------------------|---------------------------------------------|
+| `install.packages()` | An R function to install packages           |
+| `library()`          | The command used to load installed packages |
 
-:::
+</div>
 
 ## Import
 
 Data can be imported using packages from base R or from the tidyverse.
 
-What are the some differences between the data objects imported by
+What are some differences between the data objects imported by
 `read.csv()` and `read_csv()`? 1. Periods versus spaces in column names
 1. Data frame versus tibble 1. Row names allowed versus not allowed.
 
@@ -762,7 +763,7 @@ gunzip -k ./data/countData.HEART.csv.gz
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
 last) few rows and columns. Typically, a gene identifier (like an
-ensemble id) will be uesed as the row names.
+ensemble id) will be used as the row names.
 
 ``` r
 counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
@@ -915,10 +916,10 @@ ENSG00000278198.1
 </tbody>
 </table>
 
-In order to process the counts data using the DESEq2 pipeline, we need a
+To process the counts data using the DESEq2 pipeline, we need a
 corresponding file where the row names are the sample id and they match
 the column names of the counts file. We confirm this by asking if
-`rownames(colData) == colnames(counts)` or by checking the dimentions of
+`rownames(colData) == colnames(counts)` or by checking the dimensions of
 each.
 
 ``` r
@@ -1118,7 +1119,7 @@ TRUE
 </tbody>
 </table>
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -1132,8 +1133,9 @@ TRUE
 | `dim()`               | A function that prints the dimensions of an object              |
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
+| `as_tibble()`         | Convert dataframes to tibbles                                   |
 
-:::
+</div>
 
 ## Tidy and Transform
 
@@ -1144,7 +1146,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-:::success
+<div class="success">
 
 #### Key functions: Tidy
 
@@ -1157,7 +1159,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-:::
+</div>
 
 ## Transform
 
@@ -1171,7 +1173,7 @@ symbols, but they do not have the same name.
 
 We can use the `rename` function to rename columns. The first value is
 the new name and the second value is the old name. Just in case we get
-it wrote, let’s save this as a new
+it wrong, let’s save this as a new object.
 
 ``` r
 head(results)
@@ -1616,7 +1618,7 @@ concepts.
 
 -   [R for Data Science by Hadley Wickham and Garrett
     Grolemund](https://r4ds.had.co.nz/index.html)
--   [Rouillard et al. 2016. The harmonizome: a collection of processed
+-   [Rouillard et al. 2016. The Harmonizome: a collection of processed
     datasets gathered to serve and mine knowledge about genes and
     proteins. Database
     (Oxford).](http://database.oxfordjournals.org/content/2016/baw100.short)
@@ -1676,8 +1678,8 @@ library(DESeq2)
 
 | Function | Description |
 | --- | --- |
-| `install.packages()` |  |
-| `library()` |  |
+| `install.packages()` | An R function to install packages |
+| `library()` | The command used to load installed packages |
 :::
 
 samplesbaseR <- read.csv("./data/GTExPortal.csv")
@@ -1708,6 +1710,7 @@ kable(head(rownames(colData) == colnames(counts)))
 | `dim()`  | A function that prints the dimensions of an object | 
 | `str()` | A function that prints the internal structure of an object  |
 | `summary()` | A function that summarizes each variable |
+| `as_tibble()` | Convert dataframes to tibbles | 
 :::
 
 
