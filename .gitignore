@@ -4,3 +4,5 @@
 .Ruserdata
 GTEx/scripts/r4rnaseq-workshop_cache/
 GTEx/data/countData.HEART.csv
+GTEx/r4rnaseq-workshop_cache/
+GTEx/scripts/.DS_Store

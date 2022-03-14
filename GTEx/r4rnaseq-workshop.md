@@ -58,7 +58,7 @@ as an outline for this workshop.
 
 **R** is a statistical computing and data visualization programming
 language. **RStudio** is an integrated development environment, or IDE,
-for R programming.. R and RStudio work on Mac, Linux, and Windows
+for R programming. R and RStudio work on Mac, Linux, and Windows
 operating systems. The RStudio layout displays lots of useful
 information and allows us to run R code from a script and view and save
 outputs all from one interface.
@@ -170,13 +170,13 @@ What are the some differences between the data objects imported by
 `read.csv()` and `read_csv()`? 1. Periods versus spaces in column names
 1. Data frame versus tibble 1. Row names allowed versus not allowed.
 
-The `GTExPortal.csv` file in `../data/` contains information about all
+The `GTExPortal.csv` file in `./data/` contains information about all
 the samples in the GTEx portal. Let’s import this file using
 `read.csv()`. Then, use `head()` to view the first few lines of each
 file.
 
 ``` r
-samplesbaseR <- read.csv("../data/GTExPortal.csv")
+samplesbaseR <- read.csv("./data/GTExPortal.csv")
 head(samplesbaseR)
 ```
 
@@ -206,7 +206,7 @@ Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
 
 ``` r
-results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
 head(results)
 ```
 
@@ -227,7 +227,7 @@ In this case, we use `fill = T` to fill missing fields wiht a NULL
 value.
 
 ``` r
-genes <- read.table("../data/genes.txt", sep = "\t", 
+genes <- read.table("./data/genes.txt", sep = "\t", 
                     header = T, fill = T)
 head(genes)
 ```
@@ -266,7 +266,7 @@ compressed before they are shared. To uncompress a file, click on the
 Terminal tab and run the following command.
 
 ``` bash
-gunzip -k ../data/countData.HEART.csv.gz
+gunzip -k ./data/countData.HEART.csv.gz
 ```
 
 Once that file is uncompressed, it can be imported. Count files can be
@@ -275,7 +275,7 @@ last) few rows and columns. Typically, a gene identifier (like an
 ensemble id) will be uesed as the row names.
 
 ``` r
-counts <- read.csv("../data/countData.HEART.csv", header = TRUE, row.names = 1)
+counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
 head(counts)[1:5]
 ```
 
@@ -308,7 +308,7 @@ the column names of the counts file. We confirm this by asking if
 each.
 
 ``` r
-colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
+colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 ```
 
@@ -783,18 +783,18 @@ library(DESeq2)
 | `library()` |  |
 :::
 
-samplesbaseR <- read.csv("../data/GTExPortal.csv")
+samplesbaseR <- read.csv("./data/GTExPortal.csv")
 head(samplesbaseR)
-results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
 head(results)
-genes <- read.table("../data/genes.txt", sep = "\t", 
+genes <- read.table("./data/genes.txt", sep = "\t", 
                     header = T, fill = T)
 head(genes)
-rm ../data/countData.HEART.csv
-gunzip -k ../data/countData.HEART.csv.gz
-counts <- read.csv("../data/countData.HEART.csv", header = TRUE, row.names = 1)
+rm ./data/countData.HEART.csv
+gunzip -k ./data/countData.HEART.csv.gz
+counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
 head(counts)[1:5]
-colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
+colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 

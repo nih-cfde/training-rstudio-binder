@@ -48,17 +48,13 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 ```
 
 
-
-
-
-
 ## Introduction and Setup
 
 The book [“R for Data Science”](https://r4ds.had.co.nz/index.html) provides an excellent framework for using data science to turn raw data into understanding, insight, and knowledge. We will use this framework as an outline for this workshop.
 
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
-**R** is a statistical computing and data visualization programming language. **RStudio** is an integrated development environment, or IDE, for R programming.. R and RStudio work on Mac, Linux, and Windows operating systems. The RStudio layout displays lots of useful information and allows us to run R code from a script and view and save outputs all from one interface.
+**R** is a statistical computing and data visualization programming language. **RStudio** is an integrated development environment, or IDE, for R programming. R and RStudio work on Mac, Linux, and Windows operating systems. The RStudio layout displays lots of useful information and allows us to run R code from a script and view and save outputs all from one interface.
 
 When you start RStudio, you’ll see two key regions in the interface: the console and the output. For now, all you need to know is that you type R code in the console pane, and press enter to run it. You will learn more as we go along!
 
@@ -140,9 +136,6 @@ library(DESeq2)
 ```
 
 
-
-
-
 ## Import
 
 Data can be imported using packages from base R or from the tidyverse.  
@@ -152,17 +145,17 @@ What are the some differences between the data objects imported by `read.csv()` 
 1. Data frame versus tibble
 1. Row names allowed versus not allowed.
 
-The `GTExPortal.csv` file in `../data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. Then, use `head()` to view the first few lines of each file. 
+The `GTExPortal.csv` file in `./data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. Then, use `head()` to view the first few lines of each file. 
 
 ```{r import-1}
-samplesbaseR <- read.csv("../data/GTExPortal.csv")
+samplesbaseR <- read.csv("./data/GTExPortal.csv")
 head(samplesbaseR)
 ```
 
 Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. 
 
 ```{r import-2}
-results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
 head(results)
 ```
 
@@ -171,7 +164,7 @@ I find it helpful to import a table of gene names and symbols that can be merged
 In this case, we use `fill = T` to fill missing fields wiht a NULL value.
 
 ```{r import-3}
-genes <- read.table("../data/genes.txt", sep = "\t", 
+genes <- read.table("./data/genes.txt", sep = "\t", 
                     header = T, fill = T)
 head(genes)
 ```
@@ -180,18 +173,18 @@ Very large data files, such as files with RNA-Seq counts are often compressed be
 
 
 ```{bash, echo = F}
-rm ../data/countData.HEART.csv
+rm ./data/countData.HEART.csv
 ```
 
 
 ```{bash}
-gunzip -k ../data/countData.HEART.csv.gz
+gunzip -k ./data/countData.HEART.csv.gz
 ```
 
 Once that file is uncompressed, it can be imported. Count files can be very long and wide, so it is a good idea to only view the first (or last) few rows and columns. Typically, a gene identifier (like an ensemble id) will be uesed as the row names. 
 
 ```{r import-4}
-counts <- read.csv("../data/countData.HEART.csv", header = TRUE, row.names = 1)
+counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
 head(counts)[1:5]
 ```
 
@@ -200,7 +193,7 @@ In order to process the counts data using the DESEq2 pipeline, we need a corresp
 
 
 ```{r import-5}
-colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
+colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 ```
