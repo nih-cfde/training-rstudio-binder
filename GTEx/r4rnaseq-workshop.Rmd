@@ -92,7 +92,7 @@ By the end of today's workshop, you will be able to create tables and plots like
 
 ### Tidyverse packages
 
-The [**Tidyverse**](https://www.tidyverse.org/) R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming and are designed to work together naturally.
+[**Tidyverse**](https://www.tidyverse.org/) is a collection of R packages that include functions, data, and documentation that provide more tools and capabilities when using R. There are many packages for R, but we are using this set because the packages are designed to work well together -and they are especially useful (and popular!) for doing data science. 
 
 You can install the complete tidyverse with a single line of code: `install.packages("tidyverse")`. It is a good idea to "comment out" this line of code by adding a `#` at the beginning so that you don't re-install the package every time you run the script.  
 ```{r  eval=FALSE}
@@ -101,7 +101,7 @@ You can install the complete tidyverse with a single line of code: `install.pack
 
 However, for this workshop, the packages listed in the `.binder/environment.yml` file were pre-installed with Conda. For some reason, the tidyverse package doesn't always install properly, so we installed each package individually.
 
-After installing packages, you must load them with the function `library()` to use the associated functions, objects, and help files.  In addition to using the package `ggplot`, we will also use `cowplot` and  `scales` to make pretty visualizations.
+After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. In addition to using the package `ggplot`, we will also use `cowplot` and  `scales` to make pretty visualizations.
 
 
 ```{r, message=FALSE}
