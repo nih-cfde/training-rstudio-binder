@@ -123,12 +123,18 @@ library(DESeq2)
 ```
 
 
+```{asis, comment = ""}
+:::info
 #### Key functions
 
 | Function | Description |
 | --- | --- |
 | `install.packages()` |  |
 | `library()` |  |
+:::
+```
+
+
 
 
 

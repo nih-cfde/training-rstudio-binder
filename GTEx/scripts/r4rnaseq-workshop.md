@@ -147,12 +147,16 @@ library(biomaRt)
 library(DESeq2)
 ```
 
+<div class="info">
+
 #### Key functions
 
 | Function             | Description |
 |----------------------|-------------|
 | `install.packages()` |             |
 | `library()`          |             |
+
+</div>
 
 ## Import
 
@@ -726,3 +730,59 @@ concepts.
 -   [Software Carpentry R
     Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
 
+------------------------------------------------------------------------
+
+``` r
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
+                      fig.path = "./images/")
+echo "[TOC]"
+2 + 2
+2 + 2
+sum(2,2)
+#install.packages("tidyverse")
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(tibble)
+library(stringr)
+library(forcats)
+library(cowplot)
+library(scales)
+library(recount3)
+library(biomaRt)
+library(DESeq2)
+:::info
+#### Key functions
+
+| Function | Description |
+| --- | --- |
+| `install.packages()` |  |
+| `library()` |  |
+:::
+samplesbaseR <- read.csv("../data/GTExPortal.csv")
+head(samplesbaseR)
+results <- read.table("../data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+head(results)
+genes <- read.table("../data/genes.txt", sep = "\t", 
+                    header = T, fill = T)
+head(genes)
+rm ../data/countData.HEART.csv
+gunzip -k ../data/countData.HEART.csv.gz
+counts <- read.csv("../data/countData.HEART.csv", header = TRUE, row.names = 1)
+head(counts)[1:5]
+colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
+head(colData)[1:5]
+head(rownames(colData) == colnames(counts))
+head(results)
+head(genes)
+
+head(results$X)
+head(genes$Approved.symbol)
+
+results_new <- results %>%
+  dplyr::rename("Approved.symbol" = "X")
+head(results_new)
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
+```
