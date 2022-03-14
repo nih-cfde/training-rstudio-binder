@@ -34,7 +34,7 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 **Overview**
 
-```{asis, echo = F, comment = ""}
+```{asis, echo = T, comment = ""}
 [TOC]
 
 :::info

@@ -33,6 +33,20 @@ to generate a computing enviornment for this workshop.
 
 **Overview**
 
+\[TOC\]
+
+:::info
+
+#### Learning Objectives
+
+1.  Create a gene-level count matrix of gene expression quantification
+    using recount3
+2.  Perform differential expression of a two factor experiment in DESeq2
+3.  Perform quality control and exploratory visualization of RNA-seq
+    data in R
+
+:::
+
 ## Introduction and Setup
 
 The book [“R for Data Science”](https://r4ds.had.co.nz/index.html)
