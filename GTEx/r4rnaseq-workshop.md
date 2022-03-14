@@ -33,7 +33,7 @@ to generate a computing environnment for this workshop.
 
 ### Overview
 
-<div class="info">
+:::info
 
 #### Learning Objectives
 
@@ -49,7 +49,7 @@ RNA-sequencing experiments. Specially, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-</div>
+:::
 
 \[TOC\]
 
@@ -104,8 +104,8 @@ analysis.
     [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
     button to generate a computing environment for this workshop.
 2.  Navigate to the GTEX folder.
-3.  Click `GTEx.Rproj` to open up an Rproject which will set the working
-    directory to `~/GTEx/`.
+3.  Click `GTEx.Rproj` and click “Yes” to open up an Rproject. This will
+    set the working directory to `~/GTEx/`.
 4.  Open the **r4rnaseq-workshop.R** file which contains all the
     commands for today’s workshop.
 
@@ -166,7 +166,7 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -175,7 +175,7 @@ library(DESeq2)
 | `install.packages()` |             |
 | `library()`          |             |
 
-</div>
+:::
 
 ## Import
 
@@ -1118,7 +1118,7 @@ TRUE
 </tbody>
 </table>
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -1129,9 +1129,11 @@ TRUE
 | `read.table()`        | A base R function for importing tabular data with any delimiter |
 | `read_tsv()`          | A tidyR function for importing .tsv files as tibbles            |
 | `head()` and `tail()` | Print the first or last 6 lines of an object                    |
-| `dim()`               | Print the dimensions of an object                               |
+| `dim()`               | A function that prints the dimensions of an object              |
+| `str()`               | A function that prints the internal structure of an object      |
+| `summary()`           | A function that summarizes each variable                        |
 
-</div>
+:::
 
 ## Tidy and Transform
 
@@ -1142,7 +1144,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-<div class="success">
+:::success
 
 #### Key functions: Tidy
 
@@ -1155,7 +1157,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-</div>
+:::
 
 ## Transform
 
@@ -1259,7 +1261,7 @@ onto the first.
 
 ``` r
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-kable(head(results_genes))
+kable(head(results_genes)) 
 ```
 
 <table>
@@ -1587,177 +1589,6 @@ ENSG00000256069
 Now, we can use ggplot2 to show how many samples for each biological
 condition.
 
-``` r
-colData %>%
-      group_by(gtex.age, gtex.smtsd) %>%
-      summarise(cohort_size = length(gtex.age)) %>%
-      ggplot(aes(x = gtex.age,  y = cohort_size, fill = gtex.smtsd)) +
-      geom_bar(stat = "identity", position = "dodge") +
-      labs(x = "Age", y = "Cohort size", fill = "Tissue",
-           subtitle = "GTEx data obtained using recount3 ") +
-      theme_linedraw(base_size = 15) +
-      geom_text(aes(label = cohort_size),
-                position = position_dodge(width = .9),
-                vjust = -0.25)
-```
-
-![recount3-1](https://www.raynamharris.com/images/recount3-gtex-1.png)
-
-``` r
-countData_long %>%
-  filter( hgnc_symbol == "MT-CO2") %>%
-  ggplot(aes(x = gtex.age, y = counts, 
-             fill = gtex.smtsd)) +
-  geom_boxplot() +
-  scale_y_log10() +
-  labs(y = 'MT-CO2 counts', x = "Age", fill = "Tissue") +
-  theme_linedraw(base_size = 15) +
-  scale_y_continuous(labels = scales::label_number_si()) 
-```
-
-![recount3-2](https://www.raynamharris.com/images/recount3-gtex-2.png)
-
-## Model
-
-Differential expression analysis with DESeq2 involves multiple steps as
-displayed in the flowchart below. Briefly,
-
--   DESeq2 will model the raw counts, using normalization factors (size
-    factors) to account for differences in library depth.
--   Then, it will estimate the gene-wise dispersions and shrink these
-    estimates to generate more accurate estimates of dispersion to model
-    the counts.
--   Finally, DESeq2 will fit the negative binomial model and perform
-    hypothesis testing using the Wald test or Likelihood Ratio Test.
-
-![DESeq](https://angus.readthedocs.io/en/2019/_static/DESeq2_workflow.png)
-
-DESEq2 does not like to have dashes in variable names, so I use `gsub()`
-to replace `-` with `_`. Also, DESeq2 performs best with 100 samples or
-less. I like to use it on experiments with a 2 x 2 design
-(e.g. `~ treatments * condition`). So, I do some data wrangling to just
-focus on two age groups.
-
-``` r
-# replace dashes with underscores for deseq
-colData$gtex.age <- gsub(x = colData$gtex.age , pattern = "\\-", replacement = "_")
-colData$gtex.smtsd <-  gsub(x = colData$gtex.smtsd , pattern = "\\-", replacement = "")
-colData$gtex.smtsd <-  gsub(x = colData$gtex.smtsd , pattern = " ", replacement = "")
-
-# check that rows and samples match
-head(rownames(colData) == colnames(countData))
-
-## [1] TRUE TRUE TRUE TRUE TRUE TRUE
-
-# subset to 100 for deseq
-
-colDataSlim <- colData %>% filter(gtex.age  %in% c("30_39","40_49")) 
-savecols <- as.character(rownames(colDataSlim)) #select the rowsname 
-savecols <- as.vector(savecols) # make it a vector
-countDataSlim <- countData %>% dplyr::select(one_of(savecols)) 
-
-# check that rows and samples match
-head(rownames(colDataSlim) == colnames(countDataSlim))
-
-## [1] TRUE TRUE TRUE TRUE TRUE TRUE
-```
-
-Now we can use DESeq2 to ask whether or not more genes are
-differentially expressed based on age or tissue.
-
-A design formula tells the statistical software the known sources of
-variation to control for, as well as, the factor of interest to test for
-during differential expression testing. Here our experimental design has
-one factor with two levels.
-
-DESeq stores virtually all information associated with your experiment
-in one specific R object, called DESeqDataSet. This is, in fact, a
-specialized object of the class “SummarizedExperiment”. This, in turn,is
-a container where rows (rowRanges()) represent features of interest
-(e.g. genes, transcripts, exons) and columns represent samples
-(colData()). The actual count data is stored in theassay()slot.
-
-``` r
-dds <- DESeqDataSetFromMatrix(countData = countDataSlim,
-                              colData = colDataSlim,
-                              design = ~ gtex.age * gtex.smtsd)
-
-dds <- dds[ rowSums(counts(dds)) > 1, ]  # Pre-filtering genes with 0 counts
-dds <- DESeq(dds, parallel = TRUE)
-vsd <- vst(dds, blind=FALSE)
-
-res1 <- results(dds, name="gtex.age_40_49_vs_30_39",  independentFiltering = T)
-sum(res1$padj < 0.05, na.rm=TRUE)
-## [1] 993
-
-res2 <- results(dds, name="gtex.smtsd_HeartLeftVentricle_vs_HeartAtrialAppendage", independentFiltering = T)
-sum(res2$padj < 0.05, na.rm=TRUE)
-## [1] 4256
-```
-
-These results indicate that 993 genes were differentially expressed
-between the 30- and 40- year old cohorts while 4256 genes were
-differentially expressed between the left ventricle and atrial
-appendages of the heart.
-
-We can create MA plots to show the log fold change and mean expression
-level for each gene.
-
-``` r
-a <- ggmaplot(res1, main = expression("Age: 30-39" %->% "40-49"),
-         fdr = 0.05, fc = 2, size = 0.4,
-         palette = c("#B31B21", "#1465AC", "darkgray"),
-         legend = "bottom", top = 1,
-         ggtheme = ggplot2::theme_linedraw(base_size = 15))
-
-
-b <- ggmaplot(res2, main = expression("Heart: Atrial Appendage" %->% "Left Ventricle"),
-         fdr = 0.05, fc = 2, size = 0.4,
-         palette = c("#B31B21", "#1465AC", "darkgray"),
-         legend = "bottom", top = 1,
-         ggtheme = ggplot2::theme_linedraw(base_size = 15))
-         
-
-p2 <- plot_grid(a,b, nrow = 1)
-p2
-```
-
-![recount3-3](https://www.raynamharris.com/images/recount3-gtex-4.png)
-
-Finally, we can make a box plot of one of the differently expressed
-genes to confirm that the the direction is correct. Here I show that
-“ENSG00000163217.1” (aka BMP10) is more highly expressed in the atrial
-appendage than the left ventricle.
-
-``` r
-countData_long %>%
-  filter( ensembl_gene_id == "ENSG00000163217.1") %>%
-  ggplot(aes(x = gtex.age, y = counts, 
-             fill = gtex.smtsd)) +
-  geom_boxplot() +
-  scale_y_log10(labels = scales::label_number_si(accuracy = 0.1)) +
-  labs(y = 'Counts', x = "Age", subtitle = "ENSG00000163217.1") +
-  theme_linedraw(base_size = 15) +
-  theme(legend.position = "bottom", legend.direction = "vertical")
-```
-
-Finally, I make a box plot of one of the differently expressed genes to
-confirm that the the direction is correct. Here I show that
-“ENSG00000163217.1” (aka *BMP10*) is more highly expressed in the atrial
-appendage than the left ventricle.
-
-``` r
-countData_long %>%
-  filter( ensembl_gene_id == "ENSG00000163217.1") %>%
-  ggplot(aes(x = gtex.age, y = counts, 
-             fill = gtex.smtsd)) +
-  geom_boxplot() +
-  scale_y_log10(labels = scales::label_number_si(accuracy = 0.1)) +
-  labs(y = 'Counts', x = "Age", subtitle = "ENSG00000163217.1") +
-  theme_linedraw(base_size = 15) +
-  theme(legend.position = "bottom", legend.direction = "vertical")
-```
-
 ## Communicate
 
 Communication is a 2-way street. In this section, I encourage you to
@@ -1873,8 +1704,10 @@ kable(head(rownames(colData) == colnames(counts)))
 | `read_csv()`  | A tidyR function for importing .csv files as tibbles |
 | `read.table()` | A base R function for importing tabular data with any delimiter |
 | `read_tsv()`  | A tidyR function for importing .tsv files as tibbles | 
-| `head()` and `tail()` |Print the first or last 6 lines of an object  | 
-| `dim()`  | Print the dimensions of an object | 
+| `head()` and `tail()` | Print the first or last 6 lines of an object  | 
+| `dim()`  | A function that prints the dimensions of an object | 
+| `str()` | A function that prints the internal structure of an object  |
+| `summary()` | A function that summarizes each variable |
 :::
 
 
@@ -1901,5 +1734,5 @@ results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-kable(head(results_genes))
+kable(head(results_genes)) 
 ```
