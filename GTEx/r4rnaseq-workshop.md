@@ -2136,6 +2136,20 @@ ENSG00000256069
 Now, we can use ggplot2 to show how many samples for each biological
 condition.
 
+#### The grammer of graphics
+
+| Function               | Description |
+|------------------------|-------------|
+| `ggplot()`             |             |
+| `aes()`                |             |
+| `geom_point()`         |             |
+| `geom_bar()`           |             |
+| `geom_boxplot()`       |             |
+| `theme()`              |             |
+| `labs()`               |             |
+| `scale_color_manual()` |             |
+| `cowplot()`            |             |
+
 ## Communicate
 
 Communication is a 2-way street. In this section, I encourage you to
@@ -2145,6 +2159,11 @@ well.
 <https://gtexportal.org/home/gene/BMP10>
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
+
+### R Markdown
+
+The workshop notes for using this repository to teach an Introduction to
+R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 
 ## Functions and/or For Loops?
 
@@ -2283,4 +2302,30 @@ results_new <- results %>%
 kable(head(results_new))
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 kable(head(results_genes)) 
+
+#### Key functions: Transform
+
+| Function | Description |
+| --- | --- |
+| `summarize()`  |  |
+| `arrange()`  |  |
+| `mutate()`  | | 
+| `full_join()`  | | 
+| `left_join()`  | | 
+| `inner_join()`  | | 
+
+
+#### The grammer of graphics
+
+| Function | Description |
+| --- | --- |
+| `ggplot()`  |  |
+| `aes()`  |  |
+| `geom_point()`  | | 
+| `geom_bar()`  | | 
+| `geom_boxplot()`  | | 
+| `theme()`  | | 
+| `labs()`  | | 
+| `scale_color_manual()`  | | 
+| `cowplot()`  | | 
 ```

@@ -289,7 +289,7 @@ kable(head(results_genes))
 ```
 
 
-
+```{asis, echo = T, comment = ""}
 
 #### Key functions: Transform
 
@@ -302,6 +302,7 @@ kable(head(results_genes))
 | `left_join()`  | | 
 | `inner_join()`  | | 
 
+```
 
 
 
@@ -310,6 +311,23 @@ kable(head(results_genes))
 Now, we can use ggplot2 to show how many samples for each biological condition.
 
 
+```{asis, echo = T, comment = ""}
+
+#### The grammer of graphics
+
+| Function | Description |
+| --- | --- |
+| `ggplot()`  |  |
+| `aes()`  |  |
+| `geom_point()`  | | 
+| `geom_bar()`  | | 
+| `geom_boxplot()`  | | 
+| `theme()`  | | 
+| `labs()`  | | 
+| `scale_color_manual()`  | | 
+| `cowplot()`  | | 
+
+```
 
 
 
@@ -322,14 +340,14 @@ https://gtexportal.org/home/gene/BMP10
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
 
+### R Markdown
 
-
+The workshop notes for using this repository to teach an Introduction to R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`. 
 
 
 ## Functions and/or For Loops?
 
 Not sure if I want to include either or both of these advanced beginner concepts.  
-
 
 
 #### Key Points
