@@ -5,7 +5,7 @@
 *Even though you can
 [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ),
 please make changes by editing [this .Rmd
-file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/scripts/r4rnaseq-workshop.Rmd).*
+file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd).*
 
 ------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ programming language and the user-friendly RStudio environment for
 exploratory RNA-sequencing analysis. You will be introduced to R syntax,
 variables, functions, packages, and data structures. You will learn the
 basics of data wrangling including importing data from files,
-subsetting, joining, filtering, and more. You will gain hands-on
+sub-setting, joining, filtering, and more. You will gain hands-on
 practice calculating and visualizing differential gene expression using
 popular open-source packages and public RNA-Seq data from the Gene
 Expression Tissue Project (GTEx).
@@ -25,29 +25,35 @@ Expression Tissue Project (GTEx).
 **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
-**Helpers:** Jeremy Walter, Dr. Amanda Charbonneau, and Jessica Lumian
+**Helpers:** Dr. Amanda Charbonneau, Jessica Lumian, Jeremy Walter
 
 Click
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
-to generate a computing enviornment for this workshop.
+to generate a computing environnment for this workshop.
 
-**Overview**
+### Overview
 
-\[TOC\]
-
-:::info
+<div class="info">
 
 #### Learning Objectives
 
-1.  Create a gene-level count matrix of gene expression quantification
-    using recount3
-2.  Perform differential expression of a two factor experiment in DESeq2
-3.  Perform quality control and exploratory visualization of RNA-seq
-    data in R
+In this workshop, you will learn how to use R and RStudio to import,
+tidy, transform, and visualize data structures commonly associated with
+RNA-sequencing experiments. Specially, you will:
 
-:::
+-   Explore public RNA-seq data from the Gene Expression Tissue Project
+-   Select variables and observations that are relevant to research
+    questions
+-   Rename variables and experimental factors for data joining and
+    plotting
+-   Visualize raw and summarized data using bar graphs, scatter plots,
+    and box plots
 
-## Introduction and Setup
+</div>
+
+\[TOC\]
+
+## Introduction
 
 The book [“R for Data Science”](https://r4ds.had.co.nz/index.html)
 provides an excellent framework for using data science to turn raw data
@@ -64,40 +70,46 @@ information and allows us to run R code from a script and view and save
 outputs all from one interface.
 
 When you start RStudio, you’ll see two key regions in the interface: the
-console and the output. For now, all you need to know is that you type R
-code in the console pane, and press enter to run it. You will learn more
-as we go along!
+console and the output. When working in R, you can type directly into
+the console, or you can type into a script. Saving commands in a script
+will make it easier to reproduce. You will learn more as we go along!
 
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
-For today’s lesson, we will focus on data from the Gene Expression
-Tissue Project (GTEx). By the end of today’s workshop, you will crated
-the following plots:
+For today’s lesson, we will focus on data from the [Gene Expression
+Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
+ongoing effort to build a comprehensive public resource to study
+tissue-specific gene expression and regulation. Samples were collected
+from 54 non-diseased tissue sites across nearly 1000 individuals,
+primarily for molecular assays including WGS, WES, and RNA-Seq.
 
-*Add plots :)*
+By the end of today’s workshop, you create tables and plots like the
+ones below. These plots give a nice overview of the samples collected
+and the variables that can be used for differential gene expression
+analysis.
 
-**To begin explore the data, navigate to the GTEX folder then click
-`GTEx.Rproj`.** This will open up an Rproject and set the working
-directory to `~/GTEx/`.
+![](./images/GTExPortal-2.png)
 
-You can run R-friendly code in the local console:
+![](./images/GTExPortal-5.png) ![](./images/GTExPortal-3.png)
 
-``` r
-2 + 2
-```
+![](./images/DEGs-1.png)
 
-and it will have an output like this:
+![](./images/DEGs-1.png)
 
-    ## [1] 4
+![](./images/DEGs-5.png)
 
-Functions are in a code font and followed by parentheses, like `sum()`,
-or `mean()`.
+### Getting Started
 
-``` r
-sum(2,2)
-```
+1.  Click the
+    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
+    button to generate a computing environment for this workshop.
+2.  Navigate to the GTEX folder.
+3.  Click `GTEx.Rproj` to open up an Rproject which will set the working
+    directory to `~/GTEx/`.
+4.  Open the **r4rnaseq-workshop.R** file which contains all the
+    commands for today’s workshop.
 
-    ## [1] 4
+### Tidyverse packages
 
 The [**Tidyverse**](https://www.tidyverse.org/) R package is a
 collection of functions, data, and documentation that extends the
@@ -135,7 +147,10 @@ library(stringr)
 library(forcats)
 library(cowplot)
 library(scales)
+library(kableExtra)
 ```
+
+### Bionconductor packages
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software
 project developed for the analysis and comprehension of high-throughput
@@ -151,7 +166,7 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -160,7 +175,7 @@ library(DESeq2)
 | `install.packages()` |             |
 | `library()`          |             |
 
-:::
+</div>
 
 ## Import
 
@@ -177,46 +192,369 @@ file.
 
 ``` r
 samplesbaseR <- read.csv("./data/GTExPortal.csv")
-head(samplesbaseR)
+kable(head(samplesbaseR))
 ```
 
-    ##   Tissue.Sample.ID                         Tissue Subject.ID    Sex Age.Bracket
-    ## 1  GTEX-1117F-0126 Skin - Sun Exposed (Lower leg) GTEX-1117F female       60-69
-    ## 2  GTEX-1117F-0226         Adipose - Subcutaneous GTEX-1117F female       60-69
-    ## 3  GTEX-1117F-0326                 Nerve - Tibial GTEX-1117F female       60-69
-    ## 4  GTEX-1117F-0426              Muscle - Skeletal GTEX-1117F female       60-69
-    ## 5  GTEX-1117F-0526                Artery - Tibial GTEX-1117F female       60-69
-    ## 6  GTEX-1117F-0626              Artery - Coronary GTEX-1117F female       60-69
-    ##   Hardy.Scale  Pathology.Categories
-    ## 1  Slow death                      
-    ## 2  Slow death                      
-    ## 3  Slow death       clean_specimens
-    ## 4  Slow death                      
-    ## 5  Slow death monckeberg, sclerotic
-    ## 6  Slow death                      
-    ##                                                Pathology.Notes
-    ## 1 6 pieces, minimal fat, squamous epithelium is ~50-70 microns
-    ## 2                 2 pieces, ~15% vessel stroma, rep delineated
-    ## 3                                    2 pieces, clean specimens
-    ## 4    2 pieces, !5% fibrous connective tissue, delineated (rep)
-    ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
-    ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tissue.Sample.ID
+</th>
+<th style="text-align:left;">
+Tissue
+</th>
+<th style="text-align:left;">
+Subject.ID
+</th>
+<th style="text-align:left;">
+Sex
+</th>
+<th style="text-align:left;">
+Age.Bracket
+</th>
+<th style="text-align:left;">
+Hardy.Scale
+</th>
+<th style="text-align:left;">
+Pathology.Categories
+</th>
+<th style="text-align:left;">
+Pathology.Notes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0126
+</td>
+<td style="text-align:left;">
+Skin - Sun Exposed (Lower leg)
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+6 pieces, minimal fat, squamous epithelium is \~50-70 microns
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0226
+</td>
+<td style="text-align:left;">
+Adipose - Subcutaneous
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2 pieces, \~15% vessel stroma, rep delineated
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0326
+</td>
+<td style="text-align:left;">
+Nerve - Tibial
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+clean_specimens
+</td>
+<td style="text-align:left;">
+2 pieces, clean specimens
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0426
+</td>
+<td style="text-align:left;">
+Muscle - Skeletal
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2 pieces, !5% fibrous connective tissue, delineated (rep)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0526
+</td>
+<td style="text-align:left;">
+Artery - Tibial
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+monckeberg, sclerotic
+</td>
+<td style="text-align:left;">
+2 pieces, clean, Monckebeg medial sclerosis, rep delineated
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX-1117F-0626
+</td>
+<td style="text-align:left;">
+Artery - Coronary
+</td>
+<td style="text-align:left;">
+GTEX-1117F
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+60-69
+</td>
+<td style="text-align:left;">
+Slow death
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
+</td>
+</tr>
+</tbody>
+</table>
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
 
 ``` r
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
-head(results)
+kable(head(results))
 ```
 
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+X
+</th>
+<th style="text-align:right;">
+logFC
+</th>
+<th style="text-align:right;">
+AveExpr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+P.Value
+</th>
+<th style="text-align:right;">
+adj.P.Val
+</th>
+<th style="text-align:right;">
+B
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:right;">
+0.1033279
+</td>
+<td style="text-align:right;">
+1.3459363
+</td>
+<td style="text-align:right;">
+0.3221575
+</td>
+<td style="text-align:right;">
+0.7482218
+</td>
+<td style="text-align:right;">
+0.8748032
+</td>
+<td style="text-align:right;">
+-5.672644
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:right;">
+0.1360923
+</td>
+<td style="text-align:right;">
+-0.2381928
+</td>
+<td style="text-align:right;">
+0.6395041
+</td>
+<td style="text-align:right;">
+0.5244265
+</td>
+<td style="text-align:right;">
+0.7307806
+</td>
+<td style="text-align:right;">
+-5.345563
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:right;">
+-0.0160518
+</td>
+<td style="text-align:right;">
+9.7981987
+</td>
+<td style="text-align:right;">
+-0.1132389
+</td>
+<td style="text-align:right;">
+0.9101410
+</td>
+<td style="text-align:right;">
+0.9564580
+</td>
+<td style="text-align:right;">
+-5.956689
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:right;">
+0.6050557
+</td>
+<td style="text-align:right;">
+2.5392220
+</td>
+<td style="text-align:right;">
+3.4884410
+</td>
+<td style="text-align:right;">
+0.0008132
+</td>
+<td style="text-align:right;">
+0.0554565
+</td>
+<td style="text-align:right;">
+-0.635100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2ML1
+</td>
+<td style="text-align:right;">
+0.3541353
+</td>
+<td style="text-align:right;">
+-1.1667406
+</td>
+<td style="text-align:right;">
+1.0788316
+</td>
+<td style="text-align:right;">
+0.2840899
+</td>
+<td style="text-align:right;">
+0.5292264
+</td>
+<td style="text-align:right;">
+-4.948617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2MP1
+</td>
+<td style="text-align:right;">
+0.6576474
+</td>
+<td style="text-align:right;">
+-0.7564399
+</td>
+<td style="text-align:right;">
+3.2615528
+</td>
+<td style="text-align:right;">
+0.0016631
+</td>
+<td style="text-align:right;">
+0.0606700
+</td>
+<td style="text-align:right;">
+-1.358971
+</td>
+</tr>
+</tbody>
+</table>
 
 I find it helpful to import a table of gene names and symbols that can
 be merged with other tables with gene information or searched for useful
@@ -229,37 +567,189 @@ value.
 ``` r
 genes <- read.table("./data/genes.txt", sep = "\t", 
                     header = T, fill = T)
-head(genes)
+kable(head(genes))
 ```
 
-    ##      HGNC.ID Approved.symbol
-    ## 1     HGNC:5            A1BG
-    ## 2 HGNC:37133        A1BG-AS1
-    ## 3 HGNC:24086            A1CF
-    ## 4     HGNC:6           A1S9T
-    ## 5     HGNC:7             A2M
-    ## 6 HGNC:27057         A2M-AS1
-    ##                                                  Approved.name Chromosome
-    ## 1                                       alpha-1-B glycoprotein   19q13.43
-    ## 2                                         A1BG antisense RNA 1   19q13.43
-    ## 3                               APOBEC1 complementation factor   10q11.23
-    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
-    ## 5                                        alpha-2-macroglobulin   12p13.31
-    ## 6                                          A2M antisense RNA 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3                 AF271790        29974 ENSG00000148584
-    ## 4                                    NA                
-    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 6                                144571 ENSG00000245105
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:1917115
-    ## 4                         
-    ## 5              MGI:2449119
-    ## 6
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+HGNC.ID
+</th>
+<th style="text-align:left;">
+Approved.symbol
+</th>
+<th style="text-align:left;">
+Approved.name
+</th>
+<th style="text-align:left;">
+Chromosome
+</th>
+<th style="text-align:left;">
+Accession.numbers
+</th>
+<th style="text-align:right;">
+NCBI.Gene.ID
+</th>
+<th style="text-align:left;">
+Ensembl.gene.ID
+</th>
+<th style="text-align:left;">
+Mouse.genome.database.ID
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+HGNC:5
+</td>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:left;">
+alpha-1-B glycoprotein
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+ENSG00000121410
+</td>
+<td style="text-align:left;">
+MGI:2152878
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:37133
+</td>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:left;">
+A1BG antisense RNA 1
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+BC040926
+</td>
+<td style="text-align:right;">
+503538
+</td>
+<td style="text-align:left;">
+ENSG00000268895
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:24086
+</td>
+<td style="text-align:left;">
+A1CF
+</td>
+<td style="text-align:left;">
+APOBEC1 complementation factor
+</td>
+<td style="text-align:left;">
+10q11.23
+</td>
+<td style="text-align:left;">
+AF271790
+</td>
+<td style="text-align:right;">
+29974
+</td>
+<td style="text-align:left;">
+ENSG00000148584
+</td>
+<td style="text-align:left;">
+MGI:1917115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:6
+</td>
+<td style="text-align:left;">
+A1S9T
+</td>
+<td style="text-align:left;">
+symbol withdrawn, see \[HGNC:12469\](/data/gene-symbol-report/
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:7
+</td>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:left;">
+alpha-2-macroglobulin
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+BX647329, X68728, M11313
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ENSG00000175899
+</td>
+<td style="text-align:left;">
+MGI:2449119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HGNC:27057
+</td>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:left;">
+A2M antisense RNA 1
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+144571
+</td>
+<td style="text-align:left;">
+ENSG00000245105
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
 
 Very large data files, such as files with RNA-Seq counts are often
 compressed before they are shared. To uncompress a file, click on the
@@ -276,30 +766,154 @@ ensemble id) will be uesed as the row names.
 
 ``` r
 counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
-head(counts)[1:5]
+kable(head(counts)[1:5])
 ```
 
-    ##                   GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
-    ## ENSG00000278704.1                          0                          0
-    ## ENSG00000277400.1                          0                          0
-    ## ENSG00000274847.1                          0                          0
-    ## ENSG00000277428.1                          0                          0
-    ## ENSG00000276256.1                          0                          0
-    ## ENSG00000278198.1                          0                          0
-    ##                   GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
-    ## ENSG00000278704.1                         0                          0
-    ## ENSG00000277400.1                         0                          0
-    ## ENSG00000274847.1                         0                          0
-    ## ENSG00000277428.1                         0                          0
-    ## ENSG00000276256.1                         0                          0
-    ## ENSG00000278198.1                         0                          0
-    ##                   GTEX_13VXT_1126_SM_5LU3A.1
-    ## ENSG00000278704.1                          0
-    ## ENSG00000277400.1                          0
-    ## ENSG00000274847.1                          0
-    ## ENSG00000277428.1                          0
-    ## ENSG00000276256.1                          0
-    ## ENSG00000278198.1                          0
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+GTEX_12ZZX_0726_SM_5EGKA.1
+</th>
+<th style="text-align:right;">
+GTEX_13D11_1526_SM_5J2NA.1
+</th>
+<th style="text-align:right;">
+GTEX_ZAJG_0826_SM_5PNVA.1
+</th>
+<th style="text-align:right;">
+GTEX_11TT1_1426_SM_5EGIA.1
+</th>
+<th style="text-align:right;">
+GTEX_13VXT_1126_SM_5LU3A.1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ENSG00000278704.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000277400.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000274847.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000277428.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000276256.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000278198.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
 
 In order to process the counts data using the DESEq2 pipeline, we need a
 corresponding file where the row names are the sample id and they match
@@ -309,31 +923,202 @@ each.
 
 ``` r
 colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
-head(colData)[1:5]
+kable(head(colData)[1:5])
 ```
 
-    ##                                           external_id study gtex.subjid
-    ## GTEX_12ZZX_0726_SM_5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1 HEART  GTEX-12ZZX
-    ## GTEX_13D11_1526_SM_5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1 HEART  GTEX-13D11
-    ## GTEX_ZAJG_0826_SM_5PNVA.1   GTEX-ZAJG-0826-SM-5PNVA.1 HEART   GTEX-ZAJG
-    ## GTEX_11TT1_1426_SM_5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1 HEART  GTEX-11TT1
-    ## GTEX_13VXT_1126_SM_5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1 HEART  GTEX-13VXT
-    ## GTEX_14ASI_0826_SM_5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1 HEART  GTEX-14ASI
-    ##                            gtex.run_acc gtex.sex
-    ## GTEX_12ZZX_0726_SM_5EGKA.1   SRR1340617        2
-    ## GTEX_13D11_1526_SM_5J2NA.1   SRR1345436        2
-    ## GTEX_ZAJG_0826_SM_5PNVA.1    SRR1367456        2
-    ## GTEX_11TT1_1426_SM_5EGIA.1   SRR1378243        1
-    ## GTEX_13VXT_1126_SM_5LU3A.1   SRR1381693        2
-    ## GTEX_14ASI_0826_SM_5Q5EB.1   SRR1335164        1
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+external_id
+</th>
+<th style="text-align:left;">
+study
+</th>
+<th style="text-align:left;">
+gtex.subjid
+</th>
+<th style="text-align:left;">
+gtex.run_acc
+</th>
+<th style="text-align:right;">
+gtex.sex
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GTEX_12ZZX_0726_SM_5EGKA.1
+</td>
+<td style="text-align:left;">
+GTEX-12ZZX-0726-SM-5EGKA.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-12ZZX
+</td>
+<td style="text-align:left;">
+SRR1340617
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX_13D11_1526_SM_5J2NA.1
+</td>
+<td style="text-align:left;">
+GTEX-13D11-1526-SM-5J2NA.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-13D11
+</td>
+<td style="text-align:left;">
+SRR1345436
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX_ZAJG_0826_SM_5PNVA.1
+</td>
+<td style="text-align:left;">
+GTEX-ZAJG-0826-SM-5PNVA.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-ZAJG
+</td>
+<td style="text-align:left;">
+SRR1367456
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX_11TT1_1426_SM_5EGIA.1
+</td>
+<td style="text-align:left;">
+GTEX-11TT1-1426-SM-5EGIA.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-11TT1
+</td>
+<td style="text-align:left;">
+SRR1378243
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX_13VXT_1126_SM_5LU3A.1
+</td>
+<td style="text-align:left;">
+GTEX-13VXT-1126-SM-5LU3A.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-13VXT
+</td>
+<td style="text-align:left;">
+SRR1381693
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTEX_14ASI_0826_SM_5Q5EB.1
+</td>
+<td style="text-align:left;">
+GTEX-14ASI-0826-SM-5Q5EB.1
+</td>
+<td style="text-align:left;">
+HEART
+</td>
+<td style="text-align:left;">
+GTEX-14ASI
+</td>
+<td style="text-align:left;">
+SRR1335164
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
 
 ``` r
-head(rownames(colData) == colnames(counts))
+kable(head(rownames(colData) == colnames(counts)))
 ```
 
-    ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -346,7 +1131,7 @@ head(rownames(colData) == colnames(counts))
 | `head()` and `tail()` | Print the first or last 6 lines of an object                    |
 | `dim()`               | Print the dimensions of an object                               |
 
-:::
+</div>
 
 ## Tidy and Transform
 
@@ -357,7 +1142,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-:::success
+<div class="success">
 
 #### Key functions: Tidy
 
@@ -370,7 +1155,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-:::
+</div>
 
 ## Transform
 
@@ -474,37 +1259,317 @@ onto the first.
 
 ``` r
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
+kable(head(results_genes))
 ```
 
-    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
-    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
-    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
-    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
-    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
-    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
-    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
-    ##           B    HGNC.ID                      Approved.name Chromosome
-    ## 1 -5.672644     HGNC:5             alpha-1-B glycoprotein   19q13.43
-    ## 2 -5.345563 HGNC:37133               A1BG antisense RNA 1   19q13.43
-    ## 3 -5.956689     HGNC:7              alpha-2-macroglobulin   12p13.31
-    ## 4 -0.635100 HGNC:27057                A2M antisense RNA 1   12p13.31
-    ## 5 -4.948617 HGNC:23336       alpha-2-macroglobulin like 1   12p13.31
-    ## 6 -1.358971     HGNC:8 alpha-2-macroglobulin pseudogene 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 4                                144571 ENSG00000245105
-    ## 5                 AK057908       144568 ENSG00000166535
-    ## 6                   M24415            3 ENSG00000256069
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:2449119
-    ## 4                         
-    ## 5                         
-    ## 6
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Approved.symbol
+</th>
+<th style="text-align:right;">
+logFC
+</th>
+<th style="text-align:right;">
+AveExpr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+P.Value
+</th>
+<th style="text-align:right;">
+adj.P.Val
+</th>
+<th style="text-align:right;">
+B
+</th>
+<th style="text-align:left;">
+HGNC.ID
+</th>
+<th style="text-align:left;">
+Approved.name
+</th>
+<th style="text-align:left;">
+Chromosome
+</th>
+<th style="text-align:left;">
+Accession.numbers
+</th>
+<th style="text-align:right;">
+NCBI.Gene.ID
+</th>
+<th style="text-align:left;">
+Ensembl.gene.ID
+</th>
+<th style="text-align:left;">
+Mouse.genome.database.ID
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A1BG
+</td>
+<td style="text-align:right;">
+0.1033279
+</td>
+<td style="text-align:right;">
+1.3459363
+</td>
+<td style="text-align:right;">
+0.3221575
+</td>
+<td style="text-align:right;">
+0.7482218
+</td>
+<td style="text-align:right;">
+0.8748032
+</td>
+<td style="text-align:right;">
+-5.672644
+</td>
+<td style="text-align:left;">
+HGNC:5
+</td>
+<td style="text-align:left;">
+alpha-1-B glycoprotein
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+ENSG00000121410
+</td>
+<td style="text-align:left;">
+MGI:2152878
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A1BG-AS1
+</td>
+<td style="text-align:right;">
+0.1360923
+</td>
+<td style="text-align:right;">
+-0.2381928
+</td>
+<td style="text-align:right;">
+0.6395041
+</td>
+<td style="text-align:right;">
+0.5244265
+</td>
+<td style="text-align:right;">
+0.7307806
+</td>
+<td style="text-align:right;">
+-5.345563
+</td>
+<td style="text-align:left;">
+HGNC:37133
+</td>
+<td style="text-align:left;">
+A1BG antisense RNA 1
+</td>
+<td style="text-align:left;">
+19q13.43
+</td>
+<td style="text-align:left;">
+BC040926
+</td>
+<td style="text-align:right;">
+503538
+</td>
+<td style="text-align:left;">
+ENSG00000268895
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M
+</td>
+<td style="text-align:right;">
+-0.0160518
+</td>
+<td style="text-align:right;">
+9.7981987
+</td>
+<td style="text-align:right;">
+-0.1132389
+</td>
+<td style="text-align:right;">
+0.9101410
+</td>
+<td style="text-align:right;">
+0.9564580
+</td>
+<td style="text-align:right;">
+-5.956689
+</td>
+<td style="text-align:left;">
+HGNC:7
+</td>
+<td style="text-align:left;">
+alpha-2-macroglobulin
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+BX647329, X68728, M11313
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ENSG00000175899
+</td>
+<td style="text-align:left;">
+MGI:2449119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2M-AS1
+</td>
+<td style="text-align:right;">
+0.6050557
+</td>
+<td style="text-align:right;">
+2.5392220
+</td>
+<td style="text-align:right;">
+3.4884410
+</td>
+<td style="text-align:right;">
+0.0008132
+</td>
+<td style="text-align:right;">
+0.0554565
+</td>
+<td style="text-align:right;">
+-0.635100
+</td>
+<td style="text-align:left;">
+HGNC:27057
+</td>
+<td style="text-align:left;">
+A2M antisense RNA 1
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+144571
+</td>
+<td style="text-align:left;">
+ENSG00000245105
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2ML1
+</td>
+<td style="text-align:right;">
+0.3541353
+</td>
+<td style="text-align:right;">
+-1.1667406
+</td>
+<td style="text-align:right;">
+1.0788316
+</td>
+<td style="text-align:right;">
+0.2840899
+</td>
+<td style="text-align:right;">
+0.5292264
+</td>
+<td style="text-align:right;">
+-4.948617
+</td>
+<td style="text-align:left;">
+HGNC:23336
+</td>
+<td style="text-align:left;">
+alpha-2-macroglobulin like 1
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+AK057908
+</td>
+<td style="text-align:right;">
+144568
+</td>
+<td style="text-align:left;">
+ENSG00000166535
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A2MP1
+</td>
+<td style="text-align:right;">
+0.6576474
+</td>
+<td style="text-align:right;">
+-0.7564399
+</td>
+<td style="text-align:right;">
+3.2615528
+</td>
+<td style="text-align:right;">
+0.0016631
+</td>
+<td style="text-align:right;">
+0.0606700
+</td>
+<td style="text-align:right;">
+-1.358971
+</td>
+<td style="text-align:left;">
+HGNC:8
+</td>
+<td style="text-align:left;">
+alpha-2-macroglobulin pseudogene 1
+</td>
+<td style="text-align:left;">
+12p13.31
+</td>
+<td style="text-align:left;">
+M24415
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+ENSG00000256069
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Key functions: Transform
 
@@ -742,24 +1807,24 @@ concepts.
 -   [Software Carpentry R
     Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
 
-------------------------------------------------------------------------
+## *Note: the source document `r4rnaseq-workshop.Rmd` was last modified 14 March, 2022.*
 
 ``` r
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
                       fig.path = "./images/")
-[TOC]
 
 :::info
 #### Learning Objectives 
 
-1. Create a gene-level count matrix of gene expression quantification using recount3
-2. Perform differential expression of a two factor experiment in DESeq2
-3. Perform quality control and exploratory visualization of RNA-seq data in R
+In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specially, you will: 
+
+* Explore public RNA-seq data from the Gene Expression Tissue Project
+* Select variables and observations that are relevant to research questions 
+* Rename variables and experimental factors for data joining and plotting
+* Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
+
 :::
 
-2 + 2
-2 + 2
-sum(2,2)
 #install.packages("tidyverse")
 library(ggplot2)
 library(tidyr)
@@ -770,6 +1835,7 @@ library(stringr)
 library(forcats)
 library(cowplot)
 library(scales)
+library(kableExtra)
 library(recount3)
 library(biomaRt)
 library(DESeq2)
@@ -784,19 +1850,19 @@ library(DESeq2)
 :::
 
 samplesbaseR <- read.csv("./data/GTExPortal.csv")
-head(samplesbaseR)
+kable(head(samplesbaseR))
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
-head(results)
+kable(head(results))
 genes <- read.table("./data/genes.txt", sep = "\t", 
                     header = T, fill = T)
-head(genes)
+kable(head(genes))
 rm ./data/countData.HEART.csv
 gunzip -k ./data/countData.HEART.csv.gz
 counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
-head(counts)[1:5]
+kable(head(counts)[1:5])
 colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
-head(colData)[1:5]
-head(rownames(colData) == colnames(counts))
+kable(head(colData)[1:5])
+kable(head(rownames(colData) == colnames(counts)))
 
 :::success
 #### Key functions
@@ -835,5 +1901,5 @@ results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
+kable(head(results_genes))
 ```

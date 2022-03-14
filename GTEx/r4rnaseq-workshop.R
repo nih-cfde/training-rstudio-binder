@@ -7,6 +7,7 @@ library(stringr)
 library(forcats)
 library(cowplot)
 library(scales)
+library(kableExtra)
 
 ## import
 
@@ -44,3 +45,9 @@ head(results_new$Approved.symbol)
 
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
+
+
+
+
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+kable(head(results))
