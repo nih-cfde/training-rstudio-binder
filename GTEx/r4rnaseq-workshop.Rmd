@@ -291,6 +291,7 @@ kable(head(results_genes))
 
 ```{asis, echo = T, comment = ""}
 
+:::success
 #### Key functions: Transform
 
 | Function | Description |
@@ -301,6 +302,7 @@ kable(head(results_genes))
 | `full_join()`  | | 
 | `left_join()`  | | 
 | `inner_join()`  | | 
+:::
 
 ```
 
@@ -313,6 +315,7 @@ Now, we can use ggplot2 to show how many samples for each biological condition.
 
 ```{asis, echo = T, comment = ""}
 
+:::success
 #### The grammer of graphics
 
 | Function | Description |
@@ -326,6 +329,7 @@ Now, we can use ggplot2 to show how many samples for each biological condition.
 | `labs()`  | | 
 | `scale_color_manual()`  | | 
 | `cowplot()`  | | 
+:::
 
 ```
 

@@ -2120,6 +2120,8 @@ ENSG00000256069
 </tbody>
 </table>
 
+:::success
+
 #### Key functions: Transform
 
 | Function       | Description |
@@ -2131,10 +2133,14 @@ ENSG00000256069
 | `left_join()`  |             |
 | `inner_join()` |             |
 
+:::
+
 ## Visualize
 
 Now, we can use ggplot2 to show how many samples for each biological
 condition.
+
+:::success
 
 #### The grammer of graphics
 
@@ -2149,6 +2155,8 @@ condition.
 | `labs()`               |             |
 | `scale_color_manual()` |             |
 | `cowplot()`            |             |
+
+:::
 
 ## Communicate
 
@@ -2303,6 +2311,7 @@ kable(head(results_new))
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 kable(head(results_genes)) 
 
+:::success
 #### Key functions: Transform
 
 | Function | Description |
@@ -2313,8 +2322,10 @@ kable(head(results_genes))
 | `full_join()`  | | 
 | `left_join()`  | | 
 | `inner_join()`  | | 
+:::
 
 
+:::success
 #### The grammer of graphics
 
 | Function | Description |
@@ -2328,4 +2339,5 @@ kable(head(results_genes))
 | `labs()`  | | 
 | `scale_color_manual()`  | | 
 | `cowplot()`  | | 
+:::
 ```
