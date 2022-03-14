@@ -33,16 +33,6 @@ to generate a computing enviornment for this workshop.
 
 **Overview**
 
-    ## [TOC]
-
-#### Learning Objectives
-
-1.  Create a gene-level count matrix of gene expression quantification
-    using recount3
-2.  Perform differential expression of a two factor experiment in DESeq2
-3.  Perform quality control and exploratory visualization of RNA-seq
-    data in R
-
 ## Introduction and Setup
 
 The book [“R for Data Science”](https://r4ds.had.co.nz/index.html)
@@ -147,7 +137,7 @@ library(biomaRt)
 library(DESeq2)
 ```
 
-:::info
+:::success
 
 #### Key functions
 
@@ -329,7 +319,7 @@ head(rownames(colData) == colnames(counts))
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
 
-:::info
+:::success
 
 #### Key functions
 
@@ -353,7 +343,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-:::info
+:::success
 
 #### Key functions: Tidy
 
@@ -743,7 +733,16 @@ concepts.
 ``` r
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
                       fig.path = "./images/")
-echo "[TOC]"
+[TOC]
+
+:::info
+#### Learning Objectives 
+
+1. Create a gene-level count matrix of gene expression quantification using recount3
+2. Perform differential expression of a two factor experiment in DESeq2
+3. Perform quality control and exploratory visualization of RNA-seq data in R
+:::
+
 2 + 2
 2 + 2
 sum(2,2)
@@ -761,7 +760,7 @@ library(recount3)
 library(biomaRt)
 library(DESeq2)
 
-:::info
+:::success
 #### Key functions
 
 | Function | Description |
@@ -785,7 +784,7 @@ colData <- read.csv("../data/colData.HEART.csv", header = TRUE, row.names = 1)
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 
-:::info
+:::success
 #### Key functions
 
 | Function | Description |
@@ -799,7 +798,7 @@ head(rownames(colData) == colnames(counts))
 :::
 
 
-:::info
+:::success
 #### Key functions: Tidy
 
 | Function | Description |

@@ -34,17 +34,20 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 **Overview**
 
-```{bash, echo = F, indent = ""}
-echo "[TOC]"
-```
+```{asis, echo = F, comment = ""}
+[TOC]
 
-
-
+:::info
 #### Learning Objectives 
 
 1. Create a gene-level count matrix of gene expression quantification using recount3
 2. Perform differential expression of a two factor experiment in DESeq2
 3. Perform quality control and exploratory visualization of RNA-seq data in R
+:::
+
+```
+
+
 
 
 
@@ -125,7 +128,7 @@ library(DESeq2)
 
 ```{asis, comment = ""}
 
-:::info
+:::success
 #### Key functions
 
 | Function | Description |
@@ -204,7 +207,7 @@ head(rownames(colData) == colnames(counts))
 
 ```{asis, comment = ""}
 
-:::info
+:::success
 #### Key functions
 
 | Function | Description |
@@ -232,7 +235,7 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 
 ```{asis, comment = ""}
 
-:::info
+:::success
 #### Key functions: Tidy
 
 | Function | Description |
