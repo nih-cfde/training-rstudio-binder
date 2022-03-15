@@ -354,12 +354,6 @@ The workshop notes for using this repository to teach an Introduction to R for R
 Not sure if I want to include either or both of these advanced beginner concepts.  
 
 
-#### Key Points
-
-1. Create a gene-level count matrix of gene expression quantification using recount3
-2. Perform differential expression of a two factor experiment in DESeq2
-3. Perform quality control and exploratory visualization of RNA-seq data in R
-
 ## References
 
 - [R for Data Science by Hadley Wickham and Garrett Grolemund](https://r4ds.had.co.nz/index.html)
@@ -375,9 +369,11 @@ Not sure if I want to include either or both of these advanced beginner concepts
 - [Angus 2019 Differential Gene Expression in R Lesson](https://angus.readthedocs.io/en/2019/diff-ex-and-viz.html)
 - [Software Carpentry R Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
 
-_Note: the source document `r4rnaseq-workshop.Rmd` was last modified `r format(Sys.time(), '%d %B, %Y')`._
+
+*Note: the source document [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd) was last modified 14 March, 2022.*
+
 ---
 
-```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```{r ref.label=knitr::all_labels(), echo=FALSE, eval=FALSE}
 ```
 
