@@ -105,7 +105,7 @@ You can install the complete tidyverse with a single line of code: `install.pack
 #install.packages("tidyr")
 ```
 
-After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. Let's install the following packages: `ggplot2, tidyr, dplyr, readr, and tibble`. 
+After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. Let's load the following packages: `ggplot2, tidyr, dplyr, readr, and tibble` by copying and pasting or typing these commands into your new script.
 
 ```{r, message=FALSE}
 library(ggplot2)

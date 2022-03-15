@@ -147,8 +147,9 @@ always install properly, so we installed each package individually.
 ```
 
 After installing packages, we need to load the functions and tools we
-want to use from the package with the `library()` command. Let’s install
-the following packages: `ggplot2, tidyr, dplyr, readr, and tibble`.
+want to use from the package with the `library()` command. Let’s load
+the following packages: `ggplot2, tidyr, dplyr, readr, and tibble` by
+copying and pasting or typing these commands into your new script.
 
 ``` r
 library(ggplot2)
