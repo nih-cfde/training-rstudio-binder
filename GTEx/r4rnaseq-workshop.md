@@ -169,10 +169,10 @@ What commands do you need to add to your script to load these packages?
 
 :::spoiler
 
-library(cowplot)  
-library(scales)  
-library(forcats)  
-library(stringr)
+`library(cowplot)`  
+`library(scales)`  
+`library(forcats)`  
+`library(stringr)`
 
 :::
 

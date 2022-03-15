@@ -136,10 +136,10 @@ We will also use `cowplot` and  `scales` to make pretty visualizations, `forcats
 
 :::spoiler
 
-  library(cowplot)  
-  library(scales)  
-  library(forcats)  
-  library(stringr)  
+  `library(cowplot)`  
+  `library(scales)`  
+  `library(forcats)`  
+  `library(stringr)`  
 :::
 
 ```
