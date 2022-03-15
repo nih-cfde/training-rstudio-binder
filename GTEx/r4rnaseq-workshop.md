@@ -33,7 +33,7 @@ to generate a computing environnment for this workshop.
 
 ### Overview
 
-:::info
+<div class="info">
 
 #### Learning Objectives
 
@@ -49,7 +49,7 @@ RNA-sequencing experiments. Specifically, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-:::
+</div>
 
 \[TOC\]
 
@@ -165,14 +165,14 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-:::spoiler
+<div class="spoiler">
 
 library(cowplot)  
 library(scales)  
 library(forcats)  
 library(stringr)
 
-:::
+</div>
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software
 project developed for the analysis and comprehension of high-throughput
@@ -194,7 +194,7 @@ getting to know.
 #library(DESeq2)
 ```
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -203,7 +203,7 @@ getting to know.
 | `install.packages()` | An R function to install packages           |
 | `library()`          | The command used to load installed packages |
 
-:::
+</div>
 
 ## Import
 
@@ -1149,7 +1149,7 @@ TRUE
 </tbody>
 </table>
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -1165,7 +1165,7 @@ TRUE
 | `summary()`           | A function that summarizes each variable                        |
 | `as_tibble()`         | Convert dataframes to tibbles                                   |
 
-:::
+</div>
 
 ## Tidy and Transform
 
@@ -1176,7 +1176,7 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-:::success
+<div class="success">
 
 #### Key functions: Tidy
 
@@ -1189,7 +1189,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 | `select()`       |             |
 | `arrange()`      |             |
 
-:::
+</div>
 
 ## Transform
 
@@ -2150,7 +2150,7 @@ ENSG00000256069
 </tbody>
 </table>
 
-:::success
+<div class="success">
 
 #### Key functions: Transform
 
@@ -2163,14 +2163,14 @@ ENSG00000256069
 | `left_join()`  |             |
 | `inner_join()` |             |
 
-:::
+</div>
 
 ## Visualize
 
 Now, we can use ggplot2 to show how many samples for each biological
 condition.
 
-:::success
+<div class="success">
 
 #### The grammer of graphics
 
@@ -2186,7 +2186,7 @@ condition.
 | `scale_color_manual()` |             |
 | `cowplot()`            |             |
 
-:::
+</div>
 
 ## Communicate
 
