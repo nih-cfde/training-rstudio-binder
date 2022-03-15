@@ -39,9 +39,9 @@ to generate a computing environnment for this workshop.
 
 In this workshop, you will learn how to use R and RStudio to import,
 tidy, transform, and visualize data structures commonly associated with
-RNA-sequencing experiments. Specially, you will:
+RNA-sequencing experiments. Specifically, you will:
 
--   Explore public RNA-seq data from the Gene Expression Tissue Project
+-   Explore public RNA-Seq data from the Gene Expression Tissue Project
 -   Select variables and observations that are relevant to research
     questions
 -   Rename variables and experimental factors for data joining and
@@ -83,10 +83,10 @@ tissue-specific gene expression and regulation. Samples were collected
 from 54 non-diseased tissue sites across nearly 1000 individuals,
 primarily for molecular assays including WGS, WES, and RNA-Seq.
 
-By the end of today’s workshop, you create tables and plots like the
-ones below. These plots give a nice overview of the samples collected
-and the variables that can be used for differential gene expression
-analysis.
+By the end of today’s workshop, you will be able to create tables and
+plots like the ones below. These plots give a nice overview of the
+samples collected and the variables that can be used for differential
+gene expression analysis.
 
 ![](./images/GTExPortal-2.png)
 
@@ -111,13 +111,12 @@ analysis.
 
 ### Tidyverse packages
 
-The [**Tidyverse**](https://www.tidyverse.org/) R package is a
-collection of functions, data, and documentation that extends the
-capabilities of base R. Using packages is key to the successful use of
-R. The majority of the packages that you will learn in this book are
-part of the so-called tidyverse. The packages in the tidyverse share a
-common philosophy of data and R programming and are designed to work
-together naturally.
+[**Tidyverse**](https://www.tidyverse.org/) is a collection of R
+packages that include functions, data, and documentation that provide
+more tools and capabilities when using R. There are many packages for R,
+but we are using this set because the packages are designed to work well
+together -and they are especially useful (and popular!) for doing data
+science.
 
 You can install the complete tidyverse with a single line of code:
 `install.packages("tidyverse")`. It is a good idea to “comment out” this
@@ -133,10 +132,10 @@ However, for this workshop, the packages listed in the
 reason, the tidyverse package doesn’t always install properly, so we
 installed each package individually.
 
-After installing packages, you must load them with the function
-`library()` to use the associated functions, objects, and help files. In
-addition to using the package `ggplot`, we will also use `cowplot` and
-`scales` to make pretty visualizations.
+After installing packages, we need to load the functions and tools we
+want to use from the package with the `library()` command. In addition
+to using the package `ggplot`, we will also use `cowplot` and `scales`
+to make pretty visualizations.
 
 ``` r
 library(ggplot2)
@@ -183,12 +182,15 @@ library(DESeq2)
 Data can be imported using packages from base R or from the tidyverse.
 
 What are some differences between the data objects imported by
-`read.csv()` and `read_csv()`? 1. Periods versus spaces in column names
-1. Data frame versus tibble 1. Row names allowed versus not allowed.
+`read.csv()` and `read_csv()`?
+
+1.  Periods versus spaces in column names
+2.  Data frame versus tibble
+3.  Row names allowed versus not allowed.
 
 The `GTExPortal.csv` file in `./data/` contains information about all
 the samples in the GTEx portal. Let’s import this file using
-`read.csv()`. Then, use `head()` to view the first few lines of each
+`read.csv()`. Then use `head()` to view the first few lines of each
 file.
 
 ``` r
@@ -2178,14 +2180,6 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 Not sure if I want to include either or both of these advanced beginner
 concepts.
 
-#### Key Points
-
-1.  Create a gene-level count matrix of gene expression quantification
-    using recount3
-2.  Perform differential expression of a two factor experiment in DESeq2
-3.  Perform quality control and exploratory visualization of RNA-seq
-    data in R
-
 ## References
 
 -   [R for Data Science by Hadley Wickham and Garrett
@@ -2212,132 +2206,8 @@ concepts.
 -   [Software Carpentry R
     Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
 
-## *Note: the source document `r4rnaseq-workshop.Rmd` was last modified 14 March, 2022.*
+*Note: the source document
+[r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
+was last modified 14 March, 2022.*
 
-``` r
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
-                      fig.path = "./images/")
-
-:::info
-#### Learning Objectives 
-
-In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specially, you will: 
-
-* Explore public RNA-seq data from the Gene Expression Tissue Project
-* Select variables and observations that are relevant to research questions 
-* Rename variables and experimental factors for data joining and plotting
-* Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
-
-:::
-
-#install.packages("tidyverse")
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-library(readr)
-library(tibble)
-library(stringr)
-library(forcats)
-library(cowplot)
-library(scales)
-library(kableExtra)
-library(recount3)
-library(biomaRt)
-library(DESeq2)
-
-:::success
-#### Key functions
-
-| Function | Description |
-| --- | --- |
-| `install.packages()` | An R function to install packages |
-| `library()` | The command used to load installed packages |
-:::
-
-samplesbaseR <- read.csv("./data/GTExPortal.csv")
-kable(head(samplesbaseR))
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
-kable(head(results))
-genes <- read.table("./data/genes.txt", sep = "\t", 
-                    header = T, fill = T)
-kable(head(genes))
-rm ./data/countData.HEART.csv
-gunzip -k ./data/countData.HEART.csv.gz
-counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
-kable(head(counts)[1:5])
-colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
-kable(head(colData)[1:5])
-kable(head(rownames(colData) == colnames(counts)))
-
-:::success
-#### Key functions
-
-| Function | Description |
-| --- | --- |
-| `read.csv()`  | A base R function for importing comma separated tabular data  |
-| `read_csv()`  | A tidyR function for importing .csv files as tibbles |
-| `read.table()` | A base R function for importing tabular data with any delimiter |
-| `read_tsv()`  | A tidyR function for importing .tsv files as tibbles | 
-| `head()` and `tail()` | Print the first or last 6 lines of an object  | 
-| `dim()`  | A function that prints the dimensions of an object | 
-| `str()` | A function that prints the internal structure of an object  |
-| `summary()` | A function that summarizes each variable |
-| `as_tibble()` | Convert dataframes to tibbles | 
-:::
-
-
-:::success
-#### Key functions: Tidy
-
-| Function | Description |
-| --- | --- |
-| `pivot_wider()` |  |
-| `pivot_longer()` |  |
-| `separate()` |  |
-| `drop_na()` |  |
-| `select()`|  |
-| `arrange()` |  |
-:::
-
-kable(head(results))
-kable(head(genes))
-
-kable(head(results$X))
-kable(head(genes$Approved.symbol))
-
-results_new <- results %>%
-  dplyr::rename("Approved.symbol" = "X")
-kable(head(results_new))
-results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-kable(head(results_genes)) 
-
-:::success
-#### Key functions: Transform
-
-| Function | Description |
-| --- | --- |
-| `summarize()`  |  |
-| `arrange()`  |  |
-| `mutate()`  | | 
-| `full_join()`  | | 
-| `left_join()`  | | 
-| `inner_join()`  | | 
-:::
-
-
-:::success
-#### The grammer of graphics
-
-| Function | Description |
-| --- | --- |
-| `ggplot()`  |  |
-| `aes()`  |  |
-| `geom_point()`  | | 
-| `geom_bar()`  | | 
-| `geom_boxplot()`  | | 
-| `theme()`  | | 
-| `labs()`  | | 
-| `scale_color_manual()`  | | 
-| `cowplot()`  | | 
-:::
-```
+------------------------------------------------------------------------
