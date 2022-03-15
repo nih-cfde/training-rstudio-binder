@@ -167,7 +167,7 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-:::spoiler
+:::spoiler Answer
 
 `library(cowplot)`  
 `library(scales)`  
