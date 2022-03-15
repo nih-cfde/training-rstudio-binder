@@ -38,9 +38,9 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 :::info
 #### Learning Objectives 
 
-In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specially, you will: 
+In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specifically, you will: 
 
-* Explore public RNA-seq data from the Gene Expression Tissue Project
+* Explore public RNA-Seq data from the Gene Expression Tissue Project
 * Select variables and observations that are relevant to research questions 
 * Rename variables and experimental factors for data joining and plotting
 * Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
@@ -66,7 +66,7 @@ When you start RStudio, you’ll see two key regions in the interface: the conso
 
 For today's lesson, we will focus on data from the [Gene Expression Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
 
-By the end of today's workshop, you create tables and plots like the ones below. These plots give a nice overview of the samples collected and the variables that can be used for differential gene expression analysis. 
+By the end of today's workshop, you will be able to create tables and plots like the ones below. These plots give a nice overview of the samples collected and the variables that can be used for differential gene expression analysis. 
 
 ![](./images/GTExPortal-2.png)
 
@@ -92,7 +92,7 @@ By the end of today's workshop, you create tables and plots like the ones below.
 
 ### Tidyverse packages
 
-The [**Tidyverse**](https://www.tidyverse.org/) R package is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this book are part of the so-called tidyverse. The packages in the tidyverse share a common philosophy of data and R programming and are designed to work together naturally.
+[**Tidyverse**](https://www.tidyverse.org/) is a collection of R packages that include functions, data, and documentation that provide more tools and capabilities when using R. There are many packages for R, but we are using this set because the packages are designed to work well together -and they are especially useful (and popular!) for doing data science. 
 
 You can install the complete tidyverse with a single line of code: `install.packages("tidyverse")`. It is a good idea to "comment out" this line of code by adding a `#` at the beginning so that you don't re-install the package every time you run the script.  
 ```{r  eval=FALSE}
@@ -101,7 +101,7 @@ You can install the complete tidyverse with a single line of code: `install.pack
 
 However, for this workshop, the packages listed in the `.binder/environment.yml` file were pre-installed with Conda. For some reason, the tidyverse package doesn't always install properly, so we installed each package individually.
 
-After installing packages, you must load them with the function `library()` to use the associated functions, objects, and help files.  In addition to using the package `ggplot`, we will also use `cowplot` and  `scales` to make pretty visualizations.
+After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. In addition to using the package `ggplot`, we will also use `cowplot` and  `scales` to make pretty visualizations.
 
 
 ```{r, message=FALSE}
@@ -147,11 +147,12 @@ library(DESeq2)
 Data can be imported using packages from base R or from the tidyverse.  
 
 What are some differences between the data objects imported by `read.csv()` and `read_csv()`?
-1. Periods versus spaces in column names
-1. Data frame versus tibble
-1. Row names allowed versus not allowed.
 
-The `GTExPortal.csv` file in `./data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. Then, use `head()` to view the first few lines of each file. 
+1. Periods versus spaces in column names
+2. Data frame versus tibble
+3. Row names allowed versus not allowed.
+
+The `GTExPortal.csv` file in `./data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. Then use `head()` to view the first few lines of each file. 
 
 ```{r import-1}
 samplesbaseR <- read.csv("./data/GTExPortal.csv")
