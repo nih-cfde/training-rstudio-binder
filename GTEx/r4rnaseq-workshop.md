@@ -83,20 +83,29 @@ tissue-specific gene expression and regulation. Samples were collected
 from 54 non-diseased tissue sites across nearly 1000 individuals,
 primarily for molecular assays including WGS, WES, and RNA-Seq.
 
-By the end of today’s workshop, you will be able to create tables and
-plots like the ones below. These plots give a nice overview of the
-samples collected and the variables that can be used for differential
-gene expression analysis.
+By the end of today’s workshop, you create tables and plots like the
+ones below that give an overview of the samples collected and the
+variables that can be used for differential gene expression analysis.
+More importantly, you will lean the basics of importing, tidying,
+transforming, and visualizing data, which are the key component of an R
+workflow.
 
-![](./images/GTExPortal-2.png)
+### Some motivating questions
 
-![](./images/GTExPortal-5.png) ![](./images/GTExPortal-3.png)
+-   How many RNA-sequencing samples are in the GTEx project?
+-   What is the age and sex of each donor?
+-   What was the cause of death?
+-   What is the effect of age on gene expression in the heart?
+-   Do you have enough samples to test effects of sex, age, hardy scale,
+    and their interactions for all tissues?
+-   How do I combine, clean, modfiy, separate, etc. data sets and
+    variables?
 
-![](./images/DEGs-1.png)
+![](https://hackmd.io/_uploads/SJSIB76b9.png%20=300x)
+![](https://hackmd.io/_uploads/Sk6IrQaZc.png%20=300x)
 
-![](./images/DEGs-1.png)
-
-![](./images/DEGs-5.png)
+![](https://hackmd.io/_uploads/r1mwBQaW5.png%20=300x)
+![](https://hackmd.io/_uploads/HJ5BrXp-c.png%20=300x)
 
 ### Getting Started
 
@@ -107,9 +116,13 @@ gene expression analysis.
 3.  Click `GTEx.Rproj` and click “Yes” to open up an Rproject. This will
     set the working directory to `~/GTEx/`.
 4.  Open the `r4rnaseq-workshop.R` file which contains all the commands
-    for today’s workshop.
+    for today’s workshop. This contains all the commands we will build
+    today. This is your reference.
+5.  Open a new R Script by clicking **File > New File > R Script**. You
+    will type most commands for todays lesson here and click “Run” to
+    send them to the console.
 
-### Tidyverse packages
+### R packages
 
 [**Tidyverse**](https://www.tidyverse.org/) is a collection of R
 packages that include functions, data, and documentation that provide
@@ -119,23 +132,23 @@ together -and they are especially useful (and popular!) for doing data
 science.
 
 You can install the complete tidyverse with a single line of code:
-`install.packages("tidyverse")`. It is a good idea to “comment out” this
-line of code by adding a `#` at the beginning so that you don’t
-re-install the package every time you run the script.
+`install.packages("tidyverse")`, or you can install packages
+individually (e.g. `install.packages("ggplot2")`). It is a good idea to
+“comment out” this line of code by adding a `#` at the beginning so that
+you don’t re-install the package every time you run the script. For this
+workshop, the packages listed in the `.binder/environment.yml` file were
+pre-installed with Conda. For some reason, the tidyverse package doesn’t
+always install properly, so we installed each package individually.
 
 ``` r
 #install.packages("tidyverse")
+#install.packages("ggplot2")
+#install.packages("tidyr")
 ```
 
-However, for this workshop, the packages listed in the
-`.binder/environment.yml` file were pre-installed with Conda. For some
-reason, the tidyverse package doesn’t always install properly, so we
-installed each package individually.
-
 After installing packages, we need to load the functions and tools we
-want to use from the package with the `library()` command. In addition
-to using the package `ggplot`, we will also use `cowplot` and `scales`
-to make pretty visualizations.
+want to use from the package with the `library()` command. Let’s install
+the following packages: `ggplot2, tidyr, dplyr, readr, and tibble`.
 
 ``` r
 library(ggplot2)
@@ -143,14 +156,22 @@ library(tidyr)
 library(dplyr)
 library(readr)
 library(tibble)
-library(stringr)
-library(forcats)
-library(cowplot)
-library(scales)
-library(kableExtra)
 ```
 
-### Bionconductor packages
+:::warning #### Challenge
+
+We will also use `cowplot` and `scales` to make pretty visualizations,
+`forcats.` for working with factors, and `stringr` for parsing text.
+What commands do you need to add to your script to load these packages?
+
+:::spoiler
+
+library(cowplot)  
+library(scales)  
+library(forcats)  
+library(stringr)
+
+:::
 
 [Bioconductor](https://www.bioconductor.org) is an open-source software
 project developed for the analysis and comprehension of high-throughput
@@ -161,9 +182,15 @@ R. We will not be using these packages in this class, but they are worth
 getting to know.
 
 ``` r
-library(recount3)
-library(biomaRt)
-library(DESeq2)
+#if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+#BiocManager::install()
+
+#BiocManager::install(c("recount3", "biomaRt", "DESeq2"))
+
+#library(recount3)
+#library(biomaRt)
+#library(DESeq2)
 ```
 
 :::success
