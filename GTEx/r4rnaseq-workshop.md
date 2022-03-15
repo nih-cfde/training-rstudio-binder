@@ -182,7 +182,8 @@ data in genomics and molecular biology. The project aims to enable
 interdisciplinary research, collaboration, and rapid development of
 scientific software. It is based on the statistical programming language
 R. We will not be using these packages in this class, but they are worth
-getting to know.
+getting to know. This is how you would install and load 3 different
+Bioconductor packages.
 
 ``` r
 #if (!require("BiocManager", quietly = TRUE))
@@ -195,6 +196,12 @@ getting to know.
 #library(biomaRt)
 #library(DESeq2)
 ```
+
+You can also navigate to “Packages” Tab in the bottom right pane of
+RStudio to view a list of available packages. Packages with a checked
+box next to them have been successfully loaded. You can click a box to
+load installed packages. Clicking the “Help” Tab will provide a quick
+description of the package and its fuctions.
 
 :::success
 
