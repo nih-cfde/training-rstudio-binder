@@ -123,7 +123,6 @@ library(cowplot)
 library(scales)
 library(forcats)
 library(stringr)
-library(kableExtra)
 ```
 
 
@@ -350,7 +349,6 @@ head(results_genes)
 ## Visualize
 
 Now, we can use ggplot2 to show how many samples for each biological condition.
-
 
 ```{asis, echo = T, comment = ""}
 
