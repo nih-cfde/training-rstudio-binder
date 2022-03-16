@@ -79,7 +79,8 @@ analysis. More importantly, you will lean the basics of importing, tidying, tran
 * What was the cause of death?
 * What is the effect of age on gene expression in the heart?
 * Do you have enough samples to test effects of sex, age, hardy scale, and their interactions for all tissues? 
-* How do I combine, clean, modfiy, separate, etc. data sets and variables?
+* How do I combine, clean, modify, separate, etc. data sets and variables?
+* How is my gene of interest affected by age in the heart and brain?
 
 ![](https://hackmd.io/_uploads/SJSIB76b9.png =300x) ![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
 
@@ -324,11 +325,10 @@ The defult classification for each variable may or may not be appropriate for yo
 :::success
 #### Key functions: Tidy
 
-| Function | Description |
-| --- | --- |
-
-| `str()` | A function that prints the internal structure of an object  |
-| `summary()` | A function that summarizes each variable |
+| Function | Description |    
+| --- | --- |  
+| `str()` | A function that prints the internal structure of an object  |  
+| `summary()` | A function that summarizes each variable |  
 
 :::
 
@@ -364,7 +364,7 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 
 ### Mutate
 
-### Renameing variables
+### Renameing variables to join data frames
 
 In the next section, we will join two data frames by a shared column. Both the results file and the genes file have a column with gene symbols, but they do not have the same name. 
 
@@ -382,9 +382,6 @@ results_new <- results %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
 ```
-
-
-### Join
 
 Now that the results and the genes objects both have a column called `Approved.symbol` they can be joined. The command `full_join()` will keep all rows of both objects. `left_join` will keep all the rows in the first object but will drop any rows in the second object that don't map onto the first. 
 
@@ -436,8 +433,6 @@ Now, we can use ggplot2 to show how many samples for each biological condition.
 :::
 
 ```
-
-
 
 
 ## Communicate

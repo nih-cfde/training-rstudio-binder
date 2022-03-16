@@ -97,8 +97,9 @@ workflow.
 -   What is the effect of age on gene expression in the heart?
 -   Do you have enough samples to test effects of sex, age, hardy scale,
     and their interactions for all tissues?
--   How do I combine, clean, modfiy, separate, etc. data sets and
+-   How do I combine, clean, modify, separate, etc. data sets and
     variables?
+-   How is my gene of interest affected by age in the heart and brain?
 
 ![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
 ![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
@@ -528,12 +529,10 @@ ways to tidy and transform your data.
 
 #### Key functions: Tidy
 
-| Function | Description |
-|----------|-------------|
-
-`str()` \| A function that prints the internal structure of an object
-\|  
-`summary()` \| A function that summarizes each variable \|
+| Function    | Description                                                |
+|-------------|------------------------------------------------------------|
+| `str()`     | A function that prints the internal structure of an object |
+| `summary()` | A function that summarizes each variable                   |
 
 :::
 
@@ -563,7 +562,7 @@ file that can be easily subset by tissue and or gene for quick plotting.
 
 ### Mutate
 
-### Renameing variables
+### Renameing variables to join data frames
 
 In the next section, we will join two data frames by a shared column.
 Both the results file and the genes file have a column with gene
@@ -650,8 +649,6 @@ head(results_new)
     ## 4 -0.635100
     ## 5 -4.948617
     ## 6 -1.358971
-
-### Join
 
 Now that the results and the genes objects both have a column called
 `Approved.symbol` they can be joined. The command `full_join()` will
