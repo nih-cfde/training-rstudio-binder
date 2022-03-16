@@ -19,7 +19,8 @@ basics of data wrangling including importing data from files,
 sub-setting, joining, filtering, and more. You will gain hands-on
 practice calculating and visualizing differential gene expression using
 popular open-source packages and public RNA-Seq data from the Gene
-Expression Tissue Project (GTEx).
+Expression Tissue Project (GTEx). *Please fill out the pre- and
+post-workshop surveys to help us keep these workshops free.*
 
 **When:** Wednesday, March 23, 10 am - 12 pm PT  
 **Where:**
@@ -32,24 +33,6 @@ Click
 to generate a computing environnment for this workshop.
 
 ### Overview
-
-:::info
-
-#### Learning Objectives
-
-In this workshop, you will learn how to use R and RStudio to import,
-tidy, transform, and visualize data structures commonly associated with
-RNA-sequencing experiments. Specifically, you will:
-
--   Explore public RNA-Seq data from the Gene Expression Tissue Project
--   Select variables and observations that are relevant to research
-    questions
--   Rename variables and experimental factors for data joining and
-    plotting
--   Visualize raw and summarized data using bar graphs, scatter plots,
-    and box plots
-
-:::
 
 \[TOC\]
 
@@ -594,7 +577,7 @@ The defult classification for each variable may or may not be
 appropriate for you analysis. In this section, we will discuss all the
 ways to tidy and transform your data.
 
-## Renameing variables to join data frames
+### Renameing variables to join data frames
 
 In the next section, we will join two data frames by a shared column.
 Both the results file and the genes file have a column with gene
@@ -722,18 +705,18 @@ head(results_genes)
     ## 5                         
     ## 6
 
-## Lengthening and widenting data frames
+### Lengthening and widenting data frames
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format
 where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by tissue and or gene for quick plotting.
 
-## Creating new columns
+### Creating new columns
 
-## Filtering rowings
+### Filtering rowings
 
-## Arranging and summarizing variables
+### Arranging and summarizing variables
 
 :::success
 
