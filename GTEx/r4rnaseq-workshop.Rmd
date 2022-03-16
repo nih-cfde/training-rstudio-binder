@@ -354,7 +354,7 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 
 For this, we must introduce the pipe, `%>%`. This symbol is used to redirect the output from standard out to another function. 
 
-```{r}
+```{r create}
 head(counts)[1:5]
 head(genes)
 
