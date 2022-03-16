@@ -257,21 +257,35 @@ head(samples)
     ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
 
 Very large tabular files are often saved as .tsv files. These can be
-imported with `read.table()` or `read_tsv()`.
+imported with `read.table()` or `read_tsv()`. You can also specify the
+tab delimiter as well as the row and column names.
 
 ``` r
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
-                      header = TRUE, sep = "\t")
-head(results)
+results1 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results1)
 ```
 
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+
+``` r
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
+                      sep = "\t", header = TRUE, row.names = 1 )
+head(results2)
+```
+
+    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 I find it helpful to import a table of gene names and symbols that can
 be merged with other tables with gene information or searched for useful
@@ -365,8 +379,12 @@ the column names of the counts file. We confirm this by asking if
 `rownames(colData) == colnames(counts)` or by checking the dimensions of
 each.
 
+Using `head()` is a good way to only print 5 rows. Using `[1:5]` is a
+good way to only print 5 columns.
+
 ``` r
-colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
+colData <- read.csv("./data/colData.HEART.csv", 
+                    header = TRUE, row.names = 1)
 head(colData)[1:5]
 ```
 
@@ -390,6 +408,25 @@ head(rownames(colData) == colnames(counts))
 ```
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
+
+:::warning
+
+#### Challenge
+
+What command would you use to read the GTEx results comparing the brains
+of 20-29 year old to 70-79 year olds?
+
+:::spoiler Answer
+
+There any multiple solutions to this question. One solution is:
+
+`read.table("./data/GTEx_Brain_20-29_vs_70-79.tsv")`
+
+:::
+
+You have need seen a variety of options for importing files. You may use
+many more in your R-based RNA-seq workflow, but these basics will get
+you started.
 
 :::success
 

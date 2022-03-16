@@ -196,12 +196,16 @@ samples <- read.csv("./data/GTExPortal.csv")
 head(samples)
 ```
 
-Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. 
+Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. You can also specify the tab delimiter as well as the row and column names.
 
 ```{r import-2}
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
-                      header = TRUE, sep = "\t")
-head(results)
+
+results1 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results1)
+
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
+                      sep = "\t", header = TRUE, row.names = 1 )
+head(results2)
 ```
 
 I find it helpful to import a table of gene names and symbols that can be merged with other tables with gene information or searched for useful information. This table of gene names was downloaded from <https://www.genenames.org/download/custom/>. 
@@ -213,10 +217,6 @@ genes <- read.table("./data/genes.txt", sep = "\t",
                     header = T, fill = T)
 head(genes)
 ```
-
-
-
-
 
 
 ```{asis, comment = ""}
@@ -249,15 +249,42 @@ counts <- read.csv("./data/countData.HEART.csv",
 head(counts)[1:5]
 ```
 
-To process the counts data using the DESEq2 pipeline, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. We confirm this by asking if `rownames(colData) == colnames(counts)` or by checking the dimensions of each.
+To process the counts data using the DESEq2 pipeline, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. We confirm this by asking if `rownames(colData) == colnames(counts)` or by checking the dimensions of each. 
 
+Using  `head()` is a good way to only print 5 rows. Using `[1:5]` is a good way to only print 5 columns.
 
 
 ```{r import-5}
-colData <- read.csv("./data/colData.HEART.csv", header = TRUE, row.names = 1)
+colData <- read.csv("./data/colData.HEART.csv", 
+                    header = TRUE, row.names = 1)
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 ```
+
+
+
+
+
+```{asis, comment = ""}
+
+:::warning
+
+#### Challenge
+
+What command would you use to read the GTEx results comparing the brains of 20-29 year old to 70-79 year olds?
+
+:::spoiler Answer
+
+There any multiple solutions to this  question. One solution is:
+
+  `read.table("./data/GTEx_Brain_20-29_vs_70-79.tsv")`  
+:::
+
+```
+
+You have need seen a variety of options for importing files. You may use many more in your R-based RNA-seq workflow, but these basics will get you started. 
+
+
 
 ```{asis, comment = ""}
 
