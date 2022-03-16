@@ -7,7 +7,6 @@ library(stringr)
 library(forcats)
 library(cowplot)
 library(scales)
-library(kableExtra)
 
 ## import
 
