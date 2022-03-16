@@ -70,7 +70,7 @@ For today's lesson, we will focus on data from the [Gene Expression Tissue (GTEx
 By the end of today’s workshop, you create tables and plots like the
 ones below that give an overview of the samples collected
 and the variables that can be used for differential gene expression
-analysis. More importantly, you will lean the basics of importing, tidying, transforming, and visualizing data, which are the key component of an R workflow. 
+analysis. More importantly, you will learn the basics of importing, tidying, transforming, and visualizing data, which are the key component of an R workflow. 
 
 ### Some motivating questions
 
@@ -78,7 +78,7 @@ analysis. More importantly, you will lean the basics of importing, tidying, tran
 * What is the age and sex of each donor?
 * What was the cause of death?
 * What is the effect of age on gene expression in the heart?
-* Do you have enough samples to test effects of sex, age, hardy scale, and their interactions for all tissues? 
+* Do you have enough samples to test the effects of sex, age, hardy scale, and their interactions for all tissues? 
 * How do I combine, clean, modify, separate, etc. data sets and variables?
 * How is my gene of interest affected by age in the heart and brain?
 
@@ -92,7 +92,7 @@ analysis. More importantly, you will lean the basics of importing, tidying, tran
 2. Navigate to the GTEX folder.
 3. Click `GTEx.Rproj` and click "Yes" to open up an Rproject. This will set the working directory to `~/GTEx/`.
 4. Open the `r4rnaseq-workshop.R` file which contains all the commands for today's workshop. This contains all the commands we will build today. This is your reference.
-5. Open a new R Script by clicking **File > New File > R Script**. You will type most commands for todays lesson here and click "Run" to send them to the console. 
+5. Open a new R Script by clicking **File > New File > R Script**. You will type most commands for today's lesson here and click "Run" to send them to the console. 
 
 
 ### R packages
@@ -162,7 +162,7 @@ We will also use `cowplot` and  `scales` to make pretty visualizations, `forcats
 ```
 
 
-You can also navigate to "Packages" Tab in the bottom right pane of RStudio to view a list of available packages. Packages with a checked box next to them have been successfully loaded. You can click a box to load installed packages. Clicking the "Help" Tab will provide a quick description of the package and its fuctions.
+You can also navigate to "Packages" Tab in the bottom right pane of RStudio to view a list of available packages. Packages with a checked box next to them have been successfully loaded. You can click a box to load installed packages. Clicking the "Help" Tab will provide a quick description of the package and its functions.
 
 
 
@@ -182,7 +182,7 @@ You can also navigate to "Packages" Tab in the bottom right pane of RStudio to v
 
 ## Import
 
-Data can be imported using packages from base R or from the tidyverse.  
+Data can be imported using packages from base R or the tidyverse.  
 
 What are some differences between the data objects imported by `read.csv()` and `read_csv()`?
 
@@ -285,7 +285,7 @@ There any multiple solutions to this  question. One solution is:
 
 ```
 
-You have need seen a variety of options for importing files. You may use many more in your R-based RNA-seq workflow, but these basics will get you started. 
+You have now seen a variety of options for importing files. You may use many more in your R-based RNA-seq workflow, but these basics will get you started. 
 
 
 
@@ -358,13 +358,7 @@ Most RNA-Seq pipelines require that the counts be in a “wide” format where e
 ```
 
 
-
-
-## Transform
-
-### Mutate
-
-### Renameing variables to join data frames
+## Renameing variables to join data frames
 
 In the next section, we will join two data frames by a shared column. Both the results file and the genes file have a column with gene symbols, but they do not have the same name. 
 
