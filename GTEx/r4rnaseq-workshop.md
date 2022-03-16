@@ -707,10 +707,30 @@ head(results_genes)
     ## 6
 
 ``` r
-head(counts$Ensembl.gene.ID)[1:5]
+head(counts)[1:5]
 ```
 
-    ## NULL
+    ##                   GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
+    ## ENSG00000278704.1                          0                          0
+    ## ENSG00000277400.1                          0                          0
+    ## ENSG00000274847.1                          0                          0
+    ## ENSG00000277428.1                          0                          0
+    ## ENSG00000276256.1                          0                          0
+    ## ENSG00000278198.1                          0                          0
+    ##                   GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
+    ## ENSG00000278704.1                         0                          0
+    ## ENSG00000277400.1                         0                          0
+    ## ENSG00000274847.1                         0                          0
+    ## ENSG00000277428.1                         0                          0
+    ## ENSG00000276256.1                         0                          0
+    ## ENSG00000278198.1                         0                          0
+    ##                   GTEX_13VXT_1126_SM_5LU3A.1
+    ## ENSG00000278704.1                          0
+    ## ENSG00000277400.1                          0
+    ## ENSG00000274847.1                          0
+    ## ENSG00000277428.1                          0
+    ## ENSG00000276256.1                          0
+    ## ENSG00000278198.1                          0
 
 ``` r
 head(genes$Ensembl.gene.ID)
@@ -722,9 +742,22 @@ head(genes$Ensembl.gene.ID)
 ``` r
 genes2 <- genes %>%
   mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+
+counts2 <- counts %>%
+  mutate(Ensembl.gene.ID = row.names(.))
+
+head(counts2$Ensembl.gene.ID)[1:5]
 ```
 
-### Creating and columns and lengthening or widening data frames
+    ## [1] "ENSG00000278704.1" "ENSG00000277400.1" "ENSG00000274847.1"
+    ## [4] "ENSG00000277428.1" "ENSG00000276256.1"
+
+``` r
+head(genes2$Ensembl.gene.ID)
+```
+
+    ## [1] "ENSG00000121410.1" "ENSG00000268895.1" "ENSG00000148584.1"
+    ## [4] ".1"                "ENSG00000175899.1" "ENSG00000245105.1"
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format
 where each sample is a column and each gene is a row. However, many R
@@ -735,8 +768,7 @@ For this, we must introduce the pipe, `%>%`. This symbol is used to
 redirect the output from standard out to another function.
 
 ``` r
-counts_long <-counts %>%
-  mutate(Ensembl.gene.ID = row.names(.)) %>%
+counts_long <- counts2 %>%
   pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
   inner_join(., genes2, by = "Ensembl.gene.ID") %>%
   arrange(desc(counts))
@@ -795,6 +827,24 @@ head(counts_long$Tissue.Sample.ID)
     ## [1] "GTEX_13D11_1526_SM_5J2NA.1" "GTEX_1313W_1426_SM_5KLZU.1"
     ## [3] "GTEX_131YS_0826_SM_5PNYV.1" "GTEX_13FTW_0826_SM_5K7XR.1"
     ## [5] "GTEX_ZAK1_1126_SM_5PNXU.1"  "GTEX_13O61_0426_SM_5L3ET.1"
+
+Yea, we have joined some data frames. Now let’s do a little more
+cleaning and joining.
+
+``` r
+head(counts_long$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX_13D11_1526_SM_5J2NA.1" "GTEX_1313W_1426_SM_5KLZU.1"
+    ## [3] "GTEX_131YS_0826_SM_5PNYV.1" "GTEX_13FTW_0826_SM_5K7XR.1"
+    ## [5] "GTEX_ZAK1_1126_SM_5PNXU.1"  "GTEX_13O61_0426_SM_5L3ET.1"
+
+``` r
+head(samples$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
+    ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
 
 ``` r
 counts_long_newname <- counts_long %>%
@@ -948,5 +998,3 @@ concepts.
 *Note: the source document
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 14 March, 2022.*
-
-------------------------------------------------------------------------

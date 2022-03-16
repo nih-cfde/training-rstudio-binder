@@ -350,16 +350,19 @@ head(results_genes)
 
 
 ```{r mutate}
-head(counts$Ensembl.gene.ID)[1:5]
+head(counts)[1:5]
 head(genes$Ensembl.gene.ID)
 
 genes2 <- genes %>%
   mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
 
+counts2 <- counts %>%
+  mutate(Ensembl.gene.ID = row.names(.))
 
+head(counts2$Ensembl.gene.ID)[1:5]
+head(genes2$Ensembl.gene.ID)
 ```
 
-### Creating and columns and lengthening or widening data frames
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by variables or genes of interest.
 
@@ -369,8 +372,7 @@ For this, we must introduce the pipe, `%>%`. This symbol is used to redirect the
 
 ```{r}
 
-counts_long <-counts %>%
-  mutate(Ensembl.gene.ID = row.names(.)) %>%
+counts_long <- counts2 %>%
   pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
   inner_join(., genes2, by = "Ensembl.gene.ID") %>%
   arrange(desc(counts))
@@ -380,6 +382,13 @@ head(counts_long)
 head(samples)
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
+```
+
+Yea, we have joined some data frames. Now let's do a little more cleaning and joining. 
+
+```{r}
+head(counts_long$Tissue.Sample.ID)
+head(samples$Tissue.Sample.ID)
 
 counts_long_newname <- counts_long %>%
   separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
@@ -497,6 +506,6 @@ Not sure if I want to include either or both of these advanced beginner concepts
 
 ---
 
-```{r ref.label=knitr::all_labels(), echo=FALSE, eval=FALSE}
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 ```
 
