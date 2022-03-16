@@ -348,19 +348,26 @@ results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
 ```
 
+
+```{r mutate}
+head(counts$Ensembl.gene.ID)[1:5]
+head(genes$Ensembl.gene.ID)
+
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+
+
+```
+
 ### Creating and columns and lengthening or widening data frames
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by variables or genes of interest.
 
 For this, we must introduce the pipe, `%>%`. This symbol is used to redirect the output from standard out to another function. 
 
-```{r create}
-head(counts)[1:5]
-head(genes)
 
-genes2 <- genes %>%
-  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
-  
+
+```{r}
 
 counts_long <-counts %>%
   mutate(Ensembl.gene.ID = row.names(.)) %>%

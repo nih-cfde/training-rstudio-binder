@@ -706,6 +706,24 @@ head(results_genes)
     ## 5                         
     ## 6
 
+``` r
+head(counts$Ensembl.gene.ID)[1:5]
+```
+
+    ## NULL
+
+``` r
+head(genes$Ensembl.gene.ID)
+```
+
+    ## [1] "ENSG00000121410" "ENSG00000268895" "ENSG00000148584" ""               
+    ## [5] "ENSG00000175899" "ENSG00000245105"
+
+``` r
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+```
+
 ### Creating and columns and lengthening or widening data frames
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format
@@ -717,69 +735,6 @@ For this, we must introduce the pipe, `%>%`. This symbol is used to
 redirect the output from standard out to another function.
 
 ``` r
-head(counts)[1:5]
-```
-
-    ##                   GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
-    ## ENSG00000278704.1                          0                          0
-    ## ENSG00000277400.1                          0                          0
-    ## ENSG00000274847.1                          0                          0
-    ## ENSG00000277428.1                          0                          0
-    ## ENSG00000276256.1                          0                          0
-    ## ENSG00000278198.1                          0                          0
-    ##                   GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
-    ## ENSG00000278704.1                         0                          0
-    ## ENSG00000277400.1                         0                          0
-    ## ENSG00000274847.1                         0                          0
-    ## ENSG00000277428.1                         0                          0
-    ## ENSG00000276256.1                         0                          0
-    ## ENSG00000278198.1                         0                          0
-    ##                   GTEX_13VXT_1126_SM_5LU3A.1
-    ## ENSG00000278704.1                          0
-    ## ENSG00000277400.1                          0
-    ## ENSG00000274847.1                          0
-    ## ENSG00000277428.1                          0
-    ## ENSG00000276256.1                          0
-    ## ENSG00000278198.1                          0
-
-``` r
-head(genes)
-```
-
-    ##      HGNC.ID Approved.symbol
-    ## 1     HGNC:5            A1BG
-    ## 2 HGNC:37133        A1BG-AS1
-    ## 3 HGNC:24086            A1CF
-    ## 4     HGNC:6           A1S9T
-    ## 5     HGNC:7             A2M
-    ## 6 HGNC:27057         A2M-AS1
-    ##                                                  Approved.name Chromosome
-    ## 1                                       alpha-1-B glycoprotein   19q13.43
-    ## 2                                         A1BG antisense RNA 1   19q13.43
-    ## 3                               APOBEC1 complementation factor   10q11.23
-    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
-    ## 5                                        alpha-2-macroglobulin   12p13.31
-    ## 6                                          A2M antisense RNA 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3                 AF271790        29974 ENSG00000148584
-    ## 4                                    NA                
-    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 6                                144571 ENSG00000245105
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:1917115
-    ## 4                         
-    ## 5              MGI:2449119
-    ## 6
-
-``` r
-genes2 <- genes %>%
-  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
-  
-
 counts_long <-counts %>%
   mutate(Ensembl.gene.ID = row.names(.)) %>%
   pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
