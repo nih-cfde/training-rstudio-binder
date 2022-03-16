@@ -259,17 +259,17 @@ head(results)
 
 ``` r
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
-                      sep = "\t", header = TRUE, row.names = 1 )
+                      sep = "\t", header = TRUE )
 head(results2)
 ```
 
-    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 I find it helpful to import a table of gene names and symbols that can
 be merged with other tables with gene information or searched for useful
@@ -474,10 +474,11 @@ summary(samples)
     ##  Mode  :character   Mode  :character   Mode  :character     Mode  :character
 
 ``` r
-str(results)
+str(results2)
 ```
 
-    ## 'data.frame':    15529 obs. of  6 variables:
+    ## 'data.frame':    15529 obs. of  7 variables:
+    ##  $ X        : chr  "A1BG" "A1BG-AS1" "A2M" "A2M-AS1" ...
     ##  $ logFC    : num  0.1033 0.1361 -0.0161 0.6051 0.3541 ...
     ##  $ AveExpr  : num  1.346 -0.238 9.798 2.539 -1.167 ...
     ##  $ t        : num  0.322 0.64 -0.113 3.488 1.079 ...
@@ -486,23 +487,23 @@ str(results)
     ##  $ B        : num  -5.673 -5.346 -5.957 -0.635 -4.949 ...
 
 ``` r
-summary(results)
+summary(results2)
 ```
 
-    ##      logFC              AveExpr             t               P.Value         
-    ##  Min.   :-2.917546   Min.   :-2.303   Min.   :-4.64984   Min.   :0.0000008  
-    ##  1st Qu.:-0.131376   1st Qu.: 2.108   1st Qu.:-1.12926   1st Qu.:0.0568327  
-    ##  Median : 0.009261   Median : 4.171   Median : 0.07798   Median :0.2412433  
-    ##  Mean   : 0.026300   Mean   : 3.806   Mean   : 0.03410   Mean   :0.3345941  
-    ##  3rd Qu.: 0.170189   3rd Qu.: 5.586   3rd Qu.: 1.21902   3rd Qu.:0.5772327  
-    ##  Max.   : 2.659235   Max.   :13.593   Max.   : 5.38745   Max.   :0.9999816  
-    ##    adj.P.Val             B         
-    ##  Min.   :0.01209   Min.   :-6.250  
-    ##  1st Qu.:0.22729   1st Qu.:-5.839  
-    ##  Median :0.48246   Median :-5.306  
-    ##  Mean   :0.49944   Mean   :-4.852  
-    ##  3rd Qu.:0.76952   3rd Qu.:-4.282  
-    ##  Max.   :0.99998   Max.   : 5.635
+    ##       X                 logFC              AveExpr             t           
+    ##  Length:15529       Min.   :-2.917546   Min.   :-2.303   Min.   :-4.64984  
+    ##  Class :character   1st Qu.:-0.131376   1st Qu.: 2.108   1st Qu.:-1.12926  
+    ##  Mode  :character   Median : 0.009261   Median : 4.171   Median : 0.07798  
+    ##                     Mean   : 0.026300   Mean   : 3.806   Mean   : 0.03410  
+    ##                     3rd Qu.: 0.170189   3rd Qu.: 5.586   3rd Qu.: 1.21902  
+    ##                     Max.   : 2.659235   Max.   :13.593   Max.   : 5.38745  
+    ##     P.Value            adj.P.Val             B         
+    ##  Min.   :0.0000008   Min.   :0.01209   Min.   :-6.250  
+    ##  1st Qu.:0.0568327   1st Qu.:0.22729   1st Qu.:-5.839  
+    ##  Median :0.2412433   Median :0.48246   Median :-5.306  
+    ##  Mean   :0.3345941   Mean   :0.49944   Mean   :-4.852  
+    ##  3rd Qu.:0.5772327   3rd Qu.:0.76952   3rd Qu.:-4.282  
+    ##  Max.   :0.9999816   Max.   :0.99998   Max.   : 5.635
 
 ``` r
 str(genes)
@@ -588,7 +589,7 @@ the new name and the second value is the old name. Just in case we get
 it wrong, let’s save this as a new object.
 
 ``` r
-head(results)
+head(results2)
 ```
 
     ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
@@ -633,7 +634,7 @@ head(genes)
     ## 6
 
 ``` r
-head(results$X)
+head(results2$X)
 ```
 
     ## [1] "A1BG"     "A1BG-AS1" "A2M"      "A2M-AS1"  "A2ML1"    "A2MP1"
@@ -645,7 +646,7 @@ head(genes$Approved.symbol)
     ## [1] "A1BG"     "A1BG-AS1" "A1CF"     "A1S9T"    "A2M"      "A2M-AS1"
 
 ``` r
-results_new <- results %>%
+results_new <- results2 %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
 ```
@@ -705,18 +706,197 @@ head(results_genes)
     ## 5                         
     ## 6
 
-### Lengthening and widenting data frames
+### Creating and columns and lengthening or widening data frames
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format
 where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
-file that can be easily subset by tissue and or gene for quick plotting.
+file that can be easily subset by variables or genes of interest.
 
-### Creating new columns
+For this, we must introduce the pipe, `%>%`. This symbol is used to
+redirect the output from standard out to another function.
 
-### Filtering rowings
+``` r
+head(counts)[1:5]
+```
 
-### Arranging and summarizing variables
+    ##                   GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
+    ## ENSG00000278704.1                          0                          0
+    ## ENSG00000277400.1                          0                          0
+    ## ENSG00000274847.1                          0                          0
+    ## ENSG00000277428.1                          0                          0
+    ## ENSG00000276256.1                          0                          0
+    ## ENSG00000278198.1                          0                          0
+    ##                   GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
+    ## ENSG00000278704.1                         0                          0
+    ## ENSG00000277400.1                         0                          0
+    ## ENSG00000274847.1                         0                          0
+    ## ENSG00000277428.1                         0                          0
+    ## ENSG00000276256.1                         0                          0
+    ## ENSG00000278198.1                         0                          0
+    ##                   GTEX_13VXT_1126_SM_5LU3A.1
+    ## ENSG00000278704.1                          0
+    ## ENSG00000277400.1                          0
+    ## ENSG00000274847.1                          0
+    ## ENSG00000277428.1                          0
+    ## ENSG00000276256.1                          0
+    ## ENSG00000278198.1                          0
+
+``` r
+head(genes)
+```
+
+    ##      HGNC.ID Approved.symbol
+    ## 1     HGNC:5            A1BG
+    ## 2 HGNC:37133        A1BG-AS1
+    ## 3 HGNC:24086            A1CF
+    ## 4     HGNC:6           A1S9T
+    ## 5     HGNC:7             A2M
+    ## 6 HGNC:27057         A2M-AS1
+    ##                                                  Approved.name Chromosome
+    ## 1                                       alpha-1-B glycoprotein   19q13.43
+    ## 2                                         A1BG antisense RNA 1   19q13.43
+    ## 3                               APOBEC1 complementation factor   10q11.23
+    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
+    ## 5                                        alpha-2-macroglobulin   12p13.31
+    ## 6                                          A2M antisense RNA 1   12p13.31
+    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
+    ## 1                                     1 ENSG00000121410
+    ## 2                 BC040926       503538 ENSG00000268895
+    ## 3                 AF271790        29974 ENSG00000148584
+    ## 4                                    NA                
+    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
+    ## 6                                144571 ENSG00000245105
+    ##   Mouse.genome.database.ID
+    ## 1              MGI:2152878
+    ## 2                         
+    ## 3              MGI:1917115
+    ## 4                         
+    ## 5              MGI:2449119
+    ## 6
+
+``` r
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+  
+
+counts_long <-counts %>%
+  mutate(Ensembl.gene.ID = row.names(.)) %>%
+  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
+  inner_join(., genes2, by = "Ensembl.gene.ID") %>%
+  arrange(desc(counts))
+head(counts_long)
+```
+
+    ## # A tibble: 6 × 10
+    ##   Ensembl.gene.ID  Tissue.Sample.ID counts HGNC.ID Approved.symbol Approved.name
+    ##   <chr>            <chr>             <dbl> <chr>   <chr>           <chr>        
+    ## 1 ENSG00000163217… GTEX_13D11_1526… 8.28e6 HGNC:2… BMP10           bone morphog…
+    ## 2 ENSG00000270641… GTEX_1313W_1426… 7.69e6 HGNC:1… TSIX            TSIX transcr…
+    ## 3 ENSG00000163217… GTEX_131YS_0826… 7.25e6 HGNC:2… BMP10           bone morphog…
+    ## 4 ENSG00000163217… GTEX_13FTW_0826… 6.89e6 HGNC:2… BMP10           bone morphog…
+    ## 5 ENSG00000270641… GTEX_ZAK1_1126_… 6.55e6 HGNC:1… TSIX            TSIX transcr…
+    ## 6 ENSG00000163217… GTEX_13O61_0426… 6.18e6 HGNC:2… BMP10           bone morphog…
+    ## # … with 4 more variables: Chromosome <chr>, Accession.numbers <chr>,
+    ## #   NCBI.Gene.ID <int>, Mouse.genome.database.ID <chr>
+
+``` r
+head(samples)
+```
+
+    ##   Tissue.Sample.ID                         Tissue Subject.ID    Sex Age.Bracket
+    ## 1  GTEX-1117F-0126 Skin - Sun Exposed (Lower leg) GTEX-1117F female       60-69
+    ## 2  GTEX-1117F-0226         Adipose - Subcutaneous GTEX-1117F female       60-69
+    ## 3  GTEX-1117F-0326                 Nerve - Tibial GTEX-1117F female       60-69
+    ## 4  GTEX-1117F-0426              Muscle - Skeletal GTEX-1117F female       60-69
+    ## 5  GTEX-1117F-0526                Artery - Tibial GTEX-1117F female       60-69
+    ## 6  GTEX-1117F-0626              Artery - Coronary GTEX-1117F female       60-69
+    ##   Hardy.Scale  Pathology.Categories
+    ## 1  Slow death                      
+    ## 2  Slow death                      
+    ## 3  Slow death       clean_specimens
+    ## 4  Slow death                      
+    ## 5  Slow death monckeberg, sclerotic
+    ## 6  Slow death                      
+    ##                                                Pathology.Notes
+    ## 1 6 pieces, minimal fat, squamous epithelium is ~50-70 microns
+    ## 2                 2 pieces, ~15% vessel stroma, rep delineated
+    ## 3                                    2 pieces, clean specimens
+    ## 4    2 pieces, !5% fibrous connective tissue, delineated (rep)
+    ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
+    ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
+
+``` r
+head(samples$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
+    ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
+
+``` r
+head(counts_long$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX_13D11_1526_SM_5J2NA.1" "GTEX_1313W_1426_SM_5KLZU.1"
+    ## [3] "GTEX_131YS_0826_SM_5PNYV.1" "GTEX_13FTW_0826_SM_5K7XR.1"
+    ## [5] "GTEX_ZAK1_1126_SM_5PNXU.1"  "GTEX_13O61_0426_SM_5L3ET.1"
+
+``` r
+counts_long_newname <- counts_long %>%
+  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
+           sep =  "_SM_")
+```
+
+    ## Warning: Expected 1 pieces. Additional pieces discarded in 873630 rows [1, 2, 3,
+    ## 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
+
+``` r
+head(counts_long_newname$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX_13D11_1526" "GTEX_1313W_1426" "GTEX_131YS_0826" "GTEX_13FTW_0826"
+    ## [5] "GTEX_ZAK1_1126"  "GTEX_13O61_0426"
+
+``` r
+head(samples$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
+    ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
+
+``` r
+samples_new <- samples %>%
+  mutate(Tissue.Sample.ID = gsub("-", "_", Tissue.Sample.ID))
+head(samples$Tissue.Sample.ID)
+```
+
+    ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
+    ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
+
+``` r
+counts_long_samples <- counts_long_newname %>%
+  inner_join(., samples_new, by = "Tissue.Sample.ID")
+head(counts_long_samples)
+```
+
+    ## # A tibble: 6 × 17
+    ##   Ensembl.gene.ID  Tissue.Sample.ID counts HGNC.ID Approved.symbol Approved.name
+    ##   <chr>            <chr>             <dbl> <chr>   <chr>           <chr>        
+    ## 1 ENSG00000163217… GTEX_13D11_1526  8.28e6 HGNC:2… BMP10           bone morphog…
+    ## 2 ENSG00000270641… GTEX_1313W_1426  7.69e6 HGNC:1… TSIX            TSIX transcr…
+    ## 3 ENSG00000163217… GTEX_131YS_0826  7.25e6 HGNC:2… BMP10           bone morphog…
+    ## 4 ENSG00000163217… GTEX_13FTW_0826  6.89e6 HGNC:2… BMP10           bone morphog…
+    ## 5 ENSG00000270641… GTEX_ZAK1_1126   6.55e6 HGNC:1… TSIX            TSIX transcr…
+    ## 6 ENSG00000163217… GTEX_13O61_0426  6.18e6 HGNC:2… BMP10           bone morphog…
+    ## # … with 11 more variables: Chromosome <chr>, Accession.numbers <chr>,
+    ## #   NCBI.Gene.ID <int>, Mouse.genome.database.ID <chr>, Tissue <chr>,
+    ## #   Subject.ID <chr>, Sex <chr>, Age.Bracket <chr>, Hardy.Scale <chr>,
+    ## #   Pathology.Categories <chr>, Pathology.Notes <chr>
+
+Now you have a file with the counts every gene as well as the
+experimental variables in 1 data frame.
+
+### Filtering, arranging and summarizing variables
 
 :::success
 

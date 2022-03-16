@@ -55,15 +55,12 @@ In this workshop, you will learn how to use R and RStudio to import, tidy, trans
 
 The book [“R for Data Science”](https://r4ds.had.co.nz/index.html) provides an excellent framework for using data science to turn raw data into understanding, insight, and knowledge. We will use this framework as an outline for this workshop.
 
-
-
 **R** is a statistical computing and data visualization programming language. **RStudio** is an integrated development environment, or IDE, for R programming. R and RStudio work on Mac, Linux, and Windows operating systems. The RStudio layout displays lots of useful information and allows us to run R code from a script and view and save outputs all from one interface.
 
 When you start RStudio, you’ll see two key regions in the interface: the console and the output. When working in R, you can type directly into the console, or you can type into a script. Saving commands in a script will make it easier to reproduce. You will learn more as we go along! 
 
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
-
 
 For today's lesson, we will focus on data from the [Gene Expression Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
 
@@ -116,8 +113,6 @@ library(dplyr)
 library(readr)
 library(tibble)
 ```
-
-
 
 ```{r, otherpackages, echo = F, message = F, warning=F }
 library(cowplot)
@@ -205,7 +200,7 @@ results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
-                      sep = "\t", header = TRUE, row.names = 1 )
+                      sep = "\t", header = TRUE )
 head(results2)
 ```
 
@@ -314,8 +309,8 @@ Let's look at the structure of our data frames. The `str()` and  `summary()` com
 ```{r}
 str(samples)
 summary(samples)
-str(results)
-summary(results)
+str(results2)
+summary(results2)
 str(genes)
 summary(genes)
 summary(counts[1:5])
@@ -335,13 +330,13 @@ In the next section, we will join two data frames by a shared column. Both the r
 We can use the `rename` function to rename columns. The first value is the new name and the second value is the old name. Just in case we get it wrong, let's save this as a new object.
 
 ```{r rename}
-head(results)
+head(results2)
 head(genes)
 
-head(results$X)
+head(results2$X)
 head(genes$Approved.symbol)
 
-results_new <- results %>%
+results_new <- results2 %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
 ```
@@ -353,19 +348,55 @@ results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
 ```
 
-### Lengthening and widenting data frames
+### Creating and columns and lengthening or widening data frames
 
-Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by tissue and or gene for quick plotting.
+Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by variables or genes of interest.
+
+For this, we must introduce the pipe, `%>%`. This symbol is used to redirect the output from standard out to another function. 
+
+```{r}
+head(counts)[1:5]
+head(genes)
+
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+  
+
+counts_long <-counts %>%
+  mutate(Ensembl.gene.ID = row.names(.)) %>%
+  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
+  inner_join(., genes2, by = "Ensembl.gene.ID") %>%
+  arrange(desc(counts))
+head(counts_long)
 
 
-### Creating new columns 
+head(samples)
+head(samples$Tissue.Sample.ID)
+head(counts_long$Tissue.Sample.ID)
+
+counts_long_newname <- counts_long %>%
+  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
+           sep =  "_SM_")
+
+head(counts_long_newname$Tissue.Sample.ID)
+head(samples$Tissue.Sample.ID)
+
+samples_new <- samples %>%
+  mutate(Tissue.Sample.ID = gsub("-", "_", Tissue.Sample.ID))
+head(samples$Tissue.Sample.ID)
 
 
-### Filtering rowings
+counts_long_samples <- counts_long_newname %>%
+  inner_join(., samples_new, by = "Tissue.Sample.ID")
+head(counts_long_samples)
+
+```
+
+Now you have a file with the counts every gene as well as the experimental variables in 1 data frame.
 
 
 
-### Arranging and summarizing variables
+### Filtering, arranging and summarizing variables
 
 
 
