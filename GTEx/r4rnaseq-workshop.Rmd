@@ -200,8 +200,8 @@ Very large tabular files are often saved as .tsv files. These can be imported wi
 
 ```{r import-2}
 
-results1 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-head(results1)
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
 
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
                       sep = "\t", header = TRUE, row.names = 1 )
@@ -301,8 +301,6 @@ You have need seen a variety of options for importing files. You may use many mo
 | `read_tsv()`  | A tidyR function for importing .tsv files as tibbles | 
 | `head()` and `tail()` | Print the first or last 6 lines of an object  | 
 | `dim()`  | A function that prints the dimensions of an object | 
-| `str()` | A function that prints the internal structure of an object  |
-| `summary()` | A function that summarizes each variable |
 | `as_tibble()` | Convert dataframes to tibbles | 
 :::
 
@@ -310,6 +308,29 @@ You have need seen a variety of options for importing files. You may use many mo
 
 ## Tidy and Transform
 
+Let's look at the structure of our data frames. The `str()` and  `summary()` commands quickly summarize every variable in a data frame. 
+
+```{r}
+str(samples)
+summary(samples)
+str(results)
+summary(results)
+```
+
+
+
+The defult classification for each variable may or may not be appropriate for you analysis. In this section, we will discuss all the ways to tidy and transform your data.
+
+:::success
+#### Key functions: Tidy
+
+| Function | Description |
+| --- | --- |
+
+| `str()` | A function that prints the internal structure of an object  |
+| `summary()` | A function that summarizes each variable |
+
+:::
 
 
 ### Widen

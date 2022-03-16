@@ -261,8 +261,8 @@ imported with `read.table()` or `read_tsv()`. You can also specify the
 tab delimiter as well as the row and column names.
 
 ``` r
-results1 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-head(results1)
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
 ```
 
     ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
@@ -453,13 +453,89 @@ you started.
 | `read_tsv()`          | A tidyR function for importing .tsv files as tibbles            |
 | `head()` and `tail()` | Print the first or last 6 lines of an object                    |
 | `dim()`               | A function that prints the dimensions of an object              |
-| `str()`               | A function that prints the internal structure of an object      |
-| `summary()`           | A function that summarizes each variable                        |
 | `as_tibble()`         | Convert dataframes to tibbles                                   |
 
 :::
 
 ## Tidy and Transform
+
+Let’s look at the structure of our data frames. The `str()` and
+`summary()` commands quickly summarize every variable in a data frame.
+
+``` r
+str(samples)
+```
+
+    ## 'data.frame':    25713 obs. of  8 variables:
+    ##  $ Tissue.Sample.ID    : chr  "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426" ...
+    ##  $ Tissue              : chr  "Skin - Sun Exposed (Lower leg)" "Adipose - Subcutaneous" "Nerve - Tibial" "Muscle - Skeletal" ...
+    ##  $ Subject.ID          : chr  "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" ...
+    ##  $ Sex                 : chr  "female" "female" "female" "female" ...
+    ##  $ Age.Bracket         : chr  "60-69" "60-69" "60-69" "60-69" ...
+    ##  $ Hardy.Scale         : chr  "Slow death" "Slow death" "Slow death" "Slow death" ...
+    ##  $ Pathology.Categories: chr  "" "" "clean_specimens" "" ...
+    ##  $ Pathology.Notes     : chr  "6 pieces, minimal fat, squamous epithelium is ~50-70 microns" "2 pieces, ~15% vessel stroma, rep delineated" "2 pieces, clean specimens" "2 pieces, !5% fibrous connective tissue, delineated (rep)" ...
+
+``` r
+summary(samples)
+```
+
+    ##  Tissue.Sample.ID      Tissue           Subject.ID            Sex           
+    ##  Length:25713       Length:25713       Length:25713       Length:25713      
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##  Age.Bracket        Hardy.Scale        Pathology.Categories Pathology.Notes   
+    ##  Length:25713       Length:25713       Length:25713         Length:25713      
+    ##  Class :character   Class :character   Class :character     Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character     Mode  :character
+
+``` r
+str(results)
+```
+
+    ## 'data.frame':    15529 obs. of  6 variables:
+    ##  $ logFC    : num  0.1033 0.1361 -0.0161 0.6051 0.3541 ...
+    ##  $ AveExpr  : num  1.346 -0.238 9.798 2.539 -1.167 ...
+    ##  $ t        : num  0.322 0.64 -0.113 3.488 1.079 ...
+    ##  $ P.Value  : num  0.748222 0.524426 0.910141 0.000813 0.28409 ...
+    ##  $ adj.P.Val: num  0.8748 0.7308 0.9565 0.0555 0.5292 ...
+    ##  $ B        : num  -5.673 -5.346 -5.957 -0.635 -4.949 ...
+
+``` r
+summary(results)
+```
+
+    ##      logFC              AveExpr             t               P.Value         
+    ##  Min.   :-2.917546   Min.   :-2.303   Min.   :-4.64984   Min.   :0.0000008  
+    ##  1st Qu.:-0.131376   1st Qu.: 2.108   1st Qu.:-1.12926   1st Qu.:0.0568327  
+    ##  Median : 0.009261   Median : 4.171   Median : 0.07798   Median :0.2412433  
+    ##  Mean   : 0.026300   Mean   : 3.806   Mean   : 0.03410   Mean   :0.3345941  
+    ##  3rd Qu.: 0.170189   3rd Qu.: 5.586   3rd Qu.: 1.21902   3rd Qu.:0.5772327  
+    ##  Max.   : 2.659235   Max.   :13.593   Max.   : 5.38745   Max.   :0.9999816  
+    ##    adj.P.Val             B         
+    ##  Min.   :0.01209   Min.   :-6.250  
+    ##  1st Qu.:0.22729   1st Qu.:-5.839  
+    ##  Median :0.48246   Median :-5.306  
+    ##  Mean   :0.49944   Mean   :-4.852  
+    ##  3rd Qu.:0.76952   3rd Qu.:-4.282  
+    ##  Max.   :0.99998   Max.   : 5.635
+
+The defult classification for each variable may or may not be
+appropriate for you analysis. In this section, we will discuss all the
+ways to tidy and transform your data.
+
+:::success
+
+#### Key functions: Tidy
+
+| Function | Description |
+|----------|-------------|
+
+`str()` \| A function that prints the internal structure of an object
+\|  
+`summary()` \| A function that summarizes each variable \|
+
+:::
 
 ### Widen
 
