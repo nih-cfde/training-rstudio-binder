@@ -8,5 +8,6 @@ sed -i -e 's/<div class="warning">/:::warning/g' r4rnaseq-workshop.md
 sed -i -e 's/<div class="spoiler">/:::spoiler/g' r4rnaseq-workshop.md
 
 sed -i -e 's|</div>|:::|g' r4rnaseq-workshop.md 
+sed -i -e 's|%20| |g' r4rnaseq-workshop.md 
 
 rm r4rnaseq-workshop.md-e
