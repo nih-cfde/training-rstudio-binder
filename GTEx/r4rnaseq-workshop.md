@@ -521,42 +521,78 @@ summary(results)
     ##  3rd Qu.:0.76952   3rd Qu.:-4.282  
     ##  Max.   :0.99998   Max.   : 5.635
 
+``` r
+str(genes)
+```
+
+    ## 'data.frame':    15659 obs. of  8 variables:
+    ##  $ HGNC.ID                 : chr  "HGNC:5" "HGNC:37133" "HGNC:24086" "HGNC:6" ...
+    ##  $ Approved.symbol         : chr  "A1BG" "A1BG-AS1" "A1CF" "A1S9T" ...
+    ##  $ Approved.name           : chr  "alpha-1-B glycoprotein" "A1BG antisense RNA 1" "APOBEC1 complementation factor" "symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/" ...
+    ##  $ Chromosome              : chr  "19q13.43" "19q13.43" "10q11.23" "" ...
+    ##  $ Accession.numbers       : chr  "" "BC040926" "AF271790" "" ...
+    ##  $ NCBI.Gene.ID            : int  1 503538 29974 NA 2 144571 144568 NA NA 3 ...
+    ##  $ Ensembl.gene.ID         : chr  "ENSG00000121410" "ENSG00000268895" "ENSG00000148584" "" ...
+    ##  $ Mouse.genome.database.ID: chr  "MGI:2152878" "" "MGI:1917115" "" ...
+
+``` r
+summary(genes)
+```
+
+    ##    HGNC.ID          Approved.symbol    Approved.name       Chromosome       
+    ##  Length:15659       Length:15659       Length:15659       Length:15659      
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##  Accession.numbers   NCBI.Gene.ID       Ensembl.gene.ID   
+    ##  Length:15659       Min.   :        1   Length:15659      
+    ##  Class :character   1st Qu.:    10557   Class :character  
+    ##  Mode  :character   Median :    84280   Mode  :character  
+    ##                     Mean   : 21735231                     
+    ##                     3rd Qu.:   645433                     
+    ##                     Max.   :124188214                     
+    ##                     NA's   :2423                          
+    ##  Mouse.genome.database.ID
+    ##  Length:15659            
+    ##  Class :character        
+    ##  Mode  :character        
+    ##                          
+    ##                          
+    ##                          
+    ## 
+
+``` r
+summary(counts[1:5])
+```
+
+    ##  GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
+    ##  Min.   :        0          Min.   :        0         
+    ##  1st Qu.:        0          1st Qu.:        0         
+    ##  Median :       95          Median :       76         
+    ##  Mean   :    75254          Mean   :   103343         
+    ##  3rd Qu.:     9058          3rd Qu.:     9584         
+    ##  Max.   :164409376          Max.   :407066080         
+    ##  GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
+    ##  Min.   :        0         Min.   :        0         
+    ##  1st Qu.:        0         1st Qu.:        0         
+    ##  Median :       70         Median :       38         
+    ##  Mean   :    80789         Mean   :    69070         
+    ##  3rd Qu.:     8988         3rd Qu.:     7366         
+    ##  Max.   :338010074         Max.   :263027953         
+    ##  GTEX_13VXT_1126_SM_5LU3A.1
+    ##  Min.   :        0         
+    ##  1st Qu.:        0         
+    ##  Median :       47         
+    ##  Mean   :   111238         
+    ##  3rd Qu.:     6710         
+    ##  Max.   :602494565
+
 The defult classification for each variable may or may not be
 appropriate for you analysis. In this section, we will discuss all the
 ways to tidy and transform your data.
-
-:::success
-
-#### Key functions: Tidy
-
-| Function    | Description                                                |
-|-------------|------------------------------------------------------------|
-| `str()`     | A function that prints the internal structure of an object |
-| `summary()` | A function that summarizes each variable                   |
-
-:::
-
-### Widen
-
-Most RNA-Seq pipelines require that the counts be in a “wide” format
-where each sample is a column and each gene is a row. However, many R
-tools prefer data in the long format. I like to create a counts_long
-file that can be easily subset by tissue and or gene for quick plotting.
-
-:::success
-
-#### Key functions: Tidy
-
-| Function         | Description |
-|------------------|-------------|
-| `pivot_wider()`  |             |
-| `pivot_longer()` |             |
-| `separate()`     |             |
-| `drop_na()`      |             |
-| `select()`       |             |
-| `arrange()`      |             |
-
-:::
 
 ## Renameing variables to join data frames
 
@@ -686,18 +722,39 @@ head(results_genes)
     ## 5                         
     ## 6
 
+## Lengthening and widenting data frames
+
+Most RNA-Seq pipelines require that the counts be in a “wide” format
+where each sample is a column and each gene is a row. However, many R
+tools prefer data in the long format. I like to create a counts_long
+file that can be easily subset by tissue and or gene for quick plotting.
+
+## Creating new columns
+
+## Filtering rowings
+
+## Arranging and summarizing variables
+
 :::success
 
-#### Key functions: Transform
+#### Key functions: Tidy and Transform
 
-| Function       | Description |
-|----------------|-------------|
-| `summarize()`  |             |
-| `arrange()`    |             |
-| `mutate()`     |             |
-| `full_join()`  |             |
-| `left_join()`  |             |
-| `inner_join()` |             |
+| Function         | Description                                                |
+|------------------|------------------------------------------------------------|
+| `str()`          | A function that prints the internal structure of an object |
+| `summary()`      | A function that summarizes each variable                   |
+| `pivot_wider()`  |                                                            |
+| `pivot_longer()` |                                                            |
+| `separate()`     |                                                            |
+| `drop_na()`      |                                                            |
+| `select()`       |                                                            |
+| `arrange()`      |                                                            |
+| `summarize()`    |                                                            |
+| `arrange()`      |                                                            |
+| `mutate()`       |                                                            |
+| `full_join()`    |                                                            |
+| `left_join()`    |                                                            |
+| `inner_join()`   |                                                            |
 
 :::
 

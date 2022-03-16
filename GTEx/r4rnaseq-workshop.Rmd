@@ -316,46 +316,15 @@ str(samples)
 summary(samples)
 str(results)
 summary(results)
+str(genes)
+summary(genes)
+summary(counts[1:5])
 ```
 
 
 
 The defult classification for each variable may or may not be appropriate for you analysis. In this section, we will discuss all the ways to tidy and transform your data.
 
-:::success
-#### Key functions: Tidy
-
-| Function | Description |    
-| --- | --- |  
-| `str()` | A function that prints the internal structure of an object  |  
-| `summary()` | A function that summarizes each variable |  
-
-:::
-
-
-### Widen
-
-
-
-Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by tissue and or gene for quick plotting.
-
-
-```{asis, comment = ""}
-
-:::success
-#### Key functions: Tidy
-
-| Function | Description |
-| --- | --- |
-| `pivot_wider()` |  |
-| `pivot_longer()` |  |
-| `separate()` |  |
-| `drop_na()` |  |
-| `select()`|  |
-| `arrange()` |  |
-:::
-
-```
 
 
 ## Renameing variables to join data frames
@@ -384,14 +353,38 @@ results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
 ```
 
+## Lengthening and widenting data frames
 
-```{asis, echo = T, comment = ""}
+Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by tissue and or gene for quick plotting.
+
+
+## Creating new columns 
+
+
+## Filtering rowings
+
+
+
+## Arranging and summarizing variables
+
+
+
+
+```{asis, comment = ""}
 
 :::success
-#### Key functions: Transform
+#### Key functions: Tidy and Transform
 
 | Function | Description |
 | --- | --- |
+| `str()` | A function that prints the internal structure of an object  |  
+| `summary()` | A function that summarizes each variable |  
+| `pivot_wider()` |  |
+| `pivot_longer()` |  |
+| `separate()` |  |
+| `drop_na()` |  |
+| `select()`|  |
+| `arrange()` |  |
 | `summarize()`  |  |
 | `arrange()`  |  |
 | `mutate()`  | | 
@@ -401,7 +394,6 @@ head(results_genes)
 :::
 
 ```
-
 
 
 ## Visualize
