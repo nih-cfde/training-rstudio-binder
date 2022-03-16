@@ -260,7 +260,8 @@ Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`.
 
 ``` r
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", header = TRUE, sep = "\t")
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
+                      header = TRUE, sep = "\t")
 head(results)
 ```
 
@@ -277,7 +278,7 @@ be merged with other tables with gene information or searched for useful
 information. This table of gene names was downloaded from
 <https://www.genenames.org/download/custom/>.
 
-In this case, we use `fill = T` to fill missing fields wiht a NULL
+In this case, we use `fill = T` to fill missing fields with a NULL
 value.
 
 ``` r
@@ -315,13 +316,15 @@ head(genes)
     ## 5              MGI:2449119
     ## 6
 
+:::info Using the Terminal to uncompress files
+
 Very large data files, such as files with RNA-Seq counts are often
 compressed before they are shared. To uncompress a file, click on the
 Terminal tab and run the following command.
 
-``` bash
 gunzip -k ./data/countData.HEART.csv.gz
-```
+
+:::
 
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
@@ -329,7 +332,8 @@ last) few rows and columns. Typically, a gene identifier (like an
 ensemble id) will be used as the row names.
 
 ``` r
-counts <- read.csv("./data/countData.HEART.csv", header = TRUE, row.names = 1)
+counts <- read.csv("./data/countData.HEART.csv", 
+                   header = TRUE, row.names = 1)
 head(counts)[1:5]
 ```
 
