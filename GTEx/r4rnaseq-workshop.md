@@ -166,7 +166,7 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-:::spoiler Answer
+:::spoiler
 
 `library(cowplot)`  
 `library(scales)`  
@@ -330,6 +330,12 @@ head(genes)
     ## 5              MGI:2449119
     ## 6
 
+``` r
+dim(genes)
+```
+
+    ## [1] 15659     8
+
 :::info Using the Terminal to uncompress files
 
 Very large data files, such as files with RNA-Seq counts are often
@@ -343,11 +349,18 @@ gunzip -k ./data/countData.HEART.csv.gz
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
 last) few rows and columns. Typically, a gene identifier (like an
-ensemble id) will be used as the row names.
+ensemble id) will be used as the row names. We can use `dim` to see how
+many rows and columns are in the file.
 
 ``` r
 counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
+dim(counts)
+```
+
+    ## [1] 63856   306
+
+``` r
 head(counts)[1:5]
 ```
 
@@ -416,7 +429,7 @@ head(rownames(colData) == colnames(counts))
 What command would you use to read the GTEx results comparing the brains
 of 20-29 year old to 70-79 year olds?
 
-:::spoiler Answer
+:::spoiler
 
 There any multiple solutions to this question. One solution is:
 
