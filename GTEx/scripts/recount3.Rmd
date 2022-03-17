@@ -2,7 +2,8 @@
 title: "recount3"
 output: md_document
 params: 
-  myproject: "HEART"
+  myproject: "MUSCLE"
+  #myproject: "HEART"
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +24,7 @@ head(human_projects)
 tail(human_projects)
 
 gtex <- subset(human_projects,
-                     project == "HEART"  & 
+                     project == params$myproject  & 
                        file_source == "gtex" & 
                        project_type == "data_sources" )
 
@@ -78,8 +79,8 @@ head(colData)[1:5]
 head(countData)[1:5]
 
 # save files for later use
-write.csv(countData, file = paste("../data/countData", "HEART", "csv", sep = "."),
+write.csv(countData, file = paste("../data/countData", params$myproject, "csv", sep = "."),
               row.names = T)
-write.csv(colData, file = paste("../data/colData", "HEART", "csv", sep = "."),
+write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep = "."),
               row.names = T)
 ```
