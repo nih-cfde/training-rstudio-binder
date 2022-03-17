@@ -37,7 +37,6 @@ head(df)
 ## visualize
 
 a <- df %>%
-  filter(tissue == "Heart") %>%
   ggplot(aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point(aes(color = sig)) + 
   facet_wrap(~group, ncol = 5) +
@@ -47,7 +46,6 @@ a <- df %>%
 ## reshape
 
 df3 <- df %>%
-  filter(tissue == "Heart") %>%
   group_by(sig, group) %>%
   summarize(count = length(gene))
 head(df3)

@@ -132,14 +132,43 @@
     ## 
     ##     anyMissing, rowMedians
 
+    library(lubridate)
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:GenomicRanges':
+    ## 
+    ##     intersect, setdiff, union
+
+    ## The following object is masked from 'package:GenomeInfoDb':
+    ## 
+    ##     intersect
+
+    ## The following objects are masked from 'package:IRanges':
+    ## 
+    ##     %within%, intersect, setdiff, union
+
+    ## The following objects are masked from 'package:S4Vectors':
+    ## 
+    ##     intersect, second, second<-, setdiff, union
+
+    ## The following objects are masked from 'package:BiocGenerics':
+    ## 
+    ##     intersect, setdiff, union
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
     # get GTEx heart data
     human_projects <- available_projects(organism = "human")
 
-    ## 2022-03-11 10:38:06 caching file sra.recount_project.MD.gz.
+    ## 2022-03-17 12:36:40 caching file sra.recount_project.MD.gz.
 
-    ## 2022-03-11 10:38:08 caching file gtex.recount_project.MD.gz.
+    ## 2022-03-17 12:36:41 caching file gtex.recount_project.MD.gz.
 
-    ## 2022-03-11 10:38:09 caching file tcga.recount_project.MD.gz.
+    ## 2022-03-17 12:36:43 caching file tcga.recount_project.MD.gz.
 
     # enter yes
 
@@ -175,25 +204,25 @@
 
     rse_gtex <- create_rse(gtex)
 
-    ## 2022-03-11 10:38:14 downloading and reading the metadata.
+    ## 2022-03-17 12:36:48 downloading and reading the metadata.
 
-    ## 2022-03-11 10:38:15 caching file gtex.gtex.HEART.MD.gz.
+    ## 2022-03-17 12:36:49 caching file gtex.gtex.HEART.MD.gz.
 
-    ## 2022-03-11 10:38:17 caching file gtex.recount_project.HEART.MD.gz.
+    ## 2022-03-17 12:36:51 caching file gtex.recount_project.HEART.MD.gz.
 
-    ## 2022-03-11 10:38:18 caching file gtex.recount_qc.HEART.MD.gz.
+    ## 2022-03-17 12:36:52 caching file gtex.recount_qc.HEART.MD.gz.
 
-    ## 2022-03-11 10:38:20 caching file gtex.recount_seq_qc.HEART.MD.gz.
+    ## 2022-03-17 12:36:53 caching file gtex.recount_seq_qc.HEART.MD.gz.
 
-    ## 2022-03-11 10:38:21 downloading and reading the feature information.
+    ## 2022-03-17 12:36:54 downloading and reading the feature information.
 
-    ## 2022-03-11 10:38:22 caching file human.gene_sums.G026.gtf.gz.
+    ## 2022-03-17 12:36:55 caching file human.gene_sums.G026.gtf.gz.
 
-    ## 2022-03-11 10:38:23 downloading and reading the counts: 942 samples across 63856 features.
+    ## 2022-03-17 12:36:56 downloading and reading the counts: 942 samples across 63856 features.
 
-    ## 2022-03-11 10:38:24 caching file gtex.gene_sums.HEART.G026.gz.
+    ## 2022-03-17 12:36:57 caching file gtex.gene_sums.HEART.G026.gz.
 
-    ## 2022-03-11 10:38:39 construcing the RangedSummarizedExperiment (rse) object.
+    ## 2022-03-17 12:37:09 construcing the RangedSummarizedExperiment (rse) object.
 
     rse_gtex
 
@@ -210,57 +239,127 @@
     ##   BigWigURL
 
     # format data for DESEq2
-    countData <- assays(rse_gtex)$raw_counts %>% as.data.frame()
-    colData <- colData(rse_gtex) %>% as.data.frame()
 
-    # check that rows and samples match
-    head(rownames(colData) == colnames(countData))
 
-    ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
-
-    # variables
-    dim(colData)
-
-    ## [1] 942 198
-
-    dim(countData)
-
-    ## [1] 63856   942
-
-    colData <-  colData %>%
+    colData <- colData(rse_gtex) %>% 
+      as.data.frame()  %>%
       filter(gtex.run_acc != "NA",
              gtex.smnabtcht != "RNA isolation_PAXgene Tissue miRNA") %>%
-      dplyr::select(external_id, study, gtex.run_acc, 
-                    gtex.age, gtex.smtsd)
+      dplyr::select(external_id, gtex.smtsd,
+                    study, gtex.smts, 
+                    gtex.subjid, gtex.sampid, gtex.run_acc,  
+                    gtex.sex, gtex.age,  gtex.dthhrdy,
+                    gtex.smrin, gtex.smcenter, gtex.smpthnts, gtex.smnabtchd,
+                    recount_qc.aligned_reads..chrm,
+                    recount_qc.aligned_reads..chrx,
+                    recount_qc.aligned_reads..chry,
+                    recount_qc.bc_auc.all_reads_all_bases) %>% 
+      mutate(Date = mdy(gtex.smnabtchd))
     head(colData)
 
-    ##                                           external_id study gtex.run_acc
-    ## GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1 HEART   SRR1340617
-    ## GTEX-13D11-1526-SM-5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1 HEART   SRR1345436
-    ## GTEX-ZAJG-0826-SM-5PNVA.1   GTEX-ZAJG-0826-SM-5PNVA.1 HEART   SRR1367456
-    ## GTEX-11TT1-1426-SM-5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1 HEART   SRR1378243
-    ## GTEX-13VXT-1126-SM-5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1 HEART   SRR1381693
-    ## GTEX-14ASI-0826-SM-5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1 HEART   SRR1335164
-    ##                            gtex.age               gtex.smtsd
-    ## GTEX-12ZZX-0726-SM-5EGKA.1    40-49 Heart - Atrial Appendage
-    ## GTEX-13D11-1526-SM-5J2NA.1    50-59 Heart - Atrial Appendage
-    ## GTEX-ZAJG-0826-SM-5PNVA.1     50-59   Heart - Left Ventricle
-    ## GTEX-11TT1-1426-SM-5EGIA.1    20-29 Heart - Atrial Appendage
-    ## GTEX-13VXT-1126-SM-5LU3A.1    20-29   Heart - Left Ventricle
-    ## GTEX-14ASI-0826-SM-5Q5EB.1    60-69 Heart - Atrial Appendage
+    ##                                           external_id               gtex.smtsd
+    ## GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1 Heart - Atrial Appendage
+    ## GTEX-13D11-1526-SM-5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1 Heart - Atrial Appendage
+    ## GTEX-ZAJG-0826-SM-5PNVA.1   GTEX-ZAJG-0826-SM-5PNVA.1   Heart - Left Ventricle
+    ## GTEX-11TT1-1426-SM-5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1 Heart - Atrial Appendage
+    ## GTEX-13VXT-1126-SM-5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1   Heart - Left Ventricle
+    ## GTEX-14ASI-0826-SM-5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1 Heart - Atrial Appendage
+    ##                            study gtex.smts gtex.subjid              gtex.sampid
+    ## GTEX-12ZZX-0726-SM-5EGKA.1 HEART     Heart  GTEX-12ZZX GTEX-12ZZX-0726-SM-5EGKA
+    ## GTEX-13D11-1526-SM-5J2NA.1 HEART     Heart  GTEX-13D11 GTEX-13D11-1526-SM-5J2NA
+    ## GTEX-ZAJG-0826-SM-5PNVA.1  HEART     Heart   GTEX-ZAJG  GTEX-ZAJG-0826-SM-5PNVA
+    ## GTEX-11TT1-1426-SM-5EGIA.1 HEART     Heart  GTEX-11TT1 GTEX-11TT1-1426-SM-5EGIA
+    ## GTEX-13VXT-1126-SM-5LU3A.1 HEART     Heart  GTEX-13VXT GTEX-13VXT-1126-SM-5LU3A
+    ## GTEX-14ASI-0826-SM-5Q5EB.1 HEART     Heart  GTEX-14ASI GTEX-14ASI-0826-SM-5Q5EB
+    ##                            gtex.run_acc gtex.sex gtex.age gtex.dthhrdy
+    ## GTEX-12ZZX-0726-SM-5EGKA.1   SRR1340617        2    40-49            1
+    ## GTEX-13D11-1526-SM-5J2NA.1   SRR1345436        2    50-59            0
+    ## GTEX-ZAJG-0826-SM-5PNVA.1    SRR1367456        2    50-59            3
+    ## GTEX-11TT1-1426-SM-5EGIA.1   SRR1378243        1    20-29            0
+    ## GTEX-13VXT-1126-SM-5LU3A.1   SRR1381693        2    20-29            0
+    ## GTEX-14ASI-0826-SM-5Q5EB.1   SRR1335164        1    60-69            2
+    ##                            gtex.smrin gtex.smcenter
+    ## GTEX-12ZZX-0726-SM-5EGKA.1        7.1            C1
+    ## GTEX-13D11-1526-SM-5J2NA.1        8.9            B1
+    ## GTEX-ZAJG-0826-SM-5PNVA.1         6.4            C1
+    ## GTEX-11TT1-1426-SM-5EGIA.1        9.0            B1
+    ## GTEX-13VXT-1126-SM-5LU3A.1        8.6            B1
+    ## GTEX-14ASI-0826-SM-5Q5EB.1        6.4            C1
+    ##                                                                                   gtex.smpthnts
+    ## GTEX-12ZZX-0726-SM-5EGKA.1             2 pieces, adherent/interstitial fat is ~40% of specimens
+    ## GTEX-13D11-1526-SM-5J2NA.1                     2 pieces, no abnormalities, ~25% fat, delineated
+    ## GTEX-ZAJG-0826-SM-5PNVA.1  2 pieces, mild-moderate interstitial fibrosis, mild ischemic changes
+    ## GTEX-11TT1-1426-SM-5EGIA.1                                       2 pieces, one piece is 40% fat
+    ## GTEX-13VXT-1126-SM-5LU3A.1                          2 pieces; 1 piece contains 30% external fat
+    ## GTEX-14ASI-0826-SM-5Q5EB.1                                                             2 pieces
+    ##                            gtex.smnabtchd recount_qc.aligned_reads..chrm
+    ## GTEX-12ZZX-0726-SM-5EGKA.1     10/22/2013                          21.68
+    ## GTEX-13D11-1526-SM-5J2NA.1     12/04/2013                          22.77
+    ## GTEX-ZAJG-0826-SM-5PNVA.1      10/31/2013                          27.67
+    ## GTEX-11TT1-1426-SM-5EGIA.1     10/24/2013                          23.99
+    ## GTEX-13VXT-1126-SM-5LU3A.1     12/17/2013                          33.66
+    ## GTEX-14ASI-0826-SM-5Q5EB.1     01/17/2014                          15.45
+    ##                            recount_qc.aligned_reads..chrx
+    ## GTEX-12ZZX-0726-SM-5EGKA.1                           1.95
+    ## GTEX-13D11-1526-SM-5J2NA.1                           1.82
+    ## GTEX-ZAJG-0826-SM-5PNVA.1                            1.76
+    ## GTEX-11TT1-1426-SM-5EGIA.1                           1.98
+    ## GTEX-13VXT-1126-SM-5LU3A.1                           1.52
+    ## GTEX-14ASI-0826-SM-5Q5EB.1                           1.99
+    ##                            recount_qc.aligned_reads..chry
+    ## GTEX-12ZZX-0726-SM-5EGKA.1                           0.00
+    ## GTEX-13D11-1526-SM-5J2NA.1                           0.00
+    ## GTEX-ZAJG-0826-SM-5PNVA.1                            0.01
+    ## GTEX-11TT1-1426-SM-5EGIA.1                           0.05
+    ## GTEX-13VXT-1126-SM-5LU3A.1                           0.00
+    ## GTEX-14ASI-0826-SM-5Q5EB.1                           0.08
+    ##                            recount_qc.bc_auc.all_reads_all_bases       Date
+    ## GTEX-12ZZX-0726-SM-5EGKA.1                            5121146510 2013-10-22
+    ## GTEX-13D11-1526-SM-5J2NA.1                            6606164884 2013-12-04
+    ## GTEX-ZAJG-0826-SM-5PNVA.1                             5307211837 2013-10-31
+    ## GTEX-11TT1-1426-SM-5EGIA.1                            4433076550 2013-10-24
+    ## GTEX-13VXT-1126-SM-5LU3A.1                            7188560773 2013-12-17
+    ## GTEX-14ASI-0826-SM-5Q5EB.1                            7130421400 2014-01-17
+
+    names(colData)
+
+    ##  [1] "external_id"                          
+    ##  [2] "gtex.smtsd"                           
+    ##  [3] "study"                                
+    ##  [4] "gtex.smts"                            
+    ##  [5] "gtex.subjid"                          
+    ##  [6] "gtex.sampid"                          
+    ##  [7] "gtex.run_acc"                         
+    ##  [8] "gtex.sex"                             
+    ##  [9] "gtex.age"                             
+    ## [10] "gtex.dthhrdy"                         
+    ## [11] "gtex.smrin"                           
+    ## [12] "gtex.smcenter"                        
+    ## [13] "gtex.smpthnts"                        
+    ## [14] "gtex.smnabtchd"                       
+    ## [15] "recount_qc.aligned_reads..chrm"       
+    ## [16] "recount_qc.aligned_reads..chrx"       
+    ## [17] "recount_qc.aligned_reads..chry"       
+    ## [18] "recount_qc.bc_auc.all_reads_all_bases"
+    ## [19] "Date"
 
     # get countdata for this subset of colData
+
+
 
     ## colData and countData must contain the exact same samples. 
     savecols <- as.character(rownames(colData)) #select the rowsname 
     savecols <- as.vector(savecols) # make it a vector
-    countData <- countData %>% dplyr::select(one_of(savecols)) # select just the columns 
+
+    countData <- assays(rse_gtex)$raw_counts %>% 
+      as.data.frame() %>% 
+      dplyr::select(one_of(savecols)) # select just the columns 
      
 
     # variables
     dim(colData)
 
-    ## [1] 306   5
+    ## [1] 306  19
 
     dim(countData)
 
@@ -271,49 +370,40 @@
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
 
-    names(countData) <- gsub(x = names(countData), pattern = "\\-", replacement = "_")
-    rownames(colData) <- gsub(x = rownames(colData) , pattern = "\\-", replacement = "_")
-
-
-    # check that rows and samples match
-    head(rownames(colData) == colnames(countData))
-
-    ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
-
     head(colData)[1:5]
 
-    ##                                           external_id study gtex.run_acc
-    ## GTEX_12ZZX_0726_SM_5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1 HEART   SRR1340617
-    ## GTEX_13D11_1526_SM_5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1 HEART   SRR1345436
-    ## GTEX_ZAJG_0826_SM_5PNVA.1   GTEX-ZAJG-0826-SM-5PNVA.1 HEART   SRR1367456
-    ## GTEX_11TT1_1426_SM_5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1 HEART   SRR1378243
-    ## GTEX_13VXT_1126_SM_5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1 HEART   SRR1381693
-    ## GTEX_14ASI_0826_SM_5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1 HEART   SRR1335164
-    ##                            gtex.age               gtex.smtsd
-    ## GTEX_12ZZX_0726_SM_5EGKA.1    40-49 Heart - Atrial Appendage
-    ## GTEX_13D11_1526_SM_5J2NA.1    50-59 Heart - Atrial Appendage
-    ## GTEX_ZAJG_0826_SM_5PNVA.1     50-59   Heart - Left Ventricle
-    ## GTEX_11TT1_1426_SM_5EGIA.1    20-29 Heart - Atrial Appendage
-    ## GTEX_13VXT_1126_SM_5LU3A.1    20-29   Heart - Left Ventricle
-    ## GTEX_14ASI_0826_SM_5Q5EB.1    60-69 Heart - Atrial Appendage
+    ##                                           external_id               gtex.smtsd
+    ## GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1 Heart - Atrial Appendage
+    ## GTEX-13D11-1526-SM-5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1 Heart - Atrial Appendage
+    ## GTEX-ZAJG-0826-SM-5PNVA.1   GTEX-ZAJG-0826-SM-5PNVA.1   Heart - Left Ventricle
+    ## GTEX-11TT1-1426-SM-5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1 Heart - Atrial Appendage
+    ## GTEX-13VXT-1126-SM-5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1   Heart - Left Ventricle
+    ## GTEX-14ASI-0826-SM-5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1 Heart - Atrial Appendage
+    ##                            study gtex.smts gtex.subjid
+    ## GTEX-12ZZX-0726-SM-5EGKA.1 HEART     Heart  GTEX-12ZZX
+    ## GTEX-13D11-1526-SM-5J2NA.1 HEART     Heart  GTEX-13D11
+    ## GTEX-ZAJG-0826-SM-5PNVA.1  HEART     Heart   GTEX-ZAJG
+    ## GTEX-11TT1-1426-SM-5EGIA.1 HEART     Heart  GTEX-11TT1
+    ## GTEX-13VXT-1126-SM-5LU3A.1 HEART     Heart  GTEX-13VXT
+    ## GTEX-14ASI-0826-SM-5Q5EB.1 HEART     Heart  GTEX-14ASI
 
     head(countData)[1:5]
 
-    ##                   GTEX_12ZZX_0726_SM_5EGKA.1 GTEX_13D11_1526_SM_5J2NA.1
+    ##                   GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-13D11-1526-SM-5J2NA.1
     ## ENSG00000278704.1                          0                          0
     ## ENSG00000277400.1                          0                          0
     ## ENSG00000274847.1                          0                          0
     ## ENSG00000277428.1                          0                          0
     ## ENSG00000276256.1                          0                          0
     ## ENSG00000278198.1                          0                          0
-    ##                   GTEX_ZAJG_0826_SM_5PNVA.1 GTEX_11TT1_1426_SM_5EGIA.1
+    ##                   GTEX-ZAJG-0826-SM-5PNVA.1 GTEX-11TT1-1426-SM-5EGIA.1
     ## ENSG00000278704.1                         0                          0
     ## ENSG00000277400.1                         0                          0
     ## ENSG00000274847.1                         0                          0
     ## ENSG00000277428.1                         0                          0
     ## ENSG00000276256.1                         0                          0
     ## ENSG00000278198.1                         0                          0
-    ##                   GTEX_13VXT_1126_SM_5LU3A.1
+    ##                   GTEX-13VXT-1126-SM-5LU3A.1
     ## ENSG00000278704.1                          0
     ## ENSG00000277400.1                          0
     ## ENSG00000274847.1                          0
@@ -321,7 +411,8 @@
     ## ENSG00000276256.1                          0
     ## ENSG00000278198.1                          0
 
+    # save files for later use
     write.csv(countData, file = paste("../data/countData", params$myproject, "csv", sep = "."),
-              row.names = T)
+                  row.names = T)
     write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep = "."),
-              row.names = T)
+                  row.names = T)

@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r recount3}
 library(tidyverse)
 library(recount3)
+library(lubridate)
 
 # get GTEx heart data
 human_projects <- available_projects(organism = "human")
@@ -22,11 +23,12 @@ head(human_projects)
 tail(human_projects)
 
 gtex <- subset(human_projects,
-                     project == params$myproject  & 
+                     project == "HEART"  & 
                        file_source == "gtex" & 
                        project_type == "data_sources" )
 
 head(gtex)
+
 
 rse_gtex <- create_rse(gtex)
 rse_gtex
@@ -38,9 +40,19 @@ colData <- colData(rse_gtex) %>%
   as.data.frame()  %>%
   filter(gtex.run_acc != "NA",
          gtex.smnabtcht != "RNA isolation_PAXgene Tissue miRNA") %>%
-  dplyr::select(external_id, study, gtex.subjid, gtex.run_acc, 
-                gtex.sex, gtex.age, gtex.smtsd)
+  dplyr::select(external_id, gtex.smtsd,
+                study, gtex.smts, 
+                gtex.subjid, gtex.sampid, gtex.run_acc,  
+                gtex.sex, gtex.age,  gtex.dthhrdy,
+                gtex.smrin, gtex.smcenter, gtex.smpthnts, gtex.smnabtchd,
+                recount_qc.aligned_reads..chrm,
+                recount_qc.aligned_reads..chrx,
+                recount_qc.aligned_reads..chry,
+                recount_qc.bc_auc.all_reads_all_bases) %>% 
+  mutate(Date = mdy(gtex.smnabtchd))
 head(colData)
+names(colData)
+
 
 # get countdata for this subset of colData
 
@@ -62,19 +74,12 @@ dim(countData)
 # check that rows and samples match
 head(rownames(colData) == colnames(countData))
 
-# replace dashes with underscores to that play nice when imported
-names(countData) <- gsub(x = names(countData), pattern = "\\-", replacement = "_")
-rownames(colData) <- gsub(x = rownames(colData) , pattern = "\\-", replacement = "_")
-
-# check that rows and samples match
-head(rownames(colData) == colnames(countData))
-
 head(colData)[1:5]
 head(countData)[1:5]
 
 # save files for later use
-write.csv(countData, file = paste("../data/countData", params$myproject, "csv", sep = "."),
+write.csv(countData, file = paste("../data/countData", "HEART", "csv", sep = "."),
               row.names = T)
-write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep = "."),
+write.csv(colData, file = paste("../data/colData", "HEART", "csv", sep = "."),
               row.names = T)
 ```

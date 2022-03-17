@@ -9,6 +9,7 @@ library(scales)
 # import
 
 myfile = "data/GTEx_Heart_20-29_vs_70-79.tsv"
+#myfile = "data/GTEx_Muscle_20-29_vs_70-79.tsv"
 
 df <- read.table(myfile) 
 
