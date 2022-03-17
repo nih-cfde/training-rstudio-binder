@@ -34,7 +34,7 @@ colData <- read.csv("./data/colData.HEART.csv",
 head(colData)[1:5]
 head(rownames(colData) == colnames(counts))
 
-read.table("./data/GTEx_Brain_20-29_vs_70-79.tsv")
+read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")
 
 str(samples)
 summary(samples)
