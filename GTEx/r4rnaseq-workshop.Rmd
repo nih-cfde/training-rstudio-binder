@@ -136,26 +136,11 @@ We will also use `cowplot` and  `scales` to make pretty visualizations, `forcats
   `library(scales)`  
   `library(forcats)`  
   `library(stringr)`  
+  
 :::
 
 ```
 
-<!---
-[Bioconductor](https://www.bioconductor.org) is an open-source software project developed for the analysis and comprehension of high-throughput data in genomics and molecular biology. The project aims to enable interdisciplinary research, collaboration, and rapid development of scientific software. It is based on the statistical programming language R. We will not be using these packages in this class, but they are worth getting to know. This is how you would install and load 3 different Bioconductor packages. 
-
-```{r, message=FALSE, eval=F}
-
-#if (!require("BiocManager", quietly = TRUE))
-#    install.packages("BiocManager")
-#BiocManager::install()
-
-#BiocManager::install(c("recount3", "biomaRt", "DESeq2"))
-
-#library(recount3)
-#library(biomaRt)
-#library(DESeq2)
-```
---->
 
 You can also navigate to "Packages" Tab in the bottom right pane of RStudio to view a list of available packages. Packages with a checked box next to them have been successfully loaded. You can click a box to load installed packages. Clicking the "Help" Tab will provide a quick description of the package and its functions.
 
@@ -170,6 +155,7 @@ You can also navigate to "Packages" Tab in the bottom right pane of RStudio to v
 | --- | --- |
 | `install.packages()` | An R function to install packages |
 | `library()` | The command used to load installed packages |
+
 :::
 
 ```
@@ -232,7 +218,6 @@ In this case, we use `fill = T` to fill missing fields with a NULL value.
 
 genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
 head(genes)
-dim(genes)
 
 ```
 

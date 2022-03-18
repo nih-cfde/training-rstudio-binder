@@ -25,7 +25,6 @@ head(results2)
 
 genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
 head(genes)
-dim(genes)
 
 
 # Open the Terminal and type the command (ater the $) to uznip
