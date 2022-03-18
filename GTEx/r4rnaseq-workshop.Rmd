@@ -1,7 +1,9 @@
 ---
 title: "r4rnaseq-workshop"
 author: "Rayna M Harris"
-output: md_document
+output: 
+  md_document:
+    variant: markdown_github  
   
 ---
 

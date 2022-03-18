@@ -34,6 +34,8 @@ to generate a computing environment for this workshop.
 
 ### Overview
 
+:::info
+
 #### Learning Objectives
 
 In this workshop, you will learn how to use R and RStudio to import,
@@ -47,6 +49,8 @@ RNA-sequencing experiments. Specifically, you will:
     plotting
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
+
+:::
 
 \[TOC\]
 
@@ -137,20 +141,26 @@ workshop, the packages listed in the `.binder/environment.yml` file were
 pre-installed with Conda. For some reason, the tidyverse package doesn’t
 always install properly, so we installed each package individually.
 
-    #install.packages("tidyverse")
-    #install.packages("ggplot2")
-    #install.packages("tidyr")
+``` r
+#install.packages("tidyverse")
+#install.packages("ggplot2")
+#install.packages("tidyr")
+```
 
 After installing packages, we need to load the functions and tools we
 want to use from the package with the `library()` command. Let’s load
 the following packages: `ggplot2, tidyr, dplyr, readr, and tibble` by
 copying and pasting or typing these commands into your new script.
 
-    library(ggplot2)
-    library(tidyr)
-    library(dplyr)
-    library(readr)
-    library(tibble)
+``` r
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(tibble)
+```
+
+:::warning
 
 #### Challenge
 
@@ -158,27 +168,14 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
+:::spoiler
+
 `library(cowplot)`  
 `library(scales)`  
 `library(forcats)`  
 `library(stringr)`
 
-<!---
-[Bioconductor](https://www.bioconductor.org) is an open-source software project developed for the analysis and comprehension of high-throughput data in genomics and molecular biology. The project aims to enable interdisciplinary research, collaboration, and rapid development of scientific software. It is based on the statistical programming language R. We will not be using these packages in this class, but they are worth getting to know. This is how you would install and load 3 different Bioconductor packages. 
-
-
-```r
-#if (!require("BiocManager", quietly = TRUE))
-#    install.packages("BiocManager")
-#BiocManager::install()
-
-#BiocManager::install(c("recount3", "biomaRt", "DESeq2"))
-
-#library(recount3)
-#library(biomaRt)
-#library(DESeq2)
-```
---->
+:::
 
 You can also navigate to “Packages” Tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -186,26 +183,16 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
+:::success
+
 #### Key functions
 
-<table>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>install.packages()</code></td>
-<td>An R function to install packages</td>
-</tr>
-<tr class="even">
-<td><code>library()</code></td>
-<td>The command used to load installed packages</td>
-</tr>
-</tbody>
-</table>
+| Function             | Description                                 |
+|----------------------|---------------------------------------------|
+| `install.packages()` | An R function to install packages           |
+| `library()`          | The command used to load installed packages |
+
+:::
 
 ## Import
 
@@ -222,13 +209,13 @@ objects with sample name information.
 Today, I will show you how to import the following files:
 
 1.  data/GTExPortal.csv
-2.  data/GTExHeart\_20-29\_vs\_70-79.tsv
+2.  data/GTExHeart_20-29_vs_70-79.tsv
 3.  data/colData.HEART.csv
 4.  data/countData.HEART.csv.gz
 
 Then, you will practice on your own using the following files:
 
-1.  data/GTExMuscle\_20-29\_vs\_70-79.tsv
+1.  data/GTExMuscle_20-29_vs_70-79.tsv
 2.  data/colData.MUSCLE.csv
 3.  data/countData.MUSCLE.csv.gz
 
@@ -236,13 +223,17 @@ The `GTExPortal.csv` file in `./data/` contains information about all
 the samples in the GTEx portal. Let’s import this file using
 `read.csv()`.
 
-    samples <- read.csv("./data/GTExPortal.csv")
+``` r
+samples <- read.csv("./data/GTExPortal.csv")
+```
 
 After importing a file, there are multiple was to view the data.
 `head()` to view the first few lines of each file. `names()` will print
 just the column names.
 
-    head(samples)
+``` r
+head(samples)
+```
 
     ##   Tissue.Sample.ID                         Tissue Subject.ID    Sex Age.Bracket
     ## 1  GTEX-1117F-0126 Skin - Sun Exposed (Lower leg) GTEX-1117F female       60-69
@@ -266,7 +257,9 @@ just the column names.
     ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
     ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
 
-    names(samples)
+``` r
+names(samples)
+```
 
     ## [1] "Tissue.Sample.ID"     "Tissue"               "Subject.ID"          
     ## [4] "Sex"                  "Age.Bracket"          "Hardy.Scale"         
@@ -281,9 +274,11 @@ column in the .tsv files does not have a row name, by default,
 `sep = "\t", header = TRUE` is specified, the fist column is imported as
 column one and given the column name `X`.
 
-    # a data frame with row.names
-    results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-    head(results)
+``` r
+# a data frame with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+```
 
     ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
     ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
@@ -293,9 +288,11 @@ column one and given the column name `X`.
     ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
     ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
-    # a data frame without row.names
-    results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-    head(results2)
+``` r
+# a data frame without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+```
 
     ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
     ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
@@ -313,8 +310,10 @@ information. This table of gene names was downloaded from
 In this case, we use `fill = T` to fill missing fields with a NULL
 value.
 
-    genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-    head(genes)
+``` r
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
+```
 
     ##      HGNC.ID Approved.symbol
     ## 1     HGNC:5            A1BG
@@ -353,19 +352,25 @@ Terminal tab and run the following command.
 
 gunzip -k ./data/countData.HEART.csv.gz
 
+:::
+
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
 last) few rows and columns. Typically, a gene identifier (like an
 ensemble id) will be used as the row names. We can use `dim` to see how
 many rows and columns are in the file.
 
-    counts <- read.csv("./data/countData.Muscle.csv", 
-                       header = TRUE, row.names = 1)
-    dim(counts)
+``` r
+counts <- read.csv("./data/countData.Muscle.csv", 
+                   header = TRUE, row.names = 1)
+dim(counts)
+```
 
     ## [1] 63856   275
 
-    head(counts)[1:5]
+``` r
+head(counts)[1:5]
+```
 
     ##                   GTEX.YEC3.2126.SM.4YCDB.1 GTEX.1128S.2426.SM.5H11B.1
     ## ENSG00000278704.1                         0                          0
@@ -398,8 +403,10 @@ match the information in our samples file, but there can be subtle
 differences in formatting Let’s read the colData file for the heart
 samples.
 
-    colData <- read.csv("./data/colData.HEART.csv")
-    head(colData)
+``` r
+colData <- read.csv("./data/colData.HEART.csv")
+head(colData)
+```
 
     ##                            X                external_id
     ## 1 GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1
@@ -459,8 +466,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
+:::spoiler
+
 1.  `read.table("./data/GTEx_MUSCLE_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/colData.MUSCLE.csv")`
+
+:::
 
 ## Quick summary statistics and sample size
 
@@ -472,39 +483,53 @@ to answer the following questions.
 
 How many transcripts were counted in the Heart tissues? Over 63,000.
 
-    dim(counts)
+``` r
+dim(counts)
+```
 
     ## [1] 63856   275
 
-    length(row.names(counts))
+``` r
+length(row.names(counts))
+```
 
     ## [1] 63856
 
 How many genes are in this version of the human transcriptome? Over
 15,000.
 
-    dim(genes)
+``` r
+dim(genes)
+```
 
     ## [1] 15659     8
 
-    length(genes$Approved.symbol)
+``` r
+length(genes$Approved.symbol)
+```
 
     ## [1] 15659
 
 How many samples are there in the GTEx portal (as of this version)? Over
 25,000!
 
-    dim(samples)
+``` r
+dim(samples)
+```
 
     ## [1] 25713     8
 
-    length(samples$Tissue.Sample.ID)
+``` r
+length(samples$Tissue.Sample.ID)
+```
 
     ## [1] 25713
 
 How many samples are there per tissue?
 
-    dplyr::count(samples, Tissue) 
+``` r
+dplyr::count(samples, Tissue) 
+```
 
     ##                                   Tissue    n
     ## 1                 Adipose - Subcutaneous  978
@@ -552,7 +577,9 @@ How many samples are there per tissue and sex? Can we test the effect of
 sex on gene expression in all tissues? For many samples, yes, but not
 all tissues were samples from both males and females.
 
-    dplyr::count(samples, Tissue, Sex) 
+``` r
+dplyr::count(samples, Tissue, Sex) 
+```
 
     ##                                   Tissue    Sex   n
     ## 1                 Adipose - Subcutaneous female 325
@@ -635,7 +662,9 @@ Hardy Scale in the Heart?
 *Note: Let’s use the colData data frame for this since it is specific to
 Heart. Later we will talk about subsetting.*
 
-    names(colData)
+``` r
+names(colData)
+```
 
     ##  [1] "X"                                    
     ##  [2] "external_id"                          
@@ -658,7 +687,9 @@ Heart. Later we will talk about subsetting.*
     ## [19] "recount_qc.bc_auc.all_reads_all_bases"
     ## [20] "Date"
 
-    dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+``` r
+dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+```
 
     ##    gtex.smts gtex.sex gtex.age gtex.dthhrdy  n
     ## 1      Heart        1    20-29            0  2
@@ -708,15 +739,21 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
+:::spoiler
+
     read.csv("./data/colData.MUSCLE.csv") %>%
         dplyr::count(gtex.smts, gtex.sex, gtex.age)
     # 3 samples are in the female group age 30-39
+
+:::
 
 Finally, the `str()` and `summary()` commands are also quite useful for
 summarizing every variable in a data frame. These let you know if R has
 imported columns properly as integers, characters or factors.
 
-    str(samples)
+``` r
+str(samples)
+```
 
     ## 'data.frame':    25713 obs. of  8 variables:
     ##  $ Tissue.Sample.ID    : chr  "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426" ...
@@ -728,7 +765,9 @@ imported columns properly as integers, characters or factors.
     ##  $ Pathology.Categories: chr  "" "" "clean_specimens" "" ...
     ##  $ Pathology.Notes     : chr  "6 pieces, minimal fat, squamous epithelium is ~50-70 microns" "2 pieces, ~15% vessel stroma, rep delineated" "2 pieces, clean specimens" "2 pieces, !5% fibrous connective tissue, delineated (rep)" ...
 
-    summary(samples)
+``` r
+summary(samples)
+```
 
     ##  Tissue.Sample.ID      Tissue           Subject.ID            Sex           
     ##  Length:25713       Length:25713       Length:25713       Length:25713      
@@ -739,7 +778,9 @@ imported columns properly as integers, characters or factors.
     ##  Class :character   Class :character   Class :character     Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character     Mode  :character
 
-    str(results2)
+``` r
+str(results2)
+```
 
     ## 'data.frame':    15529 obs. of  7 variables:
     ##  $ X        : chr  "A1BG" "A1BG-AS1" "A2M" "A2M-AS1" ...
@@ -750,7 +791,9 @@ imported columns properly as integers, characters or factors.
     ##  $ adj.P.Val: num  0.8748 0.7308 0.9565 0.0555 0.5292 ...
     ##  $ B        : num  -5.673 -5.346 -5.957 -0.635 -4.949 ...
 
-    summary(results2)
+``` r
+summary(results2)
+```
 
     ##       X                 logFC              AveExpr             t           
     ##  Length:15529       Min.   :-2.917546   Min.   :-2.303   Min.   :-4.64984  
@@ -767,7 +810,9 @@ imported columns properly as integers, characters or factors.
     ##  3rd Qu.:0.5772327   3rd Qu.:0.76952   3rd Qu.:-4.282  
     ##  Max.   :0.9999816   Max.   :0.99998   Max.   : 5.635
 
-    str(counts[1:5])
+``` r
+str(counts[1:5])
+```
 
     ## 'data.frame':    63856 obs. of  5 variables:
     ##  $ GTEX.YEC3.2126.SM.4YCDB.1 : int  0 0 0 0 0 0 0 0 0 0 ...
@@ -776,7 +821,9 @@ imported columns properly as integers, characters or factors.
     ##  $ GTEX.1445S.0626.SM.5LU3C.1: int  0 0 0 0 0 0 0 0 0 0 ...
     ##  $ GTEX.11EQ8.0526.SM.5N9BC.1: int  0 0 0 0 0 0 0 0 0 0 ...
 
-    summary(counts[1:5])
+``` r
+summary(counts[1:5])
+```
 
     ##  GTEX.YEC3.2126.SM.4YCDB.1 GTEX.1128S.2426.SM.5H11B.1
     ##  Min.   :        0         Min.   :        0         
@@ -800,70 +847,26 @@ imported columns properly as integers, characters or factors.
     ##  3rd Qu.:     4990         
     ##  Max.   :337390878
 
+:::success
+
 #### Key functions for importing and quickly viewing raw and summarized data
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>read.csv()</code></td>
-<td>A base R function for importing comma separated tabular data</td>
-</tr>
-<tr class="even">
-<td><code>read_csv()</code></td>
-<td>A tidyR function for importing .csv files as tibbles</td>
-</tr>
-<tr class="odd">
-<td><code>read.table()</code></td>
-<td>A base R function for importing tabular data with any delimiter</td>
-</tr>
-<tr class="even">
-<td><code>read_tsv()</code></td>
-<td>A tidyR function for importing .tsv files as tibbles</td>
-</tr>
-<tr class="odd">
-<td><code>as_tibble()</code></td>
-<td>Convert data frames to tibbles</td>
-</tr>
-<tr class="even">
-<td><code>head()</code> and <code>tail()</code></td>
-<td>Print the first or last 6 lines of an object</td>
-</tr>
-<tr class="odd">
-<td><code>dim()</code></td>
-<td>A function that prints the dimensions of an object</td>
-</tr>
-<tr class="even">
-<td><code>length()</code></td>
-<td>Calculate the length of an object</td>
-</tr>
-<tr class="odd">
-<td><code>%&gt;%</code></td>
-<td>The pipe is an operator that sends the output of one function to another function</td>
-</tr>
-<tr class="even">
-<td><code>count()</code></td>
-<td>A dplyr function that counts number of samples per group</td>
-</tr>
-<tr class="odd">
-<td><code>str()</code></td>
-<td>A function that prints the internal structure of an object</td>
-</tr>
-<tr class="even">
-<td><code>summary()</code></td>
-<td>A function that summarizes each variable</td>
-</tr>
-</tbody>
-</table>
+| Function              | Description                                                                       |
+|-----------------------|-----------------------------------------------------------------------------------|
+| `read.csv()`          | A base R function for importing comma separated tabular data                      |
+| `read_csv()`          | A tidyR function for importing .csv files as tibbles                              |
+| `read.table()`        | A base R function for importing tabular data with any delimiter                   |
+| `read_tsv()`          | A tidyR function for importing .tsv files as tibbles                              |
+| `as_tibble()`         | Convert data frames to tibbles                                                    |
+| `head()` and `tail()` | Print the first or last 6 lines of an object                                      |
+| `dim()`               | A function that prints the dimensions of an object                                |
+| `length()`            | Calculate the length of an object                                                 |
+| `%>%`                 | The pipe is an operator that sends the output of one function to another function |
+| `count()`             | A dplyr function that counts number of samples per group                          |
+| `str()`               | A function that prints the internal structure of an object                        |
+| `summary()`           | A function that summarizes each variable                                          |
+
+:::
 
 ## Tidy and Transform
 
@@ -877,7 +880,9 @@ We can use the `rename` function to rename columns. The first value is
 the new name and the second value is the old name. Just in case we get
 it wrong, let’s save this as a new object.
 
-    head(results2)
+``` r
+head(results2)
+```
 
     ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
     ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
@@ -887,7 +892,9 @@ it wrong, let’s save this as a new object.
     ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
     ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
-    head(genes)
+``` r
+head(genes)
+```
 
     ##      HGNC.ID Approved.symbol
     ## 1     HGNC:5            A1BG
@@ -918,16 +925,22 @@ it wrong, let’s save this as a new object.
     ## 5              MGI:2449119
     ## 6
 
-    head(results2$X)
+``` r
+head(results2$X)
+```
 
     ## [1] "A1BG"     "A1BG-AS1" "A2M"      "A2M-AS1"  "A2ML1"    "A2MP1"
 
-    head(genes$Approved.symbol)
+``` r
+head(genes$Approved.symbol)
+```
 
     ## [1] "A1BG"     "A1BG-AS1" "A1CF"     "A1S9T"    "A2M"      "A2M-AS1"
 
-    results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-    head(results_new)
+``` r
+results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
+head(results_new)
+```
 
     ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
     ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
@@ -950,8 +963,10 @@ keep all rows of both objects. `left_join` will keep all the rows in the
 first object but will drop any rows in the second object that don’t map
 onto the first.
 
-    results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-    head(results_genes)
+``` r
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
+```
 
     ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
     ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
@@ -982,7 +997,9 @@ onto the first.
     ## 5                         
     ## 6
 
-    head(counts)[1:5]
+``` r
+head(counts)[1:5]
+```
 
     ##                   GTEX.YEC3.2126.SM.4YCDB.1 GTEX.1128S.2426.SM.5H11B.1
     ## ENSG00000278704.1                         0                          0
@@ -1006,40 +1023,48 @@ onto the first.
     ## ENSG00000276256.1                          0
     ## ENSG00000278198.1                          0
 
-    head(genes$Ensembl.gene.ID)
+``` r
+head(genes$Ensembl.gene.ID)
+```
 
     ## [1] "ENSG00000121410" "ENSG00000268895" "ENSG00000148584" ""               
     ## [5] "ENSG00000175899" "ENSG00000245105"
 
-    genes2 <- genes %>%
-      mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+``` r
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
 
-    counts2 <- counts %>%
-      mutate(Ensembl.gene.ID = row.names(.))
+counts2 <- counts %>%
+  mutate(Ensembl.gene.ID = row.names(.))
 
-    head(counts2$Ensembl.gene.ID)[1:5]
+head(counts2$Ensembl.gene.ID)[1:5]
+```
 
     ## [1] "ENSG00000278704.1" "ENSG00000277400.1" "ENSG00000274847.1"
     ## [4] "ENSG00000277428.1" "ENSG00000276256.1"
 
-    head(genes2$Ensembl.gene.ID)
+``` r
+head(genes2$Ensembl.gene.ID)
+```
 
     ## [1] "ENSG00000121410.1" "ENSG00000268895.1" "ENSG00000148584.1"
     ## [4] ".1"                "ENSG00000175899.1" "ENSG00000245105.1"
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format
 where each sample is a column and each gene is a row. However, many R
-tools prefer data in the long format. I like to create a counts\_long
+tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by variables or genes of interest.
 
 For this, we must introduce the pipe, `%>%`. This symbol is used to
 redirect the output from standard out to another function.
 
-    counts_long <- counts2 %>%
-      pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
-      inner_join(., genes2, by = "Ensembl.gene.ID") %>%
-      arrange(desc(counts))
-    head(counts_long)
+``` r
+counts_long <- counts2 %>%
+  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
+  inner_join(., genes2, by = "Ensembl.gene.ID") %>%
+  arrange(desc(counts))
+head(counts_long)
+```
 
     ## # A tibble: 6 × 10
     ##   Ensembl.gene.ID  Tissue.Sample.ID counts HGNC.ID Approved.symbol Approved.name
@@ -1053,7 +1078,9 @@ redirect the output from standard out to another function.
     ## # … with 4 more variables: Chromosome <chr>, Accession.numbers <chr>,
     ## #   NCBI.Gene.ID <int>, Mouse.genome.database.ID <chr>
 
-    head(samples)
+``` r
+head(samples)
+```
 
     ##   Tissue.Sample.ID                         Tissue Subject.ID    Sex Age.Bracket
     ## 1  GTEX-1117F-0126 Skin - Sun Exposed (Lower leg) GTEX-1117F female       60-69
@@ -1077,12 +1104,16 @@ redirect the output from standard out to another function.
     ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
     ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
 
-    head(samples$Tissue.Sample.ID)
+``` r
+head(samples$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
     ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
 
-    head(counts_long$Tissue.Sample.ID)
+``` r
+head(counts_long$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX.1399Q.2426.SM.5J2MO.1" "GTEX.139D8.0726.SM.5P9GJ.1"
     ## [3] "GTEX.139T4.0326.SM.5K7XN.1" "GTEX.11P82.1826.SM.5PNYJ.1"
@@ -1091,44 +1122,58 @@ redirect the output from standard out to another function.
 Yea, we have joined some data frames. Now let’s do a little more
 cleaning and joining.
 
-    head(counts_long$Tissue.Sample.ID)
+``` r
+head(counts_long$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX.1399Q.2426.SM.5J2MO.1" "GTEX.139D8.0726.SM.5P9GJ.1"
     ## [3] "GTEX.139T4.0326.SM.5K7XN.1" "GTEX.11P82.1826.SM.5PNYJ.1"
     ## [5] "GTEX.13U4I.1826.SM.5IJD2.1" "GTEX.13O21.1726.SM.5MR5A.1"
 
-    head(samples$Tissue.Sample.ID)
+``` r
+head(samples$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
     ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
 
-    counts_long_newname <- counts_long %>%
-      separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
-               sep =  ".SM.")
+``` r
+counts_long_newname <- counts_long %>%
+  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
+           sep =  ".SM.")
+```
 
     ## Warning: Expected 1 pieces. Additional pieces discarded in 785125 rows [1, 2, 3,
     ## 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
 
-    head(counts_long_newname$Tissue.Sample.ID)
+``` r
+head(counts_long_newname$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX.1399Q.2426" "GTEX.139D8.0726" "GTEX.139T4.0326" "GTEX.11P82.1826"
     ## [5] "GTEX.13U4I.1826" "GTEX.13O21.1726"
 
-    head(samples$Tissue.Sample.ID)
+``` r
+head(samples$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426"
     ## [5] "GTEX-1117F-0526" "GTEX-1117F-0626"
 
-    samples_new <- samples %>%
-      mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
-    head(samples_new$Tissue.Sample.ID)
+``` r
+samples_new <- samples %>%
+  mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
+head(samples_new$Tissue.Sample.ID)
+```
 
     ## [1] "GTEX.1117F.0126" "GTEX.1117F.0226" "GTEX.1117F.0326" "GTEX.1117F.0426"
     ## [5] "GTEX.1117F.0526" "GTEX.1117F.0626"
 
-    counts_long_samples <- counts_long_newname %>%
-      inner_join(., samples_new, by = "Tissue.Sample.ID")
-    head(counts_long_samples)
+``` r
+counts_long_samples <- counts_long_newname %>%
+  inner_join(., samples_new, by = "Tissue.Sample.ID")
+head(counts_long_samples)
+```
 
     ## # A tibble: 6 × 17
     ##   Ensembl.gene.ID  Tissue.Sample.ID counts HGNC.ID Approved.symbol Approved.name
@@ -1154,7 +1199,9 @@ the column names of the counts file. We confirm this by asking if
 each. Using `head()` is a good way to only print 5 rows. Using `[1:5]`
 is a good way to only print 5 columns.
 
-    head(rownames(colData) == colnames(counts))
+``` r
+head(rownames(colData) == colnames(counts))
+```
 
     ## Warning in rownames(colData) == colnames(counts): longer object length is not a
     ## multiple of shorter object length
@@ -1165,120 +1212,49 @@ is a good way to only print 5 columns.
 
 ### Filtering, arranging and summarizing variables
 
+:::success
+
 #### Key functions: Tidy and Transform
 
-<table>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>pivot_wider()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>pivot_longer()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>separate()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>drop_na()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>select()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>arrange()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>summarize()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>arrange()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>mutate()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>full_join()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>left_join()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>inner_join()</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+| Function         | Description |
+|------------------|-------------|
+| `pivot_wider()`  |             |
+| `pivot_longer()` |             |
+| `separate()`     |             |
+| `drop_na()`      |             |
+| `select()`       |             |
+| `arrange()`      |             |
+| `summarize()`    |             |
+| `arrange()`      |             |
+| `mutate()`       |             |
+| `full_join()`    |             |
+| `left_join()`    |             |
+| `inner_join()`   |             |
+
+:::
 
 ## Visualize
 
 Now, we can use ggplot2 to show how many samples for each biological
 condition.
 
+:::success
+
 #### The grammer of graphics
 
-<table>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>ggplot()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>aes()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>geom_point()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>geom_bar()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>geom_boxplot()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>theme()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>labs()</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>scale_color_manual()</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>cowplot()</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+| Function               | Description |
+|------------------------|-------------|
+| `ggplot()`             |             |
+| `aes()`                |             |
+| `geom_point()`         |             |
+| `geom_bar()`           |             |
+| `geom_boxplot()`       |             |
+| `theme()`              |             |
+| `labs()`               |             |
+| `scale_color_manual()` |             |
+| `cowplot()`            |             |
+
+:::
 
 ## Communicate
 
@@ -1332,138 +1308,140 @@ was last modified 14 March, 2022.*
 
 ------------------------------------------------------------------------
 
-    library(ggplot2)
-    library(tidyr)
-    library(dplyr)
-    library(readr)
-    library(tibble)
-    library(cowplot)
-    library(scales)
-    library(forcats)
-    library(stringr)
+``` r
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(tibble)
+library(cowplot)
+library(scales)
+library(forcats)
+library(stringr)
 
-    samples <- read.csv("./data/GTExPortal.csv")
-
-
-    head(samples)
-    names(samples)
+samples <- read.csv("./data/GTExPortal.csv")
 
 
-    # a data frame with row.names
-    results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-    head(results)
-
-    # a data frame without row.names
-    results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-    head(results2)
+head(samples)
+names(samples)
 
 
-    genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-    head(genes)
+# a data frame with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+
+# a data frame without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
 
 
-    # Open the Terminal and type the command (ater the $) to uznip
-    # $ gunzip -k ./data/countData.HEART.csv.gz
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
 
 
-    counts <- read.csv("./data/countData.Muscle.csv", 
-                       header = TRUE, row.names = 1)
-    dim(counts)
-    head(counts)[1:5]
+# Open the Terminal and type the command (ater the $) to uznip
+# $ gunzip -k ./data/countData.HEART.csv.gz
 
 
-    colData <- read.csv("./data/colData.HEART.csv")
-    head(colData)
+counts <- read.csv("./data/countData.Muscle.csv", 
+                   header = TRUE, row.names = 1)
+dim(counts)
+head(counts)[1:5]
 
 
-    dim(counts)
-    length(row.names(counts))
+colData <- read.csv("./data/colData.HEART.csv")
+head(colData)
 
 
-    dim(genes)
-    length(genes$Approved.symbol)
+dim(counts)
+length(row.names(counts))
 
 
-    dim(samples)
-    length(samples$Tissue.Sample.ID)
+dim(genes)
+length(genes$Approved.symbol)
 
 
-    dplyr::count(samples, Tissue) 
+dim(samples)
+length(samples$Tissue.Sample.ID)
 
 
-    dplyr::count(samples, Tissue, Sex) 
+dplyr::count(samples, Tissue) 
 
 
-    names(colData)
-    dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+dplyr::count(samples, Tissue, Sex) 
 
 
-    str(samples)
-    summary(samples)
-
-    str(results2)
-    summary(results2)
-
-    str(counts[1:5])
-    summary(counts[1:5])
+names(colData)
+dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
 
 
-    head(results2)
-    head(genes)
+str(samples)
+summary(samples)
 
-    head(results2$X)
-    head(genes$Approved.symbol)
+str(results2)
+summary(results2)
 
-    results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-    head(results_new)
-
-
-    results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-    head(results_genes)
+str(counts[1:5])
+summary(counts[1:5])
 
 
-    head(counts)[1:5]
-    head(genes$Ensembl.gene.ID)
+head(results2)
+head(genes)
 
-    genes2 <- genes %>%
-      mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
+head(results2$X)
+head(genes$Approved.symbol)
 
-    counts2 <- counts %>%
-      mutate(Ensembl.gene.ID = row.names(.))
-
-    head(counts2$Ensembl.gene.ID)[1:5]
-    head(genes2$Ensembl.gene.ID)
+results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
+head(results_new)
 
 
-    counts_long <- counts2 %>%
-      pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
-      inner_join(., genes2, by = "Ensembl.gene.ID") %>%
-      arrange(desc(counts))
-    head(counts_long)
-
-    head(samples)
-    head(samples$Tissue.Sample.ID)
-    head(counts_long$Tissue.Sample.ID)
+results_genes <- left_join(results_new, genes, by = "Approved.symbol")
+head(results_genes)
 
 
-    head(counts_long$Tissue.Sample.ID)
-    head(samples$Tissue.Sample.ID)
+head(counts)[1:5]
+head(genes$Ensembl.gene.ID)
 
-    counts_long_newname <- counts_long %>%
-      separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
-               sep =  ".SM.")
+genes2 <- genes %>%
+  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
 
-    head(counts_long_newname$Tissue.Sample.ID)
-    head(samples$Tissue.Sample.ID)
+counts2 <- counts %>%
+  mutate(Ensembl.gene.ID = row.names(.))
 
-    samples_new <- samples %>%
-      mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
-    head(samples_new$Tissue.Sample.ID)
+head(counts2$Ensembl.gene.ID)[1:5]
+head(genes2$Ensembl.gene.ID)
 
 
-    counts_long_samples <- counts_long_newname %>%
-      inner_join(., samples_new, by = "Tissue.Sample.ID")
-    head(counts_long_samples)
+counts_long <- counts2 %>%
+  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
+  inner_join(., genes2, by = "Ensembl.gene.ID") %>%
+  arrange(desc(counts))
+head(counts_long)
+
+head(samples)
+head(samples$Tissue.Sample.ID)
+head(counts_long$Tissue.Sample.ID)
 
 
-    head(rownames(colData) == colnames(counts))
+head(counts_long$Tissue.Sample.ID)
+head(samples$Tissue.Sample.ID)
+
+counts_long_newname <- counts_long %>%
+  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
+           sep =  ".SM.")
+
+head(counts_long_newname$Tissue.Sample.ID)
+head(samples$Tissue.Sample.ID)
+
+samples_new <- samples %>%
+  mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
+head(samples_new$Tissue.Sample.ID)
+
+
+counts_long_samples <- counts_long_newname %>%
+  inner_join(., samples_new, by = "Tissue.Sample.ID")
+head(counts_long_samples)
+
+
+head(rownames(colData) == colnames(counts))
+```
