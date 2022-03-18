@@ -473,7 +473,7 @@ file information describing the muscle samples?
 
 :::
 
-## Quick summary statistics and sample size
+#### Quick summary statistics and sample size
 
 You have now seen a variety of options for importing files. You may use
 many more in your R-based RNA-seq workflow, but these basics will get
@@ -663,31 +663,7 @@ Hardy Scale in the Heart?
 Heart. Later we will talk about subsetting.*
 
 ``` r
-names(colData)
-```
-
-    ##  [1] "X"                                    
-    ##  [2] "external_id"                          
-    ##  [3] "gtex.smtsd"                           
-    ##  [4] "study"                                
-    ##  [5] "gtex.smts"                            
-    ##  [6] "gtex.subjid"                          
-    ##  [7] "gtex.sampid"                          
-    ##  [8] "gtex.run_acc"                         
-    ##  [9] "gtex.sex"                             
-    ## [10] "gtex.age"                             
-    ## [11] "gtex.dthhrdy"                         
-    ## [12] "gtex.smrin"                           
-    ## [13] "gtex.smcenter"                        
-    ## [14] "gtex.smpthnts"                        
-    ## [15] "gtex.smnabtchd"                       
-    ## [16] "recount_qc.aligned_reads..chrm"       
-    ## [17] "recount_qc.aligned_reads..chrx"       
-    ## [18] "recount_qc.aligned_reads..chry"       
-    ## [19] "recount_qc.bc_auc.all_reads_all_bases"
-    ## [20] "Date"
-
-``` r
+#names(colData)
 dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
 ```
 
@@ -741,9 +717,8 @@ variable names.*
 
 :::spoiler
 
-    read.csv("./data/colData.MUSCLE.csv") %>%
-        dplyr::count(gtex.smts, gtex.sex, gtex.age)
-    # 3 samples are in the female group age 30-39
+df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, gtex.smts,
+gtex.sex, gtex.age) \# 3 samples are in the female group age 30-39
 
 :::
 
@@ -851,20 +826,200 @@ summary(counts[1:5])
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
-| Function              | Description                                                                       |
-|-----------------------|-----------------------------------------------------------------------------------|
-| `read.csv()`          | A base R function for importing comma separated tabular data                      |
-| `read_csv()`          | A tidyR function for importing .csv files as tibbles                              |
-| `read.table()`        | A base R function for importing tabular data with any delimiter                   |
-| `read_tsv()`          | A tidyR function for importing .tsv files as tibbles                              |
-| `as_tibble()`         | Convert data frames to tibbles                                                    |
-| `head()` and `tail()` | Print the first or last 6 lines of an object                                      |
-| `dim()`               | A function that prints the dimensions of an object                                |
-| `length()`            | Calculate the length of an object                                                 |
-| `%>%`                 | The pipe is an operator that sends the output of one function to another function |
-| `count()`             | A dplyr function that counts number of samples per group                          |
-| `str()`               | A function that prints the internal structure of an object                        |
-| `summary()`           | A function that summarizes each variable                                          |
+| Function              | Description                                                     |
+|-----------------------|-----------------------------------------------------------------|
+| `read.csv()`          | A base R function for importing comma separated tabular data    |
+| `read_csv()`          | A tidyR function for importing .csv files as tibbles            |
+| `read.table()`        | A base R function for importing tabular data with any delimiter |
+| `read_tsv()`          | A tidyR function for importing .tsv files as tibbles            |
+| `as_tibble()`         | Convert data frames to tibbles                                  |
+| `head()` and `tail()` | Print the first or last 6 lines of an object                    |
+| `dim()`               | A function that prints the dimensions of an object              |
+| `length()`            | Calculate the length of an object                               |
+| `count()`             | A dplyr function that counts number of samples per group        |
+| `str()`               | A function that prints the internal structure of an object      |
+| `summary()`           | A function that summarizes each variable                        |
+
+:::
+
+## Visualize (Part 1)
+
+`ggplot2` is a very popular package for making visualization. It is
+built on the “grammar of graphics”. Basically, any plot can be expressed
+from the same set of components: a data set, a coordinate system, and a
+set of “geoms” or the visual representation of data points such as
+points, bars, line, or boxes. This is the template we build on:
+
+    ggplot(data = <DATA>, aes(<MAPPINGS>)) +
+      <geom_function>() +
+      ...
+
+We just used the `count()` function to calculate how many samples are in
+each group. The function for create bar graphs (`geom_bar()`) also makes
+use of `stat = "count"` to plot the total number of observations per
+variable. Let’s use ggplot2 to create a visualize representation of how
+many samples there are per tissue, sex, and hardiness.
+
+``` r
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count")
+```
+
+![](./images/unnamed-chunk-20-1.png)
+
+In the last section, we will discuss who to modify the `themes()` to
+adjust the axeses, legends, and more. For now, let’s flip the x and y
+corrdinates so that we can read the sample names. We do this by adding a
+layer and the function `coord_flip()`
+
+``` r
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+```
+
+![](./images/unnamed-chunk-21-1.png)
+
+Now, there are two ways we can visualize another variable in addition to
+tissue. We can add color or we can add facets .
+
+Let’s first color the data by age bracket. Color is an aesthetic, so it
+much go inside the `aes()`. If you include `aes(color = Age.Bracket)`
+inside `ggplot()`, the that color will be applied to every layer in your
+plot. If you add `aes(color = Age.Bracket)` inside `geom_bar()`, it will
+only be applied to that layer (which is important later when you layer
+multiple geoms.
+
+head(samples)
+
+``` r
+ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+```
+
+![](./images/unnamed-chunk-22-1.png)
+
+Note that the bars are outline in a color according to hardy scale. If
+instead you woudld the bars “filled” with color, use the aesthetic
+`aes(fill = Hardy.Scale)`
+
+``` r
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+```
+
+![](./images/unnamed-chunk-23-1.png)
+
+Now, let’s use `facet_wrap(~Sex)` to break the data into two groups
+based on the variable sex.
+
+``` r
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip() +
+  facet_wrap(~Sex)
+```
+
+![](./images/unnamed-chunk-24-1.png) With this graph, we have an
+excellent overview of the the total numbers of RNA-Seq samples in the
+GTEx project, and we can see where we are missing data (for good
+biological reasons). However, this plot doesn’t show us Hardy Scale.
+It’s hard to layer 4 variables, so let’s remove Tissue as a variable by
+focusing just on one Tissue.
+
+:::warning
+
+#### Challenge
+
+Create a plot showing the total number of samples per Sex, Age Bracket,
+and Hardy Scale for *just* the Heart samples. Paste the code you used in
+the chat.
+
+:::spoiler
+
+There are many options. Here are a few.
+
+ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age)) + geom_bar(stat
+= “count”) + facet_wrap(\~gtex.sex)
+
+ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy))) +
+geom_bar(stat = “count”) + facet_wrap(\~gtex.sex)
+
+:::
+
+One thing these plots show us is the we don’t have enough samples to
+test the effects of all our experimental variables (age, sex, tissue,
+and hardy scale) and their interactions on gene expression. We can
+however, focus on one or two variables or groups at a time.
+
+Earlier, we imported the file “data/GTEx_Heart_20-29_vs_70-79.tsv”)” and
+saved it as “results”. This file contains the results of a differential
+gene expression analysis comparing heart tissue from 20-29 to heart
+tissue from 30-39 year olds. This is a one-way design investigating only
+the effect of age (but not sex or hardy scale) on gene expression in the
+heart. Let’s visualize these results.
+
+[Volcano Plots](https://en.wikipedia.org/wiki/Volcano_plot_(statistics))
+are a type of scatter plots that show the log fold change (logFC) on the
+x axis and the inverse log of a p-value that has been corrected for
+multiple hypothesis testing (adj.P.Val). Let’s create a Volcano Plot
+using the `gplot()` and `geom_point()`. *Note: this may take a minute
+becuase there are 15,000 points that must be plotted*
+
+``` r
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() 
+```
+
+![](./images/volcano1-1.png)
+
+The inverse log of p \< 05 is 1.30103. We can add a horizonal line to
+our plot using `geom_hline()` so that we can visually see how many genes
+or points are significant and how many are not.
+
+``` r
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05))
+```
+
+![](./images/volcano2-1.png)
+
+:::warning #### Challenge
+
+Create a volcano plot for the results comparing the heart tissue of
+20-29 year olds to that of 70-70 year olds? Are there more or less
+differential expressed gene between 20 and 30 year olds or 20 and 70
+year olds?
+
+:::spoiler
+
+df \<- read.table(“./data/GTEx_Heart_20-29_vs_70-79.tsv”)
+
+ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) + geom_point() +
+geom_hline(yintercept = -log10(0.05))
+
+# more
+
+Now you know a handful of R functions for importing, summarizing, and
+visualizing data. In the next secion, we will tidy and tranform our data
+so that we can make even better summaries and figures.
+
+:::success
+
+#### Key functions
+
+| Function       | Description                                                                                                             |
+|----------------|-------------------------------------------------------------------------------------------------------------------------|
+| `ggplot2`      | An open-source data visualization package for the statistical programming language R                                    |
+| `ggplot()`     | The function used to construct the initial plot object, and is almost always followed by + to add component to the plot |
+| `aes()`        | Aesthetic mappings that describe how variables in the data are mapped to visual properties (aesthetics) of geoms        |
+| `geom_point()` | A function used to create scatterplots                                                                                  |
+| `geom_bar()`   | A function used to create bar plots                                                                                     |
+| `coord_flip()` | Flips the x and y axis                                                                                                  |
+| `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
 :::
 
@@ -1233,21 +1388,14 @@ head(rownames(colData) == colnames(counts))
 
 :::
 
-## Visualize
-
-Now, we can use ggplot2 to show how many samples for each biological
-condition.
+## Visualize (Part 2)
 
 :::success
 
-#### The grammer of graphics
+#### The grammar of graphics
 
 | Function               | Description |
 |------------------------|-------------|
-| `ggplot()`             |             |
-| `aes()`                |             |
-| `geom_point()`         |             |
-| `geom_bar()`           |             |
 | `geom_boxplot()`       |             |
 | `theme()`              |             |
 | `labs()`               |             |
@@ -1371,7 +1519,7 @@ dplyr::count(samples, Tissue)
 dplyr::count(samples, Tissue, Sex) 
 
 
-names(colData)
+#names(colData)
 dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
 
 
@@ -1383,6 +1531,40 @@ summary(results2)
 
 str(counts[1:5])
 summary(counts[1:5])
+
+
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count")
+
+
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip() +
+  facet_wrap(~Sex)
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05))
 
 
 head(results2)
