@@ -29,12 +29,17 @@ counts <- read.csv("./data/countData.HEART.csv",
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]
+
 colData <- read.csv("./data/colData.HEART.csv", 
                     header = TRUE, row.names = 1)
 head(colData)[1:5]
-head(rownames(colData) == colnames(counts))
+
+rownames(colData) == colnames(counts)
+head(rownames(colData))
+head(colnames(counts))
 
 read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")
+read.csv("./data/colData.MUSCLE.csv")
 
 str(samples)
 summary(samples)
@@ -52,8 +57,10 @@ head(genes$Approved.symbol)
 results_new <- results2 %>%
   dplyr::rename("Approved.symbol" = "X")
 head(results_new)
+
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
+
 head(counts)[1:5]
 head(genes$Ensembl.gene.ID)
 
@@ -73,28 +80,21 @@ counts_long <- counts2 %>%
   arrange(desc(counts))
 head(counts_long)
 
-
 head(samples)
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
-head(counts_long$Tissue.Sample.ID)
-head(samples$Tissue.Sample.ID)
 
 counts_long_newname <- counts_long %>%
   separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
-           sep =  "_SM_")
+           sep =  ".SM.")
 
 head(counts_long_newname$Tissue.Sample.ID)
 head(samples$Tissue.Sample.ID)
 
 samples_new <- samples %>%
-  mutate(Tissue.Sample.ID = gsub("-", "_", Tissue.Sample.ID))
-head(samples$Tissue.Sample.ID)
-
+  mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
+head(samples_new$Tissue.Sample.ID)
 
 counts_long_samples <- counts_long_newname %>%
   inner_join(., samples_new, by = "Tissue.Sample.ID")
 head(counts_long_samples)
-
-
-
