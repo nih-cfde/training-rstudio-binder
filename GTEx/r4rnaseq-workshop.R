@@ -10,6 +10,7 @@ library(stringr)
 
 samples <- read.csv("./data/GTExPortal.csv")
 
+
 head(samples)
 names(samples)
 
@@ -59,7 +60,7 @@ dplyr::count(samples, Tissue)
 dplyr::count(samples, Tissue, Sex) 
 
 
-names(colData)
+#names(colData)
 dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
 
 
@@ -71,6 +72,40 @@ summary(results2)
 
 str(counts[1:5])
 summary(counts[1:5])
+
+
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count")
+
+
+ggplot(samples, aes(x = Tissue)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+  geom_bar(stat = "count") + 
+  coord_flip() +
+  facet_wrap(~Sex)
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05))
 
 
 head(results2)
@@ -107,9 +142,12 @@ counts_long <- counts2 %>%
 head(counts_long)
 
 head(samples)
-
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
+
+
+head(counts_long$Tissue.Sample.ID)
+head(samples$Tissue.Sample.ID)
 
 counts_long_newname <- counts_long %>%
   separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
