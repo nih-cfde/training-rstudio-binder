@@ -526,7 +526,7 @@ head(samples$Tissue.Sample.ID)
 
 samples_new <- samples %>%
   mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
-head(samples$Tissue.Sample.ID)
+head(samples_new$Tissue.Sample.ID)
 
 
 counts_long_samples <- counts_long_newname %>%
@@ -546,6 +546,9 @@ To process the counts data using the DESeq2 pipeline, we need a corresponding fi
 head(rownames(colData) == colnames(counts))
 
 ```
+
+
+<add challenge>
 
 
 
@@ -642,7 +645,7 @@ Not sure if I want to include either or both of these advanced beginner concepts
 ---
 
 
-```{r all-code, ref.label = knitr::all_labels(appendix == TRUE), eval = F}
+```{r all-code, ref.label = knitr::all_labels(appendix == TRUE), eval = F, indent = ""}
 
 ```
 

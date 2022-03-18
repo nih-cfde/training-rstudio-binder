@@ -69,8 +69,8 @@ console and the output. When working in R, you can type directly into
 the console, or you can type into a script. Saving commands in a script
 will make it easier to reproduce. You will learn more as we go along!
 
-![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
-![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
+![](https://hackmd.io/_uploads/SkkxxSHeq.png%20=300x)
+![](https://hackmd.io/_uploads/H1a8-HHx5.png%20=300x)
 
 For today’s lesson, we will focus on data from the [Gene Expression
 Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
@@ -98,11 +98,11 @@ workflow.
     variables?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
-![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
+![](https://hackmd.io/_uploads/SJSIB76b9.png%20=300x)
+![](https://hackmd.io/_uploads/Sk6IrQaZc.png%20=300x)
 
-![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
-![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
+![](https://hackmd.io/_uploads/r1mwBQaW5.png%20=300x)
+![](https://hackmd.io/_uploads/HJ5BrXp-c.png%20=300x)
 
 ### Getting Started
 

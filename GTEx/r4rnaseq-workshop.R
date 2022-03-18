@@ -3,63 +3,90 @@ library(tidyr)
 library(dplyr)
 library(readr)
 library(tibble)
-library(stringr)
-library(forcats)
 library(cowplot)
 library(scales)
+library(forcats)
+library(stringr)
 
 samples <- read.csv("./data/GTExPortal.csv")
-head(samples)
 
+head(samples)
+names(samples)
+
+
+# a data frame with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv", 
-                       sep = "\t", header = TRUE )
+# a data frame without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
 head(results2)
-genes <- read.table("./data/genes.txt", sep = "\t", 
-                    header = T, fill = T)
+
+
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
 head(genes)
 dim(genes)
 
-# Open the Terminal to run this UNIX command
+
+# Open the Terminal and type the command (ater the $) to uznip
 # $ gunzip -k ./data/countData.HEART.csv.gz
 
-counts <- read.csv("./data/countData.HEART.csv", 
+
+counts <- read.csv("./data/countData.Muscle.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]
 
-colData <- read.csv("./data/colData.HEART.csv", 
-                    header = TRUE, row.names = 1)
-head(colData)[1:5]
 
-rownames(colData) == colnames(counts)
-head(rownames(colData))
-head(colnames(counts))
+colData <- read.csv("./data/colData.HEART.csv")
+head(colData)
 
-read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")
-read.csv("./data/colData.MUSCLE.csv")
+
+dim(counts)
+length(row.names(counts))
+
+
+dim(genes)
+length(genes$Approved.symbol)
+
+
+dim(samples)
+length(samples$Tissue.Sample.ID)
+
+
+dplyr::count(samples, Tissue) 
+
+
+dplyr::count(samples, Tissue, Sex) 
+
+
+names(colData)
+dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+
 
 str(samples)
 summary(samples)
+
 str(results2)
 summary(results2)
-str(genes)
-summary(genes)
+
+str(counts[1:5])
 summary(counts[1:5])
+
+
 head(results2)
 head(genes)
 
 head(results2$X)
 head(genes$Approved.symbol)
 
-results_new <- results2 %>%
-  dplyr::rename("Approved.symbol" = "X")
+results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
 head(results_new)
+
 
 results_genes <- left_join(results_new, genes, by = "Approved.symbol")
 head(results_genes)
+
 
 head(counts)[1:5]
 head(genes$Ensembl.gene.ID)
@@ -73,14 +100,15 @@ counts2 <- counts %>%
 head(counts2$Ensembl.gene.ID)[1:5]
 head(genes2$Ensembl.gene.ID)
 
+
 counts_long <- counts2 %>%
-  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", 
-               values_to = "counts") %>%
+  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
   inner_join(., genes2, by = "Ensembl.gene.ID") %>%
   arrange(desc(counts))
 head(counts_long)
 
 head(samples)
+
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
 
@@ -95,6 +123,10 @@ samples_new <- samples %>%
   mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
 head(samples_new$Tissue.Sample.ID)
 
+
 counts_long_samples <- counts_long_newname %>%
   inner_join(., samples_new, by = "Tissue.Sample.ID")
 head(counts_long_samples)
+
+
+head(rownames(colData) == colnames(counts))
