@@ -244,7 +244,7 @@ gunzip -k ./data/countData.HEART.csv.gz
 
 ```{bash, echo = F, appendix = TRUE}
 
-# Open the Terminal and type the command (ater the $) to uznip
+# Open the Terminal and type the command (after the $) to uznip
 # $ gunzip -k ./data/countData.HEART.csv.gz
 
 ```
@@ -441,7 +441,7 @@ ggplot(data = <DATA>, aes(<MAPPINGS>)) +
 We just used the `count()` function to calculate how many samples are in each group. The function for create bar graphs (`geom_bar()`) also makes use of `stat = "count"` to plot the total number of observations per variable. Let's use ggplot2 to create a visualize representation of how many samples there are per tissue, sex, and hardiness.
 
 
-```{r, appendix = TRUE}
+```{r bar1, appendix = TRUE}
 
 ggplot(samples, aes(x = Tissue)) +
   geom_bar(stat = "count")
@@ -450,7 +450,7 @@ ggplot(samples, aes(x = Tissue)) +
 
 In the last section, we will discuss who to modify the `themes()` to adjust the axeses, legends, and more. For now, let's flip the x and y corrdinates so that we can read the sample names. We do this by adding a layer and the function `coord_flip()`
 
-```{r, appendix = TRUE}
+```{r bar2, appendix = TRUE}
 
 ggplot(samples, aes(x = Tissue)) +
   geom_bar(stat = "count") + 
@@ -465,7 +465,7 @@ Let's first color the data by age bracket. Color is an aesthetic, so it much go 
 
 head(samples)
 
-```{r, appendix = TRUE}
+```{r bar3, appendix = TRUE}
 
 ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
   geom_bar(stat = "count") + 
@@ -475,7 +475,7 @@ ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
 
 Note that the bars are outline in a color according to hardy scale. If instead you woudld the bars "filled" with color, use the aesthetic `aes(fill = Hardy.Scale)`
 
-```{r, appendix = TRUE}
+```{r bar4, appendix = TRUE}
 
 ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   geom_bar(stat = "count") + 
@@ -485,7 +485,7 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
 
 Now, let's use `facet_wrap(~Sex)` to break the data into two groups based on the variable sex.
 
-```{r, appendix = TRUE}
+```{r bar5, appendix = TRUE}
 
 ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   geom_bar(stat = "count") + 

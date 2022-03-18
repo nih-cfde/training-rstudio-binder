@@ -28,7 +28,7 @@ genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
 head(genes)
 
 
-# Open the Terminal and type the command (ater the $) to uznip
+# Open the Terminal and type the command (after the $) to uznip
 # $ gunzip -k ./data/countData.HEART.csv.gz
 
 

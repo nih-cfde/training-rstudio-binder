@@ -865,7 +865,7 @@ ggplot(samples, aes(x = Tissue)) +
   geom_bar(stat = "count")
 ```
 
-![](./images/unnamed-chunk-20-1.png)
+![](./images/bar1-1.png)
 
 In the last section, we will discuss who to modify the `themes()` to
 adjust the axeses, legends, and more. For now, let’s flip the x and y
@@ -878,7 +878,7 @@ ggplot(samples, aes(x = Tissue)) +
   coord_flip()
 ```
 
-![](./images/unnamed-chunk-21-1.png)
+![](./images/bar2-1.png)
 
 Now, there are two ways we can visualize another variable in addition to
 tissue. We can add color or we can add facets .
@@ -898,7 +898,7 @@ ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
   coord_flip()
 ```
 
-![](./images/unnamed-chunk-22-1.png)
+![](./images/bar3-1.png)
 
 Note that the bars are outline in a color according to hardy scale. If
 instead you woudld the bars “filled” with color, use the aesthetic
@@ -910,7 +910,7 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   coord_flip()
 ```
 
-![](./images/unnamed-chunk-23-1.png)
+![](./images/bar4-1.png)
 
 Now, let’s use `facet_wrap(~Sex)` to break the data into two groups
 based on the variable sex.
@@ -922,12 +922,12 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   facet_wrap(~Sex)
 ```
 
-![](./images/unnamed-chunk-24-1.png) With this graph, we have an
-excellent overview of the the total numbers of RNA-Seq samples in the
-GTEx project, and we can see where we are missing data (for good
-biological reasons). However, this plot doesn’t show us Hardy Scale.
-It’s hard to layer 4 variables, so let’s remove Tissue as a variable by
-focusing just on one Tissue.
+![](./images/bar5-1.png) With this graph, we have an excellent overview
+of the the total numbers of RNA-Seq samples in the GTEx project, and we
+can see where we are missing data (for good biological reasons).
+However, this plot doesn’t show us Hardy Scale. It’s hard to layer 4
+variables, so let’s remove Tissue as a variable by focusing just on one
+Tissue.
 
 :::warning
 
@@ -1487,7 +1487,7 @@ genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
 head(genes)
 
 
-# Open the Terminal and type the command (ater the $) to uznip
+# Open the Terminal and type the command (after the $) to uznip
 # $ gunzip -k ./data/countData.HEART.csv.gz
 
 
