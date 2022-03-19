@@ -15,11 +15,11 @@ head(samples)
 names(samples)
 
 
-# a data frame with row.names
+# with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-# a data frame without row.names
+# without row.names
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
 head(results2)
 
@@ -108,18 +108,37 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-head(results2)
-head(genes)
-
-head(results2$X)
-head(genes$Approved.symbol)
-
-results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+    geom_boxplot() +
+    geom_jitter(aes(color = gtex.smrin))
 
 
-results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
+results %>% mutate(Approved.symbol = row.names(.))  
+results2 %>% rename(Approved.symbol = X)   
+
+
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1)
+
+
+results %>% arrange(adj.P.Val) 
+
+
+left_join(resultsDEGs, genes, by =  "Approved.symbol")
+
+
+resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
+
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  as_tibble()
+resultsDEGs
 
 
 head(counts)[1:5]
@@ -144,26 +163,6 @@ head(counts_long)
 head(samples)
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
-
-
-head(counts_long$Tissue.Sample.ID)
-head(samples$Tissue.Sample.ID)
-
-counts_long_newname <- counts_long %>%
-  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
-           sep =  ".SM.")
-
-head(counts_long_newname$Tissue.Sample.ID)
-head(samples$Tissue.Sample.ID)
-
-samples_new <- samples %>%
-  mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
-head(samples_new$Tissue.Sample.ID)
-
-
-counts_long_samples <- counts_long_newname %>%
-  inner_join(., samples_new, by = "Tissue.Sample.ID")
-head(counts_long_samples)
 
 
 head(rownames(colData) == colnames(counts))
