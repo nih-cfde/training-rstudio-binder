@@ -1,3 +1,7 @@
+r4rnaseq-workshop
+================
+Rayna M Harris
+
 # Introduction to R for RNA-Seq Workshop
 
 ------------------------------------------------------------------------
@@ -34,7 +38,7 @@ to generate a computing environment for this workshop.
 
 ### Overview
 
-:::info
+<div class="info">
 
 #### Learning Objectives
 
@@ -50,7 +54,7 @@ RNA-sequencing experiments. Specifically, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-:::
+</div>
 
 \[TOC\]
 
@@ -73,8 +77,8 @@ console and the output. When working in R, you can type directly into
 the console, or you can type into a script. Saving commands in a script
 will make it easier to reproduce. You will learn more as we go along!
 
-![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
-![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
+![](https://hackmd.io/_uploads/SkkxxSHeq.png%20=300x)
+![](https://hackmd.io/_uploads/H1a8-HHx5.png%20=300x)
 
 For today’s lesson, we will focus on data from the [Gene Expression
 Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
@@ -102,11 +106,11 @@ workflow.
     variables?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
-![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
+![](https://hackmd.io/_uploads/SJSIB76b9.png%20=300x)
+![](https://hackmd.io/_uploads/Sk6IrQaZc.png%20=300x)
 
-![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
-![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
+![](https://hackmd.io/_uploads/r1mwBQaW5.png%20=300x)
+![](https://hackmd.io/_uploads/HJ5BrXp-c.png%20=300x)
 
 ### Getting Started
 
@@ -160,7 +164,7 @@ library(readr)
 library(tibble)
 ```
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -168,14 +172,14 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-:::spoiler
+<div class="spoiler">
 
 `library(cowplot)`  
 `library(scales)`  
 `library(forcats)`  
 `library(stringr)`
 
-:::
+</div>
 
 You can also navigate to “Packages” Tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -183,7 +187,7 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -192,7 +196,7 @@ description of the package and its functions.
 | `install.packages()` | An R function to install packages           |
 | `library()`          | The command used to load installed packages |
 
-:::
+</div>
 
 ## Import
 
@@ -275,7 +279,7 @@ column in the .tsv files does not have a row name, by default,
 column one and given the column name `X`.
 
 ``` r
-# a data frame with row.names
+# with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 ```
@@ -289,7 +293,7 @@ head(results)
     ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 ``` r
-# a data frame without row.names
+# without row.names
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
 head(results2)
 ```
@@ -352,7 +356,7 @@ Terminal tab and run the following command.
 
 gunzip -k ./data/countData.HEART.csv.gz
 
-:::
+</div>
 
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
@@ -466,12 +470,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
-:::spoiler
+<div class="spoiler">
 
 1.  `read.table("./data/GTEx_MUSCLE_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/colData.MUSCLE.csv")`
 
-:::
+</div>
 
 #### Quick summary statistics and sample size
 
@@ -715,12 +719,12 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
-:::spoiler
+<div class="spoiler">
 
 df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, gtex.smts,
-gtex.sex, gtex.age) \# 3 samples are in the female group age 30-39
+gtex.sex, gtex.age) # 3 samples are in the female group age 30-39
 
-:::
+</div>
 
 Finally, the `str()` and `summary()` commands are also quite useful for
 summarizing every variable in a data frame. These let you know if R has
@@ -822,7 +826,7 @@ summary(counts[1:5])
     ##  3rd Qu.:     4990         
     ##  Max.   :337390878
 
-:::success
+<div class="success">
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
@@ -840,7 +844,7 @@ summary(counts[1:5])
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
 
-:::
+</div>
 
 ## Visualize (Part 1)
 
@@ -865,7 +869,7 @@ ggplot(samples, aes(x = Tissue)) +
   geom_bar(stat = "count")
 ```
 
-![](./images/bar1-1.png)
+![](./images/bar1-1.png)<!-- -->
 
 In the last section, we will discuss who to modify the `themes()` to
 adjust the axeses, legends, and more. For now, let’s flip the x and y
@@ -878,7 +882,7 @@ ggplot(samples, aes(x = Tissue)) +
   coord_flip()
 ```
 
-![](./images/bar2-1.png)
+![](./images/bar2-1.png)<!-- -->
 
 Now, there are two ways we can visualize another variable in addition to
 tissue. We can add color or we can add facets .
@@ -898,7 +902,7 @@ ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
   coord_flip()
 ```
 
-![](./images/bar3-1.png)
+![](./images/bar3-1.png)<!-- -->
 
 Note that the bars are outline in a color according to hardy scale. If
 instead you woudld the bars “filled” with color, use the aesthetic
@@ -910,7 +914,7 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   coord_flip()
 ```
 
-![](./images/bar4-1.png)
+![](./images/bar4-1.png)<!-- -->
 
 Now, let’s use `facet_wrap(~Sex)` to break the data into two groups
 based on the variable sex.
@@ -922,12 +926,12 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
   facet_wrap(~Sex)
 ```
 
-![](./images/bar5-1.png) With this graph, we have an excellent overview
-of the the total numbers of RNA-Seq samples in the GTEx project, and we
-can see where we are missing data (for good biological reasons).
-However, this plot doesn’t show us Hardy Scale. It’s hard to layer 4
-variables, so let’s remove Tissue as a variable by focusing just on one
-Tissue.
+![](./images/bar5-1.png)<!-- --> With this graph, we have an excellent
+overview of the the total numbers of RNA-Seq samples in the GTEx
+project, and we can see where we are missing data (for good biological
+reasons). However, this plot doesn’t show us Hardy Scale. It’s hard to
+layer 4 variables, so let’s remove Tissue as a variable by focusing just
+on one Tissue.
 
 :::warning
 
@@ -937,7 +941,7 @@ Create a plot showing the total number of samples per Sex, Age Bracket,
 and Hardy Scale for *just* the Heart samples. Paste the code you used in
 the chat.
 
-:::spoiler
+<div class="spoiler">
 
 There are many options. Here are a few.
 
@@ -947,7 +951,7 @@ ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age)) + geom_bar(stat
 ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy))) +
 geom_bar(stat = “count”) + facet_wrap(\~gtex.sex)
 
-:::
+</div>
 
 One thing these plots show us is the we don’t have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
@@ -963,17 +967,17 @@ heart. Let’s visualize these results.
 
 [Volcano Plots](https://en.wikipedia.org/wiki/Volcano_plot_(statistics))
 are a type of scatter plots that show the log fold change (logFC) on the
-x axis and the inverse log of a p-value that has been corrected for
-multiple hypothesis testing (adj.P.Val). Let’s create a Volcano Plot
-using the `gplot()` and `geom_point()`. *Note: this may take a minute
-becuase there are 15,000 points that must be plotted*
+x axis and the inverse log (`-log10()`) of a p-value that has been
+corrected for multiple hypothesis testing (adj.P.Val). Let’s create a
+Volcano Plot using the `gplot()` and `geom_point()`. *Note: this may
+take a minute becuase there are 15,000 points that must be plotted*
 
 ``` r
 ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point() 
 ```
 
-![](./images/volcano1-1.png)
+![](./images/volcano1-1.png)<!-- -->
 
 The inverse log of p \< 05 is 1.30103. We can add a horizonal line to
 our plot using `geom_hline()` so that we can visually see how many genes
@@ -985,7 +989,7 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 ```
 
-![](./images/volcano2-1.png)
+![](./images/volcano2-1.png)<!-- -->
 
 :::warning #### Challenge
 
@@ -1003,11 +1007,27 @@ geom_hline(yintercept = -log10(0.05))
 
 # more
 
-Now you know a handful of R functions for importing, summarizing, and
-visualizing data. In the next secion, we will tidy and tranform our data
-so that we can make even better summaries and figures.
+In addition to containing information about the donor tissue, the
+“colData” file contains has a column with a RIN score, which tells us
+about the quality of the data, and the facility where the RNA was
+processed. If we wanted to confirm visually that were negligible
+technical differences in RNA quality due to sequencing location, we
+could use a box plot.
 
-:::success
+``` r
+  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+    geom_boxplot() +
+    geom_jitter(aes(color = gtex.smrin))
+```
+
+![](./images/boxplot-1.png)<!-- -->
+
+Now you know a handful of R functions for importing, summarizing, and
+visualizing data. In the next section, we will tidy and transform our
+data so that we can make even better summaries and figures. In the last
+section you will learn ggplot function for making fancier figures.
+
+<div class="success">
 
 #### Key functions
 
@@ -1021,31 +1041,174 @@ so that we can make even better summaries and figures.
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
-:::
+</div>
 
-## Tidy and Transform
+## Tidy and Transform Data
 
-### Renameing variables to join data frames
+[Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the
+process of tidying and transforming data to make it more appropriate and
+valuable for a variety of downstream purposes such as analytics. The
+goal of data wrangling is to assure quality and useful data. Data
+analysts typically spend the majority of their time in the process of
+data wrangling compared to the actual analysis of the data.
 
-In the next section, we will join two data frames by a shared column.
-Both the results file and the genes file have a column with gene
-symbols, but they do not have the same name.
+**Tidying** your data means storing it in a consistent form. When your
+data is tidy, each column is a variable, and each row is an observation.
+Tidy data is important because the consistent structure lets you focus
+your struggle on questions about the data, not fighting to get the data
+into the right form for different functions. Some tidying functions
+include `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`,
+`drop_na()`, `replace_na()`. The “lubridate” package has a number of
+functions for tidying dates. You may also use `mutate()` function to
+convert objects from, say, characters or integers to factors or rename
+observations and variables.
+
+**Transforming** your data includes narrowing in on observations of
+interest (like all people in one city, or all data from the last year),
+creating new variables that are functions of existing variables (like
+computing speed from distance and time), and calculating a set of
+summary statistics (like counts or means). Summary functions such as
+`summarize()` and `count()` to create new tables with statistics. Before
+summarizing or counting a whole data frame, you can use `group_by()` to
+group variables. You can use `filter()` and `select()` to isolate
+specific rows or columns, respectively. If you want to sort columns,
+`arrange()` and `arrange(desc())` are two functions to familiarize
+yourself with.
+
+**Combining tables** can be accomplished in one of two ways. If all the
+columns or all the rows have all the same names, you can use `rbind()`
+or `cbind()`, respectively, to join the data frames. If however, each
+data frame have a column (or multiple columns) that contain unique
+identifiers, then you can use the family of join functions
+(`inner_join()`, `outter_join()`, `left_join()`, and `right_join()`)
+
+For each downstream analysis, you will likely use a series of tidying
+and transforming steps in various order to get your data in the
+appropriate format. Interest of creating dozens of intermediate files
+after each step, we will use the `%>%` operator to “pipe” the output of
+one function to the input of the other.
+
+Instead of going into each function or each process in detail in
+isolation, let’s start with some typical research questions and then
+piece together R functions to get the desired information
+
+### Question 1: Top 20 DEGs
+
+**What are the gene names, Ensemble IDs of the top 20 most
+differentially expressed genes (DEGs) in the heart tissue between 20-29
+and 30-29 year olds?**
+
+To answer this question, we need a subset of information from both the
+results and genes files. We need, in no particular order, to: 1. create
+a column in results with the gene symbols named “Approved.symbol” 1.
+filter the results for genes adj.p.value \< 0.05 (or desired alpha) 1.
+arrange the results by a value of significance and fold change (personal
+preference?) and keep only the top 20 rows 1. join the results and genes
+data frames by “Approved.symbol” 1. select the gene symbol, name, and
+ensemble id, lfc, and adj.p.val
+
+Let’s go deeper into each step.
+
+#### 1. Create (mutate) or rename a column in results with the gene symbols named “Approved.symbol”
+
+Currently, we have “results” with gene symbols as the row names and
+“results2” has a column called “X” with the gene symbol. Depending on
+which data frame we use, e can either use mutate to create a new column
+with the name “Approved.symbol”, or we can rename column X.
+
+``` r
+results %>% mutate(Approved.symbol = row.names(.))  
+results2 %>% rename(Approved.symbol = X)   
+```
+
+    ## # A tibble: 15,529 × 7
+    ##      logFC AveExpr      t  P.Value adj.P.Val      B Approved.symbol
+    ##      <dbl>   <dbl>  <dbl>    <dbl>     <dbl>  <dbl> <chr>          
+    ##  1  0.103    1.35   0.322 0.748       0.875  -5.67  A1BG           
+    ##  2  0.136   -0.238  0.640 0.524       0.731  -5.35  A1BG-AS1       
+    ##  3 -0.0161   9.80  -0.113 0.910       0.956  -5.96  A2M            
+    ##  4  0.605    2.54   3.49  0.000813    0.0555 -0.635 A2M-AS1        
+    ##  5  0.354   -1.17   1.08  0.284       0.529  -4.95  A2ML1          
+    ##  6  0.658   -0.756  3.26  0.00166     0.0607 -1.36  A2MP1          
+    ##  7  0.0655   6.54   0.565 0.574       0.767  -6.07  A4GALT         
+    ##  8  0.192    5.48   1.99  0.0504      0.214  -4.37  AAAS           
+    ##  9  0.0341   4.51   0.441 0.660       0.823  -6.11  AACS           
+    ## 10  0.355    1.88   2.94  0.00432     0.0763 -2.04  AADAT          
+    ## # … with 15,519 more rows
+
+    ## # A tibble: 15,529 × 7
+    ##    Approved.symbol   logFC AveExpr      t  P.Value adj.P.Val      B
+    ##    <chr>             <dbl>   <dbl>  <dbl>    <dbl>     <dbl>  <dbl>
+    ##  1 A1BG             0.103    1.35   0.322 0.748       0.875  -5.67 
+    ##  2 A1BG-AS1         0.136   -0.238  0.640 0.524       0.731  -5.35 
+    ##  3 A2M             -0.0161   9.80  -0.113 0.910       0.956  -5.96 
+    ##  4 A2M-AS1          0.605    2.54   3.49  0.000813    0.0555 -0.635
+    ##  5 A2ML1            0.354   -1.17   1.08  0.284       0.529  -4.95 
+    ##  6 A2MP1            0.658   -0.756  3.26  0.00166     0.0607 -1.36 
+    ##  7 A4GALT           0.0655   6.54   0.565 0.574       0.767  -6.07 
+    ##  8 AAAS             0.192    5.48   1.99  0.0504      0.214  -4.37 
+    ##  9 AACS             0.0341   4.51   0.441 0.660       0.823  -6.11 
+    ## 10 AADAT            0.355    1.88   2.94  0.00432     0.0763 -2.04 
+    ## # … with 15,519 more rows
+
+#### 2. Filter the results for genes adj.p.value \< 0.05 (or desired alpha)
+
+Filter is done in a few different ways depending on the type of
+variable. You can use `>` and less `<` to filter greater or less than a
+number. `==` and `!=` are used to filter by characters or factor that
+match or do not match a specific patter. `%in% c()` is used to filter by
+things in a list. Let’s filter by adjusted p-value. You can use `|` and
+`&` to mean “or” or “and”
+
+``` r
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1)
+```
+
+    ##               logFC    AveExpr         t      P.Value  adj.P.Val          B
+    ## ANKRD1    -1.189850 11.5066380 -3.832167 2.605709e-04 0.04495879  0.3442151
+    ## C4orf54   -2.236262  3.0509899 -3.625726 5.200638e-04 0.04767478 -0.2579115
+    ## FN1       -1.021743  9.5528978 -3.665273 4.563675e-04 0.04759268 -0.1398436
+    ## IL1R2     -1.703322  0.7638632 -3.913550 1.972401e-04 0.04456995  0.4781060
+    ## KRT80     -1.176516 -1.0145047 -3.714169 3.878470e-04 0.04632981 -0.2947158
+    ## LINC00310  1.218272 -1.2321395  4.098561 1.034725e-04 0.04456995  0.6526078
+    ## LINC02610  1.185186 -1.0647221  3.942760 1.783369e-04 0.04456995  0.2795004
+    ## MTHFD2P1   1.616058 -1.7650730  5.015657 3.394989e-06 0.02636039  2.9968710
+    ## NAV2-AS2   1.002273  1.0153707  3.822544 2.692335e-04 0.04495879  0.2476898
+    ## PLEKHG4B   1.061661 -1.3135604  3.942497 1.784989e-04 0.04456995  0.2317681
+    ## RAD9B     -1.140384  0.3431846 -4.018721 1.369645e-04 0.04456995  0.7204587
+    ## RANBP3L    1.044263  0.1329902  3.626793 5.182397e-04 0.04767478 -0.3692743
+    ## RXRG       1.088903  2.1133650  4.326187 4.577186e-05 0.04456995  1.8528496
+    ## SPRED3    -1.006501 -0.1510558 -3.590380 5.840643e-04 0.04857888 -0.4938726
+    ## TNC       -1.642206  4.7894623 -3.699919 4.067330e-04 0.04656770 -0.1151009
+    ## TNN        1.724698 -1.6035527  3.634121 5.058730e-04 0.04759268 -0.5822258
+    ## TSPEAR     2.161166  1.3779887  3.918461 1.939328e-04 0.04456995  0.5533325
+    ## TUBA1C    -1.083854  4.5752140 -4.649841 1.381098e-05 0.04456995  2.9939469
+
+### Renaming things
+
+More often than not, errors in programming are cause by typos. Either
+you typed something incorrectly, or the input text was different than
+the computer program expected. Renaming variables an observations is a
+common but sometime painful step in data typing.
+
+The “genes” table contins gene neames and
 
 We can use the `rename` function to rename columns. The first value is
 the new name and the second value is the old name. Just in case we get
 it wrong, let’s save this as a new object.
 
 ``` r
-head(results2)
+head(results)
 ```
 
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 ``` r
 head(genes)
@@ -1210,9 +1373,6 @@ where each sample is a column and each gene is a row. However, many R
 tools prefer data in the long format. I like to create a counts_long
 file that can be easily subset by variables or genes of interest.
 
-For this, we must introduce the pipe, `%>%`. This symbol is used to
-redirect the output from standard out to another function.
-
 ``` r
 counts_long <- counts2 %>%
   pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
@@ -1363,11 +1523,9 @@ head(rownames(colData) == colnames(counts))
 
     ## [1] FALSE FALSE FALSE FALSE FALSE FALSE
 
-<add challenge>
-
 ### Filtering, arranging and summarizing variables
 
-:::success
+<div class="success">
 
 #### Key functions: Tidy and Transform
 
@@ -1386,23 +1544,7 @@ head(rownames(colData) == colnames(counts))
 | `left_join()`    |             |
 | `inner_join()`   |             |
 
-:::
-
-## Visualize (Part 2)
-
-:::success
-
-#### The grammar of graphics
-
-| Function               | Description |
-|------------------------|-------------|
-| `geom_boxplot()`       |             |
-| `theme()`              |             |
-| `labs()`               |             |
-| `scale_color_manual()` |             |
-| `cowplot()`            |             |
-
-:::
+</div>
 
 ## Communicate
 
@@ -1414,15 +1556,23 @@ well.
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
 
+<div class="success">
+
+#### The grammar of graphics
+
+| Function               | Description |
+|------------------------|-------------|
+| `theme()`              |             |
+| `labs()`               |             |
+| `scale_color_manual()` |             |
+| `cowplot()`            |             |
+
+</div>
+
 ### R Markdown
 
 The workshop notes for using this repository to teach an Introduction to
 R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
-
-## Functions and/or For Loops?
-
-Not sure if I want to include either or both of these advanced beginner
-concepts.
 
 ## References
 
@@ -1474,11 +1624,11 @@ head(samples)
 names(samples)
 
 
-# a data frame with row.names
+# with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-# a data frame without row.names
+# without row.names
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
 head(results2)
 
@@ -1567,7 +1717,20 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-head(results2)
+  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+    geom_boxplot() +
+    geom_jitter(aes(color = gtex.smrin))
+
+
+results %>% mutate(Approved.symbol = row.names(.))  
+results2 %>% rename(Approved.symbol = X)   
+
+
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1)
+
+
+head(results)
 head(genes)
 
 head(results2$X)
@@ -1603,26 +1766,6 @@ head(counts_long)
 head(samples)
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
-
-
-head(counts_long$Tissue.Sample.ID)
-head(samples$Tissue.Sample.ID)
-
-counts_long_newname <- counts_long %>%
-  separate(Tissue.Sample.ID, into = c("Tissue.Sample.ID", NULL), 
-           sep =  ".SM.")
-
-head(counts_long_newname$Tissue.Sample.ID)
-head(samples$Tissue.Sample.ID)
-
-samples_new <- samples %>%
-  mutate(Tissue.Sample.ID = gsub("-", ".", Tissue.Sample.ID))
-head(samples_new$Tissue.Sample.ID)
-
-
-counts_long_samples <- counts_long_newname %>%
-  inner_join(., samples_new, by = "Tissue.Sample.ID")
-head(counts_long_samples)
 
 
 head(rownames(colData) == colnames(counts))

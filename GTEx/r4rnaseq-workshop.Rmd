@@ -1,16 +1,12 @@
 ---
 title: "r4rnaseq-workshop"
 author: "Rayna M Harris"
-output: 
-  md_document:
-    variant: markdown_github  
-  
+output: github_document  
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
-                      fig.path = "./images/",
-                      appendix = TRUE)
+                      fig.path = "./images/")
 ```
 
 # Introduction to R for RNA-Seq Workshop
@@ -202,11 +198,11 @@ Very large tabular files are often saved as .tsv files. These can be imported wi
 
 ```{r import-2, appendix = TRUE}
 
-# a data frame with row.names
+# with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-# a data frame without row.names
+# without row.names
 results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
 head(results2)
 
@@ -374,9 +370,9 @@ _Hint: use head() or names() after importing a file to verify the variable names
 
 :::spoiler
 
-df <- read.csv("./data/colData.MUSCLE.csv") 
-dplyr::count(df, gtex.smts, gtex.sex, gtex.age)
-# 3 samples are in the female group age 30-39
+  df <- read.csv("./data/colData.MUSCLE.csv") 
+  dplyr::count(df, gtex.smts, gtex.sex, gtex.age)
+  # 3 samples are in the female group age 30-39
 :::
 
 ```
@@ -525,7 +521,7 @@ One thing these plots show us is the we don't have enough samples to test the ef
 
 Earlier, we imported the file "data/GTEx_Heart_20-29_vs_70-79.tsv")" and saved it as "results".  This file contains the results of a differential gene expression analysis comparing heart tissue from 20-29 to heart tissue from 30-39 year olds. This is a one-way design investigating only the effect of age (but not sex or hardy scale) on gene expression in the heart.  Let's visualize these results.
 
-[Volcano Plots](https://en.wikipedia.org/wiki/Volcano_plot_(statistics)) are a type of scatter plots that show the log fold change (logFC) on the x axis and the inverse log of a  p-value that has been corrected for multiple hypothesis testing (adj.P.Val). Let's create a Volcano Plot using the `gplot()` and `geom_point()`. _Note: this may take a minute becuase there are 15,000 points that must be plotted_
+[Volcano Plots](https://en.wikipedia.org/wiki/Volcano_plot_(statistics)) are a type of scatter plots that show the log fold change (logFC) on the x axis and the inverse log (`-log10()`) of a  p-value that has been corrected for multiple hypothesis testing (adj.P.Val). Let's create a Volcano Plot using the `gplot()` and `geom_point()`. _Note: this may take a minute becuase there are 15,000 points that must be plotted_
 
 ```{r, volcano1, appendix = TRUE}
 
@@ -555,17 +551,28 @@ Create a volcano plot for the results comparing the heart tissue of 20-29 year o
 
 :::spoiler
 
-df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
+  df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
 
-ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) +
-  geom_point() +
-  geom_hline(yintercept = -log10(0.05))
+  ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) +
+    geom_point() +
+    geom_hline(yintercept = -log10(0.05))
   
 # more  
 
 ```
 
-Now you know a handful of R functions for importing, summarizing, and visualizing data. In the next secion, we will tidy and tranform our data so that we can make even better summaries and figures.  
+In addition to containing information about the donor tissue, the "colData" file contains has a column with a RIN score, which tells us about the quality of the data, and the facility where the RNA was processed. If we wanted to confirm visually that were negligible technical differences in RNA quality due to sequencing location, we could use a box plot. 
+
+```{r boxplot, appendix = TRUE}
+
+  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+    geom_boxplot() +
+    geom_jitter(aes(color = gtex.smrin))
+
+```
+
+
+Now you know a handful of R functions for importing, summarizing, and visualizing data. In the next section, we will tidy and transform our data so that we can make even better summaries and figures. In the last section you will learn ggplot function for making fancier figures.  
 
 ```{asis, comment = "", appendix = F}
 
@@ -587,20 +594,80 @@ Now you know a handful of R functions for importing, summarizing, and visualizin
 ```
 
 
-## Tidy and Transform
+## Tidy and Transform Data
+
+[Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the process of tidying and transforming data to make it more appropriate and valuable for a variety of downstream purposes such as analytics. The goal of data wrangling is to assure quality and useful data. Data analysts typically spend the majority of their time in the process of data wrangling compared to the actual analysis of the data.
+
+**Tidying** your data means storing it in a consistent form. When your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data, not fighting to get the data into the right form for different functions. Some tidying functions include `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`, `drop_na()`, `replace_na()`. The "lubridate" package has a number of functions for tidying dates. You may also use `mutate()` function to convert objects from, say, characters or integers to factors or rename observations and variables.
 
 
+**Transforming** your data includes narrowing in on observations of interest (like all people in one city, or all data from the last year), creating new variables that are functions of existing variables (like computing speed from distance and time), and calculating a set of summary statistics (like counts or means). Summary functions such as `summarize()` and `count()` to create new tables with statistics. Before summarizing or counting a whole data frame, you can use `group_by()`  to group variables.  You can use `filter()` and `select()` to isolate specific rows or columns, respectively. If you want to sort columns, `arrange()` and `arrange(desc())` are two functions to familiarize yourself with.
 
-### Renameing variables to join data frames
+**Combining tables** can be accomplished in one of two ways. If all the columns or  all the rows have all the same names, you can use `rbind()` or `cbind()`, respectively, to join the data frames. If however, each data frame have a column (or multiple columns) that contain unique identifiers, then you can use the family of join functions (`inner_join()`, `outter_join()`, `left_join()`, and `right_join()`)
 
-In the next section, we will join two data frames by a shared column. Both the results file and the genes file have a column with gene symbols, but they do not have the same name. 
 
+For each downstream analysis, you will likely use a series of tidying and transforming steps in various order to get your data in the appropriate format. Interest of creating dozens of intermediate files after each step, we will use the `%>%` operator to "pipe" the output of one function to the input of the other. 
+
+Instead of going into each function or each process in detail in isolation, let's start with some typical research questions and then piece together R functions to get the desired information
+
+### Question 1: Top 20 DEGs
+
+**What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
+
+To answer this question, we need a subset of information from both the results and genes files.  We need, in no particular order, to:
+1. create a column in results with the gene symbols named "Approved.symbol"
+1. filter the results for genes adj.p.value  < 0.05 (or desired alpha)
+1. arrange the results by a value of significance and fold change (personal preference?) and keep only the top 20 rows
+1. join the results and genes data frames  by "Approved.symbol"
+1. select the gene symbol, name, and ensemble id, lfc, and adj.p.val
+
+Let's go deeper into each step. 
+
+#### 1. Create (mutate) or rename a column in results with the gene symbols named "Approved.symbol"
+
+Currently, we have "results" with gene symbols as the row names and "results2" has a column called "X" with the gene symbol. Depending on which data frame we use, e can either use mutate to create a new column with the name "Approved.symbol", or we can rename column X.
+
+
+```{r wrangle1a, appendix = TRUE, echo = T, eval = F}
+
+results %>% mutate(Approved.symbol = row.names(.))  
+results2 %>% rename(Approved.symbol = X)   
+
+```
+
+```{r wrangle1b, appendix = FALSE, echo = F, eval = T}
+
+results %>% mutate(Approved.symbol = row.names(.)) %>% as_tibble()
+results2 %>% rename(Approved.symbol = X)  %>% as_tibble()
+
+```
+
+
+#### 2. Filter the results for genes adj.p.value  < 0.05 (or desired alpha)
+
+Filter is done in a few different ways depending on the type of variable. You can use `>` and less `<` to filter greater or less than a number. `==` and `!=` are used to filter by characters or factor that match or do not match a specific patter. `%in% c()` is used to filter by things in a list. Let's filter by adjusted p-value. You can use `|` and `&` to mean "or" or "and"
+
+
+```{r wrangle2, appendix = TRUE}
+
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1)
+
+```
+
+
+### Renaming things
+
+More often than not, errors in programming are cause by typos. Either you typed something incorrectly, or the input text was different than the computer program expected. Renaming variables an observations is a common but sometime painful step in data typing. 
+
+
+The "genes" table contins gene neames and  
 
 We can use the `rename` function to rename columns. The first value is the new name and the second value is the old name. Just in case we get it wrong, let's save this as a new object.
 
 ```{r rename, appendix = TRUE}
 
-head(results2)
+head(results)
 head(genes)
 
 head(results2$X)
@@ -640,9 +707,6 @@ head(genes2$Ensembl.gene.ID)
 
 Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by variables or genes of interest.
 
-For this, we must introduce the pipe, `%>%`. This symbol is used to redirect the output from standard out to another function. 
-
-
 
 ```{r, appendix = TRUE}
 
@@ -660,7 +724,7 @@ head(counts_long$Tissue.Sample.ID)
 
 Yea, we have joined some data frames. Now let's do a little more cleaning and joining. 
 
-```{r, appendix = TRUE}
+```{r, appendix = F}
 
 head(counts_long$Tissue.Sample.ID)
 head(samples$Tissue.Sample.ID)
@@ -696,13 +760,7 @@ head(rownames(colData) == colnames(counts))
 ```
 
 
-<add challenge>
-
-
-
 ### Filtering, arranging and summarizing variables
-
-
 
 
 ```{asis, comment = "", appendix = F}
@@ -729,26 +787,6 @@ head(rownames(colData) == colnames(counts))
 ```
 
 
-## Visualize (Part 2)
-
-
-```{asis, comment = "", appendix = F}
-
-:::success
-
-#### The grammar of graphics
-
-| Function | Description |
-| --- | --- |
-| `geom_boxplot()`  | | 
-| `theme()`  | | 
-| `labs()`  | | 
-| `scale_color_manual()`  | | 
-| `cowplot()`  | | 
-:::
-
-```
-
 
 ## Communicate
 
@@ -758,14 +796,25 @@ https://gtexportal.org/home/gene/BMP10
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
 
+```{asis, comment = "", appendix = F}
+
+:::success
+
+#### The grammar of graphics
+
+| Function | Description |
+| --- | --- |
+| `theme()`  | | 
+| `labs()`  | | 
+| `scale_color_manual()`  | | 
+| `cowplot()`  | | 
+:::
+
+```
+
 ### R Markdown
 
 The workshop notes for using this repository to teach an Introduction to R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`. 
-
-
-## Functions and/or For Loops?
-
-Not sure if I want to include either or both of these advanced beginner concepts.  
 
 
 ## References
