@@ -5,7 +5,8 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, cache = TRUE,
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, 
+                      cache = TRUE,
                       fig.path = "./images/")
 ```
 
@@ -557,7 +558,8 @@ Create a volcano plot for the results comparing the heart tissue of 20-29 year o
     geom_point() +
     geom_hline(yintercept = -log10(0.05))
   
-# more  
+  # more  
+:::
 
 ```
 
@@ -610,32 +612,30 @@ For each downstream analysis, you will likely use a series of tidying and transf
 
 Instead of going into each function or each process in detail in isolation, let's start with some typical research questions and then piece together R functions to get the desired information
 
-### Question 1: Top 20 DEGs
-
-**What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
+### Question 1: What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
 
 To answer this question, we need a subset of information from both the results and genes files.  We need, in no particular order, to:
 1. create a column in results with the gene symbols named "Approved.symbol"
-1. filter the results for genes adj.p.value  < 0.05 (or desired alpha)
-1. arrange the results by a value of significance and fold change (personal preference?) and keep only the top 20 rows
+1. filter the results for genes adj.p.value  < 0.05 (or desired alpha) and logFC > 1 or <-1
+1. arrange the results by descending adj.p.value
 1. join the results and genes data frames  by "Approved.symbol"
 1. select the gene symbol, name, and ensemble id, lfc, and adj.p.val
 
 Let's go deeper into each step. 
 
-#### 1. Create (mutate) or rename a column in results with the gene symbols named "Approved.symbol"
+#### 1.1 Create (mutate) or rename a column in results with the gene symbols named "Approved.symbol"
 
 Currently, we have "results" with gene symbols as the row names and "results2" has a column called "X" with the gene symbol. Depending on which data frame we use, e can either use mutate to create a new column with the name "Approved.symbol", or we can rename column X.
 
 
-```{r wrangle1a, appendix = TRUE, echo = T, eval = F}
+```{r wrangle11a, appendix = TRUE, echo = T, eval = F}
 
 results %>% mutate(Approved.symbol = row.names(.))  
 results2 %>% rename(Approved.symbol = X)   
 
 ```
 
-```{r wrangle1b, appendix = FALSE, echo = F, eval = T}
+```{r wrangle11b, appendix = FALSE, echo = F, eval = T}
 
 results %>% mutate(Approved.symbol = row.names(.)) %>% as_tibble()
 results2 %>% rename(Approved.symbol = X)  %>% as_tibble()
@@ -643,12 +643,12 @@ results2 %>% rename(Approved.symbol = X)  %>% as_tibble()
 ```
 
 
-#### 2. Filter the results for genes adj.p.value  < 0.05 (or desired alpha)
+#### 1.2 Filter the results for genes adj.p.value  < 0.05 (or desired alpha)
 
 Filter is done in a few different ways depending on the type of variable. You can use `>` and less `<` to filter greater or less than a number. `==` and `!=` are used to filter by characters or factor that match or do not match a specific patter. `%in% c()` is used to filter by things in a list. Let's filter by adjusted p-value. You can use `|` and `&` to mean "or" or "and"
 
 
-```{r wrangle2, appendix = TRUE}
+```{r wrangle12, appendix = TRUE}
 
 results %>% filter(adj.P.Val < 0.05,
                    logFC > 1 | logFC < -1)
@@ -656,36 +656,118 @@ results %>% filter(adj.P.Val < 0.05,
 ```
 
 
-### Renaming things
+#### 1.3 Arrange the results by adj.p.value, from smallest to largest
 
-More often than not, errors in programming are cause by typos. Either you typed something incorrectly, or the input text was different than the computer program expected. Renaming variables an observations is a common but sometime painful step in data typing. 
+We can use the arrange function to reorder observations.
 
 
-The "genes" table contins gene neames and  
 
-We can use the `rename` function to rename columns. The first value is the new name and the second value is the old name. Just in case we get it wrong, let's save this as a new object.
+```{r wrangle13a, appendix = TRUE, echo = T, eval = F}
 
-```{r rename, appendix = TRUE}
-
-head(results)
-head(genes)
-
-head(results2$X)
-head(genes$Approved.symbol)
-
-results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+results %>% arrange(adj.P.Val) 
 
 ```
 
-Now that the results and the genes objects both have a column called `Approved.symbol` they can be joined. The command `full_join()` will keep all rows of both objects. `left_join` will keep all the rows in the first object but will drop any rows in the second object that don't map onto the first. 
 
-```{r join, appendix = TRUE}
+```{r wrangle13b, appendix = F, echo = F, eval = T}
 
-results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
+results %>% arrange(adj.P.Val) %>% head()
 
 ```
+
+
+Let's combine the three previous steps into one series of commands and save the this as a temporary file that we will join with. 
+
+
+
+
+```{r wrangle13c, appendix = FALSE, echo = F, eval = T}
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) 
+resultsDEGs
+
+```
+
+#### 1.4 Join the results and genes data frames  by "Approved.symbol"
+
+```{r wrangle14, appendix = TRUE, echo = T, eval = F}
+
+left_join(resultsDEGs, genes, by =  "Approved.symbol")
+
+```
+
+```{r wrangle14b, appendix = F, eval = T, echo = F}
+
+left_join(resultsDEGs, genes, by =  "Approved.symbol") %>% as_tibble()
+
+```
+
+
+#### 1.5 Select the gene symbol, name, and ensemble id, lfc, and adj.p.val
+
+By now, our results file is getting quite wide. We can use the `select()` function to subset data frames by specific column names.
+
+
+```{r wrangle15, appendix = TRUE}
+
+resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
+
+```
+
+
+Now, let's combine all five steps into one. However, instead of rearranging by p-value, let's arrange by gene symbol. LEt's also convert this object to a tibble with `as_tibble()` for easier viewing. 
+
+
+```{r wrangle15b, appendix = TRUE}
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  as_tibble()
+resultsDEGs
+
+```
+
+
+```{asis wrangle15c, appendix = F, eval = F}
+
+:::Challenge
+
+#### Challenge
+
+Replace the input results file with a different file, such as the results of the comparison of 20-29 and 30-39 year old muscle samples. What are the differentially expressed genes?
+
+:::spoiler
+
+
+  resultsDEGs <- read.table("data/GTEx_Muscle_20-29_vs_30-39.tsv") %>% 
+    mutate(Approved.symbol = row.names(.))  %>% 
+    filter(adj.P.Val < 0.05,
+          logFC > 1 | logFC < -1) %>% 
+    arrange(adj.P.Val) %>%
+    left_join(., genes, by =  "Approved.symbol") %>% 
+    select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, adj.P.Val, ) %>%
+    head(.,20)
+  resultsDEGs
+:::
+
+```
+
+With this exercise, you have explored a few functions related to tidying and transforming data. Let's try one more exercise 
+
+
+-----
+
+_Not finished below this line_
+
 
 
 ```{r mutate, appendix = TRUE}
@@ -704,7 +786,6 @@ head(genes2$Ensembl.gene.ID)
 
 ```
 
-
 Most RNA-Seq pipelines require that the counts be in a “wide” format where each sample is a column and each gene is a row. However, many R tools prefer data in the long format. I like to create a counts_long file that can be easily subset by variables or genes of interest.
 
 
@@ -722,7 +803,7 @@ head(counts_long$Tissue.Sample.ID)
 
 ```
 
-Yea, we have joined some data frames. Now let's do a little more cleaning and joining. 
+Yea! We have joined some data frames. Now let's do a little more cleaning and joining. 
 
 ```{r, appendix = F}
 

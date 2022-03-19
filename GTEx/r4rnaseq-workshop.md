@@ -38,7 +38,7 @@ to generate a computing environment for this workshop.
 
 ### Overview
 
-<div class="info">
+:::info
 
 #### Learning Objectives
 
@@ -54,7 +54,7 @@ RNA-sequencing experiments. Specifically, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-</div>
+:::
 
 \[TOC\]
 
@@ -77,8 +77,8 @@ console and the output. When working in R, you can type directly into
 the console, or you can type into a script. Saving commands in a script
 will make it easier to reproduce. You will learn more as we go along!
 
-![](https://hackmd.io/_uploads/SkkxxSHeq.png%20=300x)
-![](https://hackmd.io/_uploads/H1a8-HHx5.png%20=300x)
+![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
+![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
 
 For today’s lesson, we will focus on data from the [Gene Expression
 Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
@@ -106,11 +106,11 @@ workflow.
     variables?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-![](https://hackmd.io/_uploads/SJSIB76b9.png%20=300x)
-![](https://hackmd.io/_uploads/Sk6IrQaZc.png%20=300x)
+![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
+![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
 
-![](https://hackmd.io/_uploads/r1mwBQaW5.png%20=300x)
-![](https://hackmd.io/_uploads/HJ5BrXp-c.png%20=300x)
+![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
+![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
 
 ### Getting Started
 
@@ -164,7 +164,7 @@ library(readr)
 library(tibble)
 ```
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -172,14 +172,14 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-<div class="spoiler">
+:::spoiler
 
 `library(cowplot)`  
 `library(scales)`  
 `library(forcats)`  
 `library(stringr)`
 
-</div>
+:::
 
 You can also navigate to “Packages” Tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -187,7 +187,7 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -196,7 +196,7 @@ description of the package and its functions.
 | `install.packages()` | An R function to install packages           |
 | `library()`          | The command used to load installed packages |
 
-</div>
+:::
 
 ## Import
 
@@ -356,7 +356,7 @@ Terminal tab and run the following command.
 
 gunzip -k ./data/countData.HEART.csv.gz
 
-</div>
+:::
 
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
@@ -470,12 +470,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
-<div class="spoiler">
+:::spoiler
 
 1.  `read.table("./data/GTEx_MUSCLE_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/colData.MUSCLE.csv")`
 
-</div>
+:::
 
 #### Quick summary statistics and sample size
 
@@ -719,12 +719,12 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
-<div class="spoiler">
+:::spoiler
 
 df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, gtex.smts,
 gtex.sex, gtex.age) # 3 samples are in the female group age 30-39
 
-</div>
+:::
 
 Finally, the `str()` and `summary()` commands are also quite useful for
 summarizing every variable in a data frame. These let you know if R has
@@ -826,7 +826,7 @@ summary(counts[1:5])
     ##  3rd Qu.:     4990         
     ##  Max.   :337390878
 
-<div class="success">
+:::success
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
@@ -844,7 +844,7 @@ summary(counts[1:5])
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
 
-</div>
+:::
 
 ## Visualize (Part 1)
 
@@ -941,7 +941,7 @@ Create a plot showing the total number of samples per Sex, Age Bracket,
 and Hardy Scale for *just* the Heart samples. Paste the code you used in
 the chat.
 
-<div class="spoiler">
+:::spoiler
 
 There are many options. Here are a few.
 
@@ -951,7 +951,7 @@ ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age)) + geom_bar(stat
 ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy))) +
 geom_bar(stat = “count”) + facet_wrap(\~gtex.sex)
 
-</div>
+:::
 
 One thing these plots show us is the we don’t have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
@@ -1007,6 +1007,8 @@ geom_hline(yintercept = -log10(0.05))
 
 # more
 
+:::
+
 In addition to containing information about the donor tissue, the
 “colData” file contains has a column with a RIN score, which tells us
 about the quality of the data, and the facility where the RNA was
@@ -1027,7 +1029,7 @@ visualizing data. In the next section, we will tidy and transform our
 data so that we can make even better summaries and figures. In the last
 section you will learn ggplot function for making fancier figures.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -1041,7 +1043,7 @@ section you will learn ggplot function for making fancier figures.
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
-</div>
+:::
 
 ## Tidy and Transform Data
 
@@ -1092,24 +1094,19 @@ Instead of going into each function or each process in detail in
 isolation, let’s start with some typical research questions and then
 piece together R functions to get the desired information
 
-### Question 1: Top 20 DEGs
-
-**What are the gene names, Ensemble IDs of the top 20 most
-differentially expressed genes (DEGs) in the heart tissue between 20-29
-and 30-29 year olds?**
+### Question 1: What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?\*\*
 
 To answer this question, we need a subset of information from both the
 results and genes files. We need, in no particular order, to: 1. create
 a column in results with the gene symbols named “Approved.symbol” 1.
-filter the results for genes adj.p.value \< 0.05 (or desired alpha) 1.
-arrange the results by a value of significance and fold change (personal
-preference?) and keep only the top 20 rows 1. join the results and genes
-data frames by “Approved.symbol” 1. select the gene symbol, name, and
-ensemble id, lfc, and adj.p.val
+filter the results for genes adj.p.value \< 0.05 (or desired alpha) and
+logFC \> 1 or \<-1 1. arrange the results by descending adj.p.value 1.
+join the results and genes data frames by “Approved.symbol” 1. select
+the gene symbol, name, and ensemble id, lfc, and adj.p.val
 
 Let’s go deeper into each step.
 
-#### 1. Create (mutate) or rename a column in results with the gene symbols named “Approved.symbol”
+#### 1.1 Create (mutate) or rename a column in results with the gene symbols named “Approved.symbol”
 
 Currently, we have “results” with gene symbols as the row names and
 “results2” has a column called “X” with the gene symbol. Depending on
@@ -1151,7 +1148,7 @@ results2 %>% rename(Approved.symbol = X)
     ## 10 AADAT            0.355    1.88   2.94  0.00432     0.0763 -2.04 
     ## # … with 15,519 more rows
 
-#### 2. Filter the results for genes adj.p.value \< 0.05 (or desired alpha)
+#### 1.2 Filter the results for genes adj.p.value \< 0.05 (or desired alpha)
 
 Filter is done in a few different ways depending on the type of
 variable. You can use `>` and less `<` to filter greater or less than a
@@ -1185,135 +1182,187 @@ results %>% filter(adj.P.Val < 0.05,
     ## TSPEAR     2.161166  1.3779887  3.918461 1.939328e-04 0.04456995  0.5533325
     ## TUBA1C    -1.083854  4.5752140 -4.649841 1.381098e-05 0.04456995  2.9939469
 
-### Renaming things
+#### 1.3 Arrange the results by adj.p.value, from smallest to largest
 
-More often than not, errors in programming are cause by typos. Either
-you typed something incorrectly, or the input text was different than
-the computer program expected. Renaming variables an observations is a
-common but sometime painful step in data typing.
-
-The “genes” table contins gene neames and
-
-We can use the `rename` function to rename columns. The first value is
-the new name and the second value is the old name. Just in case we get
-it wrong, let’s save this as a new object.
+We can use the arrange function to reorder observations.
 
 ``` r
-head(results)
+results %>% arrange(adj.P.Val) 
 ```
 
-    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+    ##               logFC   AveExpr         t      P.Value  adj.P.Val         B
+    ## NMRK1     0.6401956  3.797183  5.387450 7.786610e-07 0.01209183 5.6346663
+    ## MTHFD2P1  1.6160575 -1.765073  5.015657 3.394989e-06 0.02636039 2.9968710
+    ## AAGAB    -0.4180789  4.886796 -3.988491 1.521860e-04 0.04456995 0.7797524
+    ## ABHD14A   0.4435404  4.400213  4.028887 1.321830e-04 0.04456995 0.9225181
+    ## ADCY10P1  0.6464649  3.621729  3.915168 1.961445e-04 0.04456995 0.5924164
+    ## AJUBA-DT  0.9256980 -1.281389  4.331900 4.483107e-05 0.04456995 1.2622196
+
+Let’s combine the three previous steps into one series of commands and
+save the this as a temporary file that we will join with.
+
+    ##               logFC    AveExpr         t      P.Value  adj.P.Val          B
+    ## MTHFD2P1   1.616058 -1.7650730  5.015657 3.394989e-06 0.02636039  2.9968710
+    ## IL1R2     -1.703322  0.7638632 -3.913550 1.972401e-04 0.04456995  0.4781060
+    ## LINC00310  1.218272 -1.2321395  4.098561 1.034725e-04 0.04456995  0.6526078
+    ## LINC02610  1.185186 -1.0647221  3.942760 1.783369e-04 0.04456995  0.2795004
+    ## PLEKHG4B   1.061661 -1.3135604  3.942497 1.784989e-04 0.04456995  0.2317681
+    ## RAD9B     -1.140384  0.3431846 -4.018721 1.369645e-04 0.04456995  0.7204587
+    ## RXRG       1.088903  2.1133650  4.326187 4.577186e-05 0.04456995  1.8528496
+    ## TSPEAR     2.161166  1.3779887  3.918461 1.939328e-04 0.04456995  0.5533325
+    ## TUBA1C    -1.083854  4.5752140 -4.649841 1.381098e-05 0.04456995  2.9939469
+    ## ANKRD1    -1.189850 11.5066380 -3.832167 2.605709e-04 0.04495879  0.3442151
+    ## NAV2-AS2   1.002273  1.0153707  3.822544 2.692335e-04 0.04495879  0.2476898
+    ## KRT80     -1.176516 -1.0145047 -3.714169 3.878470e-04 0.04632981 -0.2947158
+    ## TNC       -1.642206  4.7894623 -3.699919 4.067330e-04 0.04656770 -0.1151009
+    ## FN1       -1.021743  9.5528978 -3.665273 4.563675e-04 0.04759268 -0.1398436
+    ## TNN        1.724698 -1.6035527  3.634121 5.058730e-04 0.04759268 -0.5822258
+    ## C4orf54   -2.236262  3.0509899 -3.625726 5.200638e-04 0.04767478 -0.2579115
+    ## RANBP3L    1.044263  0.1329902  3.626793 5.182397e-04 0.04767478 -0.3692743
+    ## SPRED3    -1.006501 -0.1510558 -3.590380 5.840643e-04 0.04857888 -0.4938726
+    ##           Approved.symbol
+    ## MTHFD2P1         MTHFD2P1
+    ## IL1R2               IL1R2
+    ## LINC00310       LINC00310
+    ## LINC02610       LINC02610
+    ## PLEKHG4B         PLEKHG4B
+    ## RAD9B               RAD9B
+    ## RXRG                 RXRG
+    ## TSPEAR             TSPEAR
+    ## TUBA1C             TUBA1C
+    ## ANKRD1             ANKRD1
+    ## NAV2-AS2         NAV2-AS2
+    ## KRT80               KRT80
+    ## TNC                   TNC
+    ## FN1                   FN1
+    ## TNN                   TNN
+    ## C4orf54           C4orf54
+    ## RANBP3L           RANBP3L
+    ## SPRED3             SPRED3
+
+#### 1.4 Join the results and genes data frames by “Approved.symbol”
 
 ``` r
-head(genes)
+left_join(resultsDEGs, genes, by =  "Approved.symbol")
 ```
 
-    ##      HGNC.ID Approved.symbol
-    ## 1     HGNC:5            A1BG
-    ## 2 HGNC:37133        A1BG-AS1
-    ## 3 HGNC:24086            A1CF
-    ## 4     HGNC:6           A1S9T
-    ## 5     HGNC:7             A2M
-    ## 6 HGNC:27057         A2M-AS1
-    ##                                                  Approved.name Chromosome
-    ## 1                                       alpha-1-B glycoprotein   19q13.43
-    ## 2                                         A1BG antisense RNA 1   19q13.43
-    ## 3                               APOBEC1 complementation factor   10q11.23
-    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
-    ## 5                                        alpha-2-macroglobulin   12p13.31
-    ## 6                                          A2M antisense RNA 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3                 AF271790        29974 ENSG00000148584
-    ## 4                                    NA                
-    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 6                                144571 ENSG00000245105
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:1917115
-    ## 4                         
-    ## 5              MGI:2449119
-    ## 6
+    ## # A tibble: 18 × 14
+    ##    logFC AveExpr     t    P.Value adj.P.Val      B Approved.symbol HGNC.ID   
+    ##    <dbl>   <dbl> <dbl>      <dbl>     <dbl>  <dbl> <chr>           <chr>     
+    ##  1  1.62  -1.77   5.02 0.00000339    0.0264  3.00  MTHFD2P1        <NA>      
+    ##  2 -1.70   0.764 -3.91 0.000197      0.0446  0.478 IL1R2           HGNC:5994 
+    ##  3  1.22  -1.23   4.10 0.000103      0.0446  0.653 LINC00310       <NA>      
+    ##  4  1.19  -1.06   3.94 0.000178      0.0446  0.280 LINC02610       <NA>      
+    ##  5  1.06  -1.31   3.94 0.000178      0.0446  0.232 PLEKHG4B        <NA>      
+    ##  6 -1.14   0.343 -4.02 0.000137      0.0446  0.720 RAD9B           <NA>      
+    ##  7  1.09   2.11   4.33 0.0000458     0.0446  1.85  RXRG            <NA>      
+    ##  8  2.16   1.38   3.92 0.000194      0.0446  0.553 TSPEAR          HGNC:1268 
+    ##  9 -1.08   4.58  -4.65 0.0000138     0.0446  2.99  TUBA1C          HGNC:20768
+    ## 10 -1.19  11.5   -3.83 0.000261      0.0450  0.344 ANKRD1          HGNC:15819
+    ## 11  1.00   1.02   3.82 0.000269      0.0450  0.248 NAV2-AS2        <NA>      
+    ## 12 -1.18  -1.01  -3.71 0.000388      0.0463 -0.295 KRT80           <NA>      
+    ## 13 -1.64   4.79  -3.70 0.000407      0.0466 -0.115 TNC             HGNC:5318 
+    ## 14 -1.02   9.55  -3.67 0.000456      0.0476 -0.140 FN1             <NA>      
+    ## 15  1.72  -1.60   3.63 0.000506      0.0476 -0.582 TNN             HGNC:22942
+    ## 16 -2.24   3.05  -3.63 0.000520      0.0477 -0.258 C4orf54         HGNC:27741
+    ## 17  1.04   0.133  3.63 0.000518      0.0477 -0.369 RANBP3L         <NA>      
+    ## 18 -1.01  -0.151 -3.59 0.000584      0.0486 -0.494 SPRED3          HGNC:31041
+    ## # … with 6 more variables: Approved.name <chr>, Chromosome <chr>,
+    ## #   Accession.numbers <chr>, NCBI.Gene.ID <int>, Ensembl.gene.ID <chr>,
+    ## #   Mouse.genome.database.ID <chr>
+
+#### 1.5 Select the gene symbol, name, and ensemble id, lfc, and adj.p.val
+
+By now, our results file is getting quite wide. We can use the
+`select()` function to subset data frames by specific column names.
 
 ``` r
-head(results2$X)
+resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
 ```
 
-    ## [1] "A1BG"     "A1BG-AS1" "A2M"      "A2M-AS1"  "A2ML1"    "A2MP1"
+    ##           Approved.symbol     logFC  adj.P.Val
+    ## MTHFD2P1         MTHFD2P1  1.616058 0.02636039
+    ## IL1R2               IL1R2 -1.703322 0.04456995
+    ## LINC00310       LINC00310  1.218272 0.04456995
+    ## LINC02610       LINC02610  1.185186 0.04456995
+    ## PLEKHG4B         PLEKHG4B  1.061661 0.04456995
+    ## RAD9B               RAD9B -1.140384 0.04456995
+    ## RXRG                 RXRG  1.088903 0.04456995
+    ## TSPEAR             TSPEAR  2.161166 0.04456995
+    ## TUBA1C             TUBA1C -1.083854 0.04456995
+    ## ANKRD1             ANKRD1 -1.189850 0.04495879
+    ## NAV2-AS2         NAV2-AS2  1.002273 0.04495879
+    ## KRT80               KRT80 -1.176516 0.04632981
+    ## TNC                   TNC -1.642206 0.04656770
+    ## FN1                   FN1 -1.021743 0.04759268
+    ## TNN                   TNN  1.724698 0.04759268
+    ## C4orf54           C4orf54 -2.236262 0.04767478
+    ## RANBP3L           RANBP3L  1.044263 0.04767478
+    ## SPRED3             SPRED3 -1.006501 0.04857888
+
+Now, let’s combine all five steps into one. However, instead of
+rearranging by p-value, let’s arrange by gene symbol. LEt’s also convert
+this object to a tibble with `as_tibble()` for easier viewing.
 
 ``` r
-head(genes$Approved.symbol)
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  as_tibble()
+resultsDEGs
 ```
 
-    ## [1] "A1BG"     "A1BG-AS1" "A1CF"     "A1S9T"    "A2M"      "A2M-AS1"
+    ## # A tibble: 18 × 5
+    ##    Approved.symbol Ensembl.gene.ID logFC adj.P.Val Approved.name                
+    ##    <chr>           <chr>           <dbl>     <dbl> <chr>                        
+    ##  1 ANKRD1          ENSG00000148677 -1.19    0.0450 ankyrin repeat domain 1      
+    ##  2 C4orf54         ENSG00000248713 -2.24    0.0477 chromosome 4 open reading fr…
+    ##  3 FN1             <NA>            -1.02    0.0476 <NA>                         
+    ##  4 IL1R2           ENSG00000115590 -1.70    0.0446 interleukin 1 receptor type 2
+    ##  5 KRT80           <NA>            -1.18    0.0463 <NA>                         
+    ##  6 LINC00310       <NA>             1.22    0.0446 <NA>                         
+    ##  7 LINC02610       <NA>             1.19    0.0446 <NA>                         
+    ##  8 MTHFD2P1        <NA>             1.62    0.0264 <NA>                         
+    ##  9 NAV2-AS2        <NA>             1.00    0.0450 <NA>                         
+    ## 10 PLEKHG4B        <NA>             1.06    0.0446 <NA>                         
+    ## 11 RAD9B           <NA>            -1.14    0.0446 <NA>                         
+    ## 12 RANBP3L         <NA>             1.04    0.0477 <NA>                         
+    ## 13 RXRG            <NA>             1.09    0.0446 <NA>                         
+    ## 14 SPRED3          ENSG00000188766 -1.01    0.0486 sprouty related EVH1 domain …
+    ## 15 TNC             ENSG00000041982 -1.64    0.0466 tenascin C                   
+    ## 16 TNN             ENSG00000120332  1.72    0.0476 tenascin N                   
+    ## 17 TSPEAR          ENSG00000175894  2.16    0.0446 thrombospondin type laminin …
+    ## 18 TUBA1C          ENSG00000167553 -1.08    0.0446 tubulin alpha 1c
 
-``` r
-results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-head(results_new)
-```
+:::Challenge
 
-    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
-    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
-    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
-    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
-    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
-    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
-    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
-    ##           B
-    ## 1 -5.672644
-    ## 2 -5.345563
-    ## 3 -5.956689
-    ## 4 -0.635100
-    ## 5 -4.948617
-    ## 6 -1.358971
+#### Challenge
 
-Now that the results and the genes objects both have a column called
-`Approved.symbol` they can be joined. The command `full_join()` will
-keep all rows of both objects. `left_join` will keep all the rows in the
-first object but will drop any rows in the second object that don’t map
-onto the first.
+Replace the input results file with a different file, such as the
+results of the comparison of 20-29 and 30-39 year old muscle samples.
+What are the differentially expressed genes?
 
-``` r
-results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
-```
+:::spoiler
 
-    ##   Approved.symbol       logFC    AveExpr          t      P.Value  adj.P.Val
-    ## 1            A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317
-    ## 2        A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056
-    ## 3             A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802
-    ## 4         A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654
-    ## 5           A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642
-    ## 6           A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003
-    ##           B    HGNC.ID                      Approved.name Chromosome
-    ## 1 -5.672644     HGNC:5             alpha-1-B glycoprotein   19q13.43
-    ## 2 -5.345563 HGNC:37133               A1BG antisense RNA 1   19q13.43
-    ## 3 -5.956689     HGNC:7              alpha-2-macroglobulin   12p13.31
-    ## 4 -0.635100 HGNC:27057                A2M antisense RNA 1   12p13.31
-    ## 5 -4.948617 HGNC:23336       alpha-2-macroglobulin like 1   12p13.31
-    ## 6 -1.358971     HGNC:8 alpha-2-macroglobulin pseudogene 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 4                                144571 ENSG00000245105
-    ## 5                 AK057908       144568 ENSG00000166535
-    ## 6                   M24415            3 ENSG00000256069
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:2449119
-    ## 4                         
-    ## 5                         
-    ## 6
+resultsDEGs \<- read.table(“data/GTEx_Muscle_20-29_vs_30-39.tsv”) %>%
+mutate(Approved.symbol = row.names(.)) %>% filter(adj.P.Val \< 0.05,
+logFC \> 1 \| logFC \< -1) %>% arrange(adj.P.Val) %>% left_join(.,
+genes, by = “Approved.symbol”) %>% select(Approved.symbol,
+Approved.name, Ensembl.gene.ID, logFC, adj.P.Val, ) %>% head(.,20)
+resultsDEGs
+
+:::
+
+With this exercise, you have explored a few functions related to tidying
+and transforming data. Let’s try one more exercise
+
+------------------------------------------------------------------------
+
+*Not finished below this line*
 
 ``` r
 head(counts)[1:5]
@@ -1434,7 +1483,7 @@ head(counts_long$Tissue.Sample.ID)
     ## [3] "GTEX.139T4.0326.SM.5K7XN.1" "GTEX.11P82.1826.SM.5PNYJ.1"
     ## [5] "GTEX.13U4I.1826.SM.5IJD2.1" "GTEX.13O21.1726.SM.5MR5A.1"
 
-Yea, we have joined some data frames. Now let’s do a little more
+Yea! We have joined some data frames. Now let’s do a little more
 cleaning and joining.
 
 ``` r
@@ -1525,7 +1574,7 @@ head(rownames(colData) == colnames(counts))
 
 ### Filtering, arranging and summarizing variables
 
-<div class="success">
+:::success
 
 #### Key functions: Tidy and Transform
 
@@ -1544,7 +1593,7 @@ head(rownames(colData) == colnames(counts))
 | `left_join()`    |             |
 | `inner_join()`   |             |
 
-</div>
+:::
 
 ## Communicate
 
@@ -1556,7 +1605,7 @@ well.
 
 ![](https://hackmd.io/_uploads/S1SxUwPRt.png)
 
-<div class="success">
+:::success
 
 #### The grammar of graphics
 
@@ -1567,7 +1616,7 @@ well.
 | `scale_color_manual()` |             |
 | `cowplot()`            |             |
 
-</div>
+:::
 
 ### R Markdown
 
@@ -1730,18 +1779,24 @@ results %>% filter(adj.P.Val < 0.05,
                    logFC > 1 | logFC < -1)
 
 
-head(results)
-head(genes)
-
-head(results2$X)
-head(genes$Approved.symbol)
-
-results_new <- results2 %>% dplyr::rename("Approved.symbol" = "X")
-head(results_new)
+results %>% arrange(adj.P.Val) 
 
 
-results_genes <- left_join(results_new, genes, by = "Approved.symbol")
-head(results_genes)
+left_join(resultsDEGs, genes, by =  "Approved.symbol")
+
+
+resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
+
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  as_tibble()
+resultsDEGs
 
 
 head(counts)[1:5]
