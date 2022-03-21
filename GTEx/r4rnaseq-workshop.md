@@ -365,32 +365,32 @@ ensemble id) will be used as the row names. We can use `dim` to see how
 many rows and columns are in the file.
 
 ``` r
-counts <- read.csv("./data/countData.Muscle.csv", 
+counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 ```
 
-    ## [1] 63856   275
+    ## [1] 63856   306
 
 ``` r
 head(counts)[1:5]
 ```
 
-    ##                   GTEX.YEC3.2126.SM.4YCDB.1 GTEX.1128S.2426.SM.5H11B.1
-    ## ENSG00000278704.1                         0                          0
-    ## ENSG00000277400.1                         0                          0
-    ## ENSG00000274847.1                         0                          0
-    ## ENSG00000277428.1                         0                          0
-    ## ENSG00000276256.1                         0                          0
-    ## ENSG00000278198.1                         0                          0
-    ##                   GTEX.14BIM.0326.SM.5SI9B.1 GTEX.1445S.0626.SM.5LU3C.1
+    ##                   GTEX.12ZZX.0726.SM.5EGKA.1 GTEX.13D11.1526.SM.5J2NA.1
     ## ENSG00000278704.1                          0                          0
     ## ENSG00000277400.1                          0                          0
     ## ENSG00000274847.1                          0                          0
     ## ENSG00000277428.1                          0                          0
     ## ENSG00000276256.1                          0                          0
     ## ENSG00000278198.1                          0                          0
-    ##                   GTEX.11EQ8.0526.SM.5N9BC.1
+    ##                   GTEX.ZAJG.0826.SM.5PNVA.1 GTEX.11TT1.1426.SM.5EGIA.1
+    ## ENSG00000278704.1                         0                          0
+    ## ENSG00000277400.1                         0                          0
+    ## ENSG00000274847.1                         0                          0
+    ## ENSG00000277428.1                         0                          0
+    ## ENSG00000276256.1                         0                          0
+    ## ENSG00000278198.1                         0                          0
+    ##                   GTEX.13VXT.1126.SM.5LU3A.1
     ## ENSG00000278704.1                          0
     ## ENSG00000277400.1                          0
     ## ENSG00000274847.1                          0
@@ -472,7 +472,7 @@ file information describing the muscle samples?
 
 :::spoiler
 
-1.  `read.table("./data/GTEx_MUSCLE_20-29_vs_70-79.tsv")`
+1.  `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/colData.MUSCLE.csv")`
 
 :::
@@ -1687,10 +1687,10 @@ head(genes)
 
 
 # Open the Terminal and type the command (after the $) to uznip
-# $ gunzip -k ./data/countData.HEART.csv.gz
+# $ gunzip -k ./data/countData.*.gz
 
 
-counts <- read.csv("./data/countData.Muscle.csv", 
+counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]

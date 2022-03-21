@@ -234,15 +234,15 @@ Very large data files, such as files with RNA-Seq counts are often compressed be
 ```
 
 ```{bash, echo = F, appendix = F}
-rm ./data/countData.HEART.csv
-gunzip -k ./data/countData.HEART.csv.gz
+rm ./data/countData.*.csv
+gunzip -k ./data/countData.*.gz
 ```
 
 
 ```{bash, echo = F, appendix = TRUE}
 
 # Open the Terminal and type the command (after the $) to uznip
-# $ gunzip -k ./data/countData.HEART.csv.gz
+# $ gunzip -k ./data/countData.*.gz
 
 ```
 
