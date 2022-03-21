@@ -10,7 +10,6 @@ library(stringr)
 
 samples <- read.csv("./data/GTExPortal.csv")
 
-
 head(samples)
 names(samples)
 
@@ -32,7 +31,7 @@ head(genes)
 # $ gunzip -k ./data/countData.HEART.csv.gz
 
 
-counts <- read.csv("./data/countData.Muscle.csv", 
+counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]
@@ -108,9 +107,9 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
-    geom_boxplot() +
-    geom_jitter(aes(color = gtex.smrin))
+ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = gtex.smrin))
 
 
 results %>% mutate(Approved.symbol = row.names(.))  
@@ -164,5 +163,62 @@ head(samples)
 head(samples$Tissue.Sample.ID)
 head(counts_long$Tissue.Sample.ID)
 
+## prep heart data to recreate comparison of 20-70 year olds
 
 head(rownames(colData) == colnames(counts))
+
+head(colnames(counts))
+head(rownames(colData))
+head(colData$X)
+
+colData_tidy <-  colData %>%
+  mutate(X = gsub("-", ".", X)) 
+rownames(colData_tidy) <- colData_tidy$X
+
+head(rownames(colData_tidy) == colnames(counts))
+
+
+colData_tidy <- colData_tidy %>%
+  filter(gtex.age %in% c("20-29", "70-79")) %>%
+  mutate(gtex.age = factor(gtex.age))
+summary(colData_tidy$gtex.age)
+
+mycols <-  colData_tidy %>% pull(X)
+
+counts_tidy <- counts %>%
+  select(all_of(mycols)) 
+
+head(rownames(colData_tidy) == colnames(counts_tidy))
+
+head(genes)
+tail(genes)
+
+genes_tidy <- genes %>%
+  filter(!is.na(Ensembl.gene.ID),
+         NCBI.Gene.ID != "NA",
+         !grepl("symbol withdrawn",Approved.name),
+         grepl("cardiac", Approved.name)) 
+
+head(genes_tidy) 
+
+
+counts_tidy_long <- counts_tidy  %>%
+  mutate(Ensembl.gene.ID = rownames(.)) %>%
+  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), sep = "\\.") %>%
+  pivot_longer(cols = all_of(mycols), names_to = "X", 
+               values_to = "counts") %>%
+  inner_join(., colData_tidy, by = "X") %>%
+  inner_join(., genes_tidy, by = "Ensembl.gene.ID") %>%
+  arrange(desc(counts)) %>%
+  select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
+         X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
+         gtex.smcenter)
+head(counts_tidy_long)
+
+counts_tidy_long %>%
+  ggplot(aes(x = gtex.age, y = counts)) +
+  geom_boxplot() +
+  geom_point(aes(color = gtex.sex)) +
+  facet_wrap(~Approved.name) +
+  scale_y_log10(labels = label_number_si())
+
