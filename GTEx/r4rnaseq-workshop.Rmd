@@ -255,7 +255,7 @@ Once that file is uncompressed, it can be imported. Count files can be very long
 
 ```{r import-4, appendix = TRUE}
 
-counts <- read.csv("./data/countData.Muscle.csv", 
+counts <- read.csv("./data/countData.MUSCLE.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]
@@ -287,7 +287,7 @@ What commands could you use to read the following files:
 
 :::spoiler
 
-1. `read.table("./data/GTEx_MUSCLE_20-29_vs_70-79.tsv")` 
+1. `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")` 
 1. `read.csv("./data/colData.MUSCLE.csv")`  
 
 :::
