@@ -255,7 +255,7 @@ Once that file is uncompressed, it can be imported. Count files can be very long
 
 ```{r import-4, appendix = TRUE}
 
-counts <- read.csv("./data/countData.MUSCLE.csv", 
+counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
 dim(counts)
 head(counts)[1:5]
