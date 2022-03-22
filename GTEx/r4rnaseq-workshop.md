@@ -22,8 +22,8 @@ variables, functions, packages, and data structures. You will learn the
 basics of data wrangling including importing data from files,
 sub-setting, joining, filtering, and more. You will gain hands-on
 practice calculating and visualizing differential gene expression using
-popular open-source packages and public RNA-Seq data from the Gene
-Expression Tissue Project (GTEx). *Please fill out the pre- and
+popular open-source packages and public RNA-Seq data from the Gene-Tissue
+Expression Project (GTEx). *Please fill out the pre- and
 post-workshop surveys to help us keep these workshops free.*
 
 **When:** Wednesday, March 23, 10 am - 12 pm PT  
