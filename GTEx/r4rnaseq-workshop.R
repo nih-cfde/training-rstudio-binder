@@ -136,32 +136,15 @@ resultsDEGs <- results %>%
   arrange(Approved.symbol) %>%
   left_join(., genes, by =  "Approved.symbol") %>% 
   select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
   as_tibble()
 resultsDEGs
 
 
-head(counts)[1:5]
-head(genes$Ensembl.gene.ID)
-
-genes2 <- genes %>%
-  mutate(Ensembl.gene.ID = paste(Ensembl.gene.ID, "1", sep = "."))
-
-counts2 <- counts %>%
-  mutate(Ensembl.gene.ID = row.names(.))
-
-head(counts2$Ensembl.gene.ID)[1:5]
-head(genes2$Ensembl.gene.ID)
-
-
-counts_long <- counts2 %>%
-  pivot_longer(-Ensembl.gene.ID, names_to = "Tissue.Sample.ID", values_to = "counts") %>%
-  inner_join(., genes2, by = "Ensembl.gene.ID") %>%
-  arrange(desc(counts))
-head(counts_long)
-
-head(samples)
-head(samples$Tissue.Sample.ID)
-head(counts_long$Tissue.Sample.ID)
+DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
+DEGsENSG
+DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
+DEGsSymbol
 
 ## prep heart data to recreate comparison of 20-70 year olds
 
@@ -172,53 +155,33 @@ head(rownames(colData))
 head(colData$X)
 
 colData_tidy <-  colData %>%
-  mutate(X = gsub("-", ".", X)) 
-rownames(colData_tidy) <- colData_tidy$X
-
-head(rownames(colData_tidy) == colnames(counts))
-
-
-colData_tidy <- colData_tidy %>%
+  mutate(X = gsub("-", ".", X))  %>%
   filter(gtex.age %in% c("20-29", "70-79")) %>%
   mutate(gtex.age = factor(gtex.age))
-summary(colData_tidy$gtex.age)
+rownames(colData_tidy) <- colData_tidy$X
+head(rownames(colData_tidy) == colnames(counts))
 
 mycols <-  colData_tidy %>% pull(X)
 
-counts_tidy <- counts %>%
-  select(all_of(mycols)) 
-
-head(rownames(colData_tidy) == colnames(counts_tidy))
-
-head(genes)
-tail(genes)
-
-genes_tidy <- genes %>%
-  filter(!is.na(Ensembl.gene.ID),
-         NCBI.Gene.ID != "NA",
-         !grepl("symbol withdrawn",Approved.name),
-         grepl("cardiac", Approved.name)) 
-
-head(genes_tidy) 
-
-
-counts_tidy_long <- counts_tidy  %>%
+counts_tidy_long <- counts %>%
+  select(all_of(mycols)) %>%
   mutate(Ensembl.gene.ID = rownames(.)) %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), sep = "\\.") %>%
+  filter(Ensembl.gene.ID %in% all_of(DEGlist)) %>%
   pivot_longer(cols = all_of(mycols), names_to = "X", 
                values_to = "counts") %>%
   inner_join(., colData_tidy, by = "X") %>%
-  inner_join(., genes_tidy, by = "Ensembl.gene.ID") %>%
+  inner_join(., genes, by = "Ensembl.gene.ID") %>%
   arrange(desc(counts)) %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
          X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
          gtex.smcenter)
 head(counts_tidy_long)
 
+
 counts_tidy_long %>%
   ggplot(aes(x = gtex.age, y = counts)) +
   geom_boxplot() +
-  geom_point(aes(color = gtex.sex)) +
-  facet_wrap(~Approved.name) +
-  scale_y_log10(labels = label_number_si())
-
+  geom_point() +
+  facet_wrap(~Approved.symbol, scales = "free_y") +
+  scale_y_log10(labels = label_number_si()) 
