@@ -10,6 +10,7 @@ library(stringr)
 
 samples <- read.csv("./data/GTExPortal.csv")
 
+
 head(samples)
 names(samples)
 
@@ -28,7 +29,7 @@ head(genes)
 
 
 # Open the Terminal and type the command (after the $) to uznip
-# $ gunzip -k ./data/countData.HEART.csv.gz
+# $ gunzip -k ./data/countData.*.gz
 
 
 counts <- read.csv("./data/countData.HEART.csv", 
@@ -123,6 +124,14 @@ results %>% filter(adj.P.Val < 0.05,
 results %>% arrange(adj.P.Val) 
 
 
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) 
+resultsDEGs
+
+
 left_join(resultsDEGs, genes, by =  "Approved.symbol")
 
 
@@ -136,43 +145,57 @@ resultsDEGs <- results %>%
   arrange(Approved.symbol) %>%
   left_join(., genes, by =  "Approved.symbol") %>% 
   select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
   as_tibble()
 resultsDEGs
 
-
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
+  as_tibble()
+resultsDEGs
 DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
 DEGsENSG
 DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
 DEGsSymbol
 
-## prep heart data to recreate comparison of 20-70 year olds
-
 head(rownames(colData) == colnames(counts))
-
 head(colnames(counts))
 head(rownames(colData))
 head(colData$X)
+
 
 colData_tidy <-  colData %>%
   mutate(X = gsub("-", ".", X))  %>%
   filter(gtex.age %in% c("20-29", "70-79")) %>%
   mutate(gtex.age = factor(gtex.age))
 rownames(colData_tidy) <- colData_tidy$X
+
 head(rownames(colData_tidy) == colnames(counts))
 
-mycols <-  colData_tidy %>% pull(X)
+mycols <- colData_tidy %>% dplyr::pull(X)
+
+counts_tidy <- counts %>%
+  select(all_of(mycols))
+
+head(rownames(colData_tidy) == colnames(counts_tidy))
+
 
 counts_tidy_long <- counts %>%
   select(all_of(mycols)) %>%
   mutate(Ensembl.gene.ID = rownames(.)) %>%
-  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), sep = "\\.") %>%
-  filter(Ensembl.gene.ID %in% all_of(DEGlist)) %>%
+  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
+           sep = "\\.") %>%
+  filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
   pivot_longer(cols = all_of(mycols), names_to = "X", 
                values_to = "counts") %>%
   inner_join(., colData_tidy, by = "X") %>%
-  inner_join(., genes, by = "Ensembl.gene.ID") %>%
   arrange(desc(counts)) %>%
+  inner_join(., genes, by = "Ensembl.gene.ID") %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
          X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
          gtex.smcenter)
@@ -184,4 +207,4 @@ counts_tidy_long %>%
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +
-  scale_y_log10(labels = label_number_si()) 
+  scale_y_log10(labels = label_number_si())
