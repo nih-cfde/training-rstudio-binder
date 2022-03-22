@@ -46,7 +46,7 @@ In this workshop, you will learn how to use R and RStudio to import,
 tidy, transform, and visualize data structures commonly associated with
 RNA-sequencing experiments. Specifically, you will:
 
--   Explore public RNA-Seq data from the Gene Expression Tissue Project
+-   Explore public RNA-Seq data from the Gene-Tissue Expression Project
 -   Select variables and observations that are relevant to research
     questions
 -   Rename variables and experimental factors for data joining and
