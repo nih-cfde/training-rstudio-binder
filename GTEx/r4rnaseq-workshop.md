@@ -80,8 +80,8 @@ will make it easier to reproduce. You will learn more as we go along!
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
 
-For today’s lesson, we will focus on data from the [Gene Expression
-Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
+For today’s lesson, we will focus on data from the [Gene-Tissue Expression
+(GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an
 ongoing effort to build a comprehensive public resource to study
 tissue-specific gene expression and regulation. Samples were collected
 from 54 non-diseased tissue sites across nearly 1000 individuals,
@@ -117,7 +117,7 @@ workflow.
 1.  Click the
     [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
     button to generate a computing environment for this workshop.
-2.  Navigate to the GTEX folder.
+2.  Navigate to the GTEx folder.
 3.  Click `GTEx.Rproj` and click “Yes” to open up an Rproject. This will
     set the working directory to `~/GTEx/`.
 4.  Open the `r4rnaseq-workshop.R` file which contains all the commands
@@ -1094,7 +1094,7 @@ Instead of going into each function or each process in detail in
 isolation, let’s start with some typical research questions and then
 piece together R functions to get the desired information
 
-### Question 1: What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?\*\*
+### Question 1: What are the gene names and Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?\*\*
 
 To answer this question, we need a subset of information from both the
 results and genes files. We need, in no particular order, to: 1. create
@@ -1404,7 +1404,7 @@ DEGsSymbol
     ## [1] "ANKRD1"  "C4orf54" "IL1R2"   "SPRED3"  "TNC"     "TNN"     "TSPEAR" 
     ## [8] "TUBA1C"
 
-### Question 2. What are the raw counts of the differentially expressed genes??
+### Question 2: What are the raw counts of the differentially expressed genes?
 
 Most RNA-Seq pipelines require that the counts file to be in a matrix
 format where each sample is a column and each gene is a row and all the
