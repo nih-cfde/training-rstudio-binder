@@ -20,7 +20,7 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 
 **Description**
 
-This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene Expression Tissue Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
+This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene-Tissue Expression Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
 
 **When:** Wednesday, March 23, 10 am - 12 pm PT  
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
@@ -39,7 +39,7 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specifically, you will: 
 
-* Explore public RNA-Seq data from the Gene Expression Tissue Project
+* Explore public RNA-Seq data from the Gene-Tissue Expression Project
 * Select variables and observations that are relevant to research questions 
 * Rename variables and experimental factors for data joining and plotting
 * Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
@@ -61,7 +61,7 @@ When you start RStudio, you’ll see two key regions in the interface: the conso
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
 
-For today's lesson, we will focus on data from the [Gene Expression Tissue (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
+For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
 
 By the end of today’s workshop, you create tables and plots like the
 ones below that give an overview of the samples collected
@@ -85,7 +85,7 @@ analysis. More importantly, you will learn the basics of importing, tidying, tra
 ### Getting Started
 
 1. Click the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) button to generate a computing environment for this workshop.
-2. Navigate to the GTEX folder.
+2. Navigate to the GTEx folder.
 3. Click `GTEx.Rproj` and click "Yes" to open up an Rproject. This will set the working directory to `~/GTEx/`.
 4. Open the `r4rnaseq-workshop.R` file which contains all the commands for today's workshop. This contains all the commands we will build today. This is your reference.
 5. Open a new R Script by clicking **File > New File > R Script**. You will type most commands for today's lesson here and click "Run" to send them to the console. 
@@ -612,7 +612,7 @@ For each downstream analysis, you will likely use a series of tidying and transf
 
 Instead of going into each function or each process in detail in isolation, let's start with some typical research questions and then piece together R functions to get the desired information
 
-### Question 1: What are the gene names, Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
+### Question 1: What are the gene names and Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
 
 To answer this question, we need a subset of information from both the results and genes files.  We need, in no particular order, to:
 1. create a column in results with the gene symbols named "Approved.symbol"
@@ -796,7 +796,7 @@ DEGsSymbol
 
 
 
-### Question 2. What are the raw counts of the differentially expressed genes??
+### Question 2: What are the raw counts of the differentially expressed genes?
 
 Most RNA-Seq pipelines require that the counts file to be in a matrix format where each sample is a column and each gene is a row and all the values are integers or doubles with all the experimental factors in a separate file. However, many R tools prefer to have these data combined in a single, tidy data frameor tibble. To process the counts data using the DESeq2 pipeline, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. We confirm this by asking if `rownames(colData) == colnames(counts)` or by checking the dimensions of each. Using  `head()` is a good way to only print 5 rows. Using `[1:5]` is a good way to only print 5 columns.
 
