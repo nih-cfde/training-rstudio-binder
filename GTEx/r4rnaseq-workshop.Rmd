@@ -22,10 +22,10 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 
 This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene-Tissue Expression Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
 
-**When:** Wednesday, March 23, 10 am - 12 pm PT  
+**When:** Wednesday, April 27, 10 am - 12 pm PT  
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
-**Helpers:** Dr. Amanda Charbonneau and Dr. Jessica Lumian
+**Organizer: The Common Fund Data Ecosystem **
 
 Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) to generate a computing environment for this workshop.
 

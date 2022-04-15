@@ -26,11 +26,11 @@ popular open-source packages and public RNA-Seq data from the
 Gene-Tissue Expression Project (GTEx). *Please fill out the pre- and
 post-workshop surveys to help us keep these workshops free.*
 
-**When:** Wednesday, March 23, 10 am - 12 pm PT  
+**When:** Wednesday, April 27, 10 am - 12 pm PT  
 **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
-**Helpers:** Dr. Amanda Charbonneau and Dr. Jessica Lumian
+**Organizer: The Common Fund Data Ecosystem **
 
 Click
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
