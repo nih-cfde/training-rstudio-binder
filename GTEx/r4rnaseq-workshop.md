@@ -38,7 +38,7 @@ to generate a computing environment for this workshop.
 
 ### Overview
 
-<div class="info">
+:::info
 
 #### Learning Objectives
 
@@ -54,7 +54,7 @@ RNA-sequencing experiments. Specifically, you will:
 -   Visualize raw and summarized data using bar graphs, scatter plots,
     and box plots
 
-</div>
+:::
 
 \[TOC\]
 
@@ -77,8 +77,8 @@ console and the output. When working in R, you can type directly into
 the console, or you can type into a script. Saving commands in a script
 will make it easier to reproduce. You will learn more as we go along!
 
-![](https://hackmd.io/_uploads/SkkxxSHeq.png%20=300x)
-![](https://hackmd.io/_uploads/H1a8-HHx5.png%20=300x)
+![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
+![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
 
 For today’s lesson, we will focus on data from the [Gene-Tissue
 Expression (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is
@@ -106,11 +106,11 @@ workflow.
     variables?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-![](https://hackmd.io/_uploads/SJSIB76b9.png%20=300x)
-![](https://hackmd.io/_uploads/Sk6IrQaZc.png%20=300x)
+![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
+![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
 
-![](https://hackmd.io/_uploads/r1mwBQaW5.png%20=300x)
-![](https://hackmd.io/_uploads/HJ5BrXp-c.png%20=300x)
+![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
+![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
 
 ### Getting Started
 
@@ -164,7 +164,7 @@ library(readr)
 library(tibble)
 ```
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -172,14 +172,14 @@ We will also use `cowplot` and `scales` to make pretty visualizations,
 `forcats.` for working with factors, and `stringr` for parsing text.
 What commands do you need to add to your script to load these packages?
 
-<div class="spoiler">
+:::spoiler
 
 `library(cowplot)`  
 `library(scales)`  
 `library(forcats)`  
 `library(stringr)`
 
-</div>
+:::
 
 You can also navigate to the “Packages” tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -187,7 +187,7 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -196,7 +196,7 @@ description of the package and its functions.
 | `install.packages()` | An R function to install packages           |
 | `library()`          | The command used to load installed packages |
 
-</div>
+:::
 
 ## Import
 
@@ -356,7 +356,7 @@ Terminal tab and run the following command.
 
 gunzip -k ./data/countData.HEART.csv.gz
 
-</div>
+:::
 
 Once that file is uncompressed, it can be imported. Count files can be
 very long and wide, so it is a good idea to only view the first (or
@@ -470,12 +470,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
-<div class="spoiler">
+:::spoiler
 
 1.  `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/colData.MUSCLE.csv")`
 
-</div>
+:::
 
 #### Quick summary statistics and sample size
 
@@ -719,12 +719,12 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
-<div class="spoiler">
+:::spoiler
 
 df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, gtex.smts,
 gtex.sex, gtex.age) # 3 samples are in the female group age 30-39
 
-</div>
+:::
 
 Finally, the `str()` and `summary()` commands are also quite useful for
 summarizing every variable in a data frame. These let you know if R has
@@ -826,7 +826,7 @@ summary(counts[1:5])
     ##  3rd Qu.:     6710         
     ##  Max.   :602494565
 
-<div class="success">
+:::success
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
@@ -844,7 +844,7 @@ summary(counts[1:5])
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
 
-</div>
+:::
 
 ## Visualize (Part 1)
 
@@ -941,7 +941,7 @@ Create a plot showing the total number of samples per Sex, Age Bracket,
 and Hardy Scale for *just* the Heart samples. Paste the code you used in
 the chat.
 
-<div class="spoiler">
+:::spoiler
 
 There are many options. Here are a few.
 
@@ -951,7 +951,7 @@ ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age)) + geom_bar(stat
 ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy))) +
 geom_bar(stat = “count”) + facet_wrap(\~gtex.sex)
 
-</div>
+:::
 
 One thing these plots show us is that we don’t have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
@@ -998,7 +998,7 @@ Create a volcano plot for the results comparing the heart tissue of
 differential expressed gene between 20 and 30 year olds or 20 and 70
 year olds?
 
-<div class="spoiler">
+:::spoiler
 
 df \<- read.table(“./data/GTEx_Heart_20-29_vs_70-79.tsv”)
 
@@ -1007,7 +1007,7 @@ geom_hline(yintercept = -log10(0.05))
 
 # more
 
-</div>
+:::
 
 In addition to containing information about the donor tissue, the
 “colData” file contains has a column with a RIN score, which tells us
@@ -1029,7 +1029,7 @@ visualizing data. In the next section, we will tidy and transform our
 data so that we can make even better summaries and figures. In the last
 section, you will learn ggplot function for making fancier figures.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -1043,7 +1043,7 @@ section, you will learn ggplot function for making fancier figures.
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
-</div>
+:::
 
 ## Tidy and Transform Data
 
@@ -1347,7 +1347,7 @@ Replace the input results file with a different file, such as the
 results of the comparison of 20-29 and 30-39 year old muscle samples.
 What are the differentially expressed genes?
 
-<div class="spoiler">
+:::spoiler
 
 resultsDEGs \<- results %>% mutate(Approved.symbol = row.names(.)) %>%
 filter(adj.P.Val \< 0.05, logFC \> 1 \| logFC \< -1) %>%
@@ -1356,7 +1356,7 @@ arrange(Approved.symbol) %>% left_join(., genes, by = “Approved.symbol”)
 Approved.name ) %>% filter(grepl(“ENSG”, Ensembl.gene.ID)) %>%
 as_tibble() resultsDEGs
 
-</div>
+:::
 
 ``` r
 resultsDEGs <- results %>% 
@@ -1532,15 +1532,15 @@ counts_tidy_long %>%
 
 Plot the gene expression of your five favorite genes.
 
-<div class="spoiler">
+:::spoiler
 
 *Hint: Create a list of your favorite genes. Use the gene Ensemble ides
 to get the counts and use the colData or sample information to explore
 how age, sex, tissue, and other variable may influence gene expression.*
 
-</div>
+:::
 
-<div class="success">
+:::success
 
 #### Key functions: Tidy and Transform
 
@@ -1559,7 +1559,7 @@ how age, sex, tissue, and other variable may influence gene expression.*
 | `left_join()`    |             |
 | `inner_join()`   |             |
 
-</div>
+:::
 
 ## Communicate
 
