@@ -1,7 +1,7 @@
 ---
 title: "r4rnaseq-workshop"
 author: "Rayna M Harris"
-output: html_document  
+output: github_document  
 ---
 
 ```{r setup, include=FALSE}
@@ -12,17 +12,17 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE,
 
 # Introduction to R for RNA-Seq Workshop
 
----
+<!---
 
 _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ), please make changes by editing [this .Rmd file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)._
 
----
+--->
 
 **Description**
 
 This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene-Tissue Expression Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
 
-**When:** Wednesday, April 27, 10 am - 12 pm PT  
+**When:** Wednesday,  April 27, 2022 from 10 am - 12 pm PDT. [Check your current time here.](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
 **Organizer: The Common Fund Data Ecosystem **
@@ -32,21 +32,20 @@ Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/g
 
 ### Overview
 
-```{asis, comment = "", appendix = F}
+<div class="info">
 
-:::info
 #### Learning Objectives 
 
-In this workshop, you will learn how to use R and RStudio to import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments. Specifically, you will: 
+In this workshop, you will learn how to use R and RStudio to 
 
+* Import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments 
 * Explore public RNA-Seq data from the Gene-Tissue Expression Project
 * Select variables and observations that are relevant to research questions 
 * Rename variables and experimental factors for data joining and plotting
 * Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
 
-:::
+</div>
 
-```
 
 [TOC]
 
@@ -121,33 +120,28 @@ library(stringr)
 ```
 
 
-```{asis, comment = "" , appendix = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
 We will also use `cowplot` and  `scales` to make pretty visualizations, `forcats.` for working with factors, and `stringr` for parsing text. What commands do you need to add to your script to load these packages?
 
-:::spoiler 
+<div class="spoiler">
+
 
   `library(cowplot)`  
   `library(scales)`  
   `library(forcats)`  
   `library(stringr)`  
-  
-:::
 
-```
+</div>
 
 
 You can also navigate to the "Packages" tab in the bottom right pane of RStudio to view a list of available packages. Packages with a checked box next to them have been successfully loaded. You can click a box to load installed packages. Clicking the "Help" Tab will provide a quick description of the package and its functions.
 
 
+<div class="success">
 
-```{asis, comment = "", appendix = F}
-
-:::success
 #### Key functions
 
 | Function | Description |
@@ -155,9 +149,7 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 | `install.packages()` | An R function to install packages |
 | `library()` | The command used to load installed packages |
 
-:::
-
-```
+</div>
 
 
 ## Import

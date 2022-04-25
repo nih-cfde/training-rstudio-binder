@@ -4,14 +4,11 @@ Rayna M Harris
 
 # Introduction to R for RNA-Seq Workshop
 
-------------------------------------------------------------------------
+<!---
 
-*Even though you can
-[![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ),
-please make changes by editing [this .Rmd
-file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd).*
+_Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ), please make changes by editing [this .Rmd file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)._
 
-------------------------------------------------------------------------
+--->
 
 **Description**
 
@@ -26,7 +23,9 @@ popular open-source packages and public RNA-Seq data from the
 Gene-Tissue Expression Project (GTEx). *Please fill out the pre- and
 post-workshop surveys to help us keep these workshops free.*
 
-**When:** Wednesday, April 27, 10 am - 12 pm PT  
+**When:** Wednesday, April 27, 2022 from 10 am - 12 pm PDT. [Check your
+current time
+here.](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)  
 **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
@@ -42,10 +41,10 @@ to generate a computing environment for this workshop.
 
 #### Learning Objectives
 
-In this workshop, you will learn how to use R and RStudio to import,
-tidy, transform, and visualize data structures commonly associated with
-RNA-sequencing experiments. Specifically, you will:
+In this workshop, you will learn how to use R and RStudio to
 
+-   Import, tidy, transform, and visualize data structures commonly
+    associated with RNA-sequencing experiments
 -   Explore public RNA-Seq data from the Gene-Tissue Expression Project
 -   Select variables and observations that are relevant to research
     questions
