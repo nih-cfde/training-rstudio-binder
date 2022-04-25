@@ -22,10 +22,10 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 
 This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene-Tissue Expression Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
 
-**When:** Wednesday,  April 27, 2022 from 10 am - 12 pm PDT. [Check your current time here.](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
+**When:** Wednesday,  April 27, 2022, 10 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
-**Organizer: The Common Fund Data Ecosystem **
+**Organizer: [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)**
 
 Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) to generate a computing environment for this workshop.
 
@@ -46,8 +46,6 @@ In this workshop, you will learn how to use R and RStudio to
 
 </div>
 
-
-[TOC]
 
 ## Introduction 
 
@@ -213,17 +211,16 @@ head(genes)
 ```
 
 
-```{asis, comment = "", appendix = F}
+<div class="warning">
 
-:::info Using the Terminal to uncompress files
+#### Using the Terminal to uncompress files
 
 Very large data files, such as files with RNA-Seq counts are often compressed before they are shared. To uncompress a file, click on the Terminal tab and run the following command.
 
   gunzip -k ./data/countData.HEART.csv.gz
 
-:::
+</div>
 
-```
 
 ```{bash, echo = F, appendix = F}
 rm ./data/countData.*.csv
@@ -266,9 +263,7 @@ head(colData)
 ```
 
 
-```{asis, comment = "", appendix = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -277,14 +272,13 @@ What commands could you use to read the following files:
 1. The csv file information describing the muscle samples? 
 
 
-:::spoiler
+<div class="spoiler">
 
 1. `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")` 
 1. `read.csv("./data/colData.MUSCLE.csv")`  
 
-:::
+</div>
 
-```
 
 #### Quick summary statistics and sample size
 
@@ -348,9 +342,7 @@ dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy)
 ```
 
 
-```{asis, comment = "", appendix = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -361,16 +353,13 @@ How many female muscles samples are there from age group 30-39?
 _Hint: use head() or names() after importing a file to verify the variable names._
 
 
-:::spoiler
+<div class="spoiler">
 
   df <- read.csv("./data/colData.MUSCLE.csv") 
   dplyr::count(df, gtex.smts, gtex.sex, gtex.age)
   # 3 samples are in the female group age 30-39
-:::
-
-```
-
-
+  
+</div>
 
 
 
@@ -390,9 +379,8 @@ summary(counts[1:5])
 ```
 
 
-```{asis, comment = "", appendix = F}
+<div class="success">
 
-:::success
 #### Key functions for importing and quickly viewing raw and summarized data
 
 | Function | Description |
@@ -409,9 +397,7 @@ summary(counts[1:5])
 | `str()` | A function that prints the internal structure of an object  |  
 | `summary()` | A function that summarizes each variable |  
 
-:::
-
-```
+</div>
 
 
 ## Visualize (Part 1)
@@ -485,15 +471,13 @@ ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
 With this graph, we have an excellent overview of the total numbers of RNA-Seq samples in the GTEx project, and we can see where we are missing data (for good biological reasons). However, this plot doesn't show us Hardy Scale. It's hard to layer 4 variables, so let's remove Tissue as a variable by focusing just on one Tissue.
 
 
-```{asis, comment = "", appendix = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
 Create a plot showing the total number of samples per Sex, Age Bracket, and Hardy Scale for _just_ the Heart samples. Paste the code you used in the chat. 
 
-:::spoiler
+<div class="spoiler">
 
 There are many options. Here are a few.
 
@@ -505,9 +489,7 @@ There are many options. Here are a few.
       geom_bar(stat = "count") +
       facet_wrap(~gtex.sex) 
     
-:::
-
-```
+</div>
 
 One thing these plots show us is that we don't have enough samples to test the effects of all our experimental variables (age, sex, tissue, and hardy scale) and their interactions on gene expression. We can, however, focus on one or two variables or groups at a time. 
 
@@ -535,14 +517,13 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 
 
-```{asis, appendix = FALSE}
+<div class="warning">
 
-:::warning
 #### Challenge
 
 Create a volcano plot for the results comparing the heart tissue of 20-29 year olds to that of 70-70 year olds? Are there more or less differential expressed gene between 20 and 30 year olds or 20 and 70 year olds?
 
-:::spoiler
+<div class="spoiler">
 
   df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
 
@@ -551,9 +532,8 @@ Create a volcano plot for the results comparing the heart tissue of 20-29 year o
     geom_hline(yintercept = -log10(0.05))
   
   # more  
-:::
 
-```
+</div>
 
 In addition to containing information about the donor tissue, the "colData" file contains has a column with a RIN score, which tells us about the quality of the data, and the facility where the RNA was processed. If we wanted to confirm visually that were negligible technical differences in RNA quality due to sequencing location, we could use a box plot. 
 
@@ -568,9 +548,7 @@ In addition to containing information about the donor tissue, the "colData" file
 
 Now you know a handful of R functions for importing, summarizing, and visualizing data. In the next section, we will tidy and transform our data so that we can make even better summaries and figures. In the last section, you will learn ggplot function for making fancier figures.  
 
-```{asis, comment = "", appendix = F}
-
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -583,10 +561,8 @@ Now you know a handful of R functions for importing, summarizing, and visualizin
 | `geom_bar()`  | A function used to create bar plots | 
 | `coord_flip()`  | Flips the x and y axis | 
 | `geom_hline()`  | Add a horizontal line to plots | 
-:::
 
-```
-
+</div>
 
 ## Tidy and Transform Data
 
@@ -730,16 +706,13 @@ resultsDEGs
 ```
 
 
-```{asis wrangle15c, appendix = F, eval = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
 Replace the input results file with a different file, such as the results of the comparison of 20-29 and 30-39 year old muscle samples. What are the differentially expressed genes?
 
-:::spoiler
-
+<div class="spoiler">
 
   resultsDEGs <- results %>% 
   mutate(Approved.symbol = row.names(.))  %>% 
@@ -751,10 +724,8 @@ Replace the input results file with a different file, such as the results of the
   filter(grepl("ENSG", Ensembl.gene.ID)) %>%
   as_tibble()
 resultsDEGs
-:::
 
-```
-
+</div>
 
 
 ```{r resultDEGs, appendix = TRUE}
@@ -858,25 +829,23 @@ counts_tidy_long %>%
 ```
 
 
-```{asis question2d, appendix = F, eval = F}
-
-:::warning
+<div class="warning">
 
 #### Challenge
 
 Plot the gene expression of your five favorite genes.
 
-:::spoiler
+<div class="spoiler">
 
 _Hint: Create a list of your favorite genes. Use the gene Ensemble ides to get the counts and use the colData or sample information to explore how age, sex, tissue, and other variable may influence gene expression._
-:::
 
-```
-
+</div>
 
 ```{asis, comment = "", appendix = F}
 
-:::success
+
+<div class="success">
+
 #### Key functions: Tidy and Transform
 
 | Function | Description |
@@ -893,9 +862,8 @@ _Hint: Create a list of your favorite genes. Use the gene Ensemble ides to get t
 | `full_join()`  | | 
 | `left_join()`  | | 
 | `inner_join()`  | | 
-:::
 
-```
+</div>
 
 
 ## Communicate

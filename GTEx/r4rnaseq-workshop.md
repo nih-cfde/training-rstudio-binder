@@ -23,13 +23,13 @@ popular open-source packages and public RNA-Seq data from the
 Gene-Tissue Expression Project (GTEx). *Please fill out the pre- and
 post-workshop surveys to help us keep these workshops free.*
 
-**When:** Wednesday, April 27, 2022 from 10 am - 12 pm PDT. [Check your
-current time
-here.](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)  
+**When:** Wednesday, April 27, 2022, 10 am - 12 pm PDT [workd
+clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)  
 **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
-**Organizer: The Common Fund Data Ecosystem **
+**Organizer: [The Common Fund Data
+Ecosystem](https://training.nih-cfde.org/)**
 
 Click
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
@@ -54,8 +54,6 @@ In this workshop, you will learn how to use R and RStudio to
     and box plots
 
 :::
-
-\[TOC\]
 
 ## Introduction
 
@@ -347,7 +345,9 @@ head(genes)
     ## 5              MGI:2449119
     ## 6
 
-:::info Using the Terminal to uncompress files
+:::warning
+
+#### Using the Terminal to uncompress files
 
 Very large data files, such as files with RNA-Seq counts are often
 compressed before they are shared. To uncompress a file, click on the
@@ -990,7 +990,9 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 ![](./images/volcano2-1.png)<!-- -->
 
-:::warning #### Challenge
+:::warning
+
+#### Challenge
 
 Create a volcano plot for the results comparing the heart tissue of
 20-29 year olds to that of 70-70 year olds? Are there more or less
