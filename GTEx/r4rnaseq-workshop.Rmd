@@ -18,31 +18,27 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 
 --->
 
-**Description**
-
-This free two-hour workshop will provide an overview of the R programming language and the user-friendly RStudio environment for exploratory RNA-sequencing analysis. You will be introduced to R syntax, variables, functions, packages, and data structures. You will learn the basics of data wrangling including importing data from files, sub-setting, joining, filtering, and more. You will gain hands-on practice calculating and visualizing differential gene expression using popular open-source packages and public RNA-Seq data from the Gene-Tissue Expression Project (GTEx). _Please fill out the pre- and post-workshop surveys to help us keep these workshops free._
-
 **When:** Wednesday,  April 27, 2022, 10 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
 **Instructors:** Dr. Rayna Harris  
 **Organizer: [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)**
 
-Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) to generate a computing environment for this workshop.
+**Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 2 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. Familiarity with R is not required but would be useful.
 
+![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
-### Overview
 
 <div class="info">
 
-#### Learning Objectives 
+### Learning Objectives 
 
-In this workshop, you will learn how to use R and RStudio to 
+In this workshop, you will learn how to use R and RStudio to: 
 
-* Import, tidy, transform, and visualize data structures commonly associated with RNA-sequencing experiments 
-* Explore public RNA-Seq data from the Gene-Tissue Expression Project
-* Select variables and observations that are relevant to research questions 
-* Rename variables and experimental factors for data joining and plotting
-* Visualize raw and summarized data using bar graphs, scatter plots, and box plots 
+* import and view files commonly associated with RNA-sequencing experiments 
+* select variables and observations that are relevant to research questions (tidy)
+* create and rename variables (transform)
+* join data frames by common variables (harmonize)
+* visualize data using bar graphs, scatter plots, and box plots 
 
 </div>
 
@@ -55,24 +51,20 @@ The book [“R for Data Science”](https://r4ds.had.co.nz/index.html) provides 
 
 When you start RStudio, you’ll see two key regions in the interface: the console and the output. When working in R, you can type directly into the console, or you can type into a script. Saving commands in a script will make it easier to reproduce. You will learn more as we go along! 
 
-![](https://hackmd.io/_uploads/SkkxxSHeq.png =300x)
-![](https://hackmd.io/_uploads/H1a8-HHx5.png =300x)
 
-For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). The GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
+![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
-By the end of today’s workshop, you create tables and plots like the
-ones below that give an overview of the samples collected
-and the variables that can be used for differential gene expression
-analysis. More importantly, you will learn the basics of importing, tidying, transforming, and visualizing data, which are the key component of an R workflow. 
+For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
 
-### Some motivating questions
+Click [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) to generate a computing environment for this workshop.
+
+By the end of today’s workshop, you create tables and plots like the ones below that give an overview of the samples collected and the variables that can be used for differential gene expression analysis. More importantly, you will learn the basics of importing, tidying, transforming, and visualizing data, which are the key component of an R workflow. 
+
+### Some motivating questions and graphs
 
 * How many RNA-sequencing samples are in the GTEx project? 
-* What is the age and sex of each donor?
-* What was the cause of death?
-* What is the effect of age on gene expression in the heart?
 * Do you have enough samples to test the effects of sex, age, hardy scale, and their interactions for all tissues? 
-* How do I combine, clean, modify, separate, etc. data sets and variables?
+* What is the effect of age on gene expression in the heart?
 * How is my gene of interest affected by age in the heart and muscle?
 
 ![](https://hackmd.io/_uploads/SJSIB76b9.png =300x) ![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
@@ -104,36 +96,28 @@ After installing packages, we need to load the functions and tools we want to us
 
 ```{r, message=FALSE, appendix = TRUE}
 library(ggplot2)
-library(tidyr)
-library(dplyr)
-library(readr)
-library(tibble)
 ```
 
-```{r, otherpackages, echo = F, message = F, warning=F , appendix = TRUE}
-library(cowplot)
-library(scales)
-library(forcats)
-library(stringr)
-```
 
 
 <div class="warning">
 
 #### Challenge
 
-We will also use `cowplot` and  `scales` to make pretty visualizations, `forcats.` for working with factors, and `stringr` for parsing text. What commands do you need to add to your script to load these packages?
+We will also use functions from the packages `tidyr` and  `dplyr` to tidy and transform data. What command would you run to load these packages?
 
 <div class="spoiler">
 
-
-  `library(cowplot)`  
-  `library(scales)`  
-  `library(forcats)`  
-  `library(stringr)`  
-
+  `library(tidyr)`  
+  `library(dplyr)`  
+ 
 </div>
 
+
+```{r, otherpackages, echo = F, message = F, warning=F , appendix = TRUE}
+library(tidyr)
+library(dplyr)
+```
 
 You can also navigate to the "Packages" tab in the bottom right pane of RStudio to view a list of available packages. Packages with a checked box next to them have been successfully loaded. You can click a box to load installed packages. Clicking the "Help" Tab will provide a quick description of the package and its functions.
 
