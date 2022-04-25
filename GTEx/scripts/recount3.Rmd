@@ -1,6 +1,6 @@
 ---
 title: "recount3"
-output: md_document
+output: html_document
 params: 
   myproject: "MUSCLE"
   #myproject: "HEART"
@@ -78,6 +78,10 @@ head(rownames(colData) == colnames(countData))
 head(colData)[1:5]
 head(countData)[1:5]
 
+```
+
+
+```{r}
 # save files for later use
 write.csv(countData, file = paste("../data/countData", params$myproject, "csv", sep = "."),
               row.names = T)
