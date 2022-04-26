@@ -128,3 +128,7 @@ write.csv(countData, file = paste("../data/countData", params$myproject, "csv", 
 write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep = "."),
               row.names = T)
 ```
+
+
+Afterwards, gzip the large csv files.
+
