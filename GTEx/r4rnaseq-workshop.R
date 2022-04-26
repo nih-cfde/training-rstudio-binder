@@ -1,3 +1,5 @@
+# R script with workshop commands
+
 2 + 2 * 100
 log(202)
 
@@ -9,43 +11,31 @@ pval
 favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
 favorite_genes
 
+#install.packages("ggplot2")
+
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 
+
 samples <- read.csv("./data/samples.csv")
 
-
+View(samples)
 head(samples)
-names(samples)
+tail(samples)
 str(samples)
 summary(samples)
 
-counts <- read.csv("./data/countData.HEART.csv", 
-                   header = TRUE, row.names = 1)
+
+counts <- read.csv("./data/countData.HEART.csv", row.names = 1)
 dim(counts)
 head(counts)[1:5]
 
 
-colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
-head(colData)
-
-
-# with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-
-
-dim(counts)
-length(row.names(counts))
-
-
 dim(samples)
-length(samples$SMTS)
 
 
 dplyr::count(samples, SMTS) 
@@ -54,15 +44,7 @@ dplyr::count(samples, SMTS)
 dplyr::count(samples, SMTS, SEX) 
 
 
-#names(colData)
-dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
-
-
-str(samples)
-summary(samples)
-
-str(counts[1:5])
-summary(counts[1:5])
+dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) 
 
 
 ggplot(samples, aes(x = SMTS)) +
@@ -99,7 +81,21 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05)) 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05))  +
+  theme(legend.position = "bottom") +
+  labs(color = "20-29 vs 30-39 year olds", 
+       subtitle = "Heart Tissue Gene Expression")
+
+
+
+ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
   geom_boxplot() +
   geom_jitter(aes(color = SMRIN))
 
@@ -156,6 +152,9 @@ DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
 DEGsENSG
 DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
 DEGsSymbol
+
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
+head(colData)
 
 head(rownames(colData) == colnames(counts))
 head(colnames(counts))

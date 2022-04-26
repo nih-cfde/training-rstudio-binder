@@ -90,13 +90,11 @@ tissue-specific gene expression and regulation. Samples were collected
 from 54 non-diseased tissue sites across nearly 1000 individuals,
 primarily for molecular assays including WGS, WES, and RNA-Seq.
 
-![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
-![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
+![](https://i.imgur.com/AfjBaPE.png)
 
-![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
-![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
+![](https://i.imgur.com/XyTGHTK.png)
 
-![](https://i.imgur.com/zzHnqmH.png)
+![](https://i.imgur.com/jvhRnUy.png)
 
 ### Getting Started
 
@@ -234,7 +232,7 @@ Today, I will show you how to import the following files:
 3.  data/colData.HEART.csv
 4.  data/countData.HEART.csv.gz
 
-Then, you will practice on your own using the following files:
+Later, you can practice on your own using the following files:
 
 1.  data/GTExMuscle_20-29_vs_70-79.tsv
 2.  data/colData.MUSCLE.csv
@@ -254,6 +252,7 @@ just the column names. `str` will compactly displaying the internal
 structure. `summary` will compute statistics.
 
 ``` r
+View(samples)
 head(samples)
 ```
 
@@ -273,12 +272,30 @@ head(samples)
     ## 6 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   5.9        1
 
 ``` r
-names(samples)
+tail(samples)
 ```
 
-    ##  [1] "SUBJID"    "SEX"       "AGE"       "DTHHRDY"   "SAMPID"    "SMTS"     
-    ##  [7] "SMNABTCH"  "SMNABTCHD" "SMGEBTCHT" "SMAFRZE"   "SMCENTER"  "SMRIN"    
-    ## [13] "SMATSSCR"
+    ##          SUBJID    SEX   AGE         DTHHRDY                   SAMPID
+    ## 1479 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-0926-SM-5O9AR
+    ## 1480 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-1026-SM-5O9B4
+    ## 1481 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-1126-SM-5SIAT
+    ## 1482 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-1226-SM-5SIB6
+    ## 1483 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-1326-SM-5O98Q
+    ## 1484 GTEX-145ME Female 40-49 Ventilator Case GTEX-145ME-1426-SM-5RQJS
+    ##                 SMTS SMNABTCH  SMNABTCHD SMGEBTCHT SMAFRZE SMCENTER SMRIN
+    ## 1479 Small Intestine BP-47675 2013-12-19 TruSeq.v1  RNASEQ       B1   7.4
+    ## 1480         Stomach BP-47675 2013-12-19 TruSeq.v1  RNASEQ       B1   7.4
+    ## 1481           Colon BP-47616 2013-12-18 TruSeq.v1  RNASEQ       B1   6.9
+    ## 1482           Ovary BP-47616 2013-12-18 TruSeq.v1  RNASEQ       B1   7.3
+    ## 1483          Uterus BP-47675 2013-12-19 TruSeq.v1  RNASEQ       B1   8.5
+    ## 1484          Vagina BP-48437 2014-01-17 TruSeq.v1  RNASEQ       B1   7.2
+    ##      SMATSSCR
+    ## 1479        1
+    ## 1480        1
+    ## 1481        1
+    ## 1482        1
+    ## 1483        1
+    ## 1484        1
 
 ``` r
 str(samples)
@@ -338,8 +355,7 @@ the first (or last) few rows and columns. Typically, a gene identifier
 see how many rows and columns are in the file.
 
 ``` r
-counts <- read.csv("./data/countData.HEART.csv", 
-                   header = TRUE, row.names = 1)
+counts <- read.csv("./data/countData.HEART.csv", row.names = 1)
 dim(counts)
 ```
 
@@ -377,35 +393,8 @@ Experiment (rse) which contains quantitative information about read
 counts as well as quality control information and sample descriptions.
 The “colData” from an rse can also be obtained. This information
 *should* match the information in our samples file, but there can be
-subtle differences in formatting Let’s read the colData file for the
-heart samples.
-
-``` r
-colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
-head(colData)
-```
-
-    ##                                            SAMPID  SMTS
-    ## GTEX-12ZZX-0726-SM-5EGKA GTEX-12ZZX-0726-SM-5EGKA Heart
-    ## GTEX-13D11-1526-SM-5J2NA GTEX-13D11-1526-SM-5J2NA Heart
-    ## GTEX-ZAJG-0826-SM-5PNVA   GTEX-ZAJG-0826-SM-5PNVA Heart
-    ## GTEX-11TT1-1426-SM-5EGIA GTEX-11TT1-1426-SM-5EGIA Heart
-    ## GTEX-13VXT-1126-SM-5LU3A GTEX-13VXT-1126-SM-5LU3A Heart
-    ## GTEX-14ASI-0826-SM-5Q5EB GTEX-14ASI-0826-SM-5Q5EB Heart
-    ##                                             SMTSD     SUBJID    SEX   AGE SMRIN
-    ## GTEX-12ZZX-0726-SM-5EGKA Heart - Atrial Appendage GTEX-12ZZX Female 40-49   7.1
-    ## GTEX-13D11-1526-SM-5J2NA Heart - Atrial Appendage GTEX-13D11 Female 50-59   8.9
-    ## GTEX-ZAJG-0826-SM-5PNVA    Heart - Left Ventricle  GTEX-ZAJG Female 50-59   6.4
-    ## GTEX-11TT1-1426-SM-5EGIA Heart - Atrial Appendage GTEX-11TT1   Male 20-29   9.0
-    ## GTEX-13VXT-1126-SM-5LU3A   Heart - Left Ventricle GTEX-13VXT Female 20-29   8.6
-    ## GTEX-14ASI-0826-SM-5Q5EB Heart - Atrial Appendage GTEX-14ASI   Male 60-69   6.4
-    ##                                               DTHHRDY        SRA       DATE
-    ## GTEX-12ZZX-0726-SM-5EGKA       Violent and fast death SRR1340617 2013-10-22
-    ## GTEX-13D11-1526-SM-5J2NA              Ventilator Case SRR1345436 2013-12-04
-    ## GTEX-ZAJG-0826-SM-5PNVA            Intermediate death SRR1367456 2013-10-31
-    ## GTEX-11TT1-1426-SM-5EGIA              Ventilator Case SRR1378243 2013-10-24
-    ## GTEX-13VXT-1126-SM-5LU3A              Ventilator Case SRR1381693 2013-12-17
-    ## GTEX-14ASI-0826-SM-5Q5EB Fast death of natural causes SRR1335164 2014-01-17
+subtle differences in formatting We will read the colData in a later
+section.
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`. You can also specify the
@@ -430,20 +419,6 @@ head(results)
     ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
     ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
-``` r
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-```
-
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
-
 :::warning
 
 #### Challenge
@@ -455,7 +430,7 @@ file information describing the muscle samples?
 :::spoiler
 
 1.  `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")`
-2.  `read.csv("./data/colData.MUSCLE.csv")`
+2.  `read.csv("./data/countData.MUSCLE.csv", row.names = 1)`
 
 :::
 
@@ -467,20 +442,6 @@ you started. Let’s now explore the functions `summary()`, `length()`,
 `dim()`, and `count()` us to quickly summarize and compare data frames
 to answer the following questions.
 
-How many transcripts were counted in the Heart tissues? Over 63,000.
-
-``` r
-dim(counts)
-```
-
-    ## [1] 63856   306
-
-``` r
-length(row.names(counts))
-```
-
-    ## [1] 63856
-
 How many samples do we have? Over 1400!
 
 ``` r
@@ -488,12 +449,6 @@ dim(samples)
 ```
 
     ## [1] 1484   13
-
-``` r
-length(samples$SMTS)
-```
-
-    ## [1] 1484
 
 How many samples are there per tissue?
 
@@ -586,52 +541,455 @@ dplyr::count(samples, SMTS, SEX)
     ## 46          Uterus Female  14
     ## 47          Vagina Female  11
 
-How many samples are there per sex, age, and hardy scale in the HEART
-tissues? Do you have enough samples to test the effects of Sex, Age, and
-Hardy Scale in the Heart?
-
-*Note: Let’s use the colData data frame for this since it is specific to
-Heart. Later we will talk about sub-setting.*
+How many samples are there per sex, age, and hardy scale? Do you have
+enough samples to test the effects of Sex, Age, and Hardy Scale in the
+Heart?
 
 ``` r
-#names(colData)
-dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
+dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) 
 ```
 
-    ##     SMTS    SEX   AGE                      DTHHRDY  n
-    ## 1  Heart Female 20-29              Ventilator Case  6
-    ## 2  Heart Female 30-39              Ventilator Case  3
-    ## 3  Heart Female 40-49           Intermediate death  1
-    ## 4  Heart Female 40-49              Ventilator Case 15
-    ## 5  Heart Female 40-49       Violent and fast death  3
-    ## 6  Heart Female 50-59 Fast death of natural causes  7
-    ## 7  Heart Female 50-59           Intermediate death  4
-    ## 8  Heart Female 50-59                   Slow death  2
-    ## 9  Heart Female 50-59              Ventilator Case 27
-    ## 10 Heart Female 60-69 Fast death of natural causes  9
-    ## 11 Heart Female 60-69           Intermediate death  3
-    ## 12 Heart Female 60-69                   Slow death  3
-    ## 13 Heart Female 60-69              Ventilator Case 24
-    ## 14 Heart Female 60-69       Violent and fast death  1
-    ## 15 Heart   Male 20-29 Fast death of natural causes  1
-    ## 16 Heart   Male 20-29              Ventilator Case  2
-    ## 17 Heart   Male 30-39              Ventilator Case 12
-    ## 18 Heart   Male 30-39       Violent and fast death  4
-    ## 19 Heart   Male 40-49 Fast death of natural causes  7
-    ## 20 Heart   Male 40-49           Intermediate death  2
-    ## 21 Heart   Male 40-49                   Slow death  3
-    ## 22 Heart   Male 40-49              Ventilator Case 15
-    ## 23 Heart   Male 50-59 Fast death of natural causes 24
-    ## 24 Heart   Male 50-59           Intermediate death  5
-    ## 25 Heart   Male 50-59                   Slow death  7
-    ## 26 Heart   Male 50-59              Ventilator Case 32
-    ## 27 Heart   Male 60-69 Fast death of natural causes 36
-    ## 28 Heart   Male 60-69           Intermediate death 12
-    ## 29 Heart   Male 60-69                   Slow death  9
-    ## 30 Heart   Male 60-69              Ventilator Case 18
-    ## 31 Heart   Male 60-69       Violent and fast death  4
-    ## 32 Heart   Male 70-79 Fast death of natural causes  3
-    ## 33 Heart   Male 70-79              Ventilator Case  2
+    ##                SMTS    SEX   AGE                      DTHHRDY  n
+    ## 1    Adipose Tissue Female 20-29              Ventilator Case  3
+    ## 2    Adipose Tissue Female 30-39              Ventilator Case  2
+    ## 3    Adipose Tissue Female 40-49 Fast death of natural causes  1
+    ## 4    Adipose Tissue Female 40-49              Ventilator Case  5
+    ## 5    Adipose Tissue Female 40-49       Violent and fast death  2
+    ## 6    Adipose Tissue Female 50-59 Fast death of natural causes  3
+    ## 7    Adipose Tissue Female 50-59                   Slow death  1
+    ## 8    Adipose Tissue Female 50-59              Ventilator Case  8
+    ## 9    Adipose Tissue Female 60-69 Fast death of natural causes  3
+    ## 10   Adipose Tissue Female 60-69                   Slow death  7
+    ## 11   Adipose Tissue Female 60-69              Ventilator Case  5
+    ## 12   Adipose Tissue   Male 20-29              Ventilator Case  7
+    ## 13   Adipose Tissue   Male 20-29       Violent and fast death  2
+    ## 14   Adipose Tissue   Male 30-39              Ventilator Case  6
+    ## 15   Adipose Tissue   Male 40-49 Fast death of natural causes  1
+    ## 16   Adipose Tissue   Male 40-49              Ventilator Case  5
+    ## 17   Adipose Tissue   Male 50-59 Fast death of natural causes 13
+    ## 18   Adipose Tissue   Male 50-59                   Slow death  4
+    ## 19   Adipose Tissue   Male 50-59              Ventilator Case 14
+    ## 20   Adipose Tissue   Male 60-69 Fast death of natural causes 16
+    ## 21   Adipose Tissue   Male 60-69           Intermediate death  3
+    ## 22   Adipose Tissue   Male 60-69                   Slow death  6
+    ## 23   Adipose Tissue   Male 60-69              Ventilator Case 10
+    ## 24   Adipose Tissue   Male 60-69       Violent and fast death  1
+    ## 25   Adipose Tissue   Male 70-79 Fast death of natural causes  1
+    ## 26   Adipose Tissue   Male 70-79                   Slow death  2
+    ## 27   Adipose Tissue   Male 70-79              Ventilator Case  2
+    ## 28    Adrenal Gland Female 50-59              Ventilator Case  4
+    ## 29    Adrenal Gland Female 60-69           Intermediate death  1
+    ## 30    Adrenal Gland Female 60-69              Ventilator Case  2
+    ## 31    Adrenal Gland   Male 20-29              Ventilator Case  1
+    ## 32    Adrenal Gland   Male 30-39              Ventilator Case  1
+    ## 33    Adrenal Gland   Male 40-49              Ventilator Case  3
+    ## 34    Adrenal Gland   Male 50-59 Fast death of natural causes  1
+    ## 35    Adrenal Gland   Male 50-59              Ventilator Case  3
+    ## 36    Adrenal Gland   Male 60-69 Fast death of natural causes  1
+    ## 37    Adrenal Gland   Male 60-69              Ventilator Case  3
+    ## 38     Blood Vessel Female 20-29              Ventilator Case  5
+    ## 39     Blood Vessel Female 30-39              Ventilator Case  2
+    ## 40     Blood Vessel Female 40-49 Fast death of natural causes  1
+    ## 41     Blood Vessel Female 40-49              Ventilator Case  4
+    ## 42     Blood Vessel Female 40-49       Violent and fast death  3
+    ## 43     Blood Vessel Female 50-59 Fast death of natural causes  1
+    ## 44     Blood Vessel Female 50-59                   Slow death  2
+    ## 45     Blood Vessel Female 50-59              Ventilator Case 11
+    ## 46     Blood Vessel Female 60-69 Fast death of natural causes  4
+    ## 47     Blood Vessel Female 60-69           Intermediate death  2
+    ## 48     Blood Vessel Female 60-69                   Slow death  6
+    ## 49     Blood Vessel Female 60-69              Ventilator Case  7
+    ## 50     Blood Vessel   Male 20-29              Ventilator Case  8
+    ## 51     Blood Vessel   Male 20-29       Violent and fast death  1
+    ## 52     Blood Vessel   Male 30-39              Ventilator Case  5
+    ## 53     Blood Vessel   Male 40-49 Fast death of natural causes  3
+    ## 54     Blood Vessel   Male 40-49                   Slow death  1
+    ## 55     Blood Vessel   Male 40-49              Ventilator Case  6
+    ## 56     Blood Vessel   Male 50-59 Fast death of natural causes  9
+    ## 57     Blood Vessel   Male 50-59                   Slow death  5
+    ## 58     Blood Vessel   Male 50-59              Ventilator Case 13
+    ## 59     Blood Vessel   Male 60-69 Fast death of natural causes 17
+    ## 60     Blood Vessel   Male 60-69           Intermediate death  2
+    ## 61     Blood Vessel   Male 60-69                   Slow death  4
+    ## 62     Blood Vessel   Male 60-69              Ventilator Case 13
+    ## 63     Blood Vessel   Male 70-79 Fast death of natural causes  2
+    ## 64     Blood Vessel   Male 70-79              Ventilator Case  1
+    ## 65            Brain Female 40-49              Ventilator Case  2
+    ## 66            Brain Female 40-49       Violent and fast death  2
+    ## 67            Brain Female 50-59 Fast death of natural causes  4
+    ## 68            Brain Female 50-59                   Slow death  1
+    ## 69            Brain Female 60-69 Fast death of natural causes  4
+    ## 70            Brain Female 60-69           Intermediate death  2
+    ## 71            Brain Female 60-69                   Slow death  8
+    ## 72            Brain   Male 40-49 Fast death of natural causes  4
+    ## 73            Brain   Male 50-59 Fast death of natural causes 17
+    ## 74            Brain   Male 50-59                   Slow death  3
+    ## 75            Brain   Male 60-69 Fast death of natural causes 20
+    ## 76            Brain   Male 60-69           Intermediate death  1
+    ## 77            Brain   Male 60-69                   Slow death  4
+    ## 78            Brain   Male 60-69              Ventilator Case  2
+    ## 79            Brain   Male 70-79                   Slow death  1
+    ## 80           Breast Female 20-29              Ventilator Case  1
+    ## 81           Breast Female 30-39              Ventilator Case  1
+    ## 82           Breast Female 40-49 Fast death of natural causes  1
+    ## 83           Breast Female 40-49       Violent and fast death  1
+    ## 84           Breast Female 50-59 Fast death of natural causes  2
+    ## 85           Breast Female 50-59                   Slow death  1
+    ## 86           Breast Female 50-59              Ventilator Case  2
+    ## 87           Breast Female 60-69 Fast death of natural causes  1
+    ## 88           Breast Female 60-69           Intermediate death  1
+    ## 89           Breast Female 60-69                   Slow death  2
+    ## 90           Breast Female 60-69              Ventilator Case  3
+    ## 91           Breast   Male 20-29              Ventilator Case  2
+    ## 92           Breast   Male 20-29       Violent and fast death  1
+    ## 93           Breast   Male 30-39              Ventilator Case  4
+    ## 94           Breast   Male 40-49 Fast death of natural causes  1
+    ## 95           Breast   Male 40-49              Ventilator Case  4
+    ## 96           Breast   Male 50-59 Fast death of natural causes  4
+    ## 97           Breast   Male 50-59                   Slow death  1
+    ## 98           Breast   Male 50-59              Ventilator Case  4
+    ## 99           Breast   Male 60-69 Fast death of natural causes  6
+    ## 100          Breast   Male 60-69           Intermediate death  1
+    ## 101          Breast   Male 60-69                   Slow death  1
+    ## 102          Breast   Male 60-69              Ventilator Case  3
+    ## 103          Breast   Male 70-79 Fast death of natural causes  1
+    ## 104          Breast   Male 70-79              Ventilator Case  1
+    ## 105           Colon Female 20-29              Ventilator Case  2
+    ## 106           Colon Female 30-39              Ventilator Case  2
+    ## 107           Colon Female 40-49              Ventilator Case  4
+    ## 108           Colon Female 40-49       Violent and fast death  1
+    ## 109           Colon Female 50-59              Ventilator Case  7
+    ## 110           Colon Female 60-69           Intermediate death  1
+    ## 111           Colon Female 60-69                   Slow death  4
+    ## 112           Colon Female 60-69              Ventilator Case  4
+    ## 113           Colon   Male 20-29              Ventilator Case  5
+    ## 114           Colon   Male 20-29       Violent and fast death  2
+    ## 115           Colon   Male 30-39              Ventilator Case  2
+    ## 116           Colon   Male 40-49 Fast death of natural causes  1
+    ## 117           Colon   Male 40-49              Ventilator Case  5
+    ## 118           Colon   Male 50-59 Fast death of natural causes  3
+    ## 119           Colon   Male 50-59                   Slow death  3
+    ## 120           Colon   Male 50-59              Ventilator Case  9
+    ## 121           Colon   Male 60-69 Fast death of natural causes 13
+    ## 122           Colon   Male 60-69                   Slow death  2
+    ## 123           Colon   Male 60-69              Ventilator Case  6
+    ## 124           Colon   Male 70-79 Fast death of natural causes  1
+    ## 125       Esophagus Female 20-29              Ventilator Case  2
+    ## 126       Esophagus Female 30-39              Ventilator Case  3
+    ## 127       Esophagus Female 40-49              Ventilator Case  6
+    ## 128       Esophagus Female 40-49       Violent and fast death  1
+    ## 129       Esophagus Female 50-59 Fast death of natural causes  2
+    ## 130       Esophagus Female 50-59              Ventilator Case 13
+    ## 131       Esophagus Female 60-69                   Slow death  4
+    ## 132       Esophagus Female 60-69              Ventilator Case  6
+    ## 133       Esophagus   Male 20-29              Ventilator Case 12
+    ## 134       Esophagus   Male 20-29       Violent and fast death  3
+    ## 135       Esophagus   Male 30-39              Ventilator Case  5
+    ## 136       Esophagus   Male 40-49 Fast death of natural causes  5
+    ## 137       Esophagus   Male 40-49              Ventilator Case  9
+    ## 138       Esophagus   Male 50-59 Fast death of natural causes 11
+    ## 139       Esophagus   Male 50-59                   Slow death  6
+    ## 140       Esophagus   Male 50-59              Ventilator Case 19
+    ## 141       Esophagus   Male 60-69 Fast death of natural causes 13
+    ## 142       Esophagus   Male 60-69           Intermediate death  2
+    ## 143       Esophagus   Male 60-69                   Slow death  3
+    ## 144       Esophagus   Male 60-69              Ventilator Case 17
+    ## 145       Esophagus   Male 70-79              Ventilator Case  1
+    ## 146           Heart Female 20-29              Ventilator Case  2
+    ## 147           Heart Female 30-39              Ventilator Case  1
+    ## 148           Heart Female 40-49              Ventilator Case  3
+    ## 149           Heart Female 40-49       Violent and fast death  1
+    ## 150           Heart Female 50-59 Fast death of natural causes  4
+    ## 151           Heart Female 50-59              Ventilator Case  9
+    ## 152           Heart Female 60-69           Intermediate death  2
+    ## 153           Heart Female 60-69                   Slow death  4
+    ## 154           Heart Female 60-69              Ventilator Case  4
+    ## 155           Heart   Male 20-29              Ventilator Case  2
+    ## 156           Heart   Male 30-39              Ventilator Case  3
+    ## 157           Heart   Male 40-49 Fast death of natural causes  4
+    ## 158           Heart   Male 40-49              Ventilator Case  5
+    ## 159           Heart   Male 50-59 Fast death of natural causes  6
+    ## 160           Heart   Male 50-59                   Slow death  5
+    ## 161           Heart   Male 50-59              Ventilator Case  9
+    ## 162           Heart   Male 60-69 Fast death of natural causes 15
+    ## 163           Heart   Male 60-69           Intermediate death  2
+    ## 164           Heart   Male 60-69                   Slow death  4
+    ## 165           Heart   Male 60-69              Ventilator Case 11
+    ## 166           Heart   Male 70-79 Fast death of natural causes  1
+    ## 167           Heart   Male 70-79              Ventilator Case  2
+    ## 168          Kidney Female 60-69                   Slow death  1
+    ## 169          Kidney   Male 40-49 Fast death of natural causes  1
+    ## 170          Kidney   Male 50-59 Fast death of natural causes  1
+    ## 171          Kidney   Male 60-69 Fast death of natural causes  2
+    ## 172          Kidney   Male 60-69                   Slow death  1
+    ## 173           Liver Female 50-59 Fast death of natural causes  1
+    ## 174           Liver Female 50-59              Ventilator Case  1
+    ## 175           Liver Female 60-69 Fast death of natural causes  1
+    ## 176           Liver Female 60-69           Intermediate death  1
+    ## 177           Liver   Male 20-29              Ventilator Case  2
+    ## 178           Liver   Male 30-39              Ventilator Case  1
+    ## 179           Liver   Male 40-49 Fast death of natural causes  1
+    ## 180           Liver   Male 40-49              Ventilator Case  1
+    ## 181           Liver   Male 50-59 Fast death of natural causes  6
+    ## 182           Liver   Male 50-59              Ventilator Case  3
+    ## 183           Liver   Male 60-69 Fast death of natural causes  9
+    ## 184           Liver   Male 60-69           Intermediate death  1
+    ## 185            Lung Female 20-29              Ventilator Case  2
+    ## 186            Lung Female 30-39              Ventilator Case  1
+    ## 187            Lung Female 40-49 Fast death of natural causes  1
+    ## 188            Lung Female 40-49              Ventilator Case  3
+    ## 189            Lung Female 50-59 Fast death of natural causes  1
+    ## 190            Lung Female 50-59                   Slow death  1
+    ## 191            Lung Female 50-59              Ventilator Case  3
+    ## 192            Lung Female 60-69 Fast death of natural causes  2
+    ## 193            Lung Female 60-69           Intermediate death  1
+    ## 194            Lung Female 60-69                   Slow death  3
+    ## 195            Lung Female 60-69              Ventilator Case  2
+    ## 196            Lung   Male 20-29              Ventilator Case  2
+    ## 197            Lung   Male 30-39              Ventilator Case  2
+    ## 198            Lung   Male 40-49 Fast death of natural causes  2
+    ## 199            Lung   Male 40-49              Ventilator Case  3
+    ## 200            Lung   Male 50-59 Fast death of natural causes  6
+    ## 201            Lung   Male 50-59                   Slow death  3
+    ## 202            Lung   Male 50-59              Ventilator Case  7
+    ## 203            Lung   Male 60-69 Fast death of natural causes 10
+    ## 204            Lung   Male 60-69                   Slow death  3
+    ## 205            Lung   Male 60-69              Ventilator Case  6
+    ## 206            Lung   Male 70-79 Fast death of natural causes  2
+    ## 207            Lung   Male 70-79              Ventilator Case  1
+    ## 208          Muscle Female 20-29              Ventilator Case  2
+    ## 209          Muscle Female 30-39              Ventilator Case  1
+    ## 210          Muscle Female 40-49 Fast death of natural causes  1
+    ## 211          Muscle Female 40-49              Ventilator Case  2
+    ## 212          Muscle Female 40-49       Violent and fast death  1
+    ## 213          Muscle Female 50-59 Fast death of natural causes  2
+    ## 214          Muscle Female 50-59                   Slow death  1
+    ## 215          Muscle Female 50-59              Ventilator Case  5
+    ## 216          Muscle Female 60-69 Fast death of natural causes  2
+    ## 217          Muscle Female 60-69           Intermediate death  1
+    ## 218          Muscle Female 60-69                   Slow death  5
+    ## 219          Muscle Female 60-69              Ventilator Case  2
+    ## 220          Muscle   Male 20-29              Ventilator Case  4
+    ## 221          Muscle   Male 20-29       Violent and fast death  1
+    ## 222          Muscle   Male 30-39              Ventilator Case  4
+    ## 223          Muscle   Male 40-49 Fast death of natural causes  2
+    ## 224          Muscle   Male 40-49                   Slow death  1
+    ## 225          Muscle   Male 40-49              Ventilator Case  4
+    ## 226          Muscle   Male 50-59 Fast death of natural causes  9
+    ## 227          Muscle   Male 50-59                   Slow death  2
+    ## 228          Muscle   Male 50-59              Ventilator Case 10
+    ## 229          Muscle   Male 60-69 Fast death of natural causes 16
+    ## 230          Muscle   Male 60-69           Intermediate death  2
+    ## 231          Muscle   Male 60-69                   Slow death  5
+    ## 232          Muscle   Male 60-69              Ventilator Case  6
+    ## 233          Muscle   Male 60-69       Violent and fast death  1
+    ## 234          Muscle   Male 70-79 Fast death of natural causes  2
+    ## 235          Muscle   Male 70-79                   Slow death  1
+    ## 236          Muscle   Male 70-79              Ventilator Case  1
+    ## 237           Nerve Female 20-29              Ventilator Case  1
+    ## 238           Nerve Female 30-39              Ventilator Case  1
+    ## 239           Nerve Female 40-49 Fast death of natural causes  1
+    ## 240           Nerve Female 40-49              Ventilator Case  1
+    ## 241           Nerve Female 40-49       Violent and fast death  1
+    ## 242           Nerve Female 50-59 Fast death of natural causes  2
+    ## 243           Nerve Female 50-59                   Slow death  1
+    ## 244           Nerve Female 50-59              Ventilator Case  4
+    ## 245           Nerve Female 60-69 Fast death of natural causes  2
+    ## 246           Nerve Female 60-69           Intermediate death  1
+    ## 247           Nerve Female 60-69                   Slow death  2
+    ## 248           Nerve Female 60-69              Ventilator Case  2
+    ## 249           Nerve   Male 20-29              Ventilator Case  3
+    ## 250           Nerve   Male 20-29       Violent and fast death  1
+    ## 251           Nerve   Male 30-39              Ventilator Case  2
+    ## 252           Nerve   Male 40-49 Fast death of natural causes  1
+    ## 253           Nerve   Male 40-49              Ventilator Case  2
+    ## 254           Nerve   Male 50-59 Fast death of natural causes  9
+    ## 255           Nerve   Male 50-59                   Slow death  2
+    ## 256           Nerve   Male 50-59              Ventilator Case  9
+    ## 257           Nerve   Male 60-69 Fast death of natural causes 10
+    ## 258           Nerve   Male 60-69           Intermediate death  1
+    ## 259           Nerve   Male 60-69                   Slow death  3
+    ## 260           Nerve   Male 60-69              Ventilator Case  6
+    ## 261           Nerve   Male 70-79                   Slow death  1
+    ## 262           Nerve   Male 70-79              Ventilator Case  1
+    ## 263           Ovary Female 20-29              Ventilator Case  2
+    ## 264           Ovary Female 30-39              Ventilator Case  1
+    ## 265           Ovary Female 40-49              Ventilator Case  2
+    ## 266           Ovary Female 40-49       Violent and fast death  1
+    ## 267           Ovary Female 50-59 Fast death of natural causes  2
+    ## 268           Ovary Female 50-59              Ventilator Case  4
+    ## 269           Ovary Female 60-69           Intermediate death  1
+    ## 270           Ovary Female 60-69                   Slow death  2
+    ## 271           Ovary Female 60-69              Ventilator Case  1
+    ## 272        Pancreas Female 20-29              Ventilator Case  2
+    ## 273        Pancreas Female 40-49              Ventilator Case  2
+    ## 274        Pancreas Female 50-59 Fast death of natural causes  1
+    ## 275        Pancreas Female 50-59              Ventilator Case  5
+    ## 276        Pancreas Female 60-69              Ventilator Case  2
+    ## 277        Pancreas   Male 20-29              Ventilator Case  2
+    ## 278        Pancreas   Male 30-39              Ventilator Case  1
+    ## 279        Pancreas   Male 40-49              Ventilator Case  2
+    ## 280        Pancreas   Male 50-59 Fast death of natural causes  2
+    ## 281        Pancreas   Male 50-59              Ventilator Case  4
+    ## 282        Pancreas   Male 60-69 Fast death of natural causes  3
+    ## 283        Pancreas   Male 60-69              Ventilator Case  4
+    ## 284       Pituitary Female 40-49 Fast death of natural causes  1
+    ## 285       Pituitary Female 40-49              Ventilator Case  1
+    ## 286       Pituitary Female 40-49       Violent and fast death  1
+    ## 287       Pituitary Female 50-59 Fast death of natural causes  2
+    ## 288       Pituitary Female 50-59                   Slow death  1
+    ## 289       Pituitary Female 60-69 Fast death of natural causes  2
+    ## 290       Pituitary Female 60-69                   Slow death  2
+    ## 291       Pituitary   Male 40-49 Fast death of natural causes  1
+    ## 292       Pituitary   Male 50-59 Fast death of natural causes  4
+    ## 293       Pituitary   Male 50-59                   Slow death  2
+    ## 294       Pituitary   Male 60-69 Fast death of natural causes 13
+    ## 295       Pituitary   Male 60-69           Intermediate death  1
+    ## 296       Pituitary   Male 60-69                   Slow death  2
+    ## 297       Pituitary   Male 60-69              Ventilator Case  1
+    ## 298       Pituitary   Male 70-79 Fast death of natural causes  1
+    ## 299       Pituitary   Male 70-79                   Slow death  1
+    ## 300       Pituitary   Male 70-79              Ventilator Case  1
+    ## 301        Prostate   Male 20-29              Ventilator Case  3
+    ## 302        Prostate   Male 20-29       Violent and fast death  1
+    ## 303        Prostate   Male 30-39              Ventilator Case  1
+    ## 304        Prostate   Male 40-49 Fast death of natural causes  1
+    ## 305        Prostate   Male 40-49              Ventilator Case  2
+    ## 306        Prostate   Male 50-59 Fast death of natural causes  2
+    ## 307        Prostate   Male 50-59              Ventilator Case  4
+    ## 308        Prostate   Male 60-69 Fast death of natural causes  4
+    ## 309        Prostate   Male 60-69                   Slow death  2
+    ## 310        Prostate   Male 60-69              Ventilator Case  4
+    ## 311  Salivary Gland Female 20-29              Ventilator Case  1
+    ## 312  Salivary Gland Female 30-39              Ventilator Case  1
+    ## 313  Salivary Gland Female 60-69 Fast death of natural causes  1
+    ## 314  Salivary Gland Female 60-69                   Slow death  1
+    ## 315  Salivary Gland Female 60-69              Ventilator Case  1
+    ## 316  Salivary Gland   Male 20-29       Violent and fast death  1
+    ## 317  Salivary Gland   Male 30-39              Ventilator Case  1
+    ## 318  Salivary Gland   Male 40-49 Fast death of natural causes  1
+    ## 319  Salivary Gland   Male 40-49              Ventilator Case  1
+    ## 320  Salivary Gland   Male 50-59 Fast death of natural causes  2
+    ## 321  Salivary Gland   Male 50-59              Ventilator Case  1
+    ## 322  Salivary Gland   Male 60-69 Fast death of natural causes  7
+    ## 323  Salivary Gland   Male 60-69           Intermediate death  1
+    ## 324  Salivary Gland   Male 60-69              Ventilator Case  2
+    ## 325            Skin Female 20-29              Ventilator Case  4
+    ## 326            Skin Female 30-39              Ventilator Case  2
+    ## 327            Skin Female 40-49 Fast death of natural causes  2
+    ## 328            Skin Female 40-49              Ventilator Case  4
+    ## 329            Skin Female 40-49       Violent and fast death  2
+    ## 330            Skin Female 50-59 Fast death of natural causes  4
+    ## 331            Skin Female 50-59                   Slow death  2
+    ## 332            Skin Female 50-59              Ventilator Case 10
+    ## 333            Skin Female 60-69 Fast death of natural causes  3
+    ## 334            Skin Female 60-69           Intermediate death  2
+    ## 335            Skin Female 60-69                   Slow death  7
+    ## 336            Skin Female 60-69              Ventilator Case  5
+    ## 337            Skin   Male 20-29              Ventilator Case  6
+    ## 338            Skin   Male 20-29       Violent and fast death  2
+    ## 339            Skin   Male 30-39              Ventilator Case  6
+    ## 340            Skin   Male 40-49 Fast death of natural causes  4
+    ## 341            Skin   Male 40-49                   Slow death  1
+    ## 342            Skin   Male 40-49              Ventilator Case  6
+    ## 343            Skin   Male 50-59 Fast death of natural causes 17
+    ## 344            Skin   Male 50-59                   Slow death  3
+    ## 345            Skin   Male 50-59              Ventilator Case 10
+    ## 346            Skin   Male 60-69 Fast death of natural causes 23
+    ## 347            Skin   Male 60-69           Intermediate death  2
+    ## 348            Skin   Male 60-69                   Slow death  9
+    ## 349            Skin   Male 60-69              Ventilator Case 10
+    ## 350            Skin   Male 60-69       Violent and fast death  1
+    ## 351            Skin   Male 70-79 Fast death of natural causes  4
+    ## 352            Skin   Male 70-79                   Slow death  2
+    ## 353            Skin   Male 70-79              Ventilator Case  2
+    ## 354 Small Intestine Female 40-49              Ventilator Case  1
+    ## 355 Small Intestine Female 50-59              Ventilator Case  4
+    ## 356 Small Intestine Female 60-69 Fast death of natural causes  1
+    ## 357 Small Intestine Female 60-69              Ventilator Case  2
+    ## 358 Small Intestine   Male 20-29              Ventilator Case  2
+    ## 359 Small Intestine   Male 20-29       Violent and fast death  1
+    ## 360 Small Intestine   Male 30-39              Ventilator Case  1
+    ## 361 Small Intestine   Male 40-49 Fast death of natural causes  1
+    ## 362 Small Intestine   Male 40-49              Ventilator Case  2
+    ## 363 Small Intestine   Male 50-59              Ventilator Case  4
+    ## 364 Small Intestine   Male 60-69 Fast death of natural causes  1
+    ## 365 Small Intestine   Male 60-69              Ventilator Case  3
+    ## 366          Spleen Female 20-29              Ventilator Case  1
+    ## 367          Spleen Female 30-39              Ventilator Case  1
+    ## 368          Spleen Female 40-49              Ventilator Case  1
+    ## 369          Spleen Female 50-59              Ventilator Case  4
+    ## 370          Spleen Female 60-69              Ventilator Case  1
+    ## 371          Spleen   Male 30-39              Ventilator Case  1
+    ## 372          Spleen   Male 40-49              Ventilator Case  2
+    ## 373          Spleen   Male 50-59              Ventilator Case  4
+    ## 374          Spleen   Male 60-69              Ventilator Case  1
+    ## 375         Stomach Female 20-29              Ventilator Case  1
+    ## 376         Stomach Female 40-49              Ventilator Case  2
+    ## 377         Stomach Female 50-59              Ventilator Case  4
+    ## 378         Stomach Female 60-69 Fast death of natural causes  1
+    ## 379         Stomach Female 60-69              Ventilator Case  1
+    ## 380         Stomach   Male 20-29              Ventilator Case  4
+    ## 381         Stomach   Male 20-29       Violent and fast death  1
+    ## 382         Stomach   Male 30-39              Ventilator Case  1
+    ## 383         Stomach   Male 40-49              Ventilator Case  2
+    ## 384         Stomach   Male 50-59 Fast death of natural causes  2
+    ## 385         Stomach   Male 50-59              Ventilator Case  6
+    ## 386         Stomach   Male 60-69              Ventilator Case  3
+    ## 387         Stomach   Male 70-79              Ventilator Case  1
+    ## 388          Testis   Male 20-29              Ventilator Case  3
+    ## 389          Testis   Male 20-29       Violent and fast death  1
+    ## 390          Testis   Male 30-39              Ventilator Case  2
+    ## 391          Testis   Male 40-49 Fast death of natural causes  2
+    ## 392          Testis   Male 40-49              Ventilator Case  2
+    ## 393          Testis   Male 50-59 Fast death of natural causes  3
+    ## 394          Testis   Male 50-59                   Slow death  1
+    ## 395          Testis   Male 50-59              Ventilator Case  5
+    ## 396          Testis   Male 60-69 Fast death of natural causes 12
+    ## 397          Testis   Male 60-69                   Slow death  1
+    ## 398          Testis   Male 60-69              Ventilator Case  3
+    ## 399          Testis   Male 70-79 Fast death of natural causes  1
+    ## 400          Testis   Male 70-79              Ventilator Case  1
+    ## 401         Thyroid Female 20-29              Ventilator Case  1
+    ## 402         Thyroid Female 30-39              Ventilator Case  1
+    ## 403         Thyroid Female 40-49 Fast death of natural causes  1
+    ## 404         Thyroid Female 40-49              Ventilator Case  2
+    ## 405         Thyroid Female 40-49       Violent and fast death  1
+    ## 406         Thyroid Female 50-59 Fast death of natural causes  1
+    ## 407         Thyroid Female 50-59              Ventilator Case  5
+    ## 408         Thyroid Female 60-69 Fast death of natural causes  1
+    ## 409         Thyroid Female 60-69           Intermediate death  1
+    ## 410         Thyroid Female 60-69                   Slow death  2
+    ## 411         Thyroid Female 60-69              Ventilator Case  1
+    ## 412         Thyroid   Male 20-29              Ventilator Case  3
+    ## 413         Thyroid   Male 20-29       Violent and fast death  1
+    ## 414         Thyroid   Male 30-39              Ventilator Case  1
+    ## 415         Thyroid   Male 40-49 Fast death of natural causes  2
+    ## 416         Thyroid   Male 40-49              Ventilator Case  4
+    ## 417         Thyroid   Male 50-59 Fast death of natural causes 10
+    ## 418         Thyroid   Male 50-59                   Slow death  2
+    ## 419         Thyroid   Male 50-59              Ventilator Case  7
+    ## 420         Thyroid   Male 60-69 Fast death of natural causes 10
+    ## 421         Thyroid   Male 60-69                   Slow death  2
+    ## 422         Thyroid   Male 60-69              Ventilator Case  6
+    ## 423         Thyroid   Male 60-69       Violent and fast death  1
+    ## 424         Thyroid   Male 70-79                   Slow death  1
+    ## 425         Thyroid   Male 70-79              Ventilator Case  1
+    ## 426          Uterus Female 20-29              Ventilator Case  2
+    ## 427          Uterus Female 30-39              Ventilator Case  1
+    ## 428          Uterus Female 40-49              Ventilator Case  2
+    ## 429          Uterus Female 40-49       Violent and fast death  1
+    ## 430          Uterus Female 50-59 Fast death of natural causes  1
+    ## 431          Uterus Female 50-59              Ventilator Case  3
+    ## 432          Uterus Female 60-69 Fast death of natural causes  1
+    ## 433          Uterus Female 60-69                   Slow death  2
+    ## 434          Uterus Female 60-69              Ventilator Case  1
+    ## 435          Vagina Female 30-39              Ventilator Case  1
+    ## 436          Vagina Female 40-49              Ventilator Case  2
+    ## 437          Vagina Female 40-49       Violent and fast death  1
+    ## 438          Vagina Female 50-59              Ventilator Case  3
+    ## 439          Vagina Female 60-69                   Slow death  3
+    ## 440          Vagina Female 60-69              Ventilator Case  1
 
 :::warning
 
@@ -648,96 +1006,11 @@ variable names.*
 
 :::spoiler
 
-df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, SMTS, SEX,
-AGE) # 3 samples are in the female group age 30-39
+`df <- read.csv("./data/colData.MUSCLE.csv")`
+`dplyr::count(df, SMTS, SEX, AGE)`
+`# 3 samples are in the female group age 30-39`
 
 :::
-
-Finally, the `str()` and `summary()` commands are also quite useful for
-summarizing every variable in a data frame. These let you know if R has
-imported columns properly as integers, characters or factors.
-
-``` r
-str(samples)
-```
-
-    ## 'data.frame':    1484 obs. of  13 variables:
-    ##  $ SUBJID   : chr  "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" ...
-    ##  $ SEX      : chr  "Female" "Female" "Female" "Female" ...
-    ##  $ AGE      : chr  "60-69" "60-69" "60-69" "60-69" ...
-    ##  $ DTHHRDY  : chr  "Slow death" "Slow death" "Slow death" "Slow death" ...
-    ##  $ SAMPID   : chr  "GTEX-1117F-0226-SM-5GZZ7" "GTEX-1117F-0426-SM-5EGHI" "GTEX-1117F-0526-SM-5EGHJ" "GTEX-1117F-0626-SM-5N9CS" ...
-    ##  $ SMTS     : chr  "Adipose Tissue" "Muscle" "Blood Vessel" "Blood Vessel" ...
-    ##  $ SMNABTCH : chr  "BP-43693" "BP-43495" "BP-43495" "BP-43956" ...
-    ##  $ SMNABTCHD: chr  "2013-09-17" "2013-09-12" "2013-09-12" "2013-09-25" ...
-    ##  $ SMGEBTCHT: chr  "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" ...
-    ##  $ SMAFRZE  : chr  "RNASEQ" "RNASEQ" "RNASEQ" "RNASEQ" ...
-    ##  $ SMCENTER : chr  "B1" "B1" "B1" "B1" ...
-    ##  $ SMRIN    : num  6.8 7.1 8 6.9 6.3 5.9 6.6 6.3 6.5 5.8 ...
-    ##  $ SMATSSCR : int  0 0 0 1 1 1 1 1 2 1 ...
-
-``` r
-summary(samples)
-```
-
-    ##     SUBJID              SEX                AGE              DTHHRDY         
-    ##  Length:1484        Length:1484        Length:1484        Length:1484       
-    ##  Class :character   Class :character   Class :character   Class :character  
-    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-    ##                                                                             
-    ##                                                                             
-    ##                                                                             
-    ##     SAMPID              SMTS             SMNABTCH          SMNABTCHD        
-    ##  Length:1484        Length:1484        Length:1484        Length:1484       
-    ##  Class :character   Class :character   Class :character   Class :character  
-    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-    ##                                                                             
-    ##                                                                             
-    ##                                                                             
-    ##   SMGEBTCHT           SMAFRZE            SMCENTER             SMRIN       
-    ##  Length:1484        Length:1484        Length:1484        Min.   : 3.200  
-    ##  Class :character   Class :character   Class :character   1st Qu.: 6.300  
-    ##  Mode  :character   Mode  :character   Mode  :character   Median : 7.000  
-    ##                                                           Mean   : 7.061  
-    ##                                                           3rd Qu.: 7.700  
-    ##                                                           Max.   :10.000  
-    ##     SMATSSCR     
-    ##  Min.   :0.0000  
-    ##  1st Qu.:0.0000  
-    ##  Median :1.0000  
-    ##  Mean   :0.8491  
-    ##  3rd Qu.:1.0000  
-    ##  Max.   :3.0000
-
-``` r
-str(counts[1:5])
-```
-
-    ## 'data.frame':    63856 obs. of  5 variables:
-    ##  $ GTEX.12ZZX.0726.SM.5EGKA: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.13D11.1526.SM.5J2NA: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.ZAJG.0826.SM.5PNVA : int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.11TT1.1426.SM.5EGIA: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.13VXT.1126.SM.5LU3A: int  0 0 0 0 0 0 0 0 0 0 ...
-
-``` r
-summary(counts[1:5])
-```
-
-    ##  GTEX.12ZZX.0726.SM.5EGKA GTEX.13D11.1526.SM.5J2NA GTEX.ZAJG.0826.SM.5PNVA
-    ##  Min.   :        0        Min.   :        0        Min.   :        0      
-    ##  1st Qu.:        0        1st Qu.:        0        1st Qu.:        0      
-    ##  Median :       95        Median :       76        Median :       70      
-    ##  Mean   :    75254        Mean   :   103343        Mean   :    80789      
-    ##  3rd Qu.:     9058        3rd Qu.:     9584        3rd Qu.:     8988      
-    ##  Max.   :164409376        Max.   :407066080        Max.   :338010074      
-    ##  GTEX.11TT1.1426.SM.5EGIA GTEX.13VXT.1126.SM.5LU3A
-    ##  Min.   :        0        Min.   :        0       
-    ##  1st Qu.:        0        1st Qu.:        0       
-    ##  Median :       38        Median :       47       
-    ##  Mean   :    69070        Mean   :   111238       
-    ##  3rd Qu.:     7366        3rd Qu.:     6710       
-    ##  Max.   :263027953        Max.   :602494565
 
 :::success
 
@@ -838,12 +1111,15 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
   facet_wrap(~SEX)
 ```
 
-![](./images/bar5-1.png)<!-- --> With this graph, we have an excellent
-overview of the total numbers of RNA-Seq samples in the GTEx project,
-and we can see where we are missing data (for good biological reasons).
-However, this plot doesn’t show us Hardy Scale. It’s hard to layer 4
-variables, so let’s remove Tissue as a variable by focusing just on one
-Tissue.
+![](./images/bar5-1.png)<!-- -->
+
+![](https://i.imgur.com/AfjBaPE.png)
+
+With this graph, we have an excellent overview of the total numbers of
+RNA-Seq samples in the GTEx project, and we can see where we are missing
+data (for good biological reasons). However, this plot doesn’t show us
+Hardy Scale. It’s hard to layer 4 variables, so let’s remove Tissue as a
+variable by focusing just on one Tissue.
 
 :::warning
 
@@ -857,11 +1133,13 @@ the chat.
 
 There are many options. Here are a few.
 
-ggplot(colData, aes(x = DTHHRDY, fill = AGE)) + geom_bar(stat = “count”)
-+ facet_wrap(\~SEX)
-
-ggplot(colData, aes(x = AGE, fill = as.factor(DTHHRDY))) + geom_bar(stat
-= “count”) + facet_wrap(\~SEX)
+      ggplot(samples, aes(x = DTHHRDY, fill = AGE))  +
+          geom_bar(stat = "count") +
+          facet_wrap(~SEX) 
+        
+      ggplot(samples, aes(x = AGE, fill = as.factor(DTHHRDY)))  +
+          geom_bar(stat = "count") +
+          facet_wrap(~SEX) 
 
 :::
 
@@ -903,6 +1181,25 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 ![](./images/volcano2-1.png)<!-- -->
 
+``` r
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05)) 
+```
+
+![](./images/volcano3-1.png)<!-- -->
+
+``` r
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05))  +
+  theme(legend.position = "bottom") +
+  labs(color = "20-29 vs 30-39 year olds", 
+       subtitle = "Heart Tissue Gene Expression")
+```
+
+![](./images/volcano4-1.png)<!-- -->
+
 :::warning
 
 #### Challenge
@@ -914,24 +1211,26 @@ year olds?
 
 :::spoiler
 
-df \<- read.table(“./data/GTEx_Heart_20-29_vs_70-79.tsv”)
+      df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
 
-ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) + geom_point() +
-geom_hline(yintercept = -log10(0.05))
-
-# more
+      ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) +
+        geom_point() +
+        geom_hline(yintercept = -log10(0.05))
+      
+      # more  
 
 :::
 
 In addition to containing information about the donor tissue, the
-“colData” file contains has a column with a RIN score, which tells us
+samples file contains has a column with a RIN score, which tells us
 about the quality of the data. If we wanted to look for interactions
-between RIN score and the other variables.
+between RIN score (SMRIN) and sequencing facility (SMCENTER), we can use
+a box plot.
 
 ``` r
-  ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
-    geom_boxplot() +
-    geom_jitter(aes(color = SMRIN))
+ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = SMRIN))
 ```
 
 ![](./images/boxplot-1.png)<!-- -->
@@ -1348,20 +1647,40 @@ Most RNA-Seq pipelines require that the counts file to be in a matrix
 format where each sample is a column and each gene is a row and all the
 values are integers or doubles with all the experimental factors in a
 separate file. However, many R tools prefer to have these data combined
-in a single, tidy data frame or tibble. To process the counts data using
-the DESeq2 pipeline, we need a corresponding file where the row names
-are the sample id and they match the column names of the counts file. We
-confirm this by asking if `rownames(colData) == colnames(counts)` or by
-checking the dimensions of each. Using `head()` is a good way to only
-print 5 rows. Using `[1:5]` is a good way to only print 5 columns.
+in a single, tidy data frame or tibble.
 
-I also like to create `counts_tidy_long` file that can be easily subset
-by variables or genes of interest. To create this, we need to combine
-three data frames: genes, colData (or Samples), and counts.
+To process the counts data using the DESeq2 pipeline, we need a
+corresponding file where the row names are the sample id and they match
+the column names of the counts file. We confirm this by asking if
+`rownames(colData) == colnames(counts)` or by checking the dimensions of
+each. Using `head()` is a good way to only print 5 rows.
 
-In this section, we will combine tidying, transforming, and visualizing
-to answer the question “What are the raw counts of the deferentially
-expressed genes?”
+``` r
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
+head(colData)
+```
+
+    ##                                            SAMPID  SMTS
+    ## GTEX-12ZZX-0726-SM-5EGKA GTEX-12ZZX-0726-SM-5EGKA Heart
+    ## GTEX-13D11-1526-SM-5J2NA GTEX-13D11-1526-SM-5J2NA Heart
+    ## GTEX-ZAJG-0826-SM-5PNVA   GTEX-ZAJG-0826-SM-5PNVA Heart
+    ## GTEX-11TT1-1426-SM-5EGIA GTEX-11TT1-1426-SM-5EGIA Heart
+    ## GTEX-13VXT-1126-SM-5LU3A GTEX-13VXT-1126-SM-5LU3A Heart
+    ## GTEX-14ASI-0826-SM-5Q5EB GTEX-14ASI-0826-SM-5Q5EB Heart
+    ##                                             SMTSD     SUBJID    SEX   AGE SMRIN
+    ## GTEX-12ZZX-0726-SM-5EGKA Heart - Atrial Appendage GTEX-12ZZX Female 40-49   7.1
+    ## GTEX-13D11-1526-SM-5J2NA Heart - Atrial Appendage GTEX-13D11 Female 50-59   8.9
+    ## GTEX-ZAJG-0826-SM-5PNVA    Heart - Left Ventricle  GTEX-ZAJG Female 50-59   6.4
+    ## GTEX-11TT1-1426-SM-5EGIA Heart - Atrial Appendage GTEX-11TT1   Male 20-29   9.0
+    ## GTEX-13VXT-1126-SM-5LU3A   Heart - Left Ventricle GTEX-13VXT Female 20-29   8.6
+    ## GTEX-14ASI-0826-SM-5Q5EB Heart - Atrial Appendage GTEX-14ASI   Male 60-69   6.4
+    ##                                               DTHHRDY        SRA       DATE
+    ## GTEX-12ZZX-0726-SM-5EGKA       Violent and fast death SRR1340617 2013-10-22
+    ## GTEX-13D11-1526-SM-5J2NA              Ventilator Case SRR1345436 2013-12-04
+    ## GTEX-ZAJG-0826-SM-5PNVA            Intermediate death SRR1367456 2013-10-31
+    ## GTEX-11TT1-1426-SM-5EGIA              Ventilator Case SRR1378243 2013-10-24
+    ## GTEX-13VXT-1126-SM-5LU3A              Ventilator Case SRR1381693 2013-12-17
+    ## GTEX-14ASI-0826-SM-5Q5EB Fast death of natural causes SRR1335164 2014-01-17
 
 ``` r
 head(rownames(colData) == colnames(counts))
@@ -1385,6 +1704,16 @@ head(rownames(colData))
     ## [3] "GTEX-ZAJG-0826-SM-5PNVA"  "GTEX-11TT1-1426-SM-5EGIA"
     ## [5] "GTEX-13VXT-1126-SM-5LU3A" "GTEX-14ASI-0826-SM-5Q5EB"
 
+The row and col names don’t match because the the dashes were replaced
+with periods when the data were imported. This is kind of okay because
+`DESeq2` would complain if your colnames had dashes.
+
+We can use `gsub()` to replace the dashes with periods. Then, we rename
+the row names. We can use `select(all_of())` to make sure that all the
+rows in colData are represented at columns in countData. We could modify
+the original files, but since they are so large and importing taking a
+long time, I like to save “tidy” versions for downstream analyses.
+
 ``` r
 colData_tidy <-  colData %>%
   mutate(SAMPID = gsub("-", ".", SAMPID))  
@@ -1399,6 +1728,14 @@ head(rownames(colData_tidy) == colnames(counts_tidy))
 ```
 
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
+
+I also like to create `counts_tidy_long` file that can be easily subset
+by variables or genes of interest. To create this, we need to combine
+three data frames: genes, colData (or Samples), and counts.
+
+In this section, we will combine tidying, transforming, and visualizing
+to answer the question “What are the raw counts of the deferentially
+expressed genes?”
 
 ``` r
 counts_tidy_long <- counts_tidy %>%
@@ -1452,6 +1789,8 @@ counts_tidy_long %>%
     ## Warning: Removed 4 rows containing non-finite values (stat_boxplot).
 
 ![](./images/boxplot2-1.png)<!-- -->
+
+![](https://i.imgur.com/jvhRnUy.png)
 
 :::warning
 
@@ -1525,3 +1864,4 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 14 March, 2022.*
 
+------------------------------------------------------------------------
