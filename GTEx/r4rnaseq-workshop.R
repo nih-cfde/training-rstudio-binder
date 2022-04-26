@@ -5,23 +5,11 @@ library(dplyr)
 
 samples <- read.csv("./data/samples.csv")
 
+
 head(samples)
 names(samples)
 str(samples)
 summary(samples)
-
-# with row.names
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-head(results)
-
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-
-
-# Open the Terminal and type the command (after the $) to unzip
-# $ gunzip -k ./data/countData.*.gz
-
 
 counts <- read.csv("./data/countData.HEART.csv", 
                    header = TRUE, row.names = 1)
@@ -31,6 +19,15 @@ head(counts)[1:5]
 
 colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
 head(colData)
+
+
+# with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
 
 
 dim(counts)
@@ -194,4 +191,3 @@ counts_tidy_long %>%
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +
   scale_y_log10(labels = label_number_si())
-
