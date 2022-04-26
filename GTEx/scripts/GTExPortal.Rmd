@@ -53,8 +53,9 @@ samples2 <- samples %>%
          SAMPID2 = SAMPID) %>%
   separate(SAMPID2, into = c("one", "two"), sep = "-") %>%
   mutate(SUBJID = paste(one, two, sep = "-")) %>%
-  select(SUBJID, SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) 
-tail(samples2)
+  select(SUBJID, SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) %>%
+  right_join(subjects, ., by = "SUBJID")
+head(samples2)
 ```
 
 

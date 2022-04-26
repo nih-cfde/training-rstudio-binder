@@ -4,7 +4,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, 
-                      cache = TRUE,
+                      #cache = TRUE,
                       fig.path = "./images/")
 ```
 
@@ -263,12 +263,12 @@ length(row.names(counts))
 
 ```
 
-How many samples are there in the GTEx portal (as of this version)? Over 25,000!
+How many samples do we have? Over 1400!
 
 ```{r, appendix = TRUE}
 
 dim(samples)
-length(samples$Tissue.Sample.ID)
+length(samples$SMTS)
 
 ```
 
@@ -276,7 +276,7 @@ How many samples are there per tissue?
 
 ```{r, appendix = TRUE}
 
-dplyr::count(samples, Tissue) 
+dplyr::count(samples, SMTS) 
 
 ```
 
@@ -284,7 +284,7 @@ How many samples are there per tissue and sex? Can we test the effect of sex on 
 
 ```{r, appendix = TRUE}
 
-dplyr::count(samples, Tissue, Sex) 
+dplyr::count(samples, SMTS, SEX) 
 
 ```
 
@@ -295,7 +295,7 @@ _Note: Let's use the colData data frame for this since it is specific to Heart. 
 ```{r, appendix = TRUE}
 
 #names(colData)
-dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
 
 ```
 
@@ -314,7 +314,7 @@ _Hint: use head() or names() after importing a file to verify the variable names
 <div class="spoiler">
 
   df <- read.csv("./data/colData.MUSCLE.csv") 
-  dplyr::count(df, gtex.smts, gtex.sex, gtex.age)
+  dplyr::count(df, SMTS, SEX, AGE)
   # 3 samples are in the female group age 30-39
   
 </div>
@@ -376,7 +376,7 @@ We just used the `count()` function to calculate how many samples are in each gr
 
 ```{r bar1, appendix = TRUE}
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count")
 
 ```
@@ -385,7 +385,7 @@ In the last section, we will discuss how to modify the `themes()` to adjust the 
 
 ```{r bar2, appendix = TRUE}
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
@@ -400,7 +400,7 @@ head(samples)
 
 ```{r bar3, appendix = TRUE}
 
-ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, color = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
@@ -410,7 +410,7 @@ Note that the bars are outlined in a color according to hardy scale. If instead,
 
 ```{r bar4, appendix = TRUE}
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
@@ -420,10 +420,10 @@ Now, let's use `facet_wrap(~Sex)` to break the data into two groups based on the
 
 ```{r bar5, appendix = TRUE}
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip() +
-  facet_wrap(~Sex)
+  facet_wrap(~SEX)
 
 ```
 With this graph, we have an excellent overview of the total numbers of RNA-Seq samples in the GTEx project, and we can see where we are missing data (for good biological reasons). However, this plot doesn't show us Hardy Scale. It's hard to layer 4 variables, so let's remove Tissue as a variable by focusing just on one Tissue.
@@ -439,13 +439,13 @@ Create a plot showing the total number of samples per Sex, Age Bracket, and Hard
 
 There are many options. Here are a few.
 
-  ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age))  +
+  ggplot(colData, aes(x = DTHHRDY, fill = AGE))  +
       geom_bar(stat = "count") +
-      facet_wrap(~gtex.sex)
+      facet_wrap(~SEX) 
     
-  ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy)))  +
+  ggplot(colData, aes(x = AGE, fill = as.factor(DTHHRDY)))  +
       geom_bar(stat = "count") +
-      facet_wrap(~gtex.sex) 
+      facet_wrap(~SEX) 
     
 </div>
 
@@ -493,13 +493,13 @@ Create a volcano plot for the results comparing the heart tissue of 20-29 year o
 
 </div>
 
-In addition to containing information about the donor tissue, the "colData" file contains has a column with a RIN score, which tells us about the quality of the data, and the facility where the RNA was processed. If we wanted to confirm visually that were negligible technical differences in RNA quality due to sequencing location, we could use a box plot. 
+In addition to containing information about the donor tissue, the "colData" file contains has a column with a RIN score, which tells us about the quality of the data. If we wanted to look for interactions between RIN score and the other variables. 
 
 ```{r boxplot, appendix = TRUE}
 
-  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+  ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
     geom_boxplot() +
-    geom_jitter(aes(color = gtex.smrin))
+    geom_jitter(aes(color = SMRIN))
 
 ```
 
@@ -558,14 +558,12 @@ Currently, we have "results" with gene symbols as the row names and "results2" h
 ```{r wrangle11a, appendix = TRUE, echo = T, eval = F}
 
 results %>% mutate(Approved.symbol = row.names(.))  
-results2 %>% rename(Approved.symbol = X)   
 
 ```
 
 ```{r wrangle11b, appendix = FALSE, echo = F, eval = T}
 
 results %>% mutate(Approved.symbol = row.names(.)) %>% as_tibble()
-results2 %>% rename(Approved.symbol = X)  %>% as_tibble()
 
 ```
 
@@ -744,24 +742,20 @@ In this section, we will combine tidying, transforming, and visualizing to answe
 head(rownames(colData) == colnames(counts))
 head(colnames(counts))
 head(rownames(colData))
-head(colData$X)
 
 ```
 
 ```{r question2b, appendix = TRUE}
 
 colData_tidy <-  colData %>%
-  mutate(X = gsub("-", ".", X))  %>%
-  filter(gtex.age %in% c("20-29", "70-79")) %>%
-  mutate(gtex.age = factor(gtex.age))
-rownames(colData_tidy) <- colData_tidy$X
+  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
+  filter(AGE %in% c("20-29", "70-79")) 
+rownames(colData_tidy) <- colData_tidy$SAMPID
 
-head(rownames(colData_tidy) == colnames(counts))
-
-mycols <- colData_tidy %>% dplyr::pull(X)
+mycols <- colData_tidy %>% dplyr::pull(SAMPID)
 
 counts_tidy <- counts %>%
-  select(all_of(mycols))
+  select(mycols)
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
@@ -776,22 +770,22 @@ counts_tidy_long <- counts %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
            sep = "\\.") %>%
   filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
-  pivot_longer(cols = all_of(mycols), names_to = "X", 
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "X") %>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
   arrange(desc(counts)) %>%
   inner_join(., genes, by = "Ensembl.gene.ID") %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
-         gtex.smcenter)
+         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
 head(counts_tidy_long)
 
 ```
 
 ```{r boxplot2, appendix = TRUE}
+library(scales)
 
 counts_tidy_long %>%
-  ggplot(aes(x = gtex.age, y = counts)) +
+  ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +

@@ -63,27 +63,28 @@ Get data from GTEx portal <https://gtexportal.org/home/>
              SAMPID2 = SAMPID) %>%
       separate(SAMPID2, into = c("one", "two"), sep = "-") %>%
       mutate(SUBJID = paste(one, two, sep = "-")) %>%
-      select(SUBJID, SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) 
+      select(SUBJID, SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) %>%
+      right_join(subjects, ., by = "SUBJID")
 
     ## Warning: Expected 2 pieces. Additional pieces discarded in 1484 rows [1, 2, 3,
     ## 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
 
-    tail(samples2)
+    head(samples2)
 
-    ##          SUBJID                   SAMPID            SMTS SMNABTCH  SMNABTCHD
-    ## 1479 GTEX-145ME GTEX-145ME-0926-SM-5O9AR Small Intestine BP-47675 2013-12-19
-    ## 1480 GTEX-145ME GTEX-145ME-1026-SM-5O9B4         Stomach BP-47675 2013-12-19
-    ## 1481 GTEX-145ME GTEX-145ME-1126-SM-5SIAT           Colon BP-47616 2013-12-18
-    ## 1482 GTEX-145ME GTEX-145ME-1226-SM-5SIB6           Ovary BP-47616 2013-12-18
-    ## 1483 GTEX-145ME GTEX-145ME-1326-SM-5O98Q          Uterus BP-47675 2013-12-19
-    ## 1484 GTEX-145ME GTEX-145ME-1426-SM-5RQJS          Vagina BP-48437 2014-01-17
-    ##      SMGEBTCHT SMAFRZE SMCENTER SMRIN SMATSSCR
-    ## 1479 TruSeq.v1  RNASEQ       B1   7.4        1
-    ## 1480 TruSeq.v1  RNASEQ       B1   7.4        1
-    ## 1481 TruSeq.v1  RNASEQ       B1   6.9        1
-    ## 1482 TruSeq.v1  RNASEQ       B1   7.3        1
-    ## 1483 TruSeq.v1  RNASEQ       B1   8.5        1
-    ## 1484 TruSeq.v1  RNASEQ       B1   7.2        1
+    ##       SUBJID    SEX   AGE    DTHHRDY                   SAMPID           SMTS
+    ## 1 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0226-SM-5GZZ7 Adipose Tissue
+    ## 2 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0426-SM-5EGHI         Muscle
+    ## 3 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0526-SM-5EGHJ   Blood Vessel
+    ## 4 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0626-SM-5N9CS   Blood Vessel
+    ## 5 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0726-SM-5GIEN          Heart
+    ## 6 GTEX-1117F Female 60-69 Slow death GTEX-1117F-1326-SM-5EGHH Adipose Tissue
+    ##   SMNABTCH  SMNABTCHD SMGEBTCHT SMAFRZE SMCENTER SMRIN SMATSSCR
+    ## 1 BP-43693 2013-09-17 TruSeq.v1  RNASEQ       B1   6.8        0
+    ## 2 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   7.1        0
+    ## 3 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   8.0        0
+    ## 4 BP-43956 2013-09-25 TruSeq.v1  RNASEQ       B1   6.9        1
+    ## 5 BP-44261 2013-10-03 TruSeq.v1  RNASEQ       B1   6.3        1
+    ## 6 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   5.9        1
 
     ggplot(subjects, aes(x = SEX)) +
       geom_bar(stat = "count")

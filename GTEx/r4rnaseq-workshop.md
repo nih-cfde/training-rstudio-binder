@@ -1,6 +1,3 @@
-r4rnaseq-workshop
-================
-Rayna M Harris
 
 # Introduction to R for RNA-Seq Workshop
 
@@ -52,6 +49,15 @@ In this workshop, you will learn how to use R and RStudio to:
 -   join data frames by common variables (harmonize)
 -   visualize data using bar graphs, scatter plots, and box plots
 
+You will produce graphs and tables to answer the of the following
+motivating questions?
+
+-   How many RNA-sequencing samples are in the GTEx project?
+-   Do you have enough samples to test the effects of sex, age, hardy
+    scale, and their interactions for all tissues?
+-   What is the effect of age on gene expression in the heart?
+-   How is my gene of interest affected by age in the heart and muscle?
+
 :::
 
 ## Introduction
@@ -82,30 +88,13 @@ tissue-specific gene expression and regulation. Samples were collected
 from 54 non-diseased tissue sites across nearly 1000 individuals,
 primarily for molecular assays including WGS, WES, and RNA-Seq.
 
-Click
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)
-to generate a computing environment for this workshop.
-
-By the end of today’s workshop, you create tables and plots like the
-ones below that give an overview of the samples collected and the
-variables that can be used for differential gene expression analysis.
-More importantly, you will learn the basics of importing, tidying,
-transforming, and visualizing data, which are the key component of an R
-workflow.
-
-### Some motivating questions and graphs
-
--   How many RNA-sequencing samples are in the GTEx project?
--   Do you have enough samples to test the effects of sex, age, hardy
-    scale, and their interactions for all tissues?
--   What is the effect of age on gene expression in the heart?
--   How is my gene of interest affected by age in the heart and muscle?
-
 ![](https://hackmd.io/_uploads/SJSIB76b9.png =300x)
 ![](https://hackmd.io/_uploads/Sk6IrQaZc.png =300x)
 
 ![](https://hackmd.io/_uploads/r1mwBQaW5.png =300x)
 ![](https://hackmd.io/_uploads/HJ5BrXp-c.png =300x)
+
+![](https://i.imgur.com/zzHnqmH.png)
 
 ### Getting Started
 
@@ -122,34 +111,27 @@ workflow.
     will type most commands for today’s lesson here and click “Run” to
     send them to the console.
 
-### R packages
+### Loading R packages
 
+Many of the functions we will use are pre-installed. The
 [**Tidyverse**](https://www.tidyverse.org/) is a collection of R
 packages that include functions, data, and documentation that provide
-more tools and capabilities when using R. There are many packages for R,
-but we are using this set because the packages are designed to work well
-together -and they are especially useful (and popular!) for doing data
-science.
-
-You can install the complete tidyverse with a single line of code:
-`install.packages("tidyverse")`, or you can install packages
-individually (e.g. `install.packages("ggplot2")`). It is a good idea to
-“comment out” this line of code by adding a `#` at the beginning so that
-you don’t re-install the package every time you run the script. For this
-workshop, the packages listed in the `.binder/environment.yml` file were
-pre-installed with Conda. For some reason, the tidyverse package doesn’t
-always install properly, so we installed each package individually.
+more tools and capabilities when using R. You can install packages like
+`ggplot2` with the command `install.packages("ggplot2")`). It is a good
+idea to “comment out” this line of code by adding a `#` at the beginning
+so that you don’t re-install the package every time you run the script.
+For this workshop, the packages listed in the `.binder/environment.yml`
+file were pre-installed with Conda. For some reason, the tidyverse
+package doesn’t always install properly, so we installed each package
+individually.
 
 ``` r
-#install.packages("tidyverse")
 #install.packages("ggplot2")
-#install.packages("tidyr")
 ```
 
 After installing packages, we need to load the functions and tools we
 want to use from the package with the `library()` command. Let’s load
-the following packages: `ggplot2, tidyr, dplyr, readr, and tibble` by
-copying and pasting or typing these commands into your new script.
+the `ggplot2` package which is a popular tool for data visualization.
 
 ``` r
 library(ggplot2)
@@ -186,7 +168,7 @@ description of the package and its functions.
 
 :::
 
-## Import
+## Importing and viewing data
 
 Data can be imported using packages from base R or the tidyverse. What
 are some differences between the data objects imported by base R
@@ -200,7 +182,7 @@ objects with sample name information.
 
 Today, I will show you how to import the following files:
 
-1.  data/GTExPortal.csv
+1.  data/samples.csv
 2.  data/GTExHeart_20-29_vs_70-79.tsv
 3.  data/colData.HEART.csv
 4.  data/countData.HEART.csv.gz
@@ -216,46 +198,92 @@ the samples in the GTEx portal. Let’s import this file using
 `read.csv()`.
 
 ``` r
-samples <- read.csv("./data/GTExPortal.csv")
+samples <- read.csv("./data/samples.csv")
 ```
 
 After importing a file, there are multiple ways to view the data.
 `head()` to view the first few lines of each file. `names()` will print
-just the column names.
+just the column names. `str` will compactly displaying the internal
+structure. `summary` will compute statistics.
 
 ``` r
 head(samples)
 ```
 
-    ##   Tissue.Sample.ID                         Tissue Subject.ID    Sex Age.Bracket
-    ## 1  GTEX-1117F-0126 Skin - Sun Exposed (Lower leg) GTEX-1117F female       60-69
-    ## 2  GTEX-1117F-0226         Adipose - Subcutaneous GTEX-1117F female       60-69
-    ## 3  GTEX-1117F-0326                 Nerve - Tibial GTEX-1117F female       60-69
-    ## 4  GTEX-1117F-0426              Muscle - Skeletal GTEX-1117F female       60-69
-    ## 5  GTEX-1117F-0526                Artery - Tibial GTEX-1117F female       60-69
-    ## 6  GTEX-1117F-0626              Artery - Coronary GTEX-1117F female       60-69
-    ##   Hardy.Scale  Pathology.Categories
-    ## 1  Slow death                      
-    ## 2  Slow death                      
-    ## 3  Slow death       clean_specimens
-    ## 4  Slow death                      
-    ## 5  Slow death monckeberg, sclerotic
-    ## 6  Slow death                      
-    ##                                                Pathology.Notes
-    ## 1 6 pieces, minimal fat, squamous epithelium is ~50-70 microns
-    ## 2                 2 pieces, ~15% vessel stroma, rep delineated
-    ## 3                                    2 pieces, clean specimens
-    ## 4    2 pieces, !5% fibrous connective tissue, delineated (rep)
-    ## 5  2 pieces, clean, Monckebeg medial sclerosis, rep delineated
-    ## 6     2 pieces, up to 4mm aderent fat/nerve/vessel, delineated
+    ##       SUBJID    SEX   AGE    DTHHRDY                   SAMPID           SMTS
+    ## 1 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0226-SM-5GZZ7 Adipose Tissue
+    ## 2 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0426-SM-5EGHI         Muscle
+    ## 3 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0526-SM-5EGHJ   Blood Vessel
+    ## 4 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0626-SM-5N9CS   Blood Vessel
+    ## 5 GTEX-1117F Female 60-69 Slow death GTEX-1117F-0726-SM-5GIEN          Heart
+    ## 6 GTEX-1117F Female 60-69 Slow death GTEX-1117F-1326-SM-5EGHH Adipose Tissue
+    ##   SMNABTCH  SMNABTCHD SMGEBTCHT SMAFRZE SMCENTER SMRIN SMATSSCR
+    ## 1 BP-43693 2013-09-17 TruSeq.v1  RNASEQ       B1   6.8        0
+    ## 2 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   7.1        0
+    ## 3 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   8.0        0
+    ## 4 BP-43956 2013-09-25 TruSeq.v1  RNASEQ       B1   6.9        1
+    ## 5 BP-44261 2013-10-03 TruSeq.v1  RNASEQ       B1   6.3        1
+    ## 6 BP-43495 2013-09-12 TruSeq.v1  RNASEQ       B1   5.9        1
 
 ``` r
 names(samples)
 ```
 
-    ## [1] "Tissue.Sample.ID"     "Tissue"               "Subject.ID"          
-    ## [4] "Sex"                  "Age.Bracket"          "Hardy.Scale"         
-    ## [7] "Pathology.Categories" "Pathology.Notes"
+    ##  [1] "SUBJID"    "SEX"       "AGE"       "DTHHRDY"   "SAMPID"    "SMTS"     
+    ##  [7] "SMNABTCH"  "SMNABTCHD" "SMGEBTCHT" "SMAFRZE"   "SMCENTER"  "SMRIN"    
+    ## [13] "SMATSSCR"
+
+``` r
+str(samples)
+```
+
+    ## 'data.frame':    1484 obs. of  13 variables:
+    ##  $ SUBJID   : chr  "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" ...
+    ##  $ SEX      : chr  "Female" "Female" "Female" "Female" ...
+    ##  $ AGE      : chr  "60-69" "60-69" "60-69" "60-69" ...
+    ##  $ DTHHRDY  : chr  "Slow death" "Slow death" "Slow death" "Slow death" ...
+    ##  $ SAMPID   : chr  "GTEX-1117F-0226-SM-5GZZ7" "GTEX-1117F-0426-SM-5EGHI" "GTEX-1117F-0526-SM-5EGHJ" "GTEX-1117F-0626-SM-5N9CS" ...
+    ##  $ SMTS     : chr  "Adipose Tissue" "Muscle" "Blood Vessel" "Blood Vessel" ...
+    ##  $ SMNABTCH : chr  "BP-43693" "BP-43495" "BP-43495" "BP-43956" ...
+    ##  $ SMNABTCHD: chr  "2013-09-17" "2013-09-12" "2013-09-12" "2013-09-25" ...
+    ##  $ SMGEBTCHT: chr  "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" ...
+    ##  $ SMAFRZE  : chr  "RNASEQ" "RNASEQ" "RNASEQ" "RNASEQ" ...
+    ##  $ SMCENTER : chr  "B1" "B1" "B1" "B1" ...
+    ##  $ SMRIN    : num  6.8 7.1 8 6.9 6.3 5.9 6.6 6.3 6.5 5.8 ...
+    ##  $ SMATSSCR : int  0 0 0 1 1 1 1 1 2 1 ...
+
+``` r
+summary(samples)
+```
+
+    ##     SUBJID              SEX                AGE              DTHHRDY         
+    ##  Length:1484        Length:1484        Length:1484        Length:1484       
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##     SAMPID              SMTS             SMNABTCH          SMNABTCHD        
+    ##  Length:1484        Length:1484        Length:1484        Length:1484       
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##   SMGEBTCHT           SMAFRZE            SMCENTER             SMRIN       
+    ##  Length:1484        Length:1484        Length:1484        Min.   : 3.200  
+    ##  Class :character   Class :character   Class :character   1st Qu.: 6.300  
+    ##  Mode  :character   Mode  :character   Mode  :character   Median : 7.000  
+    ##                                                           Mean   : 7.061  
+    ##                                                           3rd Qu.: 7.700  
+    ##                                                           Max.   :10.000  
+    ##     SMATSSCR     
+    ##  Min.   :0.0000  
+    ##  1st Qu.:0.0000  
+    ##  Median :1.0000  
+    ##  Mean   :0.8491  
+    ##  3rd Qu.:1.0000  
+    ##  Max.   :3.0000
 
 Very large tabular files are often saved as .tsv files. These can be
 imported with `read.table()` or `read_tsv()`. You can also specify the
@@ -294,48 +322,6 @@ head(results2)
     ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
     ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
-I find it helpful to import a table of gene names and symbols that can
-be merged with other tables with gene information or searched for useful
-information. This table of gene names was downloaded from
-<https://www.genenames.org/download/custom/>.
-
-In this case, we use `fill = T` to fill missing fields with a NULL
-value.
-
-``` r
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-```
-
-    ##      HGNC.ID Approved.symbol
-    ## 1     HGNC:5            A1BG
-    ## 2 HGNC:37133        A1BG-AS1
-    ## 3 HGNC:24086            A1CF
-    ## 4     HGNC:6           A1S9T
-    ## 5     HGNC:7             A2M
-    ## 6 HGNC:27057         A2M-AS1
-    ##                                                  Approved.name Chromosome
-    ## 1                                       alpha-1-B glycoprotein   19q13.43
-    ## 2                                         A1BG antisense RNA 1   19q13.43
-    ## 3                               APOBEC1 complementation factor   10q11.23
-    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
-    ## 5                                        alpha-2-macroglobulin   12p13.31
-    ## 6                                          A2M antisense RNA 1   12p13.31
-    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
-    ## 1                                     1 ENSG00000121410
-    ## 2                 BC040926       503538 ENSG00000268895
-    ## 3                 AF271790        29974 ENSG00000148584
-    ## 4                                    NA                
-    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
-    ## 6                                144571 ENSG00000245105
-    ##   Mouse.genome.database.ID
-    ## 1              MGI:2152878
-    ## 2                         
-    ## 3              MGI:1917115
-    ## 4                         
-    ## 5              MGI:2449119
-    ## 6
-
 :::warning
 
 #### Using the Terminal to uncompress files
@@ -366,27 +352,27 @@ dim(counts)
 head(counts)[1:5]
 ```
 
-    ##                   GTEX.12ZZX.0726.SM.5EGKA.1 GTEX.13D11.1526.SM.5J2NA.1
-    ## ENSG00000278704.1                          0                          0
-    ## ENSG00000277400.1                          0                          0
-    ## ENSG00000274847.1                          0                          0
-    ## ENSG00000277428.1                          0                          0
-    ## ENSG00000276256.1                          0                          0
-    ## ENSG00000278198.1                          0                          0
-    ##                   GTEX.ZAJG.0826.SM.5PNVA.1 GTEX.11TT1.1426.SM.5EGIA.1
-    ## ENSG00000278704.1                         0                          0
-    ## ENSG00000277400.1                         0                          0
-    ## ENSG00000274847.1                         0                          0
-    ## ENSG00000277428.1                         0                          0
-    ## ENSG00000276256.1                         0                          0
-    ## ENSG00000278198.1                         0                          0
-    ##                   GTEX.13VXT.1126.SM.5LU3A.1
-    ## ENSG00000278704.1                          0
-    ## ENSG00000277400.1                          0
-    ## ENSG00000274847.1                          0
-    ## ENSG00000277428.1                          0
-    ## ENSG00000276256.1                          0
-    ## ENSG00000278198.1                          0
+    ##                 GTEX.12ZZX.0726.SM.5EGKA GTEX.13D11.1526.SM.5J2NA
+    ## ENSG00000278704                        0                        0
+    ## ENSG00000277400                        0                        0
+    ## ENSG00000274847                        0                        0
+    ## ENSG00000277428                        0                        0
+    ## ENSG00000276256                        0                        0
+    ## ENSG00000278198                        0                        0
+    ##                 GTEX.ZAJG.0826.SM.5PNVA GTEX.11TT1.1426.SM.5EGIA
+    ## ENSG00000278704                       0                        0
+    ## ENSG00000277400                       0                        0
+    ## ENSG00000274847                       0                        0
+    ## ENSG00000277428                       0                        0
+    ## ENSG00000276256                       0                        0
+    ## ENSG00000278198                       0                        0
+    ##                 GTEX.13VXT.1126.SM.5LU3A
+    ## ENSG00000278704                        0
+    ## ENSG00000277400                        0
+    ## ENSG00000274847                        0
+    ## ENSG00000277428                        0
+    ## ENSG00000276256                        0
+    ## ENSG00000278198                        0
 
 This “countData” was generated by using `recount3` as described in the
 file `scripts/recount3.Rmd`. It comes from a Ranged Summarized
@@ -398,59 +384,31 @@ subtle differences in formatting Let’s read the colData file for the
 heart samples.
 
 ``` r
-colData <- read.csv("./data/colData.HEART.csv")
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
 head(colData)
 ```
 
-    ##                            X                external_id
-    ## 1 GTEX-12ZZX-0726-SM-5EGKA.1 GTEX-12ZZX-0726-SM-5EGKA.1
-    ## 2 GTEX-13D11-1526-SM-5J2NA.1 GTEX-13D11-1526-SM-5J2NA.1
-    ## 3  GTEX-ZAJG-0826-SM-5PNVA.1  GTEX-ZAJG-0826-SM-5PNVA.1
-    ## 4 GTEX-11TT1-1426-SM-5EGIA.1 GTEX-11TT1-1426-SM-5EGIA.1
-    ## 5 GTEX-13VXT-1126-SM-5LU3A.1 GTEX-13VXT-1126-SM-5LU3A.1
-    ## 6 GTEX-14ASI-0826-SM-5Q5EB.1 GTEX-14ASI-0826-SM-5Q5EB.1
-    ##                 gtex.smtsd study gtex.smts gtex.subjid              gtex.sampid
-    ## 1 Heart - Atrial Appendage HEART     Heart  GTEX-12ZZX GTEX-12ZZX-0726-SM-5EGKA
-    ## 2 Heart - Atrial Appendage HEART     Heart  GTEX-13D11 GTEX-13D11-1526-SM-5J2NA
-    ## 3   Heart - Left Ventricle HEART     Heart   GTEX-ZAJG  GTEX-ZAJG-0826-SM-5PNVA
-    ## 4 Heart - Atrial Appendage HEART     Heart  GTEX-11TT1 GTEX-11TT1-1426-SM-5EGIA
-    ## 5   Heart - Left Ventricle HEART     Heart  GTEX-13VXT GTEX-13VXT-1126-SM-5LU3A
-    ## 6 Heart - Atrial Appendage HEART     Heart  GTEX-14ASI GTEX-14ASI-0826-SM-5Q5EB
-    ##   gtex.run_acc gtex.sex gtex.age gtex.dthhrdy gtex.smrin gtex.smcenter
-    ## 1   SRR1340617        2    40-49            1        7.1            C1
-    ## 2   SRR1345436        2    50-59            0        8.9            B1
-    ## 3   SRR1367456        2    50-59            3        6.4            C1
-    ## 4   SRR1378243        1    20-29            0        9.0            B1
-    ## 5   SRR1381693        2    20-29            0        8.6            B1
-    ## 6   SRR1335164        1    60-69            2        6.4            C1
-    ##                                                          gtex.smpthnts
-    ## 1             2 pieces, adherent/interstitial fat is ~40% of specimens
-    ## 2                     2 pieces, no abnormalities, ~25% fat, delineated
-    ## 3 2 pieces, mild-moderate interstitial fibrosis, mild ischemic changes
-    ## 4                                       2 pieces, one piece is 40% fat
-    ## 5                          2 pieces; 1 piece contains 30% external fat
-    ## 6                                                             2 pieces
-    ##   gtex.smnabtchd recount_qc.aligned_reads..chrm recount_qc.aligned_reads..chrx
-    ## 1     10/22/2013                          21.68                           1.95
-    ## 2     12/04/2013                          22.77                           1.82
-    ## 3     10/31/2013                          27.67                           1.76
-    ## 4     10/24/2013                          23.99                           1.98
-    ## 5     12/17/2013                          33.66                           1.52
-    ## 6     01/17/2014                          15.45                           1.99
-    ##   recount_qc.aligned_reads..chry recount_qc.bc_auc.all_reads_all_bases
-    ## 1                           0.00                            5121146510
-    ## 2                           0.00                            6606164884
-    ## 3                           0.01                            5307211837
-    ## 4                           0.05                            4433076550
-    ## 5                           0.00                            7188560773
-    ## 6                           0.08                            7130421400
-    ##         Date
-    ## 1 2013-10-22
-    ## 2 2013-12-04
-    ## 3 2013-10-31
-    ## 4 2013-10-24
-    ## 5 2013-12-17
-    ## 6 2014-01-17
+    ##                                            SAMPID  SMTS
+    ## GTEX-12ZZX-0726-SM-5EGKA GTEX-12ZZX-0726-SM-5EGKA Heart
+    ## GTEX-13D11-1526-SM-5J2NA GTEX-13D11-1526-SM-5J2NA Heart
+    ## GTEX-ZAJG-0826-SM-5PNVA   GTEX-ZAJG-0826-SM-5PNVA Heart
+    ## GTEX-11TT1-1426-SM-5EGIA GTEX-11TT1-1426-SM-5EGIA Heart
+    ## GTEX-13VXT-1126-SM-5LU3A GTEX-13VXT-1126-SM-5LU3A Heart
+    ## GTEX-14ASI-0826-SM-5Q5EB GTEX-14ASI-0826-SM-5Q5EB Heart
+    ##                                             SMTSD     SUBJID    SEX   AGE SMRIN
+    ## GTEX-12ZZX-0726-SM-5EGKA Heart - Atrial Appendage GTEX-12ZZX Female 40-49   7.1
+    ## GTEX-13D11-1526-SM-5J2NA Heart - Atrial Appendage GTEX-13D11 Female 50-59   8.9
+    ## GTEX-ZAJG-0826-SM-5PNVA    Heart - Left Ventricle  GTEX-ZAJG Female 50-59   6.4
+    ## GTEX-11TT1-1426-SM-5EGIA Heart - Atrial Appendage GTEX-11TT1   Male 20-29   9.0
+    ## GTEX-13VXT-1126-SM-5LU3A   Heart - Left Ventricle GTEX-13VXT Female 20-29   8.6
+    ## GTEX-14ASI-0826-SM-5Q5EB Heart - Atrial Appendage GTEX-14ASI   Male 60-69   6.4
+    ##                                               DTHHRDY        SRA       DATE
+    ## GTEX-12ZZX-0726-SM-5EGKA       Violent and fast death SRR1340617 2013-10-22
+    ## GTEX-13D11-1526-SM-5J2NA              Ventilator Case SRR1345436 2013-12-04
+    ## GTEX-ZAJG-0826-SM-5PNVA            Intermediate death SRR1367456 2013-10-31
+    ## GTEX-11TT1-1426-SM-5EGIA              Ventilator Case SRR1378243 2013-10-24
+    ## GTEX-13VXT-1126-SM-5LU3A              Ventilator Case SRR1381693 2013-12-17
+    ## GTEX-14ASI-0826-SM-5Q5EB Fast death of natural causes SRR1335164 2014-01-17
 
 :::warning
 
@@ -489,212 +447,157 @@ length(row.names(counts))
 
     ## [1] 63856
 
-How many genes are in this version of the human transcriptome? Over
-15,000.
-
-``` r
-dim(genes)
-```
-
-    ## [1] 15659     8
-
-``` r
-length(genes$Approved.symbol)
-```
-
-    ## [1] 15659
-
-How many samples are there in the GTEx portal (as of this version)? Over
-25,000!
+How many samples do we have? Over 1400!
 
 ``` r
 dim(samples)
 ```
 
-    ## [1] 25713     8
+    ## [1] 1484   13
 
 ``` r
-length(samples$Tissue.Sample.ID)
+length(samples$SMTS)
 ```
 
-    ## [1] 25713
+    ## [1] 1484
 
 How many samples are there per tissue?
 
 ``` r
-dplyr::count(samples, Tissue) 
+dplyr::count(samples, SMTS) 
 ```
 
-    ##                                   Tissue    n
-    ## 1                 Adipose - Subcutaneous  978
-    ## 2           Adipose - Visceral (Omentum)  815
-    ## 3                          Adrenal Gland  717
-    ## 4                         Artery - Aorta  858
-    ## 5                      Artery - Coronary  662
-    ## 6                        Artery - Tibial  979
-    ## 7                                Bladder  130
-    ## 8                     Brain - Cerebellum  426
-    ## 9                         Brain - Cortex  428
-    ## 10               Breast - Mammary Tissue  894
-    ## 11                   Cervix - Ectocervix   38
-    ## 12                   Cervix - Endocervix   42
-    ## 13                       Colon - Sigmoid  800
-    ## 14                    Colon - Transverse  937
-    ## 15 Esophagus - Gastroesophageal Junction  787
-    ## 16                    Esophagus - Mucosa  963
-    ## 17                Esophagus - Muscularis  958
-    ## 18                        Fallopian Tube   43
-    ## 19              Heart - Atrial Appendage  614
-    ## 20                Heart - Left Ventricle  761
-    ## 21                       Kidney - Cortex  557
-    ## 22                      Kidney - Medulla   49
-    ## 23                                 Liver  610
-    ## 24                                  Lung  860
-    ## 25                  Minor Salivary Gland  247
-    ## 26                     Muscle - Skeletal 1001
-    ## 27                        Nerve - Tibial  975
-    ## 28                                 Ovary  255
-    ## 29                              Pancreas  865
-    ## 30                             Pituitary  428
-    ## 31                              Prostate  599
-    ## 32   Skin - Not Sun Exposed (Suprapubic)  818
-    ## 33        Skin - Sun Exposed (Lower leg) 1001
-    ## 34      Small Intestine - Terminal Ileum  798
-    ## 35                                Spleen  874
-    ## 36                               Stomach  939
-    ## 37                                Testis  592
-    ## 38                               Thyroid  902
-    ## 39                                Uterus  237
-    ## 40                                Vagina  276
+    ##               SMTS   n
+    ## 1   Adipose Tissue 133
+    ## 2    Adrenal Gland  20
+    ## 3     Blood Vessel 138
+    ## 4            Brain  75
+    ## 5           Breast  50
+    ## 6            Colon  77
+    ## 7        Esophagus 143
+    ## 8            Heart  99
+    ## 9           Kidney   6
+    ## 10           Liver  28
+    ## 11            Lung  67
+    ## 12          Muscle  96
+    ## 13           Nerve  70
+    ## 14           Ovary  16
+    ## 15        Pancreas  30
+    ## 16       Pituitary  37
+    ## 17        Prostate  24
+    ## 18  Salivary Gland  22
+    ## 19            Skin 155
+    ## 20 Small Intestine  23
+    ## 21          Spleen  16
+    ## 22         Stomach  29
+    ## 23          Testis  37
+    ## 24         Thyroid  68
+    ## 25          Uterus  14
+    ## 26          Vagina  11
 
 How many samples are there per tissue and sex? Can we test the effect of
 sex on gene expression in all tissues? For many samples, yes, but not
 all tissues were samples from both males and females.
 
 ``` r
-dplyr::count(samples, Tissue, Sex) 
+dplyr::count(samples, SMTS, SEX) 
 ```
 
-    ##                                   Tissue    Sex   n
-    ## 1                 Adipose - Subcutaneous female 325
-    ## 2                 Adipose - Subcutaneous   male 653
-    ## 3           Adipose - Visceral (Omentum) female 269
-    ## 4           Adipose - Visceral (Omentum)   male 546
-    ## 5                          Adrenal Gland female 232
-    ## 6                          Adrenal Gland   male 485
-    ## 7                         Artery - Aorta female 281
-    ## 8                         Artery - Aorta   male 577
-    ## 9                      Artery - Coronary female 227
-    ## 10                     Artery - Coronary   male 435
-    ## 11                       Artery - Tibial female 324
-    ## 12                       Artery - Tibial   male 655
-    ## 13                               Bladder female  51
-    ## 14                               Bladder   male  79
-    ## 15                    Brain - Cerebellum female 121
-    ## 16                    Brain - Cerebellum   male 305
-    ## 17                        Brain - Cortex female 121
-    ## 18                        Brain - Cortex   male 307
-    ## 19               Breast - Mammary Tissue female 306
-    ## 20               Breast - Mammary Tissue   male 588
-    ## 21                   Cervix - Ectocervix female  38
-    ## 22                   Cervix - Endocervix female  42
-    ## 23                       Colon - Sigmoid female 261
-    ## 24                       Colon - Sigmoid   male 539
-    ## 25                    Colon - Transverse female 313
-    ## 26                    Colon - Transverse   male 624
-    ## 27 Esophagus - Gastroesophageal Junction female 256
-    ## 28 Esophagus - Gastroesophageal Junction   male 531
-    ## 29                    Esophagus - Mucosa female 327
-    ## 30                    Esophagus - Mucosa   male 636
-    ## 31                Esophagus - Muscularis female 325
-    ## 32                Esophagus - Muscularis   male 633
-    ## 33                        Fallopian Tube female  43
-    ## 34              Heart - Atrial Appendage female 198
-    ## 35              Heart - Atrial Appendage   male 416
-    ## 36                Heart - Left Ventricle female 252
-    ## 37                Heart - Left Ventricle   male 509
-    ## 38                       Kidney - Cortex female 167
-    ## 39                       Kidney - Cortex   male 390
-    ## 40                      Kidney - Medulla female  16
-    ## 41                      Kidney - Medulla   male  33
-    ## 42                                 Liver female 192
-    ## 43                                 Liver   male 418
-    ## 44                                  Lung female 282
-    ## 45                                  Lung   male 578
-    ## 46                  Minor Salivary Gland female  74
-    ## 47                  Minor Salivary Gland   male 173
-    ## 48                     Muscle - Skeletal female 335
-    ## 49                     Muscle - Skeletal   male 666
-    ## 50                        Nerve - Tibial female 325
-    ## 51                        Nerve - Tibial   male 650
-    ## 52                                 Ovary female 255
-    ## 53                              Pancreas female 287
-    ## 54                              Pancreas   male 578
-    ## 55                             Pituitary female 121
-    ## 56                             Pituitary   male 307
-    ## 57                              Prostate   male 599
-    ## 58   Skin - Not Sun Exposed (Suprapubic) female 267
-    ## 59   Skin - Not Sun Exposed (Suprapubic)   male 551
-    ## 60        Skin - Sun Exposed (Lower leg) female 335
-    ## 61        Skin - Sun Exposed (Lower leg)   male 666
-    ## 62      Small Intestine - Terminal Ileum female 261
-    ## 63      Small Intestine - Terminal Ileum   male 537
-    ## 64                                Spleen female 289
-    ## 65                                Spleen   male 585
-    ## 66                               Stomach female 317
-    ## 67                               Stomach   male 622
-    ## 68                                Testis   male 592
-    ## 69                               Thyroid female 308
-    ## 70                               Thyroid   male 594
-    ## 71                                Uterus female 237
-    ## 72                                Vagina female 276
+    ##               SMTS    SEX   n
+    ## 1   Adipose Tissue Female  40
+    ## 2   Adipose Tissue   Male  93
+    ## 3    Adrenal Gland Female   7
+    ## 4    Adrenal Gland   Male  13
+    ## 5     Blood Vessel Female  48
+    ## 6     Blood Vessel   Male  90
+    ## 7            Brain Female  23
+    ## 8            Brain   Male  52
+    ## 9           Breast Female  16
+    ## 10          Breast   Male  34
+    ## 11           Colon Female  25
+    ## 12           Colon   Male  52
+    ## 13       Esophagus Female  37
+    ## 14       Esophagus   Male 106
+    ## 15           Heart Female  30
+    ## 16           Heart   Male  69
+    ## 17          Kidney Female   1
+    ## 18          Kidney   Male   5
+    ## 19           Liver Female   4
+    ## 20           Liver   Male  24
+    ## 21            Lung Female  20
+    ## 22            Lung   Male  47
+    ## 23          Muscle Female  25
+    ## 24          Muscle   Male  71
+    ## 25           Nerve Female  19
+    ## 26           Nerve   Male  51
+    ## 27           Ovary Female  16
+    ## 28        Pancreas Female  12
+    ## 29        Pancreas   Male  18
+    ## 30       Pituitary Female  10
+    ## 31       Pituitary   Male  27
+    ## 32        Prostate   Male  24
+    ## 33  Salivary Gland Female   5
+    ## 34  Salivary Gland   Male  17
+    ## 35            Skin Female  47
+    ## 36            Skin   Male 108
+    ## 37 Small Intestine Female   8
+    ## 38 Small Intestine   Male  15
+    ## 39          Spleen Female   8
+    ## 40          Spleen   Male   8
+    ## 41         Stomach Female   9
+    ## 42         Stomach   Male  20
+    ## 43          Testis   Male  37
+    ## 44         Thyroid Female  17
+    ## 45         Thyroid   Male  51
+    ## 46          Uterus Female  14
+    ## 47          Vagina Female  11
 
 How many samples are there per sex, age, and hardy scale in the HEART
 tissues? Do you have enough samples to test the effects of Sex, Age, and
 Hardy Scale in the Heart?
 
 *Note: Let’s use the colData data frame for this since it is specific to
-Heart. Later we will talk about subsetting.*
+Heart. Later we will talk about sub-setting.*
 
 ``` r
 #names(colData)
-dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
 ```
 
-    ##    gtex.smts gtex.sex gtex.age gtex.dthhrdy  n
-    ## 1      Heart        1    20-29            0  2
-    ## 2      Heart        1    20-29            2  1
-    ## 3      Heart        1    30-39            0 12
-    ## 4      Heart        1    30-39            1  4
-    ## 5      Heart        1    40-49            0 15
-    ## 6      Heart        1    40-49            2  7
-    ## 7      Heart        1    40-49            3  2
-    ## 8      Heart        1    40-49            4  3
-    ## 9      Heart        1    50-59            0 32
-    ## 10     Heart        1    50-59            2 24
-    ## 11     Heart        1    50-59            3  5
-    ## 12     Heart        1    50-59            4  7
-    ## 13     Heart        1    60-69            0 18
-    ## 14     Heart        1    60-69            1  4
-    ## 15     Heart        1    60-69            2 36
-    ## 16     Heart        1    60-69            3 12
-    ## 17     Heart        1    60-69            4  9
-    ## 18     Heart        1    70-79            0  2
-    ## 19     Heart        1    70-79            2  3
-    ## 20     Heart        2    20-29            0  6
-    ## 21     Heart        2    30-39            0  3
-    ## 22     Heart        2    40-49            0 15
-    ## 23     Heart        2    40-49            1  3
-    ## 24     Heart        2    40-49            3  1
-    ## 25     Heart        2    50-59            0 27
-    ## 26     Heart        2    50-59            2  7
-    ## 27     Heart        2    50-59            3  4
-    ## 28     Heart        2    50-59            4  2
-    ## 29     Heart        2    60-69            0 24
-    ## 30     Heart        2    60-69            1  1
-    ## 31     Heart        2    60-69            2  9
-    ## 32     Heart        2    60-69            3  3
-    ## 33     Heart        2    60-69            4  3
+    ##     SMTS    SEX   AGE                      DTHHRDY  n
+    ## 1  Heart Female 20-29              Ventilator Case  6
+    ## 2  Heart Female 30-39              Ventilator Case  3
+    ## 3  Heart Female 40-49           Intermediate death  1
+    ## 4  Heart Female 40-49              Ventilator Case 15
+    ## 5  Heart Female 40-49       Violent and fast death  3
+    ## 6  Heart Female 50-59 Fast death of natural causes  7
+    ## 7  Heart Female 50-59           Intermediate death  4
+    ## 8  Heart Female 50-59                   Slow death  2
+    ## 9  Heart Female 50-59              Ventilator Case 27
+    ## 10 Heart Female 60-69 Fast death of natural causes  9
+    ## 11 Heart Female 60-69           Intermediate death  3
+    ## 12 Heart Female 60-69                   Slow death  3
+    ## 13 Heart Female 60-69              Ventilator Case 24
+    ## 14 Heart Female 60-69       Violent and fast death  1
+    ## 15 Heart   Male 20-29 Fast death of natural causes  1
+    ## 16 Heart   Male 20-29              Ventilator Case  2
+    ## 17 Heart   Male 30-39              Ventilator Case 12
+    ## 18 Heart   Male 30-39       Violent and fast death  4
+    ## 19 Heart   Male 40-49 Fast death of natural causes  7
+    ## 20 Heart   Male 40-49           Intermediate death  2
+    ## 21 Heart   Male 40-49                   Slow death  3
+    ## 22 Heart   Male 40-49              Ventilator Case 15
+    ## 23 Heart   Male 50-59 Fast death of natural causes 24
+    ## 24 Heart   Male 50-59           Intermediate death  5
+    ## 25 Heart   Male 50-59                   Slow death  7
+    ## 26 Heart   Male 50-59              Ventilator Case 32
+    ## 27 Heart   Male 60-69 Fast death of natural causes 36
+    ## 28 Heart   Male 60-69           Intermediate death 12
+    ## 29 Heart   Male 60-69                   Slow death  9
+    ## 30 Heart   Male 60-69              Ventilator Case 18
+    ## 31 Heart   Male 60-69       Violent and fast death  4
+    ## 32 Heart   Male 70-79 Fast death of natural causes  3
+    ## 33 Heart   Male 70-79              Ventilator Case  2
 
 :::warning
 
@@ -711,8 +614,8 @@ variable names.*
 
 :::spoiler
 
-df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, gtex.smts,
-gtex.sex, gtex.age) # 3 samples are in the female group age 30-39
+df \<- read.csv(“./data/colData.MUSCLE.csv”) dplyr::count(df, SMTS, SEX,
+AGE) # 3 samples are in the female group age 30-39
 
 :::
 
@@ -724,28 +627,53 @@ imported columns properly as integers, characters or factors.
 str(samples)
 ```
 
-    ## 'data.frame':    25713 obs. of  8 variables:
-    ##  $ Tissue.Sample.ID    : chr  "GTEX-1117F-0126" "GTEX-1117F-0226" "GTEX-1117F-0326" "GTEX-1117F-0426" ...
-    ##  $ Tissue              : chr  "Skin - Sun Exposed (Lower leg)" "Adipose - Subcutaneous" "Nerve - Tibial" "Muscle - Skeletal" ...
-    ##  $ Subject.ID          : chr  "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" ...
-    ##  $ Sex                 : chr  "female" "female" "female" "female" ...
-    ##  $ Age.Bracket         : chr  "60-69" "60-69" "60-69" "60-69" ...
-    ##  $ Hardy.Scale         : chr  "Slow death" "Slow death" "Slow death" "Slow death" ...
-    ##  $ Pathology.Categories: chr  "" "" "clean_specimens" "" ...
-    ##  $ Pathology.Notes     : chr  "6 pieces, minimal fat, squamous epithelium is ~50-70 microns" "2 pieces, ~15% vessel stroma, rep delineated" "2 pieces, clean specimens" "2 pieces, !5% fibrous connective tissue, delineated (rep)" ...
+    ## 'data.frame':    1484 obs. of  13 variables:
+    ##  $ SUBJID   : chr  "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" "GTEX-1117F" ...
+    ##  $ SEX      : chr  "Female" "Female" "Female" "Female" ...
+    ##  $ AGE      : chr  "60-69" "60-69" "60-69" "60-69" ...
+    ##  $ DTHHRDY  : chr  "Slow death" "Slow death" "Slow death" "Slow death" ...
+    ##  $ SAMPID   : chr  "GTEX-1117F-0226-SM-5GZZ7" "GTEX-1117F-0426-SM-5EGHI" "GTEX-1117F-0526-SM-5EGHJ" "GTEX-1117F-0626-SM-5N9CS" ...
+    ##  $ SMTS     : chr  "Adipose Tissue" "Muscle" "Blood Vessel" "Blood Vessel" ...
+    ##  $ SMNABTCH : chr  "BP-43693" "BP-43495" "BP-43495" "BP-43956" ...
+    ##  $ SMNABTCHD: chr  "2013-09-17" "2013-09-12" "2013-09-12" "2013-09-25" ...
+    ##  $ SMGEBTCHT: chr  "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" "TruSeq.v1" ...
+    ##  $ SMAFRZE  : chr  "RNASEQ" "RNASEQ" "RNASEQ" "RNASEQ" ...
+    ##  $ SMCENTER : chr  "B1" "B1" "B1" "B1" ...
+    ##  $ SMRIN    : num  6.8 7.1 8 6.9 6.3 5.9 6.6 6.3 6.5 5.8 ...
+    ##  $ SMATSSCR : int  0 0 0 1 1 1 1 1 2 1 ...
 
 ``` r
 summary(samples)
 ```
 
-    ##  Tissue.Sample.ID      Tissue           Subject.ID            Sex           
-    ##  Length:25713       Length:25713       Length:25713       Length:25713      
+    ##     SUBJID              SEX                AGE              DTHHRDY         
+    ##  Length:1484        Length:1484        Length:1484        Length:1484       
     ##  Class :character   Class :character   Class :character   Class :character  
     ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-    ##  Age.Bracket        Hardy.Scale        Pathology.Categories Pathology.Notes   
-    ##  Length:25713       Length:25713       Length:25713         Length:25713      
-    ##  Class :character   Class :character   Class :character     Class :character  
-    ##  Mode  :character   Mode  :character   Mode  :character     Mode  :character
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##     SAMPID              SMTS             SMNABTCH          SMNABTCHD        
+    ##  Length:1484        Length:1484        Length:1484        Length:1484       
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##   SMGEBTCHT           SMAFRZE            SMCENTER             SMRIN       
+    ##  Length:1484        Length:1484        Length:1484        Min.   : 3.200  
+    ##  Class :character   Class :character   Class :character   1st Qu.: 6.300  
+    ##  Mode  :character   Mode  :character   Mode  :character   Median : 7.000  
+    ##                                                           Mean   : 7.061  
+    ##                                                           3rd Qu.: 7.700  
+    ##                                                           Max.   :10.000  
+    ##     SMATSSCR     
+    ##  Min.   :0.0000  
+    ##  1st Qu.:0.0000  
+    ##  Median :1.0000  
+    ##  Mean   :0.8491  
+    ##  3rd Qu.:1.0000  
+    ##  Max.   :3.0000
 
 ``` r
 str(results2)
@@ -784,37 +712,30 @@ str(counts[1:5])
 ```
 
     ## 'data.frame':    63856 obs. of  5 variables:
-    ##  $ GTEX.12ZZX.0726.SM.5EGKA.1: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.13D11.1526.SM.5J2NA.1: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.ZAJG.0826.SM.5PNVA.1 : int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.11TT1.1426.SM.5EGIA.1: int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ GTEX.13VXT.1126.SM.5LU3A.1: int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ GTEX.12ZZX.0726.SM.5EGKA: int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ GTEX.13D11.1526.SM.5J2NA: int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ GTEX.ZAJG.0826.SM.5PNVA : int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ GTEX.11TT1.1426.SM.5EGIA: int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ GTEX.13VXT.1126.SM.5LU3A: int  0 0 0 0 0 0 0 0 0 0 ...
 
 ``` r
 summary(counts[1:5])
 ```
 
-    ##  GTEX.12ZZX.0726.SM.5EGKA.1 GTEX.13D11.1526.SM.5J2NA.1
-    ##  Min.   :        0          Min.   :        0         
-    ##  1st Qu.:        0          1st Qu.:        0         
-    ##  Median :       95          Median :       76         
-    ##  Mean   :    75254          Mean   :   103343         
-    ##  3rd Qu.:     9058          3rd Qu.:     9584         
-    ##  Max.   :164409376          Max.   :407066080         
-    ##  GTEX.ZAJG.0826.SM.5PNVA.1 GTEX.11TT1.1426.SM.5EGIA.1
-    ##  Min.   :        0         Min.   :        0         
-    ##  1st Qu.:        0         1st Qu.:        0         
-    ##  Median :       70         Median :       38         
-    ##  Mean   :    80789         Mean   :    69070         
-    ##  3rd Qu.:     8988         3rd Qu.:     7366         
-    ##  Max.   :338010074         Max.   :263027953         
-    ##  GTEX.13VXT.1126.SM.5LU3A.1
-    ##  Min.   :        0         
-    ##  1st Qu.:        0         
-    ##  Median :       47         
-    ##  Mean   :   111238         
-    ##  3rd Qu.:     6710         
-    ##  Max.   :602494565
+    ##  GTEX.12ZZX.0726.SM.5EGKA GTEX.13D11.1526.SM.5J2NA GTEX.ZAJG.0826.SM.5PNVA
+    ##  Min.   :        0        Min.   :        0        Min.   :        0      
+    ##  1st Qu.:        0        1st Qu.:        0        1st Qu.:        0      
+    ##  Median :       95        Median :       76        Median :       70      
+    ##  Mean   :    75254        Mean   :   103343        Mean   :    80789      
+    ##  3rd Qu.:     9058        3rd Qu.:     9584        3rd Qu.:     8988      
+    ##  Max.   :164409376        Max.   :407066080        Max.   :338010074      
+    ##  GTEX.11TT1.1426.SM.5EGIA GTEX.13VXT.1126.SM.5LU3A
+    ##  Min.   :        0        Min.   :        0       
+    ##  1st Qu.:        0        1st Qu.:        0       
+    ##  Median :       38        Median :       47       
+    ##  Mean   :    69070        Mean   :   111238       
+    ##  3rd Qu.:     7366        3rd Qu.:     6710       
+    ##  Max.   :263027953        Max.   :602494565
 
 :::success
 
@@ -836,7 +757,7 @@ summary(counts[1:5])
 
 :::
 
-## Visualize (Part 1)
+## Visualizing data with ggplot2
 
 `ggplot2` is a very popular package for making visualization. It is
 built on the “grammar of graphics”. Any plot can be expressed from the
@@ -855,7 +776,7 @@ per variable. Let’s use ggplot2 to create a visual representation of how
 many samples there are per tissue, sex, and hardiness.
 
 ``` r
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count")
 ```
 
@@ -867,7 +788,7 @@ coordinates so that we can read the sample names. We do this by adding a
 layer and the function `coord_flip()`
 
 ``` r
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count") + 
   coord_flip()
 ```
@@ -887,7 +808,7 @@ multiple geoms.
 head(samples)
 
 ``` r
-ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, color = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 ```
@@ -899,7 +820,7 @@ instead, you would the bars “filled” with color, use the aesthetic
 `aes(fill = Hardy.Scale)`
 
 ``` r
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 ```
@@ -910,10 +831,10 @@ Now, let’s use `facet_wrap(~Sex)` to break the data into two groups
 based on the variable sex.
 
 ``` r
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip() +
-  facet_wrap(~Sex)
+  facet_wrap(~SEX)
 ```
 
 ![](./images/bar5-1.png)<!-- --> With this graph, we have an excellent
@@ -935,11 +856,11 @@ the chat.
 
 There are many options. Here are a few.
 
-ggplot(colData, aes(x = gtex.dthhrdy, fill = gtex.age)) + geom_bar(stat
-= “count”) + facet_wrap(\~gtex.sex)
+ggplot(colData, aes(x = DTHHRDY, fill = AGE)) + geom_bar(stat = “count”)
++ facet_wrap(\~SEX)
 
-ggplot(colData, aes(x = gtex.age, fill = as.factor(gtex.dthhrdy))) +
-geom_bar(stat = “count”) + facet_wrap(\~gtex.sex)
+ggplot(colData, aes(x = AGE, fill = as.factor(DTHHRDY))) + geom_bar(stat
+= “count”) + facet_wrap(\~SEX)
 
 :::
 
@@ -1003,15 +924,13 @@ geom_hline(yintercept = -log10(0.05))
 
 In addition to containing information about the donor tissue, the
 “colData” file contains has a column with a RIN score, which tells us
-about the quality of the data, and the facility where the RNA was
-processed. If we wanted to confirm visually that were negligible
-technical differences in RNA quality due to sequencing location, we
-could use a box plot.
+about the quality of the data. If we wanted to look for interactions
+between RIN score and the other variables.
 
 ``` r
-  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+  ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
     geom_boxplot() +
-    geom_jitter(aes(color = gtex.smrin))
+    geom_jitter(aes(color = SMRIN))
 ```
 
 ![](./images/boxplot-1.png)<!-- -->
@@ -1030,7 +949,7 @@ section, you will learn ggplot function for making fancier figures.
 | `ggplot2`      | An open-source data visualization package for the statistical programming language R                                    |
 | `ggplot()`     | The function used to construct the initial plot object, and is almost always followed by + to add component to the plot |
 | `aes()`        | Aesthetic mappings that describe how variables in the data are mapped to visual properties (aesthetics) of geoms        |
-| `geom_point()` | A function used to create scatterplots                                                                                  |
+| `geom_point()` | A function used to create scatter plots                                                                                 |
 | `geom_bar()`   | A function used to create bar plots                                                                                     |
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
@@ -1108,7 +1027,6 @@ with the name “Approved.symbol”, or we can rename column X.
 
 ``` r
 results %>% mutate(Approved.symbol = row.names(.))  
-results2 %>% rename(Approved.symbol = X)   
 ```
 
     ## # A tibble: 15,529 × 7
@@ -1124,21 +1042,6 @@ results2 %>% rename(Approved.symbol = X)
     ##  8  0.192    5.48   1.99  0.0504      0.214  -4.37  AAAS           
     ##  9  0.0341   4.51   0.441 0.660       0.823  -6.11  AACS           
     ## 10  0.355    1.88   2.94  0.00432     0.0763 -2.04  AADAT          
-    ## # … with 15,519 more rows
-
-    ## # A tibble: 15,529 × 7
-    ##    Approved.symbol   logFC AveExpr      t  P.Value adj.P.Val      B
-    ##    <chr>             <dbl>   <dbl>  <dbl>    <dbl>     <dbl>  <dbl>
-    ##  1 A1BG             0.103    1.35   0.322 0.748       0.875  -5.67 
-    ##  2 A1BG-AS1         0.136   -0.238  0.640 0.524       0.731  -5.35 
-    ##  3 A2M             -0.0161   9.80  -0.113 0.910       0.956  -5.96 
-    ##  4 A2M-AS1          0.605    2.54   3.49  0.000813    0.0555 -0.635
-    ##  5 A2ML1            0.354   -1.17   1.08  0.284       0.529  -4.95 
-    ##  6 A2MP1            0.658   -0.756  3.26  0.00166     0.0607 -1.36 
-    ##  7 A4GALT           0.0655   6.54   0.565 0.574       0.767  -6.07 
-    ##  8 AAAS             0.192    5.48   1.99  0.0504      0.214  -4.37 
-    ##  9 AACS             0.0341   4.51   0.441 0.660       0.823  -6.11 
-    ## 10 AADAT            0.355    1.88   2.94  0.00432     0.0763 -2.04 
     ## # … with 15,519 more rows
 
 #### 1.2 Filter the results for genes adj.p.value \< 0.05 (or desired alpha)
@@ -1235,6 +1138,48 @@ save the this as a temporary file that we will join with.
 
 #### 1.4 Join the results and genes data frames by “Approved.symbol”
 
+I find it helpful to import a table of gene names and symbols that can
+be merged with other tables with gene information or searched for useful
+information. This table of gene names was downloaded from
+<https://www.genenames.org/download/custom/>.
+
+In this case, we use `fill = T` to fill missing fields with a NULL
+value.
+
+``` r
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
+```
+
+    ##      HGNC.ID Approved.symbol
+    ## 1     HGNC:5            A1BG
+    ## 2 HGNC:37133        A1BG-AS1
+    ## 3 HGNC:24086            A1CF
+    ## 4     HGNC:6           A1S9T
+    ## 5     HGNC:7             A2M
+    ## 6 HGNC:27057         A2M-AS1
+    ##                                                  Approved.name Chromosome
+    ## 1                                       alpha-1-B glycoprotein   19q13.43
+    ## 2                                         A1BG antisense RNA 1   19q13.43
+    ## 3                               APOBEC1 complementation factor   10q11.23
+    ## 4 symbol withdrawn, see [HGNC:12469](/data/gene-symbol-report/           
+    ## 5                                        alpha-2-macroglobulin   12p13.31
+    ## 6                                          A2M antisense RNA 1   12p13.31
+    ##          Accession.numbers NCBI.Gene.ID Ensembl.gene.ID
+    ## 1                                     1 ENSG00000121410
+    ## 2                 BC040926       503538 ENSG00000268895
+    ## 3                 AF271790        29974 ENSG00000148584
+    ## 4                                    NA                
+    ## 5 BX647329, X68728, M11313            2 ENSG00000175899
+    ## 6                                144571 ENSG00000245105
+    ##   Mouse.genome.database.ID
+    ## 1              MGI:2152878
+    ## 2                         
+    ## 3              MGI:1917115
+    ## 4                         
+    ## 5              MGI:2449119
+    ## 6
+
 ``` r
 left_join(resultsDEGs, genes, by =  "Approved.symbol")
 ```
@@ -1294,7 +1239,7 @@ resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
     ## SPRED3             SPRED3 -1.006501 0.04857888
 
 Now, let’s combine all five steps into one. However, instead of
-rearranging by p-value, let’s arrange by gene symbol. LEt’s also convert
+rearranging by p-value, let’s arrange by gene symbol. Let’s also convert
 this object to a tibble with `as_tibble()` for easier viewing.
 
 ``` r
@@ -1337,7 +1282,7 @@ resultsDEGs
 
 Replace the input results file with a different file, such as the
 results of the comparison of 20-29 and 30-39 year old muscle samples.
-What are the differentially expressed genes?
+What are the deferentially expressed genes?
 
 :::spoiler
 
@@ -1402,7 +1347,7 @@ Most RNA-Seq pipelines require that the counts file to be in a matrix
 format where each sample is a column and each gene is a row and all the
 values are integers or doubles with all the experimental factors in a
 separate file. However, many R tools prefer to have these data combined
-in a single, tidy data frameor tibble. To process the counts data using
+in a single, tidy data frame or tibble. To process the counts data using
 the DESeq2 pipeline, we need a corresponding file where the row names
 are the sample id and they match the column names of the counts file. We
 confirm this by asking if `rownames(colData) == colnames(counts)` or by
@@ -1414,7 +1359,7 @@ by variables or genes of interest. To create this, we need to combine
 three data frames: genes, colData (or Samples), and counts.
 
 In this section, we will combine tidying, transforming, and visualizing
-to answer the question “What are the raw counts of the differentially
+to answer the question “What are the raw counts of the deferentially
 expressed genes?”
 
 ``` r
@@ -1427,44 +1372,28 @@ head(rownames(colData) == colnames(counts))
 head(colnames(counts))
 ```
 
-    ## [1] "GTEX.12ZZX.0726.SM.5EGKA.1" "GTEX.13D11.1526.SM.5J2NA.1"
-    ## [3] "GTEX.ZAJG.0826.SM.5PNVA.1"  "GTEX.11TT1.1426.SM.5EGIA.1"
-    ## [5] "GTEX.13VXT.1126.SM.5LU3A.1" "GTEX.14ASI.0826.SM.5Q5EB.1"
+    ## [1] "GTEX.12ZZX.0726.SM.5EGKA" "GTEX.13D11.1526.SM.5J2NA"
+    ## [3] "GTEX.ZAJG.0826.SM.5PNVA"  "GTEX.11TT1.1426.SM.5EGIA"
+    ## [5] "GTEX.13VXT.1126.SM.5LU3A" "GTEX.14ASI.0826.SM.5Q5EB"
 
 ``` r
 head(rownames(colData))
 ```
 
-    ## [1] "1" "2" "3" "4" "5" "6"
-
-``` r
-head(colData$X)
-```
-
-    ## [1] "GTEX-12ZZX-0726-SM-5EGKA.1" "GTEX-13D11-1526-SM-5J2NA.1"
-    ## [3] "GTEX-ZAJG-0826-SM-5PNVA.1"  "GTEX-11TT1-1426-SM-5EGIA.1"
-    ## [5] "GTEX-13VXT-1126-SM-5LU3A.1" "GTEX-14ASI-0826-SM-5Q5EB.1"
+    ## [1] "GTEX-12ZZX-0726-SM-5EGKA" "GTEX-13D11-1526-SM-5J2NA"
+    ## [3] "GTEX-ZAJG-0826-SM-5PNVA"  "GTEX-11TT1-1426-SM-5EGIA"
+    ## [5] "GTEX-13VXT-1126-SM-5LU3A" "GTEX-14ASI-0826-SM-5Q5EB"
 
 ``` r
 colData_tidy <-  colData %>%
-  mutate(X = gsub("-", ".", X))  %>%
-  filter(gtex.age %in% c("20-29", "70-79")) %>%
-  mutate(gtex.age = factor(gtex.age))
-rownames(colData_tidy) <- colData_tidy$X
+  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
+  filter(AGE %in% c("20-29", "70-79")) 
+rownames(colData_tidy) <- colData_tidy$SAMPID
 
-head(rownames(colData_tidy) == colnames(counts))
-```
-
-    ## Warning in rownames(colData_tidy) == colnames(counts): longer object length is
-    ## not a multiple of shorter object length
-
-    ## [1] FALSE FALSE FALSE FALSE FALSE FALSE
-
-``` r
-mycols <- colData_tidy %>% dplyr::pull(X)
+mycols <- colData_tidy %>% dplyr::pull(SAMPID)
 
 counts_tidy <- counts %>%
-  select(all_of(mycols))
+  select(mycols)
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 ```
@@ -1478,32 +1407,38 @@ counts_tidy_long <- counts %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
            sep = "\\.") %>%
   filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
-  pivot_longer(cols = all_of(mycols), names_to = "X", 
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "X") %>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
   arrange(desc(counts)) %>%
   inner_join(., genes, by = "Ensembl.gene.ID") %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
-         gtex.smcenter)
+         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
+```
+
+    ## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 31771 rows [1, 2,
+    ## 3, 4, 5, 6, 7, 8, 10, 11, 12, 15, 18, 20, 21, 23, 24, 25, 26, 27, ...].
+
+``` r
 head(counts_tidy_long)
 ```
 
-    ## # A tibble: 6 × 11
-    ##   Ensembl.gene.ID Approved.name  Approved.symbol  counts X      gtex.smtsd study
-    ##   <chr>           <chr>          <chr>             <dbl> <chr>  <chr>      <chr>
-    ## 1 ENSG00000148677 ankyrin repea… ANKRD1           5.54e7 GTEX.… Heart - L… HEART
-    ## 2 ENSG00000148677 ankyrin repea… ANKRD1           4.65e7 GTEX.… Heart - L… HEART
-    ## 3 ENSG00000148677 ankyrin repea… ANKRD1           1.84e7 GTEX.… Heart - A… HEART
-    ## 4 ENSG00000148677 ankyrin repea… ANKRD1           1.58e7 GTEX.… Heart - A… HEART
-    ## 5 ENSG00000148677 ankyrin repea… ANKRD1           1.22e7 GTEX.… Heart - L… HEART
-    ## 6 ENSG00000148677 ankyrin repea… ANKRD1           1.12e7 GTEX.… Heart - L… HEART
-    ## # … with 4 more variables: gtex.age <fct>, gtex.sex <int>, gtex.dthhrdy <int>,
-    ## #   gtex.smcenter <chr>
+    ## # A tibble: 6 × 9
+    ##   Ensembl.gene.ID Approved.name  Approved.symbol counts SAMPID SMTSD AGE   SEX  
+    ##   <chr>           <chr>          <chr>            <dbl> <chr>  <chr> <chr> <chr>
+    ## 1 ENSG00000148677 ankyrin repea… ANKRD1          5.54e7 GTEX.… Hear… 20-29 Fema…
+    ## 2 ENSG00000148677 ankyrin repea… ANKRD1          4.65e7 GTEX.… Hear… 20-29 Male 
+    ## 3 ENSG00000148677 ankyrin repea… ANKRD1          1.84e7 GTEX.… Hear… 70-79 Male 
+    ## 4 ENSG00000148677 ankyrin repea… ANKRD1          1.58e7 GTEX.… Hear… 20-29 Male 
+    ## 5 ENSG00000148677 ankyrin repea… ANKRD1          1.22e7 GTEX.… Hear… 20-29 Fema…
+    ## 6 ENSG00000148677 ankyrin repea… ANKRD1          1.12e7 GTEX.… Hear… 20-29 Fema…
+    ## # … with 1 more variable: DTHHRDY <chr>
 
 ``` r
+library(scales)
+
 counts_tidy_long %>%
-  ggplot(aes(x = gtex.age, y = counts)) +
+  ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +
@@ -1599,12 +1534,13 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 
-samples <- read.csv("./data/GTExPortal.csv")
+samples <- read.csv("./data/samples.csv")
 
 
 head(samples)
 names(samples)
-
+str(samples)
+summary(samples)
 
 # with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
@@ -1615,11 +1551,7 @@ results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", head
 head(results2)
 
 
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-
-
-# Open the Terminal and type the command (after the $) to uznip
+# Open the Terminal and type the command (after the $) to unzip
 # $ gunzip -k ./data/countData.*.gz
 
 
@@ -1629,7 +1561,7 @@ dim(counts)
 head(counts)[1:5]
 
 
-colData <- read.csv("./data/colData.HEART.csv")
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
 head(colData)
 
 
@@ -1637,22 +1569,18 @@ dim(counts)
 length(row.names(counts))
 
 
-dim(genes)
-length(genes$Approved.symbol)
-
-
 dim(samples)
-length(samples$Tissue.Sample.ID)
+length(samples$SMTS)
 
 
-dplyr::count(samples, Tissue) 
+dplyr::count(samples, SMTS) 
 
 
-dplyr::count(samples, Tissue, Sex) 
+dplyr::count(samples, SMTS, SEX) 
 
 
 #names(colData)
-dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
 
 
 str(samples)
@@ -1665,29 +1593,29 @@ str(counts[1:5])
 summary(counts[1:5])
 
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count")
 
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, color = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip() +
-  facet_wrap(~Sex)
+  facet_wrap(~SEX)
 
 
 ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
@@ -1699,13 +1627,12 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-  ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+  ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
     geom_boxplot() +
-    geom_jitter(aes(color = gtex.smrin))
+    geom_jitter(aes(color = SMRIN))
 
 
 results %>% mutate(Approved.symbol = row.names(.))  
-results2 %>% rename(Approved.symbol = X)   
 
 
 results %>% filter(adj.P.Val < 0.05,
@@ -1721,6 +1648,10 @@ resultsDEGs <- results %>%
          logFC > 1 | logFC < -1) %>%
   arrange(adj.P.Val) 
 resultsDEGs
+
+
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
 
 
 left_join(resultsDEGs, genes, by =  "Approved.symbol")
@@ -1757,21 +1688,17 @@ DEGsSymbol
 head(rownames(colData) == colnames(counts))
 head(colnames(counts))
 head(rownames(colData))
-head(colData$X)
 
 
 colData_tidy <-  colData %>%
-  mutate(X = gsub("-", ".", X))  %>%
-  filter(gtex.age %in% c("20-29", "70-79")) %>%
-  mutate(gtex.age = factor(gtex.age))
-rownames(colData_tidy) <- colData_tidy$X
+  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
+  filter(AGE %in% c("20-29", "70-79")) 
+rownames(colData_tidy) <- colData_tidy$SAMPID
 
-head(rownames(colData_tidy) == colnames(counts))
-
-mycols <- colData_tidy %>% dplyr::pull(X)
+mycols <- colData_tidy %>% dplyr::pull(SAMPID)
 
 counts_tidy <- counts %>%
-  select(all_of(mycols))
+  select(mycols)
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
@@ -1782,19 +1709,19 @@ counts_tidy_long <- counts %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
            sep = "\\.") %>%
   filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
-  pivot_longer(cols = all_of(mycols), names_to = "X", 
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "X") %>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
   arrange(desc(counts)) %>%
   inner_join(., genes, by = "Ensembl.gene.ID") %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
-         gtex.smcenter)
+         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
 head(counts_tidy_long)
 
+library(scales)
 
 counts_tidy_long %>%
-  ggplot(aes(x = gtex.age, y = counts)) +
+  ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +
