@@ -1,80 +1,84 @@
 ---
 title: "GTExPortal"
 output: md_document
-always_allow_html: true
 ---
 
-```{r GTExPortal, fig.path="../images/"}
 
-library(tidyverse)
-library(kableExtra)
-
-df <- read_csv("../data/GTExPortal.csv")
-
-dim(df)
-
-head(df) 
-
-df %>%
-  ggplot(aes(x = `Tissue`, 
-             fill = `Sex`)) +
-  geom_bar()  
-
-df %>%
-  ggplot(aes(x = `Tissue`, 
-             fill = `Sex`)) +
-  geom_bar()  +
-  coord_flip()
-
-df2 <- df %>% 
-  group_by(`Subject ID`, `Hardy Scale`, `Age Bracket`, Sex) %>%
-  summarize(TissueCount = length(Tissue)) %>%
-  arrange(desc(TissueCount))  
-
-head(df2, 10) 
-
-dim(df2)
-
-df2 %>%
-  ggplot(aes(fill = `Hardy Scale`, 
-             x = `Age Bracket`)) +
-  geom_bar() +
-  facet_wrap(~Sex) +
-  theme(axis.text.x =  element_text(angle = 45, hjust = 1))
-
-
-df3 <- df2 %>%
-  group_by(`Hardy Scale`, `Age Bracket`, Sex) %>%
-  summarise(count = length(`Subject ID`)) 
-
-tail(df3,20) 
-
-df4 <- df3 %>%
-  pivot_wider(names_from = `Age Bracket`,
-              values_from = `count`)
-df4 
-
-ggplot(df3, aes(x = `Hardy Scale`, y = count,
-                fill = `Age Bracket`,
-                label = count)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~`Sex`) +
-  coord_flip() +
-  theme(legend.position = "none")
-
-
-df5 <- df2 %>%
-  group_by( `Age Bracket`) %>%
-  summarise(count = length(`Age Bracket`)) 
-
-df5 
-
-ggplot(df5, aes(x = `Age Bracket`, y = count,
-                fill = `Age Bracket`,
-                label = count)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = count)) +
-  theme(legend.position = "none")
+Get data from GTEx portal https://gtexportal.org/home/
 
 
 ```
+curl -o samples.txt https://storage.googleapis.com/gtex_analysis_v7/annotations/GTEx_v7_Annotations_SampleAttributesDS.txt
+curl -o subjects.txt https://storage.googleapis.com/gtex_analysis_v7/annotations/GTEx_v7_Annotations_SubjectPhenotypesDS.txt
+```
+
+
+
+```{r setup}
+
+library(forcats)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+```
+
+
+```{r prep data}
+
+subjects <- read.table("../data/subjects.txt", header = T, sep = "\t") %>%
+  mutate_if(is.integer, as.factor) %>%
+  mutate(SEX = fct_recode(SEX, "Male" = "1", "Female" = "2"),
+         SEX = factor(SEX, levels = c("Female" , "Male")),
+         DTHHRDY = fct_recode(DTHHRDY, "Ventilator Case" = "0",
+                                       "Violent and fast death" = "1",
+                                       "Fast death of natural causes" = "2",
+                                       "Intermediate death" = "3",
+                                       "Slow death" = "4"))
+
+head(subjects)
+```
+
+
+
+```{r}
+
+samples <- read.table("../data/samples.txt", header = T, sep = "\t") 
+
+samples2 <- samples %>%
+  select(SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) %>%
+  drop_na() %>%
+  mutate(SMNABTCHD = lubridate::mdy(SMNABTCHD),
+         SAMPID2 = SAMPID) %>%
+  separate(SAMPID2, into = c("one", "two"), sep = "-") %>%
+  mutate(SUBJID = paste(one, two, sep = "-")) %>%
+  select(SUBJID, SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) 
+tail(samples2)
+```
+
+
+```{r, eval = F}
+ggplot(subjects, aes(x = SEX)) +
+  geom_bar(stat = "count")
+
+ggplot(subjects, aes(x = AGE)) +
+  geom_bar(stat = "count")
+
+ggplot(subjects, aes(x = DTHHRDY)) +
+  geom_bar(stat = "count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+ggplot(subjects, aes(x = AGE, fill = DTHHRDY)) +
+  geom_bar(stat = "count") +
+  facet_wrap(~SEX)
+```
+
+
+
+
+```{r}
+write.csv(subjects, "../data/subjects.csv", row.names = F)
+write.csv(samples2, "../data/samples.csv", row.names = F)
+```
+

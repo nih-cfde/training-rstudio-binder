@@ -2,8 +2,8 @@
 title: "recount3"
 output: html_document
 params: 
-  myproject: "MUSCLE"
-  #myproject: "HEART"
+  #myproject: "MUSCLE"
+  myproject: "HEART"
 ---
 
 ```{r setup, include=FALSE}
@@ -43,16 +43,36 @@ colData <- colData(rse_gtex) %>%
          gtex.smnabtcht != "RNA isolation_PAXgene Tissue miRNA") %>%
   dplyr::select(external_id, gtex.smtsd,
                 study, gtex.smts, 
-                gtex.subjid, gtex.sampid, gtex.run_acc,  
+                gtex.subjid, gtex.run_acc,  
                 gtex.sex, gtex.age,  gtex.dthhrdy,
                 gtex.smrin, gtex.smcenter, gtex.smpthnts, gtex.smnabtchd,
                 recount_qc.aligned_reads..chrm,
                 recount_qc.aligned_reads..chrx,
                 recount_qc.aligned_reads..chry,
                 recount_qc.bc_auc.all_reads_all_bases) %>% 
-  mutate(Date = mdy(gtex.smnabtchd))
+  mutate(DATE = mdy(gtex.smnabtchd)) %>%
+  dplyr::rename(SAMPID = external_id,
+                SMTS = gtex.smts,
+                SUBJID = gtex.subjid,
+                SMTSD = gtex.smtsd,
+                SEX = gtex.sex,
+                AGE = gtex.age,
+                SRA = gtex.run_acc,
+                SMRIN = gtex.smrin,
+                SMCENTER = gtex.smcenter) %>%
+  mutate(DTHHRDY = factor(gtex.dthhrdy),
+         SEX = factor(SEX),
+         SEX = fct_recode(SEX, "Male" = "1", "Female" = "2"),
+         SEX = factor(SEX, levels = c("Female" , "Male")),
+    DTHHRDY = fct_recode(DTHHRDY, "Ventilator Case" = "0",
+                                       "Violent and fast death" = "1",
+                                       "Fast death of natural causes" = "2",
+                                       "Intermediate death" = "3",
+                                       "Slow death" = "4")) %>%
+  select(SAMPID, SMTS, SMTSD, SUBJID, SEX, AGE, SMRIN, DTHHRDY, SRA, DATE)
+
+row.names(colData) <- colData$SAMPID
 head(colData)
-names(colData)
 
 
 # get countdata for this subset of colData
@@ -77,6 +97,26 @@ head(rownames(colData) == colnames(countData))
 
 head(colData)[1:5]
 head(countData)[1:5]
+
+countDatawith <- colnames(countData)
+countDatawithout <- gsub(".1$", "", countDatawith)
+head(countDatawithout)
+
+
+colDatawith <- colData$SAMPID
+colDatawithout <- gsub(".1$", "", colDatawith)
+head(colDatawithout)
+
+genesversinowith <- row.names(countData)
+genesversinowithout <- gsub(".1$", "", genesversinowith)
+head(genesversinowithout)
+
+
+colnames(countData) <- countDatawithout
+rownames(colData) <- colDatawithout
+rownames(countData) <- genesversinowithout
+
+head(rownames(colData) == colnames(countData))
 
 ```
 
