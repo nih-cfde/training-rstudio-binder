@@ -394,7 +394,7 @@ ggplot(samples, aes(x = SMTS)) +
 Now, there are two ways we can visualize another variable in addition to tissue. We can add color or we can add facets.
 
 
-Let's first color the data by age bracket. Color is an aesthetic, so it must go inside the `aes()`. If you include `aes(color = Age.Bracket)` inside `ggplot()`, the color will be applied to every layer in your plot. If you add `aes(color = Age.Bracket)` inside `geom_bar()`, it will only be applied to that layer (which is important later when you layer multiple geoms. 
+Let's first color the data by age bracket. Color is an aesthetic, so it must go inside the `aes()`. If you include `aes(color = AGE)` inside `ggplot()`, the color will be applied to every layer in your plot. If you add `aes(color = AGE)` inside `geom_bar()`, it will only be applied to that layer (which is important later when you layer multiple geoms. 
 
 head(samples)
 
@@ -406,7 +406,7 @@ ggplot(samples, aes(x = SMTS, color = AGE)) +
 
 ```
 
-Note that the bars are outlined in a color according to hardy scale. If instead, you would the bars "filled" with color, use the aesthetic `aes(fill = Hardy.Scale)`
+Note that the bars are outlined in a color according to hardy scale. If instead, you would the bars "filled" with color, use the aesthetic `aes(fill = AGE)`
 
 ```{r bar4, appendix = TRUE}
 
@@ -416,7 +416,7 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
 
 ```
 
-Now, let's use `facet_wrap(~Sex)` to break the data into two groups based on the variable sex.
+Now, let's use `facet_wrap(~SEX)` to break the data into two groups based on the variable sex.
 
 ```{r bar5, appendix = TRUE}
 
