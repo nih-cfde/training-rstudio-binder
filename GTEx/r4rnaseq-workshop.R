@@ -25,11 +25,6 @@ head(colData)
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
 
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-
-
 dim(counts)
 length(row.names(counts))
 
@@ -50,9 +45,6 @@ dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY )
 
 str(samples)
 summary(samples)
-
-str(results2)
-summary(results2)
 
 str(counts[1:5])
 summary(counts[1:5])

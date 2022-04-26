@@ -301,9 +301,6 @@ Finally, the `str()` and  `summary()` commands are also quite useful for summari
 str(samples)
 summary(samples)
 
-str(results2)
-summary(results2)
-
 str(counts[1:5])
 summary(counts[1:5])
 
