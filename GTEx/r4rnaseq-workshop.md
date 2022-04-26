@@ -106,26 +106,69 @@ primarily for molecular assays including WGS, WES, and RNA-Seq.
 2.  Navigate to the GTEx folder.
 3.  Click `GTEx.Rproj` and click “Yes” to open up an Rproject. This will
     set the working directory to `~/GTEx/`.
-4.  Open the `r4rnaseq-workshop.R` file which contains all the commands
-    for today’s workshop. This contains all the commands we will build
-    today. This is your reference.
-5.  Open a new R Script by clicking **File > New File > R Script**. You
-    will type most commands for today’s lesson here and click “Run” to
-    send them to the console.
+4.  If you open the `r4rnaseq-workshop.R` file which contains all the
+    commands for today’s workshop, you can click through this and all
+    the commands should run successfully.
+5.  If you open a new R Script by clicking **File > New File > R
+    Script**, you can code along by typing out all the commands for
+    today’s lesson as I type them.
+
+Click “Run” to send commands from a script to the console or click
+command enter.
+
+### R is a calculator
+
+You can perform simple and advanced calculations in R.
+
+``` r
+2 + 2 * 100
+```
+
+    ## [1] 202
+
+``` r
+log(202)
+```
+
+    ## [1] 5.308268
+
+You can save variable and recall them later.
+
+``` r
+pval <- 0.05
+pval
+```
+
+    ## [1] 0.05
+
+``` r
+-log10(pval)
+```
+
+    ## [1] 1.30103
+
+You can save really long lists of things with a short, descriptive names
+that are easy to recall later.
+
+``` r
+favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
+favorite_genes
+```
+
+    ## [1] "BRCA1" "POMC"  "GnRH"  "MC4R"  "FOS"   "CNR1"
 
 ### Loading R packages
 
 Many of the functions we will use are pre-installed. The
-[**Tidyverse**](https://www.tidyverse.org/) is a collection of R
-packages that include functions, data, and documentation that provide
-more tools and capabilities when using R. You can install packages like
-`ggplot2` with the command `install.packages("ggplot2")`). It is a good
-idea to “comment out” this line of code by adding a `#` at the beginning
-so that you don’t re-install the package every time you run the script.
-For this workshop, the packages listed in the `.binder/environment.yml`
-file were pre-installed with Conda. For some reason, the tidyverse
-package doesn’t always install properly, so we installed each package
-individually.
+[Tidyverse](https://www.tidyverse.org/) is a collection of R packages
+that include functions, data, and documentation that provide more tools
+and capabilities when using R. You can install the popular data
+visualization package `ggplot2` with the command
+`install.packages("ggplot2")`). It is a good idea to “comment out” this
+line of code by adding a `#` at the beginning so that you don’t
+re-install the package every time you run the script. For this workshop,
+the packages listed in the `.binder/environment.yml` file were
+pre-installed with Conda.
 
 ``` r
 #install.packages("ggplot2")
@@ -133,7 +176,7 @@ individually.
 
 After installing packages, we need to load the functions and tools we
 want to use from the package with the `library()` command. Let’s load
-the `ggplot2` package which is a popular tool for data visualization.
+the `ggplot2` package.
 
 ``` r
 library(ggplot2)
@@ -163,10 +206,12 @@ description of the package and its functions.
 
 #### Key functions
 
-| Function             | Description                                 |
-|----------------------|---------------------------------------------|
-| `install.packages()` | An R function to install packages           |
-| `library()`          | The command used to load installed packages |
+| Function             | Description                                  |
+|----------------------|----------------------------------------------|
+| `<-`                 | The assignment variable                      |
+| `log10()`            | A built-in function for a log transformation |
+| `install.packages()` | An R function to install packages            |
+| `library()`          | The command used to load installed packages  |
 
 :::
 
@@ -385,6 +430,19 @@ head(results)
     ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
     ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
+``` r
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+```
+
+    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 :::warning
 
@@ -650,38 +708,6 @@ summary(samples)
     ##  Mean   :0.8491  
     ##  3rd Qu.:1.0000  
     ##  Max.   :3.0000
-
-``` r
-str(results2)
-```
-
-    ## 'data.frame':    15529 obs. of  7 variables:
-    ##  $ X        : chr  "A1BG" "A1BG-AS1" "A2M" "A2M-AS1" ...
-    ##  $ logFC    : num  0.1033 0.1361 -0.0161 0.6051 0.3541 ...
-    ##  $ AveExpr  : num  1.346 -0.238 9.798 2.539 -1.167 ...
-    ##  $ t        : num  0.322 0.64 -0.113 3.488 1.079 ...
-    ##  $ P.Value  : num  0.748222 0.524426 0.910141 0.000813 0.28409 ...
-    ##  $ adj.P.Val: num  0.8748 0.7308 0.9565 0.0555 0.5292 ...
-    ##  $ B        : num  -5.673 -5.346 -5.957 -0.635 -4.949 ...
-
-``` r
-summary(results2)
-```
-
-    ##       X                 logFC              AveExpr             t           
-    ##  Length:15529       Min.   :-2.917546   Min.   :-2.303   Min.   :-4.64984  
-    ##  Class :character   1st Qu.:-0.131376   1st Qu.: 2.108   1st Qu.:-1.12926  
-    ##  Mode  :character   Median : 0.009261   Median : 4.171   Median : 0.07798  
-    ##                     Mean   : 0.026300   Mean   : 3.806   Mean   : 0.03410  
-    ##                     3rd Qu.: 0.170189   3rd Qu.: 5.586   3rd Qu.: 1.21902  
-    ##                     Max.   : 2.659235   Max.   :13.593   Max.   : 5.38745  
-    ##     P.Value            adj.P.Val             B         
-    ##  Min.   :0.0000008   Min.   :0.01209   Min.   :-6.250  
-    ##  1st Qu.:0.0568327   1st Qu.:0.22729   1st Qu.:-5.839  
-    ##  Median :0.2412433   Median :0.48246   Median :-5.306  
-    ##  Mean   :0.3345941   Mean   :0.49944   Mean   :-4.852  
-    ##  3rd Qu.:0.5772327   3rd Qu.:0.76952   3rd Qu.:-4.282  
-    ##  Max.   :0.9999816   Max.   :0.99998   Max.   : 5.635
 
 ``` r
 str(counts[1:5])
@@ -1361,14 +1387,13 @@ head(rownames(colData))
 
 ``` r
 colData_tidy <-  colData %>%
-  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
-  filter(AGE %in% c("20-29", "70-79")) 
+  mutate(SAMPID = gsub("-", ".", SAMPID))  
 rownames(colData_tidy) <- colData_tidy$SAMPID
 
-mycols <- colData_tidy %>% dplyr::pull(SAMPID)
+mycols <- rownames(colData_tidy)
 
 counts_tidy <- counts %>%
-  select(mycols)
+  select(all_of(mycols))
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 ```
@@ -1376,7 +1401,7 @@ head(rownames(colData_tidy) == colnames(counts_tidy))
     ## [1] TRUE TRUE TRUE TRUE TRUE TRUE
 
 ``` r
-counts_tidy_long <- counts %>%
+counts_tidy_long <- counts_tidy %>%
   select(all_of(mycols)) %>%
   mutate(Ensembl.gene.ID = rownames(.)) %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
@@ -1402,11 +1427,11 @@ head(counts_tidy_long)
     ##   Ensembl.gene.ID Approved.name  Approved.symbol counts SAMPID SMTSD AGE   SEX  
     ##   <chr>           <chr>          <chr>            <dbl> <chr>  <chr> <chr> <chr>
     ## 1 ENSG00000148677 ankyrin repea… ANKRD1          5.54e7 GTEX.… Hear… 20-29 Fema…
-    ## 2 ENSG00000148677 ankyrin repea… ANKRD1          4.65e7 GTEX.… Hear… 20-29 Male 
-    ## 3 ENSG00000148677 ankyrin repea… ANKRD1          1.84e7 GTEX.… Hear… 70-79 Male 
-    ## 4 ENSG00000148677 ankyrin repea… ANKRD1          1.58e7 GTEX.… Hear… 20-29 Male 
-    ## 5 ENSG00000148677 ankyrin repea… ANKRD1          1.22e7 GTEX.… Hear… 20-29 Fema…
-    ## 6 ENSG00000148677 ankyrin repea… ANKRD1          1.12e7 GTEX.… Hear… 20-29 Fema…
+    ## 2 ENSG00000148677 ankyrin repea… ANKRD1          5.51e7 GTEX.… Hear… 40-49 Fema…
+    ## 3 ENSG00000148677 ankyrin repea… ANKRD1          5.47e7 GTEX.… Hear… 50-59 Male 
+    ## 4 ENSG00000148677 ankyrin repea… ANKRD1          5.35e7 GTEX.… Hear… 60-69 Fema…
+    ## 5 ENSG00000148677 ankyrin repea… ANKRD1          4.88e7 GTEX.… Hear… 60-69 Fema…
+    ## 6 ENSG00000148677 ankyrin repea… ANKRD1          4.87e7 GTEX.… Hear… 40-49 Fema…
     ## # … with 1 more variable: DTHHRDY <chr>
 
 ``` r
@@ -1424,7 +1449,7 @@ counts_tidy_long %>%
 
     ## Warning: Transformation introduced infinite values in continuous y-axis
 
-    ## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
+    ## Warning: Removed 4 rows containing non-finite values (stat_boxplot).
 
 ![](./images/boxplot2-1.png)<!-- -->
 
@@ -1499,6 +1524,4 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 *Note: the source document
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 14 March, 2022.*
-
-------------------------------------------------------------------------
 

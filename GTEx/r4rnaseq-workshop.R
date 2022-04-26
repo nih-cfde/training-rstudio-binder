@@ -1,3 +1,13 @@
+2 + 2 * 100
+log(202)
+
+pval <- 0.05
+pval
+
+-log10(pval)
+
+favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
+favorite_genes
 
 library(ggplot2)
 library(tidyr)
@@ -24,6 +34,11 @@ head(colData)
 # with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
 head(results)
+
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+
 
 dim(counts)
 length(row.names(counts))
@@ -148,19 +163,18 @@ head(rownames(colData))
 
 
 colData_tidy <-  colData %>%
-  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
-  filter(AGE %in% c("20-29", "70-79")) 
+  mutate(SAMPID = gsub("-", ".", SAMPID))  
 rownames(colData_tidy) <- colData_tidy$SAMPID
 
-mycols <- colData_tidy %>% dplyr::pull(SAMPID)
+mycols <- rownames(colData_tidy)
 
 counts_tidy <- counts %>%
-  select(mycols)
+  select(all_of(mycols))
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
 
-counts_tidy_long <- counts %>%
+counts_tidy_long <- counts_tidy %>%
   select(all_of(mycols)) %>%
   mutate(Ensembl.gene.ID = rownames(.)) %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 

@@ -72,25 +72,54 @@ For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx
 1. Click the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio) button to generate a computing environment for this workshop.
 2. Navigate to the GTEx folder.
 3. Click `GTEx.Rproj` and click "Yes" to open up an Rproject. This will set the working directory to `~/GTEx/`.
-4. Open the `r4rnaseq-workshop.R` file which contains all the commands for today's workshop. This contains all the commands we will build today. This is your reference.
-5. Open a new R Script by clicking **File > New File > R Script**. You will type most commands for today's lesson here and click "Run" to send them to the console. 
+4. If you open the `r4rnaseq-workshop.R` file which contains all the commands for today's workshop, you can click through this and all the commands should run successfully. 
+5. If you open a new R Script by clicking **File > New File > R Script**, you can code along by typing out all the commands for today's lesson as I type them.
 
+Click "Run" to send commands from a script to the console or click command enter. 
+
+### R is a calculator
+
+You can perform simple and advanced calculations in R. 
+
+```{r, appendix = TRUE}
+2 + 2 * 100
+log(202)
+
+```
+
+You can save variable and recall them later.
+
+
+```{r, appendix = TRUE}
+pval <- 0.05
+pval
+
+-log10(pval)
+
+```
+
+
+You can save really long lists of things with a short, descriptive names that are easy to recall later.
+
+```{r, appendix = TRUE}
+favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
+favorite_genes
+
+```
 
 ### Loading R packages
 
-Many of the functions we will use are pre-installed. The [**Tidyverse**](https://www.tidyverse.org/) is a collection of R packages that include functions, data, and documentation that provide more tools and capabilities when using R. You can install packages like `ggplot2` with the command  `install.packages("ggplot2")`). It is a good idea to "comment out" this line of code by adding a `#` at the beginning so that you don't re-install the package every time you run the script. For this workshop, the packages listed in the `.binder/environment.yml` file were pre-installed with Conda. For some reason, the tidyverse package doesn't always install properly, so we installed each package individually.
+Many of the functions we will use are pre-installed. The [Tidyverse](https://www.tidyverse.org/) is a collection of R packages that include functions, data, and documentation that provide more tools and capabilities when using R. You can install the popular data visualization package `ggplot2` with the command  `install.packages("ggplot2")`). It is a good idea to "comment out" this line of code by adding a `#` at the beginning so that you don't re-install the package every time you run the script. For this workshop, the packages listed in the `.binder/environment.yml` file were pre-installed with Conda. 
 
 ```{r  eval=FALSE}
 #install.packages("ggplot2")
 ```
 
-After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. Let's load the `ggplot2` package which is a popular tool for data visualization.
+After installing packages, we need to load the functions and tools we want to use from the package with the `library()` command. Let's load the `ggplot2` package.
 
 ```{r, message=FALSE, appendix = TRUE}
 library(ggplot2)
 ```
-
-
 
 <div class="warning">
 
@@ -120,6 +149,8 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 
 | Function | Description |
 | --- | --- |
+| `<-` | The assignment variable | 
+| `log10()` | A built-in function for a log transformation  |
 | `install.packages()` | An R function to install packages |
 | `library()` | The command used to load installed packages |
 
@@ -718,14 +749,13 @@ head(rownames(colData))
 ```{r question2b, appendix = TRUE}
 
 colData_tidy <-  colData %>%
-  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
-  filter(AGE %in% c("20-29", "70-79")) 
+  mutate(SAMPID = gsub("-", ".", SAMPID))  
 rownames(colData_tidy) <- colData_tidy$SAMPID
 
-mycols <- colData_tidy %>% dplyr::pull(SAMPID)
+mycols <- rownames(colData_tidy)
 
 counts_tidy <- counts %>%
-  select(mycols)
+  select(all_of(mycols))
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
@@ -734,7 +764,7 @@ head(rownames(colData_tidy) == colnames(counts_tidy))
 
 ```{r question2c, appendix = TRUE}
 
-counts_tidy_long <- counts %>%
+counts_tidy_long <- counts_tidy %>%
   select(all_of(mycols)) %>%
   mutate(Ensembl.gene.ID = rownames(.)) %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
