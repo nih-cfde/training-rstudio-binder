@@ -19,7 +19,7 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 **When:** Wednesday,  April 27, 2022, 10 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09) and [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
 **Instructors:** Dr. Rayna Harris  
-**Organizer: [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)**
+**Organizer:** [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)
 
 **Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 2 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. Familiarity with R is not required but would be useful.
 
@@ -162,51 +162,10 @@ str(samples)
 summary(samples)
 ```
 
-Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. You can also specify the tab delimiter as well as the row and column names. You can import files using the default parameters or you can change them. Because the first column in the .tsv files does not have a row name, by default, `read.table()`, imports the first column as the row.names. When `sep = "\t", header = TRUE` is specified, the fist column is imported as column one and given the column name  `X`.
-
-```{r import-2, appendix = TRUE}
-
-# with row.names
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-head(results)
-
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-
-```
 
 
 
-<div class="warning">
-
-#### Using the Terminal to uncompress files
-
-Very large data files, such as files with RNA-Seq counts are often compressed before they are shared. To uncompress a file, click on the Terminal tab and run the following command.
-
-  gunzip -k ./data/countData.HEART.csv.gz
-
-</div>
-
-
-```{bash, echo = F, appendix = F}
-rm ./data/countData.*.csv
-gunzip -k ./data/countData.*.gz
-```
-
-
-```{bash, echo = F, appendix = TRUE}
-
-# Open the Terminal and type the command (after the $) to unzip
-# $ gunzip -k ./data/countData.*.gz
-
-```
-
-
-
-Once that file is uncompressed, it can be imported. Count files can be very long and wide, so it is a good idea to only view the first (or last) few rows and columns. Typically, a gene identifier (like an ensemble id) will be used as the row names. We can use `dim` to see how many rows and columns are in the file. 
-
-
+Count files can be very long and wide, so it is a good idea to only view the first (or last) few rows and columns. Typically, a gene identifier (like an ensemble id) will be used as the row names. We can use `dim` to see how many rows and columns are in the file. 
 
 
 ```{r import-4, appendix = TRUE}
@@ -229,6 +188,20 @@ head(colData)
 
 ```
 
+
+Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. You can also specify the tab delimiter as well as the row and column names. You can import files using the default parameters or you can change them. Because the first column in the .tsv files does not have a row name, by default, `read.table()`, imports the first column as the row.names. When `sep = "\t", header = TRUE` is specified, the fist column is imported as column one and given the column name  `X`.
+
+```{r import-2, appendix = TRUE}
+
+# with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+
+```
 
 <div class="warning">
 

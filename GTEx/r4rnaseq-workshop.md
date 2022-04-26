@@ -10,10 +10,12 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 **When:** Wednesday, April 27, 2022, 10 am - 12 pm PDT [workd
 clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)  
 **Where:**
-[Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
+[Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)
+and
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
 **Instructors:** Dr. Rayna Harris  
-**Organizer: [The Common Fund Data
-Ecosystem](https://training.nih-cfde.org/)**
+**Organizer:** [The Common Fund Data
+Ecosystem](https://training.nih-cfde.org/)
 
 **Description:** RNA-Sequencing (RNA-Seq) is a popular method for
 determining the presence and quantity of RNA in biological samples. In
@@ -285,60 +287,10 @@ summary(samples)
     ##  3rd Qu.:1.0000  
     ##  Max.   :3.0000
 
-Very large tabular files are often saved as .tsv files. These can be
-imported with `read.table()` or `read_tsv()`. You can also specify the
-tab delimiter as well as the row and column names. You can import files
-using the default parameters or you can change them. Because the first
-column in the .tsv files does not have a row name, by default,
-`read.table()`, imports the first column as the row.names. When
-`sep = "\t", header = TRUE` is specified, the fist column is imported as
-column one and given the column name `X`.
-
-``` r
-# with row.names
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
-head(results)
-```
-
-    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
-
-``` r
-# without row.names
-results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
-head(results2)
-```
-
-    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
-    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
-    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
-    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
-    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
-    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
-    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
-
-:::warning
-
-#### Using the Terminal to uncompress files
-
-Very large data files, such as files with RNA-Seq counts are often
-compressed before they are shared. To uncompress a file, click on the
-Terminal tab and run the following command.
-
-gunzip -k ./data/countData.HEART.csv.gz
-
-:::
-
-Once that file is uncompressed, it can be imported. Count files can be
-very long and wide, so it is a good idea to only view the first (or
-last) few rows and columns. Typically, a gene identifier (like an
-ensemble id) will be used as the row names. We can use `dim` to see how
-many rows and columns are in the file.
+Count files can be very long and wide, so it is a good idea to only view
+the first (or last) few rows and columns. Typically, a gene identifier
+(like an ensemble id) will be used as the row names. We can use `dim` to
+see how many rows and columns are in the file.
 
 ``` r
 counts <- read.csv("./data/countData.HEART.csv", 
@@ -409,6 +361,43 @@ head(colData)
     ## GTEX-11TT1-1426-SM-5EGIA              Ventilator Case SRR1378243 2013-10-24
     ## GTEX-13VXT-1126-SM-5LU3A              Ventilator Case SRR1381693 2013-12-17
     ## GTEX-14ASI-0826-SM-5Q5EB Fast death of natural causes SRR1335164 2014-01-17
+
+Very large tabular files are often saved as .tsv files. These can be
+imported with `read.table()` or `read_tsv()`. You can also specify the
+tab delimiter as well as the row and column names. You can import files
+using the default parameters or you can change them. Because the first
+column in the .tsv files does not have a row name, by default,
+`read.table()`, imports the first column as the row.names. When
+`sep = "\t", header = TRUE` is specified, the fist column is imported as
+column one and given the column name `X`.
+
+``` r
+# with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+```
+
+    ##                logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## A1BG      0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## A2M      -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## A2M-AS1   0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## A2ML1     0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## A2MP1     0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
+
+``` r
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+```
+
+    ##          X       logFC    AveExpr          t      P.Value  adj.P.Val         B
+    ## 1     A1BG  0.10332788  1.3459363  0.3221575 0.7482217611 0.87480317 -5.672644
+    ## 2 A1BG-AS1  0.13609230 -0.2381928  0.6395041 0.5244264675 0.73078056 -5.345563
+    ## 3      A2M -0.01605178  9.7981987 -0.1132389 0.9101410387 0.95645802 -5.956689
+    ## 4  A2M-AS1  0.60505571  2.5392220  3.4884410 0.0008131523 0.05545654 -0.635100
+    ## 5    A2ML1  0.35413535 -1.1667406  1.0788316 0.2840898578 0.52922642 -4.948617
+    ## 6    A2MP1  0.65764737 -0.7564399  3.2615528 0.0016630789 0.06067003 -1.358971
 
 :::warning
 
@@ -799,11 +788,10 @@ Now, there are two ways we can visualize another variable in addition to
 tissue. We can add color or we can add facets.
 
 Let’s first color the data by age bracket. Color is an aesthetic, so it
-must go inside the `aes()`. If you include `aes(color = Age.Bracket)`
-inside `ggplot()`, the color will be applied to every layer in your
-plot. If you add `aes(color = Age.Bracket)` inside `geom_bar()`, it will
-only be applied to that layer (which is important later when you layer
-multiple geoms.
+must go inside the `aes()`. If you include `aes(color = AGE)` inside
+`ggplot()`, the color will be applied to every layer in your plot. If
+you add `aes(color = AGE)` inside `geom_bar()`, it will only be applied
+to that layer (which is important later when you layer multiple geoms.
 
 head(samples)
 
@@ -817,7 +805,7 @@ ggplot(samples, aes(x = SMTS, color = AGE)) +
 
 Note that the bars are outlined in a color according to hardy scale. If
 instead, you would the bars “filled” with color, use the aesthetic
-`aes(fill = Hardy.Scale)`
+`aes(fill = AGE)`
 
 ``` r
 ggplot(samples, aes(x = SMTS, fill = AGE)) +
@@ -827,7 +815,7 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
 
 ![](./images/bar4-1.png)<!-- -->
 
-Now, let’s use `facet_wrap(~Sex)` to break the data into two groups
+Now, let’s use `facet_wrap(~SEX)` to break the data into two groups
 based on the variable sex.
 
 ``` r
@@ -1527,3 +1515,199 @@ was last modified 14 March, 2022.*
 
 ------------------------------------------------------------------------
 
+### Appendix
+
+``` r
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+samples <- read.csv("./data/samples.csv")
+
+
+head(samples)
+names(samples)
+str(samples)
+summary(samples)
+
+counts <- read.csv("./data/countData.HEART.csv", 
+                   header = TRUE, row.names = 1)
+dim(counts)
+head(counts)[1:5]
+
+
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
+head(colData)
+
+
+# with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+head(results)
+
+# without row.names
+results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", header = TRUE )
+head(results2)
+
+
+dim(counts)
+length(row.names(counts))
+
+
+dim(samples)
+length(samples$SMTS)
+
+
+dplyr::count(samples, SMTS) 
+
+
+dplyr::count(samples, SMTS, SEX) 
+
+
+#names(colData)
+dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
+
+
+str(samples)
+summary(samples)
+
+str(results2)
+summary(results2)
+
+str(counts[1:5])
+summary(counts[1:5])
+
+
+ggplot(samples, aes(x = SMTS)) +
+  geom_bar(stat = "count")
+
+
+ggplot(samples, aes(x = SMTS)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, color = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip() +
+  facet_wrap(~SEX)
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05))
+
+
+  ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
+    geom_boxplot() +
+    geom_jitter(aes(color = SMRIN))
+
+
+results %>% mutate(Approved.symbol = row.names(.))  
+
+
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1)
+
+
+results %>% arrange(adj.P.Val) 
+
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) 
+resultsDEGs
+
+
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
+
+
+left_join(resultsDEGs, genes, by =  "Approved.symbol")
+
+
+resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
+
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  as_tibble()
+resultsDEGs
+
+resultsDEGs <- results %>% 
+  mutate(Approved.symbol = row.names(.))  %>% 
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>% 
+  arrange(Approved.symbol) %>%
+  left_join(., genes, by =  "Approved.symbol") %>% 
+  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
+  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
+  as_tibble()
+resultsDEGs
+DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
+DEGsENSG
+DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
+DEGsSymbol
+
+head(rownames(colData) == colnames(counts))
+head(colnames(counts))
+head(rownames(colData))
+
+
+colData_tidy <-  colData %>%
+  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
+  filter(AGE %in% c("20-29", "70-79")) 
+rownames(colData_tidy) <- colData_tidy$SAMPID
+
+mycols <- colData_tidy %>% dplyr::pull(SAMPID)
+
+counts_tidy <- counts %>%
+  select(mycols)
+
+head(rownames(colData_tidy) == colnames(counts_tidy))
+
+
+counts_tidy_long <- counts %>%
+  select(all_of(mycols)) %>%
+  mutate(Ensembl.gene.ID = rownames(.)) %>%
+  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
+           sep = "\\.") %>%
+  filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
+               values_to = "counts") %>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
+  arrange(desc(counts)) %>%
+  inner_join(., genes, by = "Ensembl.gene.ID") %>%
+  select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
+         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
+head(counts_tidy_long)
+
+library(scales)
+
+counts_tidy_long %>%
+  ggplot(aes(x = AGE, y = counts)) +
+  geom_boxplot() +
+  geom_point() +
+  facet_wrap(~Approved.symbol, scales = "free_y") +
+  scale_y_log10(labels = label_number_si())
+```
