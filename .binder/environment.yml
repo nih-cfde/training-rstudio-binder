@@ -7,13 +7,13 @@ dependencies:
     - r-base=4.0.5
     - r-irkernel=1.1
     - r-devtools
-    - r-rmarkdown
+    - r-rmarkdown=0.7
     - r-knitr
     - r-ggplot2
     - r-dplyr
     - r-tidyr
-    - r-readr
-    - r-tibble
     - r-stringr
     - r-forcats
     - r-cowplot
+    - r-scales
+    - r-lubridate
