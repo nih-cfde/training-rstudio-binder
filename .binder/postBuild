@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gunzip -k GTEx/data/*gz
