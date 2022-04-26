@@ -2,6 +2,8 @@
 
 Open the `GETx.Rproj` file to set the working directory to `~/GTEx`.
 
+The subject and sample information were downlowded from the GTEx portal and modified using the script `./scripts/GTExPortal.Rmd`.
+
 The RNA-seq counts were imported into R using recount3 and processed using the script `./scripts/recount3.Rmd`.
 
 The files containing the results of a differential gene expression analysis were obtained from the SigCom LINCS site at https://maayanlab.cloud/sigcom-lincs/#/Download. After downloading data, only gene expression results from brain, breast, and heart were kept for teaching purposes.

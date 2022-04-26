@@ -2,8 +2,8 @@
 title: "recount3"
 output: html_document
 params: 
-  #myproject: "MUSCLE"
-  myproject: "HEART"
+  myproject: "MUSCLE"
+  #myproject: "HEART"
 ---
 
 ```{r setup, include=FALSE}
@@ -113,8 +113,9 @@ head(genesversinowithout)
 
 
 colnames(countData) <- countDatawithout
-rownames(colData) <- colDatawithout
 rownames(countData) <- genesversinowithout
+rownames(colData) <- colDatawithout
+colData$SAMPID <- colDatawithout
 
 head(rownames(colData) == colnames(countData))
 
