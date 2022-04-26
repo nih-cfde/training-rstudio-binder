@@ -1,19 +1,14 @@
+
 library(ggplot2)
 library(tidyr)
 library(dplyr)
-library(readr)
-library(tibble)
-library(cowplot)
-library(scales)
-library(forcats)
-library(stringr)
 
-samples <- read.csv("./data/GTExPortal.csv")
-
+samples <- read.csv("./data/samples.csv")
 
 head(samples)
 names(samples)
-
+str(samples)
+summary(samples)
 
 # with row.names
 results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
@@ -24,11 +19,7 @@ results2 <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv",  sep = "\t", head
 head(results2)
 
 
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-
-
-# Open the Terminal and type the command (after the $) to uznip
+# Open the Terminal and type the command (after the $) to unzip
 # $ gunzip -k ./data/countData.*.gz
 
 
@@ -38,7 +29,7 @@ dim(counts)
 head(counts)[1:5]
 
 
-colData <- read.csv("./data/colData.HEART.csv")
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
 head(colData)
 
 
@@ -46,22 +37,18 @@ dim(counts)
 length(row.names(counts))
 
 
-dim(genes)
-length(genes$Approved.symbol)
-
-
 dim(samples)
-length(samples$Tissue.Sample.ID)
+length(samples$SMTS)
 
 
-dplyr::count(samples, Tissue) 
+dplyr::count(samples, SMTS) 
 
 
-dplyr::count(samples, Tissue, Sex) 
+dplyr::count(samples, SMTS, SEX) 
 
 
 #names(colData)
-dplyr::count(colData, gtex.smts, gtex.sex, gtex.age, gtex.dthhrdy) 
+dplyr::count(colData, SMTS, SEX, AGE, DTHHRDY ) 
 
 
 str(samples)
@@ -74,29 +61,29 @@ str(counts[1:5])
 summary(counts[1:5])
 
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count")
 
 
-ggplot(samples, aes(x = Tissue)) +
+ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, color = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, color = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip()
 
 
-ggplot(samples, aes(x = Tissue, fill = Age.Bracket)) +
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
   geom_bar(stat = "count") + 
   coord_flip() +
-  facet_wrap(~Sex)
+  facet_wrap(~SEX)
 
 
 ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
@@ -108,13 +95,12 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_hline(yintercept = -log10(0.05))
 
 
-ggplot(colData, aes(x = gtex.smcenter, y = gtex.smrin)) +
+ggplot(colData, aes(x = DTHHRDY, y = SMRIN)) +
   geom_boxplot() +
-  geom_jitter(aes(color = gtex.smrin))
+  geom_jitter(aes(color = SMRIN))
 
 
 results %>% mutate(Approved.symbol = row.names(.))  
-results2 %>% rename(Approved.symbol = X)   
 
 
 results %>% filter(adj.P.Val < 0.05,
@@ -130,6 +116,10 @@ resultsDEGs <- results %>%
          logFC > 1 | logFC < -1) %>%
   arrange(adj.P.Val) 
 resultsDEGs
+
+
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
 
 
 left_join(resultsDEGs, genes, by =  "Approved.symbol")
@@ -166,21 +156,17 @@ DEGsSymbol
 head(rownames(colData) == colnames(counts))
 head(colnames(counts))
 head(rownames(colData))
-head(colData$X)
 
 
 colData_tidy <-  colData %>%
-  mutate(X = gsub("-", ".", X))  %>%
-  filter(gtex.age %in% c("20-29", "70-79")) %>%
-  mutate(gtex.age = factor(gtex.age))
-rownames(colData_tidy) <- colData_tidy$X
+  mutate(SAMPID = gsub("-", ".", SAMPID))  %>%
+  filter(AGE %in% c("20-29", "70-79")) 
+rownames(colData_tidy) <- colData_tidy$SAMPID
 
-head(rownames(colData_tidy) == colnames(counts))
-
-mycols <- colData_tidy %>% dplyr::pull(X)
+mycols <- colData_tidy %>% dplyr::pull(SAMPID)
 
 counts_tidy <- counts %>%
-  select(all_of(mycols))
+  select(mycols)
 
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
@@ -191,20 +177,21 @@ counts_tidy_long <- counts %>%
   separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
            sep = "\\.") %>%
   filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
-  pivot_longer(cols = all_of(mycols), names_to = "X", 
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "X") %>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
   arrange(desc(counts)) %>%
   inner_join(., genes, by = "Ensembl.gene.ID") %>%
   select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         X, gtex.smtsd, study, gtex.age, gtex.sex, gtex.dthhrdy, 
-         gtex.smcenter)
+         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
 head(counts_tidy_long)
 
+library(scales)
 
 counts_tidy_long %>%
-  ggplot(aes(x = gtex.age, y = counts)) +
+  ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Approved.symbol, scales = "free_y") +
   scale_y_log10(labels = label_number_si())
+
