@@ -17,7 +17,7 @@ _Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uU
 --->
 
 **When:** Wednesday,  April 27, 2022, 10 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
-**Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)  
+**Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09) and [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
 **Instructors:** Dr. Rayna Harris  
 **Organizer: [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)**
 
