@@ -2816,19 +2816,19 @@ That completes our section on tidying and transforming data.
 
 #### Key functions: Tidy and Transform
 
-| Function         | Description |
-|------------------|-------------|
-| `filter()`       |             |
-| `mutate()`       |             |
-| `select()`       |             |
-| `arrange()`      |             |
-| `full_join()`    |             |
-| `left_join()`    |             |
-| `inner_join()`   |             |
-| `pivot_wider()`  |             |
-| `pivot_longer()` |             |
-| `drop_na()`      |             |
-| `separate()`     |             |
+| Function         | Description                                                                                     |
+|------------------|-------------------------------------------------------------------------------------------------|
+| `filter()`       | A function for filtering data                                                                   |
+| `mutate()`       | A function for create new columns                                                               |
+| `select()`       | A function for selecting/reordering columns                                                     |
+| `arrange()`      | A function for ordering observations                                                            |
+| `full_join()`    | Join 2 tables, return all observations                                                          |
+| `left_join()`    | Join 2 tables, return all observations in the left and matching observations in the right table |
+| `inner_join()`   | Join 2 tables, return observations with values in both tables                                   |
+| `pivot_wider()`  | Widen a data frame                                                                              |
+| `pivot_longer()` | Lengthen a data frame                                                                           |
+| `drop_na()`      | Remove missing values                                                                           |
+| `separate()`     | Separate a column into two columns                                                              |
 
 :::
 
@@ -2868,6 +2868,4 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 *Note: the source document
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 14 March, 2022.*
-
-------------------------------------------------------------------------
 
