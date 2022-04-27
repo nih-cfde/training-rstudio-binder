@@ -1,4 +1,4 @@
-### Appendix
+### R code for today's workshop
 
 2 + 2 * 100
 log(202)
@@ -170,12 +170,16 @@ counts_tidy_slim <- counts_tidy %>%
   filter(rowSums(.) >0 ) %>%
   head() %>%
   mutate(Ensembl.gene.ID = row.names(.) )
-head(counts_tidy_slim)
+head(counts_tidy_slim)[1:5]
 
 counts_tidy_long <- counts_tidy_slim %>%
   pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") 
 head(counts_tidy_long)
+counts_tidy_long_joined <- counts_tidy_long%>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
+  arrange(desc(counts))
+head(counts_tidy_long_joined)
 
 library(scales)
 
@@ -184,4 +188,5 @@ counts_tidy_long_joined %>%
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  scale_y_log10(labels = label_number_si())
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1)) +
+  scale_y_log10(labels = label_number_si()) 

@@ -1742,8 +1742,8 @@ counts_tidy_long_joined %>%
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  scale_y_log10(labels = label_number_si()) +
-  theme(axis.text.x = element_text(angle = 45, hjust  = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1)) +
+  scale_y_log10(labels = label_number_si()) 
 ```
 
     ## Warning: Transformation introduced infinite values in continuous y-axis
