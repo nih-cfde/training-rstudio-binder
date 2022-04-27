@@ -734,7 +734,7 @@ counts_tidy_slim <- counts_tidy %>%
   filter(rowSums(.) >0 ) %>%
   head() %>%
   mutate(Ensembl.gene.ID = row.names(.) )
-head(counts_tidy_slim)
+head(counts_tidy_slim)[1:5]
 ```
 
 Now we can pivot longer. We use `cols` to specify with column names will be turned into observations and we use `names_to` to specify the name of the new column that contains those observations. We use `values_to` to name the column with the corresonding value, in this case we will call the new columns, `SAMPID` and `counts`.  
