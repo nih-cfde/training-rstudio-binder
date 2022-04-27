@@ -37,7 +37,7 @@ useful.
 
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
-<div class="info">
+:::info
 
 ### Learning Objectives
 
@@ -60,7 +60,7 @@ motivating questions?
 -   What is the effect of age on gene expression in the heart?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-</div>
+:::
 
 ## Introduction
 
@@ -180,19 +180,19 @@ the `ggplot2` package.
 library(ggplot2)
 ```
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
 We will also use functions from the packages `tidyr` and `dplyr` to tidy
 and transform data. What command would you run to load these packages?
 
-<div class="spoiler">
+:::spoiler
 
 `library(tidyr)`  
 `library(dplyr)`
 
-</div>
+:::
 
 You can also navigate to the “Packages” tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -200,7 +200,7 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -211,7 +211,7 @@ description of the package and its functions.
 | `install.packages()` | An R function to install packages            |
 | `library()`          | The command used to load installed packages  |
 
-</div>
+:::
 
 ## Importing and viewing data
 
@@ -419,7 +419,7 @@ head(results)
     ## A2ML1    0.58865741 -1.0412696 1.8263856 0.07173966 0.2328150 -4.065276
     ## A2MP1    0.31631081 -0.8994146 1.4061454 0.16377753 0.3730822 -4.583435
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -427,12 +427,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
-<div class="spoiler">
+:::spoiler
 
 1.  `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/countData.MUSCLE.csv", row.names = 1)`
 
-</div>
+:::
 
 #### Quick summary statistics and sample size
 
@@ -991,7 +991,7 @@ dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY )
     ## 439          Vagina Female 60-69                   Slow death  3
     ## 440          Vagina Female 60-69              Ventilator Case  1
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -1004,15 +1004,15 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
-<div class="spoiler">
+:::spoiler
 
 `df <- read.csv("./data/colData.MUSCLE.csv")`
 `dplyr::count(df, SMTS, SEX, AGE)`
 `# 3 samples are in the female group age 30-39`
 
-</div>
+:::
 
-<div class="success">
+:::success
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
@@ -1030,7 +1030,7 @@ variable names.*
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
 
-</div>
+:::
 
 ## Visualizing data with ggplot2
 
@@ -1121,7 +1121,7 @@ data (for good biological reasons). However, this plot doesn’t show us
 Hardy Scale. It’s hard to layer 4 variables, so let’s remove Tissue as a
 variable by focusing just on one Tissue.
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -1129,7 +1129,7 @@ Create a plot showing the total number of samples per Sex, Age Bracket,
 and Hardy Scale for *just* the Heart samples. Paste the code you used in
 the chat.
 
-<div class="spoiler">
+:::spoiler
 
 There are many options. Here are a few.
 
@@ -1141,7 +1141,7 @@ There are many options. Here are a few.
           geom_bar(stat = "count") +
           facet_wrap(~SEX) 
 
-</div>
+:::
 
 One thing these plots show us is that we don’t have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
@@ -1200,7 +1200,7 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 ![](./images/volcano4-1.png)<!-- -->
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -1209,7 +1209,7 @@ Create a volcano plot for the results comparing the heart tissue of
 differential expressed gene between 20 and 30 year olds or 20 and 70
 year olds?
 
-<div class="spoiler">
+:::spoiler
 
       df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
 
@@ -1219,7 +1219,7 @@ year olds?
       
       # more  
 
-</div>
+:::
 
 In addition to containing information about the donor tissue, the
 samples file contains has a column with a RIN score, which tells us
@@ -1240,7 +1240,7 @@ visualizing data. In the next section, we will tidy and transform our
 data so that we can make even better summaries and figures. In the last
 section, you will learn ggplot function for making fancier figures.
 
-<div class="success">
+:::success
 
 #### Key functions
 
@@ -1254,7 +1254,7 @@ section, you will learn ggplot function for making fancier figures.
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
-</div>
+:::
 
 ## Tidy and Transform Data
 
@@ -1383,7 +1383,7 @@ resultsDEGs
     ## [36] "SGPP2"        "COL24A1"      "SEC24AP1"     "ANKRD1"       "CDO1"        
     ## [41] "CCL28"        "SLC5A10"      "XIRP2"
 
-<div class="warning">
+:::warning
 
 #### Challenge
 
@@ -1391,7 +1391,7 @@ Replace the input results file with a different file, such as the
 results of the comparison of 20-29 and 50-59 year old heart samples.
 What are the deferentially expressed genes?
 
-<div class="spoiler">
+:::spoiler
 
 You could use the following code to get this result below
 
@@ -1412,7 +1412,7 @@ You could use the following code to get this result below
     [37] "COL24A1"      "SEC24AP1"     "ANKRD1"       "CDO1"         "CCL28"        "SLC5A10"     
     [43] "XIRP2" 
 
-</div>
+:::
 
 ### Mutating Data
 
@@ -1742,7 +1742,8 @@ counts_tidy_long_joined %>%
   geom_boxplot() +
   geom_point() +
   facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  scale_y_log10(labels = label_number_si())
+  scale_y_log10(labels = label_number_si()) +
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1))
 ```
 
     ## Warning: Transformation introduced infinite values in continuous y-axis
@@ -1755,7 +1756,7 @@ counts_tidy_long_joined %>%
 
 That completes our section on tidying and transforming data.
 
-<div class="success">
+:::success
 
 #### Key functions: Tidy and Transform
 
@@ -1773,7 +1774,7 @@ That completes our section on tidying and transforming data.
 | `drop_na()`      | Remove missing values                                                                           |
 | `separate()`     | Separate a column into two columns                                                              |
 
-</div>
+:::
 
 ## Communicate
 
@@ -1812,194 +1813,3 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 14 March, 2022.*
 
-------------------------------------------------------------------------
-
-### Appendix
-
-``` r
-2 + 2 * 100
-log(202)
-
-pval <- 0.05
-pval
-
--log10(pval)
-
-
-favorite_genes <- c("BRCA1", "JUN",  "GNRH1", "TH", "AR")
-favorite_genes
-
-#install.packages("ggplot2")
-
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-
-
-samples <- read.csv("./data/samples.csv")
-
-View(samples)
-head(samples)
-tail(samples)
-str(samples)
-summary(samples)
-
-
-counts <- read.csv("./data/countData.HEART.csv", row.names = 1)
-dim(counts)
-head(counts)[1:5]
-
-
-# with row.names
-results <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv")
-head(results)
-
-
-dim(samples)
-
-
-dplyr::count(samples, SMTS) 
-
-
-dplyr::count(samples, SMTS, SEX) 
-
-
-dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) 
-
-
-ggplot(samples, aes(x = SMTS)) +
-  geom_bar(stat = "count")
-
-
-ggplot(samples, aes(x = SMTS)) +
-  geom_bar(stat = "count") + 
-  coord_flip()
-
-
-ggplot(samples, aes(x = SMTS, color = AGE)) +
-  geom_bar(stat = "count") + 
-  coord_flip()
-
-
-ggplot(samples, aes(x = SMTS, fill = AGE)) +
-  geom_bar(stat = "count") + 
-  coord_flip()
-
-
-ggplot(samples, aes(x = SMTS, fill = AGE)) +
-  geom_bar(stat = "count") + 
-  coord_flip() +
-  facet_wrap(~SEX)
-
-
-ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
-  geom_point() 
-
-
-ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
-  geom_point() +
-  geom_hline(yintercept = -log10(0.05))
-
-
-ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
-  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
-  geom_hline(yintercept = -log10(0.05)) 
-
-
-ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
-  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
-  geom_hline(yintercept = -log10(0.05))  +
-  theme(legend.position = "bottom") +
-  labs(color = "20-29 vs 50-59 year olds", 
-       subtitle = "Heart Tissue Gene Expression")
-
-
-
-ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
-  geom_boxplot() +
-  geom_jitter(aes(color = SMRIN))
-
-
-results %>% filter(adj.P.Val < 0.05) %>% head()
-
-
-results %>% filter(logFC > 1 | logFC < -1) %>% head()
-
-
-results %>% filter(adj.P.Val < 0.05,
-                   logFC > 1 | logFC < -1) %>%
-  arrange(adj.P.Val) %>%
-  head()
-
-
-
-resultsDEGs <- results %>% filter(adj.P.Val < 0.05,
-                   logFC > 1 | logFC < -1) %>%
-  arrange(adj.P.Val) %>% 
-  rownames(.)
-resultsDEGs
-
-
-colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
-head(colData)
-
-head(rownames(colData) == colnames(counts))
-head(colnames(counts))
-head(rownames(colData))
-
-
-colData_tidy <-  colData %>%
-  mutate(SAMPID = gsub("-", ".", SAMPID))  
-rownames(colData_tidy) <- colData_tidy$SAMPID
-
-mycols <- rownames(colData_tidy)
-head(mycols)
-
-
-counts_tidy <- counts %>%
-  select(all_of(mycols))
-
-head(rownames(colData_tidy) == colnames(counts_tidy))
-
-
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-
-
-resultsSymbol <- results %>%
-  mutate(Approved.symbol = row.names(.))
-head(resultsSymbol)
-
-
-resultsName <- left_join(resultsSymbol, genes, by = "Approved.symbol")
-head(resultsName)
-
-
-resultsNameTidy <- resultsName %>%
-  filter(adj.P.Val < 0.05,
-                   logFC > 1 | logFC < -1) %>%
-  arrange(adj.P.Val) %>%
-  select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, AveExpr, adj.P.Val)
-head(resultsNameTidy)
-
-
-counts_tidy_slim <- counts_tidy %>%
-  filter(rowSums(.) >0 ) %>%
-  head() %>%
-  mutate(Ensembl.gene.ID = row.names(.) )
-head(counts_tidy_slim)[1:5]
-
-counts_tidy_long <- counts_tidy_slim %>%
-  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
-               values_to = "counts") 
-head(counts_tidy_long)
-
-library(scales)
-
-counts_tidy_long_joined %>%
-  ggplot(aes(x = AGE, y = counts)) +
-  geom_boxplot() +
-  geom_point() +
-  facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  scale_y_log10(labels = label_number_si())
-```
