@@ -59,7 +59,7 @@ When you start RStudio, you’ll see two key regions in the interface: the conso
 
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
-For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
+For today's lesson, wef will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
 
 ![](https://i.imgur.com/AfjBaPE.png)
 
@@ -104,7 +104,8 @@ pval
 You can save really long lists of things with a short, descriptive names that are easy to recall later.
 
 ```{r, appendix = TRUE}
-favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
+
+favorite_genes <- c("BRCA1", "JUN",  "GNRH1", "TH", "AR")
 favorite_genes
 
 ```
@@ -220,7 +221,7 @@ Very large tabular files are often saved as .tsv files. These can be imported wi
 ```{r import-2, appendix = TRUE}
 
 # with row.names
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+results <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv")
 head(results)
 
 ```
@@ -460,7 +461,7 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
   geom_hline(yintercept = -log10(0.05))  +
   theme(legend.position = "bottom") +
-  labs(color = "20-29 vs 30-39 year olds", 
+  labs(color = "20-29 vs 50-59 year olds", 
        subtitle = "Heart Tissue Gene Expression")
 
 
@@ -533,203 +534,97 @@ For each downstream analysis, you will likely use a series of tidying and transf
 
 Instead of going into each function or each process in detail in isolation, let's start with some typical research questions and then piece together R functions to get the desired information
 
-### Question 1: What are the gene names and Ensemble IDs of the top 20 most differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds?**
-
-To answer this question, we need a subset of information from both the results and genes files.  We need, in no particular order, to:
-1. create a column in results with the gene symbols named "Approved.symbol"
-1. filter the results for genes adj.p.value  < 0.05 (or desired alpha) and logFC > 1 or <-1
-1. arrange the results by descending adj.p.value
-1. join the results and genes data frames  by "Approved.symbol"
-1. select the gene symbol, name, and ensemble id, lfc, and adj.p.val
-1. create lists of ensemble ideas and gene symbols of DEGs
-
-Let's go deeper into each step. 
-
-#### 1.1 Create (mutate) or rename a column in results with the gene symbols named "Approved.symbol"
-
-Currently, we have "results" with gene symbols as the row names and "results2" has a column called "X" with the gene symbol. Depending on which data frame we use, e can either use mutate to create a new column with the name "Approved.symbol", or we can rename column X.
-
-
-```{r wrangle11a, appendix = TRUE, echo = T, eval = F}
-
-results %>% mutate(Approved.symbol = row.names(.))  
-
-```
-
-```{r wrangle11b, appendix = FALSE, echo = F, eval = T}
-
-results %>% mutate(Approved.symbol = row.names(.)) %>% as_tibble()
-
-```
-
-
-#### 1.2 Filter the results for genes adj.p.value  < 0.05 (or desired alpha)
+###  Filtering Data
 
 Filter is done in a few different ways depending on the type of variable. You can use `>` and less `<` to filter greater or less than a number. `==` and `!=` are used to filter by characters or factors that match or do not match a specific pattern. `%in% c()` is used to filter by things in a list. Let's filter by adjusted p-value. You can use `|` and `&` to mean "or" or "and"
+
+To explore filtering data, let's answer the following question: What are the approved names and symbols of the differentially expressed genes (DEGs) in the heart tissue between 20-29 and 30-29 year olds? To answer this question, we need a subset of information from both the results and genes files.  We need, in no particular order, to:
+
+1. filter by adj.p.value  < 0.05 (or desired alpha) 
+1. filter by results by logFC > 1 or <-1
+1. filter by a list of gene symbols
+
+
+```{r wrangle11, appendix = TRUE}
+
+results %>% filter(adj.P.Val < 0.05) %>% head()
+
+```
 
 
 ```{r wrangle12, appendix = TRUE}
 
+results %>% filter(logFC > 1 | logFC < -1) %>% head()
+
+```
+
+Sometimes its nice to arrange by pvalue.
+
+```{r wrangle13a, appendix = TRUE}
+
 results %>% filter(adj.P.Val < 0.05,
-                   logFC > 1 | logFC < -1)
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  head()
+
 
 ```
 
 
-#### 1.3 Arrange the results by adj.p.value, from smallest to largest
+```{r wranglelist, appendix = TRUE}
 
-We can use the arrange function to reorder observations.
-
-
-
-```{r wrangle13a, appendix = TRUE, echo = T, eval = F}
-
-results %>% arrange(adj.P.Val) 
-
-```
-
-
-```{r wrangle13b, appendix = F, echo = F, eval = T}
-
-results %>% arrange(adj.P.Val) %>% head()
-
-```
-
-
-Let's combine the three previous steps into one series of commands and save the this as a temporary file that we will join with. 
-
-
-
-
-```{r wrangle13c, appendix = TRUE, echo = F, eval = T}
-
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>%
-  arrange(adj.P.Val) 
+resultsDEGs <- results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>% 
+  rownames(.)
 resultsDEGs
 
 ```
-
-#### 1.4 Join the results and genes data frames  by "Approved.symbol"
-
-I find it helpful to import a table of gene names and symbols that can be merged with other tables with gene information or searched for useful information. This table of gene names was downloaded from <https://www.genenames.org/download/custom/>. 
-
-In this case, we use `fill = T` to fill missing fields with a NULL value.
-
-```{r import-3, appendix = TRUE}
-
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-
-```
-
-
-```{r wrangle14, appendix = TRUE, echo = T, eval = F}
-
-left_join(resultsDEGs, genes, by =  "Approved.symbol")
-
-```
-
-```{r wrangle14b, appendix = F, eval = T, echo = F}
-
-left_join(resultsDEGs, genes, by =  "Approved.symbol") %>% as_tibble()
-
-```
-
-
-#### 1.5 Select the gene symbol, name, and ensemble id, lfc, and adj.p.val
-
-By now, our results file is getting quite wide. We can use the `select()` function to subset data frames by specific column names.
-
-
-```{r wrangle15, appendix = TRUE}
-
-resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
-
-```
-
-
-
-Now, let's combine all five steps into one. However, instead of rearranging by p-value, let's arrange by gene symbol. Let's also convert this object to a tibble with `as_tibble()` for easier viewing. 
-
-
-```{r wrangle15b, appendix = TRUE}
-
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>% 
-  arrange(Approved.symbol) %>%
-  left_join(., genes, by =  "Approved.symbol") %>% 
-  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  as_tibble()
-resultsDEGs
-
-```
-
 
 <div class="warning">
 
 #### Challenge
 
-Replace the input results file with a different file, such as the results of the comparison of 20-29 and 30-39 year old muscle samples. What are the deferentially expressed genes?
+Replace the input results file with a different file, such as the results of the comparison of 20-29 and 50-59 year old heart samples. What are the deferentially expressed genes?
 
 <div class="spoiler">
 
-  resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
+You could use the following code to get this result below
+
+```
+
+resultsDEGs2 <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv") %>% 
   filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>% 
-  arrange(Approved.symbol) %>%
-  left_join(., genes, by =  "Approved.symbol") %>% 
-  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
-  as_tibble()
-resultsDEGs
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>% 
+  rownames(.)
+resultsDEGs2
+
+[1] "EDA2R"        "PTCHD4"       "BTBD11"       "MTHFD2P1"     "C4orf54"      "LOC101929331"
+[7] "FMO3"         "KLHL41"       "ETNPPL"       "HOPX"         "PDIA2"        "RPL10P7"     
+[13] "FCMR"         "RAD9B"        "LMO3"         "NXF3"         "FHL1"         "EREG"        
+[19] "CHMP1B2P"     "MYPN"         "VIT"          "XIRP1"        "DNASE1L3"     "LIPH"        
+[25] "PRELP"        "CSRP3"        "FZD10-AS1"    "LINC02268"    "GDF15"        "PHF21B"      
+[31] "CPXM1"        "IL24"         "ADH1B"        "MCF2"         "WWC1"         "SGPP2"       
+[37] "COL24A1"      "SEC24AP1"     "ANKRD1"       "CDO1"         "CCL28"        "SLC5A10"     
+[43] "XIRP2" 
+
+```
 
 </div>
 
 
-```{r resultDEGs, appendix = TRUE}
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>% 
-  arrange(Approved.symbol) %>%
-  left_join(., genes, by =  "Approved.symbol") %>% 
-  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
-  as_tibble()
-resultsDEGs
-```
-
-
-
-With this exercise, you have explored a few functions related to tidying and transforming data. Let's try one more exercise 
-
-#### 1.6 Create lists of ensemble ids and gene names of DEGs
-
-```{r, DEGlists, appendix = TRUE}
-DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
-DEGsENSG
-DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
-DEGsSymbol
-```
 
 
 
 
-
-
-### Question 2: What are the raw counts of the differentially expressed genes?
-
-Most RNA-Seq pipelines require that the counts file to be in a matrix format where each sample is a column and each gene is a row and all the values are integers or doubles with all the experimental factors in a separate file. However, many R tools prefer to have these data combined in a single, tidy data frame or tibble. 
+###  Mutating Data
 
 
 
-To process the counts data using the DESeq2 pipeline, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. We confirm this by asking if `rownames(colData) == colnames(counts)` or by checking the dimensions of each. Using  `head()` is a good way to only print 5 rows. 
+Most RNA-Seq pipelines require that the counts file to be in a matrix format where each sample is a column and each gene is a row and all the values are integers or doubles with all the experimental factors in a separate file. More over, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. 
+
+When you type `rownames(colData) == colnames(counts)` you should see many TRUE statments. If the answer if FALSE your data cannot be processed by downstream tools. 
 
 
 ```{r question2a, appendix = TRUE}
@@ -743,9 +638,8 @@ head(rownames(colData))
 
 ```
 
-The row and col names don't match because the the dashes were replaced with periods when the data were imported. This is kind of okay because `DESeq2` would complain if your colnames had dashes. 
+The row and col names don't match because the the dashes were replaced with periods when the data were imported. This is kind of okay because `DESeq2` would complain if your colnames had dashes. We can use `gsub()` to replace the dashes with periods. 
 
-We can use `gsub()` to replace the dashes with periods. Then, we rename the row names. We can use `select(all_of())` to make sure that all the rows in colData are represented at columns in countData. We could modify the original files, but since they are so large and importing taking a long time, I like to save "tidy" versions for downstream analyses. 
 
 
 ```{r question2b, appendix = TRUE}
@@ -755,6 +649,15 @@ colData_tidy <-  colData %>%
 rownames(colData_tidy) <- colData_tidy$SAMPID
 
 mycols <- rownames(colData_tidy)
+head(mycols)
+
+```
+
+Then, we rename the row names. We can use `select(all_of())` to make sure that all the rows in colData are represented at columns in countData. We could modify the original files, but since they are so large and importing taking a long time, I like to save "tidy" versions for downstream analyses. 
+
+
+
+```{r question2b2, appendix = TRUE}
 
 counts_tidy <- counts %>%
   select(all_of(mycols))
@@ -763,58 +666,113 @@ head(rownames(colData_tidy) == colnames(counts_tidy))
 
 ```
 
-I also like to create  `counts_tidy_long` file that can be easily subset by variables or genes of interest. To create this, we need to combine three data frames: genes, colData (or Samples), and counts. 
 
-In this section, we will combine tidying, transforming, and visualizing to answer the question "What are the raw counts of the deferentially expressed genes?"
+### Joining Data 
 
-```{r question2c, appendix = TRUE}
+Genes can be identified by their name, their symbol, an Ensemble ID, or any number of other identifiers. Our results file uses gene symbols, but our counts file uses Ensemble IDs. 
 
-counts_tidy_long <- counts_tidy %>%
-  select(all_of(mycols)) %>%
-  mutate(Ensembl.gene.ID = rownames(.)) %>%
-  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
-           sep = "\\.") %>%
-  filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
-  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
-               values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "SAMPID") %>%
-  arrange(desc(counts)) %>%
-  inner_join(., genes, by = "Ensembl.gene.ID") %>%
-  select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
-head(counts_tidy_long)
+Let's read a file called "genes.txt" and combine this with our results file so that we have gene symbols, names, and ids, alongside with the p-values and other statistics.
+
+
+```{r import-3, appendix = TRUE}
+
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
 
 ```
 
+The column with genes symbols is called `Approved.symbol`. To combine this data frame without results. We can use the mutate function to create a new column based off the row names. Let's save this as `resultsSymbol`.
+
+
+```{r addcoumn, appendix = TRUE}
+
+resultsSymbol <- results %>%
+  mutate(Approved.symbol = row.names(.))
+head(resultsSymbol)
+
+```
+
+Now, we can use one of the join functions to combine two data frames. `left_join` will return all records from the left table and any matching values from the right. `right_join` will return all values from the right table and any matching values from the left. `inner_join` will return records that have values in both tables. `full_join` will return everything. 
+
+```{r appendix = TRUE}
+
+resultsName <- left_join(resultsSymbol, genes, by = "Approved.symbol")
+head(resultsName)
+
+```
+
+
+Congratulations! You have successfully joined two tables. Now, you can filter and select columsn to make a pretty table of the DEGS.
+
+. 
+```{r appendix = TRUE}
+
+resultsNameTidy <- resultsName %>%
+  filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, AveExpr, adj.P.Val)
+head(resultsNameTidy)
+
+```
+
+
+
+
+### Lengthen data
+
+The matrix form of the count data is required for some pipelines, but many R programs are better suited to data in a long format where each row is an observation. I like to create  `counts_tidy_long` file that can be easily subset by variables or genes of interest. 
+
+Because the count files are so large, it is good to filter the counts first. I'll filter by `rowSums(.) > 0` and then take the top 6 with `head()`. Then crate a column for lengthening.
+
+
+
+
+```{r question2c, appendix = TRUE}
+
+counts_tidy_slim <- counts_tidy %>%
+  filter(rowSums(.) >0 ) %>%
+  head() %>%
+  mutate(Ensembl.gene.ID = row.names(.) )
+head(counts_tidy_slim)
+```
+
+Now we can pivot longer. We use `cols` to specify with column names will be turned into observations and we use `names_to` to specify the name of the new column that contains those observations. We use `values_to` to name the column with the corresonding value, in this case we will call the new columns, `SAMPID` and `counts`.  
+
+```{r question2cb, appendix = TRUE}
+
+counts_tidy_long <- counts_tidy_slim %>%
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
+               values_to = "counts") 
+head(counts_tidy_long)
+```
+
+Now, that we have a `SAMPID` column, we can join this with our colData_tidy and then make some pretty plots.
+
+```{r}
+counts_tidy_long_joined <- counts_tidy_long%>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
+  arrange(desc(counts))
+head(counts_tidy_long_joined)
+```
+
+
+
+
 ```{r boxplot2, appendix = TRUE}
+
 library(scales)
 
-counts_tidy_long %>%
+counts_tidy_long_joined %>%
   ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
-  facet_wrap(~Approved.symbol, scales = "free_y") +
+  facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
   scale_y_log10(labels = label_number_si())
 
 ```
 
-![](https://i.imgur.com/jvhRnUy.png)
-
-
-<div class="warning">
-
-#### Challenge
-
-Plot the gene expression of your five favorite genes.
-
-<div class="spoiler">
-
-_Hint: Create a list of your favorite genes. Use the gene Ensemble ides to get the counts and use the colData or sample information to explore how age, sex, tissue, and other variable may influence gene expression._
-
-</div>
-
-```{asis, comment = "", appendix = F}
-
+That completes our section on tidying and transforming data.
 
 <div class="success">
 
@@ -822,18 +780,17 @@ _Hint: Create a list of your favorite genes. Use the gene Ensemble ides to get t
 
 | Function | Description |
 | --- | --- |
-| `pivot_wider()` |  |
-| `pivot_longer()` |  |
-| `separate()` |  |
-| `drop_na()` |  |
+| `filter()` | | 
+| `mutate()`  | | 
 | `select()`|  |
 | `arrange()` |  |
-| `summarize()`  |  |
-| `arrange()`  |  |
-| `mutate()`  | | 
 | `full_join()`  | | 
 | `left_join()`  | | 
 | `inner_join()`  | | 
+| `pivot_wider()` |  |
+| `pivot_longer()` |  |
+| `drop_na()` |  |
+| `separate()` | |
 
 </div>
 

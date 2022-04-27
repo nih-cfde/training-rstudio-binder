@@ -1,4 +1,4 @@
-# R script with workshop commands
+### Appendix
 
 2 + 2 * 100
 log(202)
@@ -8,7 +8,8 @@ pval
 
 -log10(pval)
 
-favorite_genes <- c("BRCA1", "POMC", "GnRH", "MC4R", "FOS", "CNR1")
+
+favorite_genes <- c("BRCA1", "JUN",  "GNRH1", "TH", "AR")
 favorite_genes
 
 #install.packages("ggplot2")
@@ -32,8 +33,10 @@ dim(counts)
 head(counts)[1:5]
 
 
-results <- read.table("./data/GTEx_Heart_20-29_vs_30-39.tsv")
+# with row.names
+results <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv")
 head(results)
+
 
 dim(samples)
 
@@ -90,7 +93,7 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
   geom_hline(yintercept = -log10(0.05))  +
   theme(legend.position = "bottom") +
-  labs(color = "20-29 vs 30-39 year olds", 
+  labs(color = "20-29 vs 50-59 year olds", 
        subtitle = "Heart Tissue Gene Expression")
 
 
@@ -100,58 +103,25 @@ ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
   geom_jitter(aes(color = SMRIN))
 
 
-results %>% mutate(Approved.symbol = row.names(.))  
+results %>% filter(adj.P.Val < 0.05) %>% head()
+
+
+results %>% filter(logFC > 1 | logFC < -1) %>% head()
 
 
 results %>% filter(adj.P.Val < 0.05,
-                   logFC > 1 | logFC < -1)
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  head()
 
 
-results %>% arrange(adj.P.Val) 
 
-
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>%
-  arrange(adj.P.Val) 
+resultsDEGs <- results %>% filter(adj.P.Val < 0.05,
+                                  logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>% 
+  rownames(.)
 resultsDEGs
 
-
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
-head(genes)
-
-
-left_join(resultsDEGs, genes, by =  "Approved.symbol")
-
-
-resultsDEGs %>% select(Approved.symbol, logFC, adj.P.Val)
-
-
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>% 
-  arrange(Approved.symbol) %>%
-  left_join(., genes, by =  "Approved.symbol") %>% 
-  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  as_tibble()
-resultsDEGs
-
-resultsDEGs <- results %>% 
-  mutate(Approved.symbol = row.names(.))  %>% 
-  filter(adj.P.Val < 0.05,
-         logFC > 1 | logFC < -1) %>% 
-  arrange(Approved.symbol) %>%
-  left_join(., genes, by =  "Approved.symbol") %>% 
-  select(Approved.symbol, Ensembl.gene.ID, logFC, adj.P.Val, Approved.name ) %>%
-  filter(grepl("ENSG", Ensembl.gene.ID)) %>%
-  as_tibble()
-resultsDEGs
-DEGsENSG <- resultsDEGs %>% pull(Ensembl.gene.ID)
-DEGsENSG
-DEGsSymbol <- resultsDEGs %>% pull(Approved.symbol)
-DEGsSymbol
 
 colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
 head(colData)
@@ -166,6 +136,8 @@ colData_tidy <-  colData %>%
 rownames(colData_tidy) <- colData_tidy$SAMPID
 
 mycols <- rownames(colData_tidy)
+head(mycols)
+
 
 counts_tidy <- counts %>%
   select(all_of(mycols))
@@ -173,26 +145,43 @@ counts_tidy <- counts %>%
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
 
-counts_tidy_long <- counts_tidy %>%
-  select(all_of(mycols)) %>%
-  mutate(Ensembl.gene.ID = rownames(.)) %>%
-  separate(Ensembl.gene.ID, into = c("Ensembl.gene.ID", "version"), 
-           sep = "\\.") %>%
-  filter(Ensembl.gene.ID %in% all_of(DEGsENSG)) %>%
+genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+head(genes)
+
+
+resultsSymbol <- results %>%
+  mutate(Approved.symbol = row.names(.))
+head(resultsSymbol)
+
+
+resultsName <- left_join(resultsSymbol, genes, by = "Approved.symbol")
+head(resultsName)
+
+
+resultsNameTidy <- resultsName %>%
+  filter(adj.P.Val < 0.05,
+         logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, AveExpr, adj.P.Val)
+head(resultsNameTidy)
+
+
+counts_tidy_slim <- counts_tidy %>%
+  filter(rowSums(.) >0 ) %>%
+  head() %>%
+  mutate(Ensembl.gene.ID = row.names(.) )
+head(counts_tidy_slim)
+
+counts_tidy_long <- counts_tidy_slim %>%
   pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
-               values_to = "counts") %>%
-  inner_join(., colData_tidy, by = "SAMPID") %>%
-  arrange(desc(counts)) %>%
-  inner_join(., genes, by = "Ensembl.gene.ID") %>%
-  select(Ensembl.gene.ID, Approved.name, Approved.symbol, counts, 
-         SAMPID, SMTSD, AGE, SEX, DTHHRDY)
+               values_to = "counts") 
 head(counts_tidy_long)
 
 library(scales)
 
-counts_tidy_long %>%
+counts_tidy_long_joined %>%
   ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
-  facet_wrap(~Approved.symbol, scales = "free_y") +
+  facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
   scale_y_log10(labels = label_number_si())
