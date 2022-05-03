@@ -8,20 +8,16 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE,
                       fig.path = "./images/")
 ```
 
-# Introduction to R for RNA-Seq Workshop
+# Introduction to R for RNA Sequencing Analysis  with data from the Gene Expression Tissue Project (GTEx)
 
-<!---
-
-_Even though you can [![hackmd-github-sync-badge](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ/badge)](https://hackmd.io/2ArmQGwGT0uUyL5Ehqy0hQ), please make changes by editing [this .Rmd file](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)._
-
---->
-
-**When:** Wednesday,  April 27, 2022, 10 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
+**When:** Wednesday,  May 11, 2022, 19 am - 12 pm PDT [workd clock](https://www.timeanddate.com/worldclock/fixedtime.html?msg=+Introduction+to+R+for+RNA-Sequencing+Analysis&iso=20220427T10&p1=3736&ah=2)   
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09) and [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
 **Instructors:** Dr. Rayna Harris  
 **Organizer:** [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)
 
-**Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 2 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. Familiarity with R is not required but would be useful.
+**Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 3 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. Familiarity with R is not required but would be useful. 
+
+This event is part of the [CFDE May Hackathon](https://nih-cfde.github.io/2022-may-hackathon/). Join us tomorrow at the Social Co-Working Sessions to practice and ask questions.
 
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
@@ -818,7 +814,7 @@ The workshop notes for using this repository to teach an Introduction to R for R
 - [Software Carpentry R Lesson](http://swcarpentry.github.io/r-novice-inflammation/)
 
 
-*Note: the source document [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd) was last modified 14 March, 2022.*
+*Note: the source document [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd) was last modified 3 May, 2022.*
 
 ---
 
