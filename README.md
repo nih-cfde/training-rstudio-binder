@@ -24,11 +24,10 @@ Click the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/
 
 1) create a new branch
 2) edit `environment.yml` file in the [./binder](./binder) directory
-3) build a [new pangeo binder](https://binder.pangeo.io/) - remember to enter the correct Github branch!
-
-![](./rstudio-binder-setup.png)
-
+3) build a [new binder](https://mybinder.org/) - remember to enter the correct Github branch!
 4) add the binder badge + brief description to this readme doc (including the repo branch)
+
+![](./images/rstudio-binder-setup.png)
 
 **Important reminders:**
 
