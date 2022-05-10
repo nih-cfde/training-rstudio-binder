@@ -8,13 +8,14 @@ Get data from GTEx portal https://gtexportal.org/home/
 
 
 ```
-curl -o samples.txt https://storage.googleapis.com/gtex_analysis_v7/annotations/GTEx_v7_Annotations_SampleAttributesDS.txt
-curl -o subjects.txt https://storage.googleapis.com/gtex_analysis_v7/annotations/GTEx_v7_Annotations_SubjectPhenotypesDS.txt
+curl -o samples.txt https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+curl -o subjects.txt https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SubjectPhenotypesDS.txt
+curl -L genes.tsv https://osf.io/5sxvt/download > ensembl_genes.tsv
 ```
 
 
 
-```{r setup}
+```{r setup, message = F}
 
 library(forcats)
 library(tidyr)
@@ -45,7 +46,7 @@ head(subjects)
 ```{r}
 
 samples <- read.table("../data/samples.txt", header = T, sep = "\t") 
-
+head(samples)
 samples2 <- samples %>%
   select(SAMPID, SMTS, SMNABTCH, SMNABTCHD, SMGEBTCHT, SMAFRZE, SMCENTER, SMRIN, SMATSSCR) %>%
   drop_na() %>%
@@ -75,6 +76,11 @@ ggplot(subjects, aes(x = AGE, fill = DTHHRDY)) +
   facet_wrap(~SEX)
 ```
 
+
+```{r}
+genes <- read.table("../data/ensembl_genes.tsv", sep = "\t",  header = T, fill = T)
+head(genes)
+```
 
 
 

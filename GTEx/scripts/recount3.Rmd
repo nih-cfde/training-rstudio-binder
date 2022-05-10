@@ -2,8 +2,8 @@
 title: "recount3"
 output: html_document
 params: 
-  myproject: "MUSCLE"
-  #myproject: "HEART"
+  #myproject: "MUSCLE"
+  myproject: "HEART"
 ---
 
 ```{r setup, include=FALSE}
@@ -85,8 +85,16 @@ savecols <- as.vector(savecols) # make it a vector
 
 countData <- assays(rse_gtex)$raw_counts %>% 
   as.data.frame() %>% 
-  dplyr::select(one_of(savecols)) # select just the columns 
+  dplyr::select(one_of(savecols)) %>% # select just the columns 
+  mutate(id_version = row.names(.)) %>%
+  filter(!grepl("PAR", id_version)) %>%
+  separate(id_version, into = c("id"), sep = "\\.", remove = T, extra = "drop")
+
+row.names(countData) <- countData$id
+countData$id <- NULL
  
+head(countData)[1:5]
+head(colData)[1:5]
 
 # variables
 dim(colData)
@@ -95,29 +103,8 @@ dim(countData)
 # check that rows and samples match
 head(rownames(colData) == colnames(countData))
 
-head(colData)[1:5]
-head(countData)[1:5]
-
-countDatawith <- colnames(countData)
-countDatawithout <- gsub(".1$", "", countDatawith)
-head(countDatawithout)
 
 
-colDatawith <- colData$SAMPID
-colDatawithout <- gsub(".1$", "", colDatawith)
-head(colDatawithout)
-
-genesversinowith <- row.names(countData)
-genesversinowithout <- gsub(".1$", "", genesversinowith)
-head(genesversinowithout)
-
-
-colnames(countData) <- countDatawithout
-rownames(countData) <- genesversinowithout
-rownames(colData) <- colDatawithout
-colData$SAMPID <- colDatawithout
-
-head(rownames(colData) == colnames(countData))
 
 ```
 

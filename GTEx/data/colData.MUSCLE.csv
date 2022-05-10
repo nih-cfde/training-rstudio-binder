@@ -1,276 +1,276 @@
 "","SAMPID","SMTS","SMTSD","SUBJID","SEX","AGE","SMRIN","DTHHRDY","SRA","DATE"
-"GTEX-YEC3-2126-SM-4YCDB","GTEX-YEC3-2126-SM-4YCDB","Muscle","Muscle - Skeletal","GTEX-YEC3","Male","50-59",8.6,"Ventilator Case","SRR1338560",2013-09-05
-"GTEX-1128S-2426-SM-5H11B","GTEX-1128S-2426-SM-5H11B","Muscle","Muscle - Skeletal","GTEX-1128S","Female","60-69",7.6,"Fast death of natural causes","SRR1339108",2013-09-19
-"GTEX-14BIM-0326-SM-5SI9B","GTEX-14BIM-0326-SM-5SI9B","Muscle","Muscle - Skeletal","GTEX-14BIM","Female","60-69",7.9,"Intermediate death","SRR1384371",2013-12-19
-"GTEX-1445S-0626-SM-5LU3C","GTEX-1445S-0626-SM-5LU3C","Muscle","Muscle - Skeletal","GTEX-1445S","Male","60-69",7.9,"Intermediate death","SRR1348040",2013-12-18
-"GTEX-11EQ8-0526-SM-5N9BC","GTEX-11EQ8-0526-SM-5N9BC","Muscle","Muscle - Skeletal","GTEX-11EQ8","Male","60-69",7.6,"Slow death","SRR1355217",2013-09-26
-"GTEX-144GM-2026-SM-5LU3D","GTEX-144GM-2026-SM-5LU3D","Muscle","Muscle - Skeletal","GTEX-144GM","Male","20-29",7.4,"Ventilator Case","SRR1367988",2013-12-18
-"GTEX-ZPCL-2026-SM-57WFD","GTEX-ZPCL-2026-SM-57WFD","Muscle","Muscle - Skeletal","GTEX-ZPCL","Female","60-69",8.8,"Ventilator Case","SRR1368574",2013-09-06
-"GTEX-13YAN-0526-SM-5O9BE","GTEX-13YAN-0526-SM-5O9BE","Muscle","Muscle - Skeletal","GTEX-13YAN","Male","60-69",7.3,"Ventilator Case","SRR1351979",2013-12-19
-"GTEX-12WSC-0326-SM-5EQ5E","GTEX-12WSC-0326-SM-5EQ5E","Muscle","Muscle - Skeletal","GTEX-12WSC","Male","50-59",8.4,"Fast death of natural causes","SRR1354644",2013-10-07
-"GTEX-ZVP2-2126-SM-5GU6E","GTEX-ZVP2-2126-SM-5GU6E","Muscle","Muscle - Skeletal","GTEX-ZVP2","Male","50-59",7.7,"Ventilator Case","SRR1383081",2013-09-19
-"GTEX-11WQC-2626-SM-5CVLF","GTEX-11WQC-2626-SM-5CVLF","Muscle","Muscle - Skeletal","GTEX-11WQC","Male","60-69",7,"Fast death of natural causes","SRR1365448",2013-10-10
-"GTEX-ZF3C-0326-SM-4WWBF","GTEX-ZF3C-0326-SM-4WWBF","Muscle","Muscle - Skeletal","GTEX-ZF3C","Female","50-59",8.4,"Ventilator Case","SRR1386991",2013-08-28
-"GTEX-13FHO-0726-SM-5IJDG","GTEX-13FHO-0726-SM-5IJDG","Muscle","Muscle - Skeletal","GTEX-13FHO","Male","60-69",7.5,"Ventilator Case","SRR1354270",2013-12-05
-"GTEX-ZWKS-0326-SM-5NQ7G","GTEX-ZWKS-0326-SM-5NQ7G","Muscle","Muscle - Skeletal","GTEX-ZWKS","Male","30-39",6.2,"Slow death","SRR1376764",2013-09-16
-"GTEX-12C56-1926-SM-5FQUG","GTEX-12C56-1926-SM-5FQUG","Muscle","Muscle - Skeletal","GTEX-12C56","Male","20-29",8.1,"Ventilator Case","SRR1392186",2013-10-01
-"GTEX-ZE7O-0326-SM-51MTH","GTEX-ZE7O-0326-SM-51MTH","Muscle","Muscle - Skeletal","GTEX-ZE7O","Female","50-59",6.9,"Fast death of natural causes","SRR1330854",2013-08-23
-"GTEX-145MH-0326-SM-5LU8H","GTEX-145MH-0326-SM-5LU8H","Muscle","Muscle - Skeletal","GTEX-145MH","Male","50-59",7.3,"Violent and fast death","SRR1370780",2013-12-18
-"GTEX-11ONC-2426-SM-5GU7H","GTEX-11ONC-2426-SM-5GU7H","Muscle","Muscle - Skeletal","GTEX-11ONC","Male","60-69",8.6,"Fast death of natural causes","SRR1388832",2013-10-04
-"GTEX-ZV68-0526-SM-59HKI","GTEX-ZV68-0526-SM-59HKI","Muscle","Muscle - Skeletal","GTEX-ZV68","Female","50-59",5.9,"Fast death of natural causes","SRR1375774",2013-09-09
-"GTEX-11VI4-1926-SM-5CVLI","GTEX-11VI4-1926-SM-5CVLI","Muscle","Muscle - Skeletal","GTEX-11VI4","Female","40-49",7.6,"Ventilator Case","SRR1388809",2013-10-10
-"GTEX-ZVE2-0626-SM-5GU7I","GTEX-ZVE2-0626-SM-5GU7I","Muscle","Muscle - Skeletal","GTEX-ZVE2","Male","50-59",6.3,"Ventilator Case","SRR1389177",2013-09-20
-"GTEX-13OVH-0626-SM-5L3EI","GTEX-13OVH-0626-SM-5L3EI","Muscle","Muscle - Skeletal","GTEX-13OVH","Male","70-79",8.1,"Fast death of natural causes","SRR1404837",2013-12-12
-"GTEX-1399T-2426-SM-5L3FJ","GTEX-1399T-2426-SM-5L3FJ","Muscle","Muscle - Skeletal","GTEX-1399T","Male","60-69",6.1,"Fast death of natural causes","SRR1342739",2013-12-03
-"GTEX-13FH7-2126-SM-5L3DJ","GTEX-13FH7-2126-SM-5L3DJ","Muscle","Muscle - Skeletal","GTEX-13FH7","Female","50-59",8.7,"Ventilator Case","SRR1361480",2013-12-05
-"GTEX-131XW-0326-SM-5KM1J","GTEX-131XW-0326-SM-5KM1J","Muscle","Muscle - Skeletal","GTEX-131XW","Female","50-59",8.6,"Slow death","SRR1363908",2013-11-05
-"GTEX-11DXW-0726-SM-5H12J","GTEX-11DXW-0726-SM-5H12J","Muscle","Muscle - Skeletal","GTEX-11DXW","Male","40-49",8.2,"Fast death of natural causes","SRR1395742",2013-09-12
-"GTEX-11ZTT-2626-SM-5EQKK","GTEX-11ZTT-2626-SM-5EQKK","Muscle","Muscle - Skeletal","GTEX-11ZTT","Female","60-69",8.2,"Ventilator Case","SRR1347214",2013-10-04
-"GTEX-14AS3-2126-SM-5S2MK","GTEX-14AS3-2126-SM-5S2MK","Muscle","Muscle - Skeletal","GTEX-14AS3","Female","40-49",8.4,"Ventilator Case","SRR1365426",2014-01-22
-"GTEX-Y3IK-2626-SM-4WWDK","GTEX-Y3IK-2626-SM-4WWDK","Muscle","Muscle - Skeletal","GTEX-Y3IK","Female","50-59",7.9,"Ventilator Case","SRR1375439",2013-07-31
-"GTEX-ZZ64-1526-SM-5E43K","GTEX-ZZ64-1526-SM-5E43K","Muscle","Muscle - Skeletal","GTEX-ZZ64","Male","20-29",7.2,"Ventilator Case","SRR1384138",2013-09-13
-"GTEX-13OW5-0326-SM-5L3HK","GTEX-13OW5-0326-SM-5L3HK","Muscle","Muscle - Skeletal","GTEX-13OW5","Male","60-69",5.9,"Intermediate death","SRR1390437",2013-12-17
-"GTEX-144GO-1326-SM-5Q5EL","GTEX-144GO-1326-SM-5Q5EL","Muscle","Muscle - Skeletal","GTEX-144GO","Male","60-69",8.2,"Slow death","SRR1331220",2014-01-08
-"GTEX-139T8-0526-SM-5KLZL","GTEX-139T8-0526-SM-5KLZL","Muscle","Muscle - Skeletal","GTEX-139T8","Male","60-69",8.2,"Slow death","SRR1334247",2013-11-05
-"GTEX-12WSL-2726-SM-5CVNL","GTEX-12WSL-2726-SM-5CVNL","Muscle","Muscle - Skeletal","GTEX-12WSL","Male","50-59",8.7,"Ventilator Case","SRR1351280",2013-10-08
-"GTEX-139T6-2026-SM-5IFFL","GTEX-139T6-2026-SM-5IFFL","Muscle","Muscle - Skeletal","GTEX-139T6","Male","50-59",8.5,"Ventilator Case","SRR1351480",2013-12-04
-"GTEX-11XUK-2226-SM-5CVLL","GTEX-11XUK-2226-SM-5CVLL","Muscle","Muscle - Skeletal","GTEX-11XUK","Female","40-49",6.8,"Ventilator Case","SRR1385411",2013-10-10
-"GTEX-11EM3-2126-SM-5H11M","GTEX-11EM3-2126-SM-5H11M","Muscle","Muscle - Skeletal","GTEX-11EM3","Female","20-29",7.9,"Ventilator Case","SRR1334512",2013-09-19
-"GTEX-YFC4-1026-SM-5RQJM","GTEX-YFC4-1026-SM-5RQJM","Muscle","Muscle - Skeletal","GTEX-YFC4","Female","40-49",8.2,"Violent and fast death","SRR1353517",2014-01-22
-"GTEX-14A6H-2826-SM-5QGPM","GTEX-14A6H-2826-SM-5QGPM","Muscle","Muscle - Skeletal","GTEX-14A6H","Male","30-39",7.1,"Ventilator Case","SRR1355352",2014-01-08
-"GTEX-ZV6S-2126-SM-4YCEM","GTEX-ZV6S-2126-SM-4YCEM","Muscle","Muscle - Skeletal","GTEX-ZV6S","Female","40-49",7.5,"Ventilator Case","SRR1387240",2013-09-10
-"GTEX-11TT1-2326-SM-5GU6N","GTEX-11TT1-2326-SM-5GU6N","Muscle","Muscle - Skeletal","GTEX-11TT1","Male","20-29",8.7,"Ventilator Case","SRR1331639",2013-09-19
-"GTEX-11TTK-0326-SM-5BC5N","GTEX-11TTK-0326-SM-5BC5N","Muscle","Muscle - Skeletal","GTEX-11TTK","Female","60-69",7.1,"Slow death","SRR1354955",2013-10-10
-"GTEX-YBZK-0326-SM-59HLN","GTEX-YBZK-0326-SM-59HLN","Muscle","Muscle - Skeletal","GTEX-YBZK","Female","50-59",8.6,NA,"SRR1375509",2013-08-01
-"GTEX-ZVZO-0326-SM-5HL4N","GTEX-ZVZO-0326-SM-5HL4N","Muscle","Muscle - Skeletal","GTEX-ZVZO","Male","40-49",7.8,NA,"SRR1377800",2013-09-12
-"GTEX-13NZ9-0626-SM-5IJCO","GTEX-13NZ9-0626-SM-5IJCO","Muscle","Muscle - Skeletal","GTEX-13NZ9","Male","50-59",8.1,"Ventilator Case","SRR1361546",2013-12-06
-"GTEX-Z9EW-1726-SM-5CVMO","GTEX-Z9EW-1726-SM-5CVMO","Muscle","Muscle - Skeletal","GTEX-Z9EW","Male","40-49",7.9,"Ventilator Case","SRR1379110",2013-11-01
-"GTEX-13PL6-0326-SM-5IJCP","GTEX-13PL6-0326-SM-5IJCP","Muscle","Muscle - Skeletal","GTEX-13PL6","Female","40-49",8.6,"Intermediate death","SRR1327702",2013-12-12
-"GTEX-13PDP-0326-SM-5K7XP","GTEX-13PDP-0326-SM-5K7XP","Muscle","Muscle - Skeletal","GTEX-13PDP","Male","60-69",6.9,"Slow death","SRR1332299",2013-12-11
-"GTEX-ZPIC-2526-SM-57WDP","GTEX-ZPIC-2526-SM-57WDP","Muscle","Muscle - Skeletal","GTEX-ZPIC","Female","40-49",8.4,"Ventilator Case","SRR1344422",2013-09-06
-"GTEX-11ZUS-1426-SM-5FQSP","GTEX-11ZUS-1426-SM-5FQSP","Muscle","Muscle - Skeletal","GTEX-11ZUS","Male","30-39",8.5,"Violent and fast death","SRR1353555",2013-09-20
-"GTEX-14ASI-0526-SM-5QGQP","GTEX-14ASI-0526-SM-5QGQP","Muscle","Muscle - Skeletal","GTEX-14ASI","Male","60-69",5.7,"Fast death of natural causes","SRR1376249",2014-01-17
-"GTEX-13OW7-0326-SM-5J1MP","GTEX-13OW7-0326-SM-5J1MP","Muscle","Muscle - Skeletal","GTEX-13OW7","Male","50-59",8.2,"Fast death of natural causes","SRR1394190",2013-12-11
-"GTEX-111FC-0326-SM-5GZZ1","GTEX-111FC-0326-SM-5GZZ1","Muscle","Muscle - Skeletal","GTEX-111FC","Male","60-69",8.2,"Violent and fast death","SRR1311553",2013-09-13
-"GTEX-139UW-2626-SM-5K7W1","GTEX-139UW-2626-SM-5K7W1","Muscle","Muscle - Skeletal","GTEX-139UW","Male","60-69",7,"Fast death of natural causes","SRR1312684",2013-12-05
-"GTEX-117YX-2526-SM-5EQ4Q","GTEX-117YX-2526-SM-5EQ4Q","Muscle","Muscle - Skeletal","GTEX-117YX","Male","50-59",8.3,"Ventilator Case","SRR1321987",2013-10-08
-"GTEX-12WS9-0626-SM-5FQT2","GTEX-12WS9-0626-SM-5FQT2","Muscle","Muscle - Skeletal","GTEX-12WS9","Female","50-59",8.3,"Intermediate death","SRR1313969",2013-09-23
-"GTEX-YFCO-1926-SM-4W212","GTEX-YFCO-1926-SM-4W212","Muscle","Muscle - Skeletal","GTEX-YFCO","Male","40-49",8.4,"Ventilator Case","SRR1325377",2013-08-12
-"GTEX-113JC-2726-SM-5EGIS","GTEX-113JC-2726-SM-5EGIS","Muscle","Muscle - Skeletal","GTEX-113JC","Female","50-59",7.7,"Fast death of natural causes","SRR1310836",2013-09-13
-"GTEX-12584-0526-SM-5FQTS","GTEX-12584-0526-SM-5FQTS","Muscle","Muscle - Skeletal","GTEX-12584","Male","40-49",8.6,"Intermediate death","SRR1312406",2013-09-30
-"GTEX-132Q8-0626-SM-5L3F3","GTEX-132Q8-0626-SM-5L3F3","Muscle","Muscle - Skeletal","GTEX-132Q8","Male","60-69",6.8,"Slow death","SRR1318465",2013-11-05
-"GTEX-13RTK-1626-SM-5QGQS","GTEX-13RTK-1626-SM-5QGQS","Muscle","Muscle - Skeletal","GTEX-13RTK","Male","20-29",8.5,"Ventilator Case","SRR1320321",2014-01-17
-"GTEX-11EMC-2626-SM-59864","GTEX-11EMC-2626-SM-59864","Muscle","Muscle - Skeletal","GTEX-11EMC","Female","60-69",8.4,"Fast death of natural causes","SRR1309556",2013-10-22
-"GTEX-11GS4-2526-SM-5A5KT","GTEX-11GS4-2526-SM-5A5KT","Muscle","Muscle - Skeletal","GTEX-11GS4","Male","60-69",8.5,"Fast death of natural causes","SRR1310735",2013-10-03
-"GTEX-13SLX-0326-SM-5Q5E4","GTEX-13SLX-0326-SM-5Q5E4","Muscle","Muscle - Skeletal","GTEX-13SLX","Female","50-59",8.2,"Fast death of natural causes","SRR1320225",2014-01-08
-"GTEX-13PVR-2526-SM-5RQIT","GTEX-13PVR-2526-SM-5RQIT","Muscle","Muscle - Skeletal","GTEX-13PVR","Female","60-69",7.9,"Ventilator Case","SRR1326604",2014-01-17
-"GTEX-145MN-2426-SM-5NQA5","GTEX-145MN-2426-SM-5NQA5","Muscle","Muscle - Skeletal","GTEX-145MN","Male","30-39",8.4,"Ventilator Case","SRR1313687",2013-12-20
-"GTEX-147F3-0226-SM-5NQBV","GTEX-147F3-0226-SM-5NQBV","Muscle","Muscle - Skeletal","GTEX-147F3","Female","50-59",8.3,"Ventilator Case","SRR1319648",2013-12-20
-"GTEX-139UC-2926-SM-5J1N6","GTEX-139UC-2926-SM-5J1N6","Muscle","Muscle - Skeletal","GTEX-139UC","Male","60-69",7.5,"Fast death of natural causes","SRR1323087",2013-12-05
-"GTEX-13PLJ-0326-SM-5L3I7","GTEX-13PLJ-0326-SM-5L3I7","Muscle","Muscle - Skeletal","GTEX-13PLJ","Female","60-69",7.3,"Fast death of natural causes","SRR1314832",2013-12-13
-"GTEX-13FTY-0226-SM-5IJBW","GTEX-13FTY-0226-SM-5IJBW","Muscle","Muscle - Skeletal","GTEX-13FTY","Female","40-49",7.5,"Fast death of natural causes","SRR1320469",2013-12-10
-"GTEX-11EQ9-2126-SM-5PNVW","GTEX-11EQ9-2126-SM-5PNVW","Muscle","Muscle - Skeletal","GTEX-11EQ9","Male","30-39",8.7,"Fast death of natural causes","SRR1324390",2014-01-06
-"GTEX-1314G-1726-SM-5LZUX","GTEX-1314G-1726-SM-5LZUX","Muscle","Muscle - Skeletal","GTEX-1314G","Male","30-39",8.2,"Ventilator Case","SRR1322900",2013-10-28
-"GTEX-144GL-0326-SM-5QGOY","GTEX-144GL-0326-SM-5QGOY","Muscle","Muscle - Skeletal","GTEX-144GL","Male","50-59",8,"Fast death of natural causes","SRR1317134",2014-01-08
-"GTEX-13W46-0726-SM-5LU3Z","GTEX-13W46-0726-SM-5LU3Z","Muscle","Muscle - Skeletal","GTEX-13W46","Male","50-59",7.7,"Ventilator Case","SRR1357148",2013-12-18
-"GTEX-1211K-2126-SM-59HJZ","GTEX-1211K-2126-SM-59HJZ","Muscle","Muscle - Skeletal","GTEX-1211K","Female","60-69",8.6,"Ventilator Case","SRR1387966",2013-10-11
-"GTEX-139TT-0426-SM-5IJFA","GTEX-139TT-0426-SM-5IJFA","Muscle","Muscle - Skeletal","GTEX-139TT","Male","60-69",8.2,"Fast death of natural causes","SRR1398335",2013-12-04
-"GTEX-ZAKK-0326-SM-5EGHA","GTEX-ZAKK-0326-SM-5EGHA","Muscle","Muscle - Skeletal","GTEX-ZAKK","Male","70-79",8,NA,"SRR1409263",2013-11-01
-"GTEX-13OW6-0626-SM-5L3IB","GTEX-13OW6-0626-SM-5L3IB","Muscle","Muscle - Skeletal","GTEX-13OW6","Male","50-59",7.7,"Fast death of natural causes","SRR1418022",2013-12-17
-"GTEX-131XF-2326-SM-5BC6B","GTEX-131XF-2326-SM-5BC6B","Muscle","Muscle - Skeletal","GTEX-131XF","Male","60-69",7.9,"Ventilator Case","SRR1454328",2013-09-24
-"GTEX-14A5H-0326-SM-5RQIB","GTEX-14A5H-0326-SM-5RQIB","Muscle","Muscle - Skeletal","GTEX-14A5H","Male","60-69",8.1,"Fast death of natural causes","SRR1455525",2014-01-17
-"GTEX-1269C-2626-SM-5EQ5C","GTEX-1269C-2626-SM-5EQ5C","Muscle","Muscle - Skeletal","GTEX-1269C","Female","60-69",7.9,"Fast death of natural causes","SRR1431569",2013-10-07
-"GTEX-111CU-2026-SM-5GZZC","GTEX-111CU-2026-SM-5GZZC","Muscle","Muscle - Skeletal","GTEX-111CU","Male","50-59",8.1,"Ventilator Case","SRR1452696",2013-09-19
-"GTEX-YB5K-2326-SM-5IFHD","GTEX-YB5K-2326-SM-5IFHD","Muscle","Muscle - Skeletal","GTEX-YB5K","Female","40-49",8.5,"Ventilator Case","SRR1408249",2013-10-29
-"GTEX-13PL7-0626-SM-5IJCD","GTEX-13PL7-0626-SM-5IJCD","Muscle","Muscle - Skeletal","GTEX-13PL7","Female","60-69",8.5,"Ventilator Case","SRR1410221",2013-12-12
-"GTEX-13JUV-2326-SM-5IJCE","GTEX-13JUV-2326-SM-5IJCE","Muscle","Muscle - Skeletal","GTEX-13JUV","Female","40-49",7.4,"Ventilator Case","SRR1401839",2013-12-05
-"GTEX-YECK-0626-SM-4W1ZE","GTEX-YECK-0626-SM-4W1ZE","Muscle","Muscle - Skeletal","GTEX-YECK","Male","60-69",8,"Intermediate death","SRR1435418",2013-08-09
-"GTEX-1192X-0426-SM-5GIEE","GTEX-1192X-0426-SM-5GIEE","Muscle","Muscle - Skeletal","GTEX-1192X","Male","50-59",7.5,"Slow death","SRR1453911",2013-10-03
-"GTEX-13111-2226-SM-5LZUE","GTEX-13111-2226-SM-5LZUE","Muscle","Muscle - Skeletal","GTEX-13111","Male","50-59",7.9,"Ventilator Case","SRR1499566",2013-09-25
-"GTEX-12WSD-0526-SM-5EQ6F","GTEX-12WSD-0526-SM-5EQ6F","Muscle","Muscle - Skeletal","GTEX-12WSD","Female","60-69",8.5,"Fast death of natural causes","SRR1390027",2013-10-07
-"GTEX-13PVQ-0326-SM-5K7YF","GTEX-13PVQ-0326-SM-5K7YF","Muscle","Muscle - Skeletal","GTEX-13PVQ","Male","50-59",8.4,"Fast death of natural causes","SRR1430489",2013-12-12
-"GTEX-ZYFC-0526-SM-5GIDF","GTEX-ZYFC-0526-SM-5GIDF","Muscle","Muscle - Skeletal","GTEX-ZYFC","Male","50-59",8.1,"Fast death of natural causes","SRR1431083",2013-10-01
-"GTEX-ZC5H-0326-SM-5HL9F","GTEX-ZC5H-0326-SM-5HL9F","Muscle","Muscle - Skeletal","GTEX-ZC5H","Female","40-49",8.2,"Ventilator Case","SRR1452515",2013-11-01
-"GTEX-131XG-2326-SM-5HL8F","GTEX-131XG-2326-SM-5HL8F","Muscle","Muscle - Skeletal","GTEX-131XG","Female","50-59",8,"Ventilator Case","SRR1466512",2013-11-01
-"GTEX-ZYY3-0526-SM-5E45G","GTEX-ZYY3-0526-SM-5E45G","Muscle","Muscle - Skeletal","GTEX-ZYY3","Female","60-69",8.4,"Slow death","SRR1432453",2013-09-12
-"GTEX-11EI6-0326-SM-5EQ6G","GTEX-11EI6-0326-SM-5EQ6G","Muscle","Muscle - Skeletal","GTEX-11EI6","Male","60-69",8.2,"Slow death","SRR1447103",2013-10-08
-"GTEX-117XS-2526-SM-5H11G","GTEX-117XS-2526-SM-5H11G","Muscle","Muscle - Skeletal","GTEX-117XS","Male","60-69",8.3,"Fast death of natural causes","SRR1468162",2013-09-17
-"GTEX-11P81-2526-SM-5GU6H","GTEX-11P81-2526-SM-5GU6H","Muscle","Muscle - Skeletal","GTEX-11P81","Female","30-39",8,"Ventilator Case","SRR1401752",2013-10-04
-"GTEX-ZP4G-2026-SM-57WEH","GTEX-ZP4G-2026-SM-57WEH","Muscle","Muscle - Skeletal","GTEX-ZP4G","Female","20-29",8,"Ventilator Case","SRR1409130",2013-09-06
-"GTEX-13S7M-0326-SM-5S2PH","GTEX-13S7M-0326-SM-5S2PH","Muscle","Muscle - Skeletal","GTEX-13S7M","Female","60-69",8.5,"Fast death of natural causes","SRR1418561",2014-01-24
-"GTEX-ZXG5-0326-SM-5GICH","GTEX-ZXG5-0326-SM-5GICH","Muscle","Muscle - Skeletal","GTEX-ZXG5","Male","60-69",6.2,"Intermediate death","SRR1419110",2013-09-20
-"GTEX-12ZZX-0326-SM-5DUVH","GTEX-12ZZX-0326-SM-5DUVH","Muscle","Muscle - Skeletal","GTEX-12ZZX","Female","40-49",7.7,"Violent and fast death","SRR1444002",2013-10-08
-"GTEX-12WSH-2526-SM-5CVNH","GTEX-12WSH-2526-SM-5CVNH","Muscle","Muscle - Skeletal","GTEX-12WSH","Male","50-59",7.8,"Fast death of natural causes","SRR1488214",2013-10-08
-"GTEX-13FTZ-2226-SM-5LZXI","GTEX-13FTZ-2226-SM-5LZXI","Muscle","Muscle - Skeletal","GTEX-13FTZ","Male","60-69",7.7,"Fast death of natural causes","SRR1431927",2013-12-04
-"GTEX-12WSM-0326-SM-5LZVI","GTEX-12WSM-0326-SM-5LZVI","Muscle","Muscle - Skeletal","GTEX-12WSM","Male","60-69",8.1,"Fast death of natural causes","SRR1446564",2013-10-28
-"GTEX-13N1W-0526-SM-5MR4I","GTEX-13N1W-0526-SM-5MR4I","Muscle","Muscle - Skeletal","GTEX-13N1W","Male","70-79",8,"Ventilator Case","SRR1471594",2013-12-04
-"GTEX-ZYFD-0326-SM-5NQ8I","GTEX-ZYFD-0326-SM-5NQ8I","Muscle","Muscle - Skeletal","GTEX-ZYFD","Male","50-59",8,"Intermediate death","SRR1487570",2013-09-16
-"GTEX-131YS-0526-SM-5EGKJ","GTEX-131YS-0526-SM-5EGKJ","Muscle","Muscle - Skeletal","GTEX-131YS","Female","60-69",8.4,"Fast death of natural causes","SRR1397156",2013-10-22
-"GTEX-11P82-1826-SM-5PNYJ","GTEX-11P82-1826-SM-5PNYJ","Muscle","Muscle - Skeletal","GTEX-11P82","Male","20-29",7.6,"Violent and fast death","SRR1403133",2014-01-06
-"GTEX-13IVO-0626-SM-5LZYJ","GTEX-13IVO-0626-SM-5LZYJ","Muscle","Muscle - Skeletal","GTEX-13IVO","Male","70-79",7.1,"Slow death","SRR1433290",2013-12-04
-"GTEX-14A5I-0326-SM-5NQ9J","GTEX-14A5I-0326-SM-5NQ9J","Muscle","Muscle - Skeletal","GTEX-14A5I","Female","50-59",8.4,"Slow death","SRR1434502",2013-12-20
-"GTEX-ZDXO-0326-SM-4WKHJ","GTEX-ZDXO-0326-SM-4WKHJ","Muscle","Muscle - Skeletal","GTEX-ZDXO","Male","60-69",8.3,"Fast death of natural causes","SRR1442754",2013-08-21
-"GTEX-139D8-0726-SM-5P9GJ","GTEX-139D8-0726-SM-5P9GJ","Muscle","Muscle - Skeletal","GTEX-139D8","Female","30-39",8,"Ventilator Case","SRR1443003",2014-01-06
-"GTEX-13O61-2326-SM-5J1NJ","GTEX-13O61-2326-SM-5J1NJ","Muscle","Muscle - Skeletal","GTEX-13O61","Male","60-69",8.5,"Ventilator Case","SRR1454117",2013-12-13
-"GTEX-11ZU8-2326-SM-5EQMJ","GTEX-11ZU8-2326-SM-5EQMJ","Muscle","Muscle - Skeletal","GTEX-11ZU8","Male","60-69",7.1,"Slow death","SRR1467966",2013-10-04
-"GTEX-13CF3-1826-SM-5J1NK","GTEX-13CF3-1826-SM-5J1NK","Muscle","Muscle - Skeletal","GTEX-13CF3","Female","60-69",7.4,"Ventilator Case","SRR1413872",2013-12-03
-"GTEX-1497J-2626-SM-5SI9K","GTEX-1497J-2626-SM-5SI9K","Muscle","Muscle - Skeletal","GTEX-1497J","Male","60-69",8,"Ventilator Case","SRR1435248",2013-12-18
-"GTEX-13OVJ-0226-SM-5L3GK","GTEX-13OVJ-0226-SM-5L3GK","Muscle","Muscle - Skeletal","GTEX-13OVJ","Female","50-59",7.8,"Fast death of natural causes","SRR1459937",2013-12-17
-"GTEX-13OVG-2126-SM-5KM1K","GTEX-13OVG-2126-SM-5KM1K","Muscle","Muscle - Skeletal","GTEX-13OVG","Male","60-69",7.6,"Ventilator Case","SRR1472794",2013-12-11
-"GTEX-13NYS-0326-SM-5MR4L","GTEX-13NYS-0326-SM-5MR4L","Muscle","Muscle - Skeletal","GTEX-13NYS","Male","60-69",8.3,"Slow death","SRR1387222",2013-12-04
-"GTEX-13QBU-2426-SM-5LU4L","GTEX-13QBU-2426-SM-5LU4L","Muscle","Muscle - Skeletal","GTEX-13QBU","Female","40-49",7.6,"Ventilator Case","SRR1414314",2013-12-17
-"GTEX-1399U-2526-SM-5L3DL","GTEX-1399U-2526-SM-5L3DL","Muscle","Muscle - Skeletal","GTEX-1399U","Female","50-59",7.5,"Ventilator Case","SRR1440744",2013-11-05
-"GTEX-ZTPG-0126-SM-5O9AL","GTEX-ZTPG-0126-SM-5O9AL","Muscle","Muscle - Skeletal","GTEX-ZTPG","Female","20-29",8,"Ventilator Case","SRR1468658",2013-09-16
-"GTEX-133LE-2026-SM-5K7WM","GTEX-133LE-2026-SM-5K7WM","Muscle","Muscle - Skeletal","GTEX-133LE","Female","20-29",8.4,"Ventilator Case","SRR1406008",2013-11-05
-"GTEX-132NY-0726-SM-5KLZM","GTEX-132NY-0726-SM-5KLZM","Muscle","Muscle - Skeletal","GTEX-132NY","Male","60-69",7,"Violent and fast death","SRR1471117",2013-12-03
-"GTEX-Y8E5-0326-SM-57WBM","GTEX-Y8E5-0326-SM-57WBM","Muscle","Muscle - Skeletal","GTEX-Y8E5","Male","60-69",7.4,NA,"SRR1481396",2013-08-08
-"GTEX-11LCK-1226-SM-5Q5AM","GTEX-11LCK-1226-SM-5Q5AM","Muscle","Muscle - Skeletal","GTEX-11LCK","Male","30-39",8.1,"Ventilator Case","SRR1488470",2014-01-06
-"GTEX-ZAB5-2126-SM-5K7UN","GTEX-ZAB5-2126-SM-5K7UN","Muscle","Muscle - Skeletal","GTEX-ZAB5","Male","50-59",8,"Ventilator Case","SRR1444120",2013-11-05
-"GTEX-ZAB4-0426-SM-5HL7N","GTEX-ZAB4-0426-SM-5HL7N","Muscle","Muscle - Skeletal","GTEX-ZAB4","Male","40-49",8.1,"Slow death","SRR1473078",2013-11-01
-"GTEX-11TUW-2526-SM-5EQKN","GTEX-11TUW-2526-SM-5EQKN","Muscle","Muscle - Skeletal","GTEX-11TUW","Male","60-69",8.5,"Fast death of natural causes","SRR1478968",2013-09-30
-"GTEX-13NZ8-2126-SM-5L3EO","GTEX-13NZ8-2126-SM-5L3EO","Muscle","Muscle - Skeletal","GTEX-13NZ8","Female","60-69",6.4,"Slow death","SRR1402153",2013-12-06
-"GTEX-1399Q-2426-SM-5J2MO","GTEX-1399Q-2426-SM-5J2MO","Muscle","Muscle - Skeletal","GTEX-1399Q","Male","40-49",6.6,"Ventilator Case","SRR1444306",2013-12-03
-"GTEX-12WSG-2526-SM-5EQ4O","GTEX-12WSG-2526-SM-5EQ4O","Muscle","Muscle - Skeletal","GTEX-12WSG","Female","50-59",8.4,"Ventilator Case","SRR1468532",2013-10-07
-"GTEX-Y8DK-0326-SM-4TT3P","GTEX-Y8DK-0326-SM-4TT3P","Muscle","Muscle - Skeletal","GTEX-Y8DK","Male","60-69",8.6,"Fast death of natural causes","SRR1400823",2013-08-01
-"GTEX-11WQK-0726-SM-5GU71","GTEX-11WQK-0726-SM-5GU71","Muscle","Muscle - Skeletal","GTEX-11WQK","Male","50-59",8.3,"Fast death of natural causes","SRR1345760",2013-09-19
-"GTEX-13S86-2326-SM-5RQK1","GTEX-13S86-2326-SM-5RQK1","Muscle","Muscle - Skeletal","GTEX-13S86","Male","40-49",8.2,"Ventilator Case","SRR1345894",2014-01-22
-"GTEX-14BIL-0326-SM-5SI9Q","GTEX-14BIL-0326-SM-5SI9Q","Muscle","Muscle - Skeletal","GTEX-14BIL","Male","50-59",8.4,"Fast death of natural causes","SRR1349851",2013-12-19
-"GTEX-ZV7C-2426-SM-5NQ7Q","GTEX-ZV7C-2426-SM-5NQ7Q","Muscle","Muscle - Skeletal","GTEX-ZV7C","Male","50-59",7.6,"Ventilator Case","SRR1394231",2013-09-16
-"GTEX-12KS4-0826-SM-5BC5R","GTEX-12KS4-0826-SM-5BC5R","Muscle","Muscle - Skeletal","GTEX-12KS4","Male","30-39",6.5,"Ventilator Case","SRR1331922",2013-09-24
-"GTEX-YEC3-2126-SM-5CVLR","GTEX-YEC3-2126-SM-5CVLR","Muscle","Muscle - Skeletal","GTEX-YEC3","Male","50-59",6.7,"Ventilator Case","SRR1345284",2013-11-01
-"GTEX-131XH-2726-SM-5GCO2","GTEX-131XH-2726-SM-5GCO2","Muscle","Muscle - Skeletal","GTEX-131XH","Male","50-59",7.9,"Fast death of natural causes","SRR1353663",2013-10-01
-"GTEX-12WSA-0726-SM-5FQU2","GTEX-12WSA-0726-SM-5FQU2","Muscle","Muscle - Skeletal","GTEX-12WSA","Male","60-69",7.4,"Slow death","SRR1354489",2013-10-01
-"GTEX-ZVZP-2526-SM-57WBR","GTEX-ZVZP-2526-SM-57WBR","Muscle","Muscle - Skeletal","GTEX-ZVZP","Male","50-59",7.5,"Ventilator Case","SRR1359780",2013-09-10
-"GTEX-11P7K-1926-SM-5GU6R","GTEX-11P7K-1926-SM-5GU6R","Muscle","Muscle - Skeletal","GTEX-11P7K","Male","30-39",9,"Ventilator Case","SRR1368072",2013-10-04
-"GTEX-145LT-1626-SM-5O992","GTEX-145LT-1626-SM-5O992","Muscle","Muscle - Skeletal","GTEX-145LT","Male","40-49",8.7,"Ventilator Case","SRR1380716",2013-12-19
-"GTEX-11DZ1-0926-SM-5EQ5R","GTEX-11DZ1-0926-SM-5EQ5R","Muscle","Muscle - Skeletal","GTEX-11DZ1","Male","50-59",7.6,"Slow death","SRR1392901",2013-10-08
-"GTEX-13QIC-1226-SM-5K7YR","GTEX-13QIC-1226-SM-5K7YR","Muscle","Muscle - Skeletal","GTEX-13QIC","Female","60-69",7.9,"Fast death of natural causes","SRR1394637",2013-12-12
-"GTEX-13U4I-1826-SM-5IJD2","GTEX-13U4I-1826-SM-5IJD2","Muscle","Muscle - Skeletal","GTEX-13U4I","Female","40-49",8.6,"Ventilator Case","SRR1400551",2013-12-12
-"GTEX-ZUA1-0326-SM-5NQA3","GTEX-ZUA1-0326-SM-5NQA3","Muscle","Muscle - Skeletal","GTEX-ZUA1","Male","40-49",7.7,"Fast death of natural causes","SRR1336569",2013-09-16
-"GTEX-13FTW-2326-SM-5K7YS","GTEX-13FTW-2326-SM-5K7YS","Muscle","Muscle - Skeletal","GTEX-13FTW","Male","40-49",7.1,"Ventilator Case","SRR1360402",2013-12-05
-"GTEX-13JVG-0126-SM-5L3D3","GTEX-13JVG-0126-SM-5L3D3","Muscle","Muscle - Skeletal","GTEX-13JVG","Male","60-69",8.3,"Fast death of natural causes","SRR1367109",2013-12-11
-"GTEX-11H98-0326-SM-5HL4S","GTEX-11H98-0326-SM-5HL4S","Muscle","Muscle - Skeletal","GTEX-11H98","Male","50-59",8.1,"Fast death of natural causes","SRR1377006",2013-09-13
-"GTEX-11DXZ-2426-SM-5N9DT","GTEX-11DXZ-2426-SM-5N9DT","Muscle","Muscle - Skeletal","GTEX-11DXZ","Male","50-59",8.7,"Ventilator Case","SRR1349231",2013-09-25
-"GTEX-146FR-1726-SM-5Q5DT","GTEX-146FR-1726-SM-5Q5DT","Muscle","Muscle - Skeletal","GTEX-146FR","Female","60-69",8.4,"Ventilator Case","SRR1353900",2014-01-08
-"GTEX-ZE9C-2326-SM-5J1NT","GTEX-ZE9C-2326-SM-5J1NT","Muscle","Muscle - Skeletal","GTEX-ZE9C","Male","60-69",6.6,"Fast death of natural causes","SRR1388528",2013-11-05
-"GTEX-13OW8-1426-SM-5IJDT","GTEX-13OW8-1426-SM-5IJDT","Muscle","Muscle - Skeletal","GTEX-13OW8","Male","60-69",8.4,"Fast death of natural causes","SRR1393449",2013-12-13
-"GTEX-13O3P-0626-SM-5L3D5","GTEX-13O3P-0626-SM-5L3D5","Muscle","Muscle - Skeletal","GTEX-13O3P","Male","50-59",8.2,"Slow death","SRR1330327",2013-12-12
-"GTEX-Y8E4-1026-SM-4VBQ5","GTEX-Y8E4-1026-SM-4VBQ5","Muscle","Muscle - Skeletal","GTEX-Y8E4","Male","40-49",8.3,"Ventilator Case","SRR1342782",2013-08-08
-"GTEX-ZYW4-0526-SM-5GZZ5","GTEX-ZYW4-0526-SM-5GZZ5","Muscle","Muscle - Skeletal","GTEX-ZYW4","Male","60-69",8.5,"Intermediate death","SRR1349209",2013-09-17
-"GTEX-11NSD-2026-SM-5HL5U","GTEX-11NSD-2026-SM-5HL5U","Muscle","Muscle - Skeletal","GTEX-11NSD","Male","20-29",8.5,"Ventilator Case","SRR1356705",2013-09-18
-"GTEX-145ME-2026-SM-5SIA5","GTEX-145ME-2026-SM-5SIA5","Muscle","Muscle - Skeletal","GTEX-145ME","Female","40-49",8,"Ventilator Case","SRR1383259",2013-12-18
-"GTEX-11OC5-0326-SM-5PNW5","GTEX-11OC5-0326-SM-5PNW5","Muscle","Muscle - Skeletal","GTEX-11OC5","Male","60-69",9,"Fast death of natural causes","SRR1385101",2014-01-06
-"GTEX-13SLW-0326-SM-5RQK5","GTEX-13SLW-0326-SM-5RQK5","Muscle","Muscle - Skeletal","GTEX-13SLW","Male","70-79",7.4,"Fast death of natural causes","SRR1396250",2014-01-22
-"GTEX-13VXU-0326-SM-5LU36","GTEX-13VXU-0326-SM-5LU36","Muscle","Muscle - Skeletal","GTEX-13VXU","Male","50-59",8.5,"Fast death of natural causes","SRR1344382",2013-12-13
-"GTEX-13112-2626-SM-5BC66","GTEX-13112-2626-SM-5BC66","Muscle","Muscle - Skeletal","GTEX-13112","Male","50-59",6.7,"Fast death of natural causes","SRR1347937",2013-09-24
-"GTEX-13OVI-1726-SM-5L3DW","GTEX-13OVI-1726-SM-5L3DW","Muscle","Muscle - Skeletal","GTEX-13OVI","Female","60-69",8.4,"Ventilator Case","SRR1337173",2013-12-13
-"GTEX-13NZB-2626-SM-5J2M7","GTEX-13NZB-2626-SM-5J2M7","Muscle","Muscle - Skeletal","GTEX-13NZB","Male","30-39",7.7,"Ventilator Case","SRR1368264",2013-12-10
-"GTEX-13NZA-0526-SM-5L3D7","GTEX-13NZA-0526-SM-5L3D7","Muscle","Muscle - Skeletal","GTEX-13NZA","Male","60-69",7.6,"Fast death of natural causes","SRR1377862",2013-12-05
-"GTEX-131XE-2726-SM-5P9G7","GTEX-131XE-2726-SM-5P9G7","Muscle","Muscle - Skeletal","GTEX-131XE","Male","50-59",8.2,"Ventilator Case","SRR1385277",2014-01-06
-"GTEX-13D11-2526-SM-5KM28","GTEX-13D11-2526-SM-5KM28","Muscle","Muscle - Skeletal","GTEX-13D11","Female","50-59",8.4,"Ventilator Case","SRR1356290",2013-11-05
-"GTEX-Y5V6-2626-SM-5IFIX","GTEX-Y5V6-2626-SM-5IFIX","Muscle","Muscle - Skeletal","GTEX-Y5V6","Male","60-69",7.8,"Ventilator Case","SRR1358220",2013-10-29
-"GTEX-12WSN-2526-SM-5LZU8","GTEX-12WSN-2526-SM-5LZU8","Muscle","Muscle - Skeletal","GTEX-12WSN","Male","40-49",8,"Ventilator Case","SRR1365034",2013-10-28
-"GTEX-YF7O-2526-SM-5IFJX","GTEX-YF7O-2526-SM-5IFJX","Muscle","Muscle - Skeletal","GTEX-YF7O","Male","50-59",8.5,"Ventilator Case","SRR1388873",2013-10-29
-"GTEX-ZDYS-1726-SM-5HL4Y","GTEX-ZDYS-1726-SM-5HL4Y","Muscle","Muscle - Skeletal","GTEX-ZDYS","Male","50-59",7.9,"Ventilator Case","SRR1334889",2013-11-01
-"GTEX-ZZPU-2626-SM-5E45Y","GTEX-ZZPU-2626-SM-5E45Y","Muscle","Muscle - Skeletal","GTEX-ZZPU","Female","50-59",8.5,"Ventilator Case","SRR1350832",2013-09-13
-"GTEX-13FHP-0526-SM-5K7UY","GTEX-13FHP-0526-SM-5K7UY","Muscle","Muscle - Skeletal","GTEX-13FHP","Male","50-59",6.9,"Slow death","SRR1355396",2013-12-05
-"GTEX-ZTX8-1626-SM-51MRY","GTEX-ZTX8-1626-SM-51MRY","Muscle","Muscle - Skeletal","GTEX-ZTX8","Male","20-29",8.3,"Ventilator Case","SRR1367715",2013-09-10
-"GTEX-11ZTS-0526-SM-5CVL9","GTEX-11ZTS-0526-SM-5CVL9","Muscle","Muscle - Skeletal","GTEX-11ZTS","Female","60-69",7.2,"Fast death of natural causes","SRR1370572",2013-10-10
-"GTEX-ZDTS-0526-SM-4WKH9","GTEX-ZDTS-0526-SM-4WKH9","Muscle","Muscle - Skeletal","GTEX-ZDTS","Male","60-69",8,"Fast death of natural causes","SRR1391420",2013-08-22
-"GTEX-1313W-0526-SM-5P9FZ","GTEX-1313W-0526-SM-5P9FZ","Muscle","Muscle - Skeletal","GTEX-1313W","Female","50-59",8.6,"Fast death of natural causes","SRR1443436",2014-01-06
-"GTEX-145LV-2326-SM-5LU8Z","GTEX-145LV-2326-SM-5LU8Z","Muscle","Muscle - Skeletal","GTEX-145LV","Male","50-59",7.9,"Ventilator Case","SRR1464601",2013-12-18
-"GTEX-14ICL-1926-SM-5RQIZ","GTEX-14ICL-1926-SM-5RQIZ","Muscle","Muscle - Skeletal","GTEX-14ICL","Male","30-39",8.4,"Ventilator Case","SRR1488091",2014-01-22
-"GTEX-13O3Q-2726-SM-5KM51","GTEX-13O3Q-2726-SM-5KM51","Muscle","Muscle - Skeletal","GTEX-13O3Q","Male","50-59",8.1,"Fast death of natural causes","SRR1431288",2013-12-13
-"GTEX-ZVE1-0526-SM-5NQ71","GTEX-ZVE1-0526-SM-5NQ71","Muscle","Muscle - Skeletal","GTEX-ZVE1","Female","50-59",6,"Ventilator Case","SRR1432743",2013-09-16
-"GTEX-13OVL-1426-SM-5IJC1","GTEX-13OVL-1426-SM-5IJC1","Muscle","Muscle - Skeletal","GTEX-13OVL","Male","50-59",8.3,"Fast death of natural causes","SRR1439742",2013-12-12
-"GTEX-ZY6K-2026-SM-5GZXQ","GTEX-ZY6K-2026-SM-5GZXQ","Muscle","Muscle - Skeletal","GTEX-ZY6K","Male","50-59",8.3,"Ventilator Case","SRR1448029",2013-09-17
-"GTEX-ZVT2-2426-SM-57WCQ","GTEX-ZVT2-2426-SM-57WCQ","Muscle","Muscle - Skeletal","GTEX-ZVT2","Female","50-59",8.2,"Ventilator Case","SRR1458220",2013-09-10
-"GTEX-ZYVF-0626-SM-5E43Q","GTEX-ZYVF-0626-SM-5E43Q","Muscle","Muscle - Skeletal","GTEX-ZYVF","Female","50-59",6.9,"Ventilator Case","SRR1458683",2013-09-12
-"GTEX-13NYC-0726-SM-5J2NQ","GTEX-13NYC-0726-SM-5J2NQ","Muscle","Muscle - Skeletal","GTEX-13NYC","Male","60-69",7.2,"Fast death of natural causes","SRR1470093",2013-12-06
-"GTEX-ZQUD-1726-SM-51MRQ","GTEX-ZQUD-1726-SM-51MRQ","Muscle","Muscle - Skeletal","GTEX-ZQUD","Male","30-39",7.8,"Ventilator Case","SRR1475300",2013-09-09
-"GTEX-Y3I4-2326-SM-4TT81","GTEX-Y3I4-2326-SM-4TT81","Muscle","Muscle - Skeletal","GTEX-Y3I4","Male","50-59",8,"Ventilator Case","SRR1478386",2013-07-31
-"GTEX-ZLV1-2126-SM-4WWD2","GTEX-ZLV1-2126-SM-4WWD2","Muscle","Muscle - Skeletal","GTEX-ZLV1","Female","60-69",8.2,"Ventilator Case","SRR1402328",2013-08-29
-"GTEX-144GN-2426-SM-5LU4R","GTEX-144GN-2426-SM-5LU4R","Muscle","Muscle - Skeletal","GTEX-144GN","Male","50-59",8.2,"Ventilator Case","SRR1403280",2013-12-18
-"GTEX-11DXY-2726-SM-5GID2","GTEX-11DXY-2726-SM-5GID2","Muscle","Muscle - Skeletal","GTEX-11DXY","Male","60-69",7.1,"Fast death of natural causes","SRR1408161",2013-10-03
-"GTEX-13N11-2726-SM-5L3ER","GTEX-13N11-2726-SM-5L3ER","Muscle","Muscle - Skeletal","GTEX-13N11","Female","50-59",8.2,"Ventilator Case","SRR1415773",2013-12-11
-"GTEX-ZYT6-1626-SM-5E45R","GTEX-ZYT6-1626-SM-5E45R","Muscle","Muscle - Skeletal","GTEX-ZYT6","Male","30-39",7.9,"Violent and fast death","SRR1436651",2013-09-12
-"GTEX-1399R-2526-SM-5IFG2","GTEX-1399R-2526-SM-5IFG2","Muscle","Muscle - Skeletal","GTEX-1399R","Male","30-39",7.9,"Ventilator Case","SRR1442928",2013-12-03
-"GTEX-1399S-2726-SM-5KM22","GTEX-1399S-2726-SM-5KM22","Muscle","Muscle - Skeletal","GTEX-1399S","Female","30-39",7.2,"Ventilator Case","SRR1458852",2013-12-04
-"GTEX-111VG-2626-SM-5GZY2","GTEX-111VG-2626-SM-5GZY2","Muscle","Muscle - Skeletal","GTEX-111VG","Male","60-69",8.1,"Intermediate death","SRR1469014",2013-09-17
-"GTEX-13W3W-2626-SM-5SIA2","GTEX-13W3W-2626-SM-5SIA2","Muscle","Muscle - Skeletal","GTEX-13W3W","Female","60-69",7.6,"Ventilator Case","SRR1478053",2013-12-19
-"GTEX-Z93S-1326-SM-5CVMR","GTEX-Z93S-1326-SM-5CVMR","Muscle","Muscle - Skeletal","GTEX-Z93S","Male","50-59",7.6,"Fast death of natural causes","SRR1481083",2013-11-01
-"GTEX-14753-0526-SM-5QGPR","GTEX-14753-0526-SM-5QGPR","Muscle","Muscle - Skeletal","GTEX-14753","Male","60-69",8.3,"Slow death","SRR1489307",2014-01-08
-"GTEX-11PRG-0326-SM-5GU53","GTEX-11PRG-0326-SM-5GU53","Muscle","Muscle - Skeletal","GTEX-11PRG","Male","50-59",7.7,"Fast death of natural causes","SRR1418880",2013-10-04
-"GTEX-146FH-0526-SM-5QGQ3","GTEX-146FH-0526-SM-5QGQ3","Muscle","Muscle - Skeletal","GTEX-146FH","Female","50-59",8.6,"Ventilator Case","SRR1464681",2014-01-17
-"GTEX-Y5V5-2526-SM-4VBQ4","GTEX-Y5V5-2526-SM-4VBQ4","Muscle","Muscle - Skeletal","GTEX-Y5V5","Female","60-69",8.8,"Ventilator Case","SRR1403366",2013-08-08
-"GTEX-12WSB-0326-SM-5GCP4","GTEX-12WSB-0326-SM-5GCP4","Muscle","Muscle - Skeletal","GTEX-12WSB","Female","60-69",7.6,"Slow death","SRR1406112",2013-10-01
-"GTEX-139TS-2626-SM-5J1MT","GTEX-139TS-2626-SM-5J1MT","Muscle","Muscle - Skeletal","GTEX-139TS","Male","60-69",8,"Fast death of natural causes","SRR1406418",2013-12-05
-"GTEX-12126-0526-SM-5PNW4","GTEX-12126-0526-SM-5PNW4","Muscle","Muscle - Skeletal","GTEX-12126","Male","20-29",8.2,"Violent and fast death","SRR1417483",2014-01-06
-"GTEX-ZZPT-0626-SM-5GZXT","GTEX-ZZPT-0626-SM-5GZXT","Muscle","Muscle - Skeletal","GTEX-ZZPT","Male","50-59",7,"Slow death","SRR1444501",2013-09-17
-"GTEX-YJ8O-2826-SM-5CVM4","GTEX-YJ8O-2826-SM-5CVM4","Muscle","Muscle - Skeletal","GTEX-YJ8O","Female","40-49",7,"Violent and fast death","SRR1452912",2013-11-01
-"GTEX-11NUK-0226-SM-5A5L4","GTEX-11NUK-0226-SM-5A5L4","Muscle","Muscle - Skeletal","GTEX-11NUK","Male","50-59",8.2,"Fast death of natural causes","SRR1467567",2013-10-03
-"GTEX-ZA64-2026-SM-5PNXT","GTEX-ZA64-2026-SM-5PNXT","Muscle","Muscle - Skeletal","GTEX-ZA64","Male","20-29",8.2,"Ventilator Case","SRR1480038",2013-10-31
-"GTEX-YEC4-2226-SM-5IFJT","GTEX-YEC4-2226-SM-5IFJT","Muscle","Muscle - Skeletal","GTEX-YEC4","Male","40-49",7.2,"Ventilator Case","SRR1480547",2013-10-29
-"GTEX-13NYB-2726-SM-5J2MT","GTEX-13NYB-2726-SM-5J2MT","Muscle","Muscle - Skeletal","GTEX-13NYB","Male","40-49",7.8,"Fast death of natural causes","SRR1486156",2013-12-05
-"GTEX-ZAK1-0526-SM-5K7X4","GTEX-ZAK1-0526-SM-5K7X4","Muscle","Muscle - Skeletal","GTEX-ZAK1","Female","50-59",7.3,"Fast death of natural causes","SRR1487746",2013-11-05
-"GTEX-12ZZY-0626-SM-5EQ5T","GTEX-12ZZY-0626-SM-5EQ5T","Muscle","Muscle - Skeletal","GTEX-12ZZY","Male","60-69",8.4,"Fast death of natural causes","SRR1499764",2013-10-22
-"GTEX-13VXT-0326-SM-5LU4U","GTEX-13VXT-0326-SM-5LU4U","Muscle","Muscle - Skeletal","GTEX-13VXT","Female","20-29",8.6,"Ventilator Case","SRR1396786",2013-12-13
-"GTEX-YB5E-2226-SM-5IFJ5","GTEX-YB5E-2226-SM-5IFJ5","Muscle","Muscle - Skeletal","GTEX-YB5E","Male","40-49",8.2,"Ventilator Case","SRR1407950",2013-10-29
-"GTEX-ZT9X-1826-SM-57WDU","GTEX-ZT9X-1826-SM-57WDU","Muscle","Muscle - Skeletal","GTEX-ZT9X","Male","40-49",8.8,"Ventilator Case","SRR1430375",2013-09-11
-"GTEX-1339X-2426-SM-5KLYU","GTEX-1339X-2426-SM-5KLYU","Muscle","Muscle - Skeletal","GTEX-1339X","Male","40-49",8.1,"Ventilator Case","SRR1432390",2013-11-05
-"GTEX-13O1R-0526-SM-5K7XU","GTEX-13O1R-0526-SM-5K7XU","Muscle","Muscle - Skeletal","GTEX-13O1R","Male","60-69",8,"Fast death of natural causes","SRR1440101",2013-12-11
-"GTEX-ZVT4-0326-SM-51MS5","GTEX-ZVT4-0326-SM-51MS5","Muscle","Muscle - Skeletal","GTEX-ZVT4","Female","50-59",7.9,"Intermediate death","SRR1452864",2013-09-10
-"GTEX-14C39-2426-SM-5S2U5","GTEX-14C39-2426-SM-5S2U5","Muscle","Muscle - Skeletal","GTEX-14C39","Male","40-49",7.4,"Fast death of natural causes","SRR1478362",2014-01-24
-"GTEX-12ZZZ-0226-SM-59HKU","GTEX-12ZZZ-0226-SM-59HKU","Muscle","Muscle - Skeletal","GTEX-12ZZZ","Male","60-69",6.6,"Fast death of natural causes","SRR1487947",2013-10-11
-"GTEX-ZYWO-2626-SM-5E43V","GTEX-ZYWO-2626-SM-5E43V","Muscle","Muscle - Skeletal","GTEX-ZYWO","Female","40-49",7.9,"Ventilator Case","SRR1402172",2013-09-13
-"GTEX-13X6K-0326-SM-5Q5D6","GTEX-13X6K-0326-SM-5Q5D6","Muscle","Muscle - Skeletal","GTEX-13X6K","Female","60-69",8.7,"Slow death","SRR1402794",2014-01-08
-"GTEX-139YR-2526-SM-5IJC6","GTEX-139YR-2526-SM-5IJC6","Muscle","Muscle - Skeletal","GTEX-139YR","Male","50-59",7.8,"Ventilator Case","SRR1408682",2013-12-10
-"GTEX-13FXS-0326-SM-5K7TV","GTEX-13FXS-0326-SM-5K7TV","Muscle","Muscle - Skeletal","GTEX-13FXS","Male","50-59",8.3,"Fast death of natural causes","SRR1453416",2013-12-06
-"GTEX-12WSJ-1726-SM-5LZVV","GTEX-12WSJ-1726-SM-5LZVV","Muscle","Muscle - Skeletal","GTEX-12WSJ","Female","40-49",8.7,"Ventilator Case","SRR1454310",2013-10-28
-"GTEX-145MI-0326-SM-5Q5EV","GTEX-145MI-0326-SM-5Q5EV","Muscle","Muscle - Skeletal","GTEX-145MI","Female","60-69",7.1,"Fast death of natural causes","SRR1456027",2014-01-17
-"GTEX-14BMU-2026-SM-5S2W6","GTEX-14BMU-2026-SM-5S2W6","Muscle","Muscle - Skeletal","GTEX-14BMU","Female","20-29",7.5,"Ventilator Case","SRR1489030",2014-01-24
-"GTEX-13FTX-2026-SM-5L3D6","GTEX-13FTX-2026-SM-5L3D6","Muscle","Muscle - Skeletal","GTEX-13FTX","Female","20-29",6.2,"Ventilator Case","SRR1500323",2013-12-03
-"GTEX-ZF28-0526-SM-4WKGW","GTEX-ZF28-0526-SM-4WKGW","Muscle","Muscle - Skeletal","GTEX-ZF28","Male","60-69",8.3,"Slow death","SRR1408529",2013-08-29
-"GTEX-13CF2-2726-SM-5LZWW","GTEX-13CF2-2726-SM-5LZWW","Muscle","Muscle - Skeletal","GTEX-13CF2","Male","60-69",7.6,"Fast death of natural causes","SRR1416672",2013-11-14
-"GTEX-ZTTD-0326-SM-57WFW","GTEX-ZTTD-0326-SM-57WFW","Muscle","Muscle - Skeletal","GTEX-ZTTD","Male","50-59",6.8,"Intermediate death","SRR1442104",2013-09-11
-"GTEX-14BMV-0326-SM-5RQHW","GTEX-14BMV-0326-SM-5RQHW","Muscle","Muscle - Skeletal","GTEX-14BMV","Male","50-59",7.8,"Fast death of natural causes","SRR1490037",2014-01-22
-"GTEX-11GSO-2526-SM-5PNVX","GTEX-11GSO-2526-SM-5PNVX","Muscle","Muscle - Skeletal","GTEX-11GSO","Male","60-69",8.6,"Fast death of natural causes","SRR1400180",2014-01-06
-"GTEX-Y8LW-2026-SM-4V6G8","GTEX-Y8LW-2026-SM-4V6G8","Muscle","Muscle - Skeletal","GTEX-Y8LW","Female","50-59",8.1,"Ventilator Case","SRR1405123",2013-08-01
-"GTEX-ZQG8-1226-SM-51MRX","GTEX-ZQG8-1226-SM-51MRX","Muscle","Muscle - Skeletal","GTEX-ZQG8","Female","60-69",7.9,"Ventilator Case","SRR1405984",2013-09-10
-"GTEX-1477Z-1626-SM-5SIA8","GTEX-1477Z-1626-SM-5SIA8","Muscle","Muscle - Skeletal","GTEX-1477Z","Male","60-69",7.7,"Slow death","SRR1408183",2013-12-18
-"GTEX-139TU-0526-SM-5J2M8","GTEX-139TU-0526-SM-5J2M8","Muscle","Muscle - Skeletal","GTEX-139TU","Male","60-69",7.1,"Intermediate death","SRR1408595",2013-12-03
-"GTEX-13X6I-0526-SM-5QGP8","GTEX-13X6I-0526-SM-5QGP8","Muscle","Muscle - Skeletal","GTEX-13X6I","Male","60-69",7.1,"Slow death","SRR1419258",2014-01-08
-"GTEX-11UD1-0326-SM-5EQKX","GTEX-11UD1-0326-SM-5EQKX","Muscle","Muscle - Skeletal","GTEX-11UD1","Female","40-49",6.3,"Intermediate death","SRR1429265",2013-09-20
-"GTEX-11NV4-0326-SM-5HL58","GTEX-11NV4-0326-SM-5HL58","Muscle","Muscle - Skeletal","GTEX-11NV4","Male","60-69",7.5,"Fast death of natural causes","SRR1436563",2013-09-18
-"GTEX-145LU-2026-SM-5Q5E8","GTEX-145LU-2026-SM-5Q5E8","Muscle","Muscle - Skeletal","GTEX-145LU","Male","50-59",8.3,"Fast death of natural causes","SRR1452423",2014-01-08
-"GTEX-146FQ-0326-SM-5NQAX","GTEX-146FQ-0326-SM-5NQAX","Muscle","Muscle - Skeletal","GTEX-146FQ","Male","30-39",8,"Ventilator Case","SRR1475104",2013-12-20
-"GTEX-ZYFG-2426-SM-5GIE8","GTEX-ZYFG-2426-SM-5GIE8","Muscle","Muscle - Skeletal","GTEX-ZYFG","Female","60-69",8.6,"Ventilator Case","SRR1489950",2013-09-23
-"GTEX-13QJ3-0726-SM-5SI68","GTEX-13QJ3-0726-SM-5SI68","Muscle","Muscle - Skeletal","GTEX-13QJ3","Male","50-59",8.1,"Ventilator Case","SRR1499740",2014-01-24
-"GTEX-145MO-0726-SM-5NQB9","GTEX-145MO-0726-SM-5NQB9","Muscle","Muscle - Skeletal","GTEX-145MO","Male","60-69",9,"Intermediate death","SRR1397218",2013-12-20
-"GTEX-11I78-2426-SM-5A5K9","GTEX-11I78-2426-SM-5A5K9","Muscle","Muscle - Skeletal","GTEX-11I78","Female","50-59",8.3,"Ventilator Case","SRR1409575",2013-10-03
-"GTEX-ZF2S-2126-SM-4WWAY","GTEX-ZF2S-2126-SM-4WWAY","Muscle","Muscle - Skeletal","GTEX-ZF2S","Female","50-59",9,"Ventilator Case","SRR1414727",2013-09-06
-"GTEX-Y9LG-1926-SM-5IFHY","GTEX-Y9LG-1926-SM-5IFHY","Muscle","Muscle - Skeletal","GTEX-Y9LG","Male","30-39",7.3,"Ventilator Case","SRR1435311",2013-10-29
-"GTEX-145LS-0526-SM-5LU8Y","GTEX-145LS-0526-SM-5LU8Y","Muscle","Muscle - Skeletal","GTEX-145LS","Female","60-69",7.8,"Slow death","SRR1435626",2013-12-18
-"GTEX-12696-2826-SM-5FQTY","GTEX-12696-2826-SM-5FQTY","Muscle","Muscle - Skeletal","GTEX-12696","Male","60-69",7.7,"Intermediate death","SRR1452334",2013-09-30
-"GTEX-ZVT3-0526-SM-5GIE9","GTEX-ZVT3-0526-SM-5GIE9","Muscle","Muscle - Skeletal","GTEX-ZVT3","Female","60-69",8.6,"Fast death of natural causes","SRR1464915",2013-10-03
-"GTEX-Y5LM-2126-SM-4VDSY","GTEX-Y5LM-2126-SM-4VDSY","Muscle","Muscle - Skeletal","GTEX-Y5LM","Female","40-49",8.2,"Ventilator Case","SRR1480455",2013-07-31
-"GTEX-ZVTK-0626-SM-5GU6Y","GTEX-ZVTK-0626-SM-5GU6Y","Muscle","Muscle - Skeletal","GTEX-ZVTK","Male","20-29",8.2,"Violent and fast death","SRR1486799",2013-09-12
-"GTEX-13G51-2726-SM-5LZZ9","GTEX-13G51-2726-SM-5LZZ9","Muscle","Muscle - Skeletal","GTEX-13G51","Male","60-69",8.1,"Fast death of natural causes","SRR1489286",2013-12-04
-"GTEX-13O21-1726-SM-5MR5A","GTEX-13O21-1726-SM-5MR5A","Muscle","Muscle - Skeletal","GTEX-13O21","Male","50-59",8.2,"Ventilator Case","SRR1326161",2013-12-04
-"GTEX-11O72-0326-SM-5986D","GTEX-11O72-0326-SM-5986D","Muscle","Muscle - Skeletal","GTEX-11O72","Male","40-49",7.7,"Fast death of natural causes","SRR1323152",2013-10-22
-"GTEX-117YW-2426-SM-5Q5AE","GTEX-117YW-2426-SM-5Q5AE","Muscle","Muscle - Skeletal","GTEX-117YW","Male","50-59",6.1,"Intermediate death","SRR1310476",2013-10-03
-"GTEX-148VJ-0326-SM-5QGQE","GTEX-148VJ-0326-SM-5QGQE","Muscle","Muscle - Skeletal","GTEX-148VJ","Male","70-79",8.2,"Fast death of natural causes","SRR1318444",2014-01-17
-"GTEX-12BJ1-2526-SM-5FQUE","GTEX-12BJ1-2526-SM-5FQUE","Muscle","Muscle - Skeletal","GTEX-12BJ1","Male","60-69",7.9,"Ventilator Case","SRR1319626",2013-10-01
-"GTEX-11UD2-0326-SM-5EQLE","GTEX-11UD2-0326-SM-5EQLE","Muscle","Muscle - Skeletal","GTEX-11UD2","Male","50-59",8.1,"Fast death of natural causes","SRR1325225",2013-09-30
-"GTEX-1117F-0426-SM-5EGHI","GTEX-1117F-0426-SM-5EGHI","Muscle","Muscle - Skeletal","GTEX-1117F","Female","60-69",7.1,"Slow death","SRR1309070",2013-09-12
-"GTEX-11GSP-2726-SM-5A5LJ","GTEX-11GSP-2726-SM-5A5LJ","Muscle","Muscle - Skeletal","GTEX-11GSP","Female","60-69",8.4,"Fast death of natural causes","SRR1324496",2013-10-10
-"GTEX-111YS-2326-SM-5987L","GTEX-111YS-2326-SM-5987L","Muscle","Muscle - Skeletal","GTEX-111YS","Male","60-69",7.1,"Ventilator Case","SRR1307677",2013-10-11
-"GTEX-13O3O-0526-SM-5J1NL","GTEX-13O3O-0526-SM-5J1NL","Muscle","Muscle - Skeletal","GTEX-13O3O","Female","60-69",8.5,"Intermediate death","SRR1317920",2013-12-11
-"GTEX-132AR-1026-SM-5PNVL","GTEX-132AR-1026-SM-5PNVL","Muscle","Muscle - Skeletal","GTEX-132AR","Female","50-59",8.7,"Ventilator Case","SRR1320579",2014-01-06
-"GTEX-11OF3-2526-SM-5P9JL","GTEX-11OF3-2526-SM-5P9JL","Muscle","Muscle - Skeletal","GTEX-11OF3","Male","60-69",7.7,"Fast death of natural causes","SRR1322662",2014-01-06
-"GTEX-1122O-2426-SM-5GIDN","GTEX-1122O-2426-SM-5GIDN","Muscle","Muscle - Skeletal","GTEX-1122O","Female","60-69",7,"Ventilator Case","SRR1309942",2013-10-03
-"GTEX-139T4-0326-SM-5K7XN","GTEX-139T4-0326-SM-5K7XN","Muscle","Muscle - Skeletal","GTEX-139T4","Female","50-59",6.8,"Intermediate death","SRR1318839",2013-11-05
-"GTEX-13N2G-2326-SM-5J1ON","GTEX-13N2G-2326-SM-5J1ON","Muscle","Muscle - Skeletal","GTEX-13N2G","Male","60-69",8.2,"Fast death of natural causes","SRR1319753",2013-12-10
-"GTEX-11DXX-2726-SM-5PNXO","GTEX-11DXX-2726-SM-5PNXO","Muscle","Muscle - Skeletal","GTEX-11DXX","Female","60-69",8.7,"Ventilator Case","SRR1309702",2013-09-25
-"GTEX-144FL-0326-SM-5O99O","GTEX-144FL-0326-SM-5O99O","Muscle","Muscle - Skeletal","GTEX-144FL","Male","50-59",7.7,"Fast death of natural causes","SRR1328797",2013-12-19
-"GTEX-11ZVC-2726-SM-5FQSZ","GTEX-11ZVC-2726-SM-5FQSZ","Muscle","Muscle - Skeletal","GTEX-11ZVC","Female","50-59",8,"Fast death of natural causes","SRR1318560",2013-09-30
+"GTEX-YEC3-2126-SM-4YCDB.1","GTEX-YEC3-2126-SM-4YCDB.1","Muscle","Muscle - Skeletal","GTEX-YEC3","Male","50-59",8.6,"Ventilator Case","SRR1338560",2013-09-05
+"GTEX-1128S-2426-SM-5H11B.1","GTEX-1128S-2426-SM-5H11B.1","Muscle","Muscle - Skeletal","GTEX-1128S","Female","60-69",7.6,"Fast death of natural causes","SRR1339108",2013-09-19
+"GTEX-14BIM-0326-SM-5SI9B.1","GTEX-14BIM-0326-SM-5SI9B.1","Muscle","Muscle - Skeletal","GTEX-14BIM","Female","60-69",7.9,"Intermediate death","SRR1384371",2013-12-19
+"GTEX-1445S-0626-SM-5LU3C.1","GTEX-1445S-0626-SM-5LU3C.1","Muscle","Muscle - Skeletal","GTEX-1445S","Male","60-69",7.9,"Intermediate death","SRR1348040",2013-12-18
+"GTEX-11EQ8-0526-SM-5N9BC.1","GTEX-11EQ8-0526-SM-5N9BC.1","Muscle","Muscle - Skeletal","GTEX-11EQ8","Male","60-69",7.6,"Slow death","SRR1355217",2013-09-26
+"GTEX-144GM-2026-SM-5LU3D.1","GTEX-144GM-2026-SM-5LU3D.1","Muscle","Muscle - Skeletal","GTEX-144GM","Male","20-29",7.4,"Ventilator Case","SRR1367988",2013-12-18
+"GTEX-ZPCL-2026-SM-57WFD.1","GTEX-ZPCL-2026-SM-57WFD.1","Muscle","Muscle - Skeletal","GTEX-ZPCL","Female","60-69",8.8,"Ventilator Case","SRR1368574",2013-09-06
+"GTEX-13YAN-0526-SM-5O9BE.1","GTEX-13YAN-0526-SM-5O9BE.1","Muscle","Muscle - Skeletal","GTEX-13YAN","Male","60-69",7.3,"Ventilator Case","SRR1351979",2013-12-19
+"GTEX-12WSC-0326-SM-5EQ5E.1","GTEX-12WSC-0326-SM-5EQ5E.1","Muscle","Muscle - Skeletal","GTEX-12WSC","Male","50-59",8.4,"Fast death of natural causes","SRR1354644",2013-10-07
+"GTEX-ZVP2-2126-SM-5GU6E.1","GTEX-ZVP2-2126-SM-5GU6E.1","Muscle","Muscle - Skeletal","GTEX-ZVP2","Male","50-59",7.7,"Ventilator Case","SRR1383081",2013-09-19
+"GTEX-11WQC-2626-SM-5CVLF.1","GTEX-11WQC-2626-SM-5CVLF.1","Muscle","Muscle - Skeletal","GTEX-11WQC","Male","60-69",7,"Fast death of natural causes","SRR1365448",2013-10-10
+"GTEX-ZF3C-0326-SM-4WWBF.1","GTEX-ZF3C-0326-SM-4WWBF.1","Muscle","Muscle - Skeletal","GTEX-ZF3C","Female","50-59",8.4,"Ventilator Case","SRR1386991",2013-08-28
+"GTEX-13FHO-0726-SM-5IJDG.1","GTEX-13FHO-0726-SM-5IJDG.1","Muscle","Muscle - Skeletal","GTEX-13FHO","Male","60-69",7.5,"Ventilator Case","SRR1354270",2013-12-05
+"GTEX-ZWKS-0326-SM-5NQ7G.1","GTEX-ZWKS-0326-SM-5NQ7G.1","Muscle","Muscle - Skeletal","GTEX-ZWKS","Male","30-39",6.2,"Slow death","SRR1376764",2013-09-16
+"GTEX-12C56-1926-SM-5FQUG.1","GTEX-12C56-1926-SM-5FQUG.1","Muscle","Muscle - Skeletal","GTEX-12C56","Male","20-29",8.1,"Ventilator Case","SRR1392186",2013-10-01
+"GTEX-ZE7O-0326-SM-51MTH.1","GTEX-ZE7O-0326-SM-51MTH.1","Muscle","Muscle - Skeletal","GTEX-ZE7O","Female","50-59",6.9,"Fast death of natural causes","SRR1330854",2013-08-23
+"GTEX-145MH-0326-SM-5LU8H.1","GTEX-145MH-0326-SM-5LU8H.1","Muscle","Muscle - Skeletal","GTEX-145MH","Male","50-59",7.3,"Violent and fast death","SRR1370780",2013-12-18
+"GTEX-11ONC-2426-SM-5GU7H.1","GTEX-11ONC-2426-SM-5GU7H.1","Muscle","Muscle - Skeletal","GTEX-11ONC","Male","60-69",8.6,"Fast death of natural causes","SRR1388832",2013-10-04
+"GTEX-ZV68-0526-SM-59HKI.1","GTEX-ZV68-0526-SM-59HKI.1","Muscle","Muscle - Skeletal","GTEX-ZV68","Female","50-59",5.9,"Fast death of natural causes","SRR1375774",2013-09-09
+"GTEX-11VI4-1926-SM-5CVLI.1","GTEX-11VI4-1926-SM-5CVLI.1","Muscle","Muscle - Skeletal","GTEX-11VI4","Female","40-49",7.6,"Ventilator Case","SRR1388809",2013-10-10
+"GTEX-ZVE2-0626-SM-5GU7I.1","GTEX-ZVE2-0626-SM-5GU7I.1","Muscle","Muscle - Skeletal","GTEX-ZVE2","Male","50-59",6.3,"Ventilator Case","SRR1389177",2013-09-20
+"GTEX-13OVH-0626-SM-5L3EI.1","GTEX-13OVH-0626-SM-5L3EI.1","Muscle","Muscle - Skeletal","GTEX-13OVH","Male","70-79",8.1,"Fast death of natural causes","SRR1404837",2013-12-12
+"GTEX-1399T-2426-SM-5L3FJ.1","GTEX-1399T-2426-SM-5L3FJ.1","Muscle","Muscle - Skeletal","GTEX-1399T","Male","60-69",6.1,"Fast death of natural causes","SRR1342739",2013-12-03
+"GTEX-13FH7-2126-SM-5L3DJ.1","GTEX-13FH7-2126-SM-5L3DJ.1","Muscle","Muscle - Skeletal","GTEX-13FH7","Female","50-59",8.7,"Ventilator Case","SRR1361480",2013-12-05
+"GTEX-131XW-0326-SM-5KM1J.1","GTEX-131XW-0326-SM-5KM1J.1","Muscle","Muscle - Skeletal","GTEX-131XW","Female","50-59",8.6,"Slow death","SRR1363908",2013-11-05
+"GTEX-11DXW-0726-SM-5H12J.1","GTEX-11DXW-0726-SM-5H12J.1","Muscle","Muscle - Skeletal","GTEX-11DXW","Male","40-49",8.2,"Fast death of natural causes","SRR1395742",2013-09-12
+"GTEX-11ZTT-2626-SM-5EQKK.1","GTEX-11ZTT-2626-SM-5EQKK.1","Muscle","Muscle - Skeletal","GTEX-11ZTT","Female","60-69",8.2,"Ventilator Case","SRR1347214",2013-10-04
+"GTEX-14AS3-2126-SM-5S2MK.1","GTEX-14AS3-2126-SM-5S2MK.1","Muscle","Muscle - Skeletal","GTEX-14AS3","Female","40-49",8.4,"Ventilator Case","SRR1365426",2014-01-22
+"GTEX-Y3IK-2626-SM-4WWDK.1","GTEX-Y3IK-2626-SM-4WWDK.1","Muscle","Muscle - Skeletal","GTEX-Y3IK","Female","50-59",7.9,"Ventilator Case","SRR1375439",2013-07-31
+"GTEX-ZZ64-1526-SM-5E43K.1","GTEX-ZZ64-1526-SM-5E43K.1","Muscle","Muscle - Skeletal","GTEX-ZZ64","Male","20-29",7.2,"Ventilator Case","SRR1384138",2013-09-13
+"GTEX-13OW5-0326-SM-5L3HK.1","GTEX-13OW5-0326-SM-5L3HK.1","Muscle","Muscle - Skeletal","GTEX-13OW5","Male","60-69",5.9,"Intermediate death","SRR1390437",2013-12-17
+"GTEX-144GO-1326-SM-5Q5EL.1","GTEX-144GO-1326-SM-5Q5EL.1","Muscle","Muscle - Skeletal","GTEX-144GO","Male","60-69",8.2,"Slow death","SRR1331220",2014-01-08
+"GTEX-139T8-0526-SM-5KLZL.1","GTEX-139T8-0526-SM-5KLZL.1","Muscle","Muscle - Skeletal","GTEX-139T8","Male","60-69",8.2,"Slow death","SRR1334247",2013-11-05
+"GTEX-12WSL-2726-SM-5CVNL.1","GTEX-12WSL-2726-SM-5CVNL.1","Muscle","Muscle - Skeletal","GTEX-12WSL","Male","50-59",8.7,"Ventilator Case","SRR1351280",2013-10-08
+"GTEX-139T6-2026-SM-5IFFL.1","GTEX-139T6-2026-SM-5IFFL.1","Muscle","Muscle - Skeletal","GTEX-139T6","Male","50-59",8.5,"Ventilator Case","SRR1351480",2013-12-04
+"GTEX-11XUK-2226-SM-5CVLL.1","GTEX-11XUK-2226-SM-5CVLL.1","Muscle","Muscle - Skeletal","GTEX-11XUK","Female","40-49",6.8,"Ventilator Case","SRR1385411",2013-10-10
+"GTEX-11EM3-2126-SM-5H11M.1","GTEX-11EM3-2126-SM-5H11M.1","Muscle","Muscle - Skeletal","GTEX-11EM3","Female","20-29",7.9,"Ventilator Case","SRR1334512",2013-09-19
+"GTEX-YFC4-1026-SM-5RQJM.1","GTEX-YFC4-1026-SM-5RQJM.1","Muscle","Muscle - Skeletal","GTEX-YFC4","Female","40-49",8.2,"Violent and fast death","SRR1353517",2014-01-22
+"GTEX-14A6H-2826-SM-5QGPM.1","GTEX-14A6H-2826-SM-5QGPM.1","Muscle","Muscle - Skeletal","GTEX-14A6H","Male","30-39",7.1,"Ventilator Case","SRR1355352",2014-01-08
+"GTEX-ZV6S-2126-SM-4YCEM.1","GTEX-ZV6S-2126-SM-4YCEM.1","Muscle","Muscle - Skeletal","GTEX-ZV6S","Female","40-49",7.5,"Ventilator Case","SRR1387240",2013-09-10
+"GTEX-11TT1-2326-SM-5GU6N.1","GTEX-11TT1-2326-SM-5GU6N.1","Muscle","Muscle - Skeletal","GTEX-11TT1","Male","20-29",8.7,"Ventilator Case","SRR1331639",2013-09-19
+"GTEX-11TTK-0326-SM-5BC5N.1","GTEX-11TTK-0326-SM-5BC5N.1","Muscle","Muscle - Skeletal","GTEX-11TTK","Female","60-69",7.1,"Slow death","SRR1354955",2013-10-10
+"GTEX-YBZK-0326-SM-59HLN.1","GTEX-YBZK-0326-SM-59HLN.1","Muscle","Muscle - Skeletal","GTEX-YBZK","Female","50-59",8.6,NA,"SRR1375509",2013-08-01
+"GTEX-ZVZO-0326-SM-5HL4N.1","GTEX-ZVZO-0326-SM-5HL4N.1","Muscle","Muscle - Skeletal","GTEX-ZVZO","Male","40-49",7.8,NA,"SRR1377800",2013-09-12
+"GTEX-13NZ9-0626-SM-5IJCO.1","GTEX-13NZ9-0626-SM-5IJCO.1","Muscle","Muscle - Skeletal","GTEX-13NZ9","Male","50-59",8.1,"Ventilator Case","SRR1361546",2013-12-06
+"GTEX-Z9EW-1726-SM-5CVMO.1","GTEX-Z9EW-1726-SM-5CVMO.1","Muscle","Muscle - Skeletal","GTEX-Z9EW","Male","40-49",7.9,"Ventilator Case","SRR1379110",2013-11-01
+"GTEX-13PL6-0326-SM-5IJCP.1","GTEX-13PL6-0326-SM-5IJCP.1","Muscle","Muscle - Skeletal","GTEX-13PL6","Female","40-49",8.6,"Intermediate death","SRR1327702",2013-12-12
+"GTEX-13PDP-0326-SM-5K7XP.1","GTEX-13PDP-0326-SM-5K7XP.1","Muscle","Muscle - Skeletal","GTEX-13PDP","Male","60-69",6.9,"Slow death","SRR1332299",2013-12-11
+"GTEX-ZPIC-2526-SM-57WDP.1","GTEX-ZPIC-2526-SM-57WDP.1","Muscle","Muscle - Skeletal","GTEX-ZPIC","Female","40-49",8.4,"Ventilator Case","SRR1344422",2013-09-06
+"GTEX-11ZUS-1426-SM-5FQSP.1","GTEX-11ZUS-1426-SM-5FQSP.1","Muscle","Muscle - Skeletal","GTEX-11ZUS","Male","30-39",8.5,"Violent and fast death","SRR1353555",2013-09-20
+"GTEX-14ASI-0526-SM-5QGQP.1","GTEX-14ASI-0526-SM-5QGQP.1","Muscle","Muscle - Skeletal","GTEX-14ASI","Male","60-69",5.7,"Fast death of natural causes","SRR1376249",2014-01-17
+"GTEX-13OW7-0326-SM-5J1MP.1","GTEX-13OW7-0326-SM-5J1MP.1","Muscle","Muscle - Skeletal","GTEX-13OW7","Male","50-59",8.2,"Fast death of natural causes","SRR1394190",2013-12-11
+"GTEX-111FC-0326-SM-5GZZ1.1","GTEX-111FC-0326-SM-5GZZ1.1","Muscle","Muscle - Skeletal","GTEX-111FC","Male","60-69",8.2,"Violent and fast death","SRR1311553",2013-09-13
+"GTEX-139UW-2626-SM-5K7W1.1","GTEX-139UW-2626-SM-5K7W1.1","Muscle","Muscle - Skeletal","GTEX-139UW","Male","60-69",7,"Fast death of natural causes","SRR1312684",2013-12-05
+"GTEX-117YX-2526-SM-5EQ4Q.1","GTEX-117YX-2526-SM-5EQ4Q.1","Muscle","Muscle - Skeletal","GTEX-117YX","Male","50-59",8.3,"Ventilator Case","SRR1321987",2013-10-08
+"GTEX-12WS9-0626-SM-5FQT2.1","GTEX-12WS9-0626-SM-5FQT2.1","Muscle","Muscle - Skeletal","GTEX-12WS9","Female","50-59",8.3,"Intermediate death","SRR1313969",2013-09-23
+"GTEX-YFCO-1926-SM-4W212.1","GTEX-YFCO-1926-SM-4W212.1","Muscle","Muscle - Skeletal","GTEX-YFCO","Male","40-49",8.4,"Ventilator Case","SRR1325377",2013-08-12
+"GTEX-113JC-2726-SM-5EGIS.1","GTEX-113JC-2726-SM-5EGIS.1","Muscle","Muscle - Skeletal","GTEX-113JC","Female","50-59",7.7,"Fast death of natural causes","SRR1310836",2013-09-13
+"GTEX-12584-0526-SM-5FQTS.1","GTEX-12584-0526-SM-5FQTS.1","Muscle","Muscle - Skeletal","GTEX-12584","Male","40-49",8.6,"Intermediate death","SRR1312406",2013-09-30
+"GTEX-132Q8-0626-SM-5L3F3.1","GTEX-132Q8-0626-SM-5L3F3.1","Muscle","Muscle - Skeletal","GTEX-132Q8","Male","60-69",6.8,"Slow death","SRR1318465",2013-11-05
+"GTEX-13RTK-1626-SM-5QGQS.1","GTEX-13RTK-1626-SM-5QGQS.1","Muscle","Muscle - Skeletal","GTEX-13RTK","Male","20-29",8.5,"Ventilator Case","SRR1320321",2014-01-17
+"GTEX-11EMC-2626-SM-59864.1","GTEX-11EMC-2626-SM-59864.1","Muscle","Muscle - Skeletal","GTEX-11EMC","Female","60-69",8.4,"Fast death of natural causes","SRR1309556",2013-10-22
+"GTEX-11GS4-2526-SM-5A5KT.1","GTEX-11GS4-2526-SM-5A5KT.1","Muscle","Muscle - Skeletal","GTEX-11GS4","Male","60-69",8.5,"Fast death of natural causes","SRR1310735",2013-10-03
+"GTEX-13SLX-0326-SM-5Q5E4.1","GTEX-13SLX-0326-SM-5Q5E4.1","Muscle","Muscle - Skeletal","GTEX-13SLX","Female","50-59",8.2,"Fast death of natural causes","SRR1320225",2014-01-08
+"GTEX-13PVR-2526-SM-5RQIT.1","GTEX-13PVR-2526-SM-5RQIT.1","Muscle","Muscle - Skeletal","GTEX-13PVR","Female","60-69",7.9,"Ventilator Case","SRR1326604",2014-01-17
+"GTEX-145MN-2426-SM-5NQA5.1","GTEX-145MN-2426-SM-5NQA5.1","Muscle","Muscle - Skeletal","GTEX-145MN","Male","30-39",8.4,"Ventilator Case","SRR1313687",2013-12-20
+"GTEX-147F3-0226-SM-5NQBV.1","GTEX-147F3-0226-SM-5NQBV.1","Muscle","Muscle - Skeletal","GTEX-147F3","Female","50-59",8.3,"Ventilator Case","SRR1319648",2013-12-20
+"GTEX-139UC-2926-SM-5J1N6.1","GTEX-139UC-2926-SM-5J1N6.1","Muscle","Muscle - Skeletal","GTEX-139UC","Male","60-69",7.5,"Fast death of natural causes","SRR1323087",2013-12-05
+"GTEX-13PLJ-0326-SM-5L3I7.1","GTEX-13PLJ-0326-SM-5L3I7.1","Muscle","Muscle - Skeletal","GTEX-13PLJ","Female","60-69",7.3,"Fast death of natural causes","SRR1314832",2013-12-13
+"GTEX-13FTY-0226-SM-5IJBW.1","GTEX-13FTY-0226-SM-5IJBW.1","Muscle","Muscle - Skeletal","GTEX-13FTY","Female","40-49",7.5,"Fast death of natural causes","SRR1320469",2013-12-10
+"GTEX-11EQ9-2126-SM-5PNVW.1","GTEX-11EQ9-2126-SM-5PNVW.1","Muscle","Muscle - Skeletal","GTEX-11EQ9","Male","30-39",8.7,"Fast death of natural causes","SRR1324390",2014-01-06
+"GTEX-1314G-1726-SM-5LZUX.1","GTEX-1314G-1726-SM-5LZUX.1","Muscle","Muscle - Skeletal","GTEX-1314G","Male","30-39",8.2,"Ventilator Case","SRR1322900",2013-10-28
+"GTEX-144GL-0326-SM-5QGOY.1","GTEX-144GL-0326-SM-5QGOY.1","Muscle","Muscle - Skeletal","GTEX-144GL","Male","50-59",8,"Fast death of natural causes","SRR1317134",2014-01-08
+"GTEX-13W46-0726-SM-5LU3Z.1","GTEX-13W46-0726-SM-5LU3Z.1","Muscle","Muscle - Skeletal","GTEX-13W46","Male","50-59",7.7,"Ventilator Case","SRR1357148",2013-12-18
+"GTEX-1211K-2126-SM-59HJZ.1","GTEX-1211K-2126-SM-59HJZ.1","Muscle","Muscle - Skeletal","GTEX-1211K","Female","60-69",8.6,"Ventilator Case","SRR1387966",2013-10-11
+"GTEX-139TT-0426-SM-5IJFA.1","GTEX-139TT-0426-SM-5IJFA.1","Muscle","Muscle - Skeletal","GTEX-139TT","Male","60-69",8.2,"Fast death of natural causes","SRR1398335",2013-12-04
+"GTEX-ZAKK-0326-SM-5EGHA.1","GTEX-ZAKK-0326-SM-5EGHA.1","Muscle","Muscle - Skeletal","GTEX-ZAKK","Male","70-79",8,NA,"SRR1409263",2013-11-01
+"GTEX-13OW6-0626-SM-5L3IB.1","GTEX-13OW6-0626-SM-5L3IB.1","Muscle","Muscle - Skeletal","GTEX-13OW6","Male","50-59",7.7,"Fast death of natural causes","SRR1418022",2013-12-17
+"GTEX-131XF-2326-SM-5BC6B.1","GTEX-131XF-2326-SM-5BC6B.1","Muscle","Muscle - Skeletal","GTEX-131XF","Male","60-69",7.9,"Ventilator Case","SRR1454328",2013-09-24
+"GTEX-14A5H-0326-SM-5RQIB.1","GTEX-14A5H-0326-SM-5RQIB.1","Muscle","Muscle - Skeletal","GTEX-14A5H","Male","60-69",8.1,"Fast death of natural causes","SRR1455525",2014-01-17
+"GTEX-1269C-2626-SM-5EQ5C.1","GTEX-1269C-2626-SM-5EQ5C.1","Muscle","Muscle - Skeletal","GTEX-1269C","Female","60-69",7.9,"Fast death of natural causes","SRR1431569",2013-10-07
+"GTEX-111CU-2026-SM-5GZZC.1","GTEX-111CU-2026-SM-5GZZC.1","Muscle","Muscle - Skeletal","GTEX-111CU","Male","50-59",8.1,"Ventilator Case","SRR1452696",2013-09-19
+"GTEX-YB5K-2326-SM-5IFHD.1","GTEX-YB5K-2326-SM-5IFHD.1","Muscle","Muscle - Skeletal","GTEX-YB5K","Female","40-49",8.5,"Ventilator Case","SRR1408249",2013-10-29
+"GTEX-13PL7-0626-SM-5IJCD.1","GTEX-13PL7-0626-SM-5IJCD.1","Muscle","Muscle - Skeletal","GTEX-13PL7","Female","60-69",8.5,"Ventilator Case","SRR1410221",2013-12-12
+"GTEX-13JUV-2326-SM-5IJCE.1","GTEX-13JUV-2326-SM-5IJCE.1","Muscle","Muscle - Skeletal","GTEX-13JUV","Female","40-49",7.4,"Ventilator Case","SRR1401839",2013-12-05
+"GTEX-YECK-0626-SM-4W1ZE.1","GTEX-YECK-0626-SM-4W1ZE.1","Muscle","Muscle - Skeletal","GTEX-YECK","Male","60-69",8,"Intermediate death","SRR1435418",2013-08-09
+"GTEX-1192X-0426-SM-5GIEE.1","GTEX-1192X-0426-SM-5GIEE.1","Muscle","Muscle - Skeletal","GTEX-1192X","Male","50-59",7.5,"Slow death","SRR1453911",2013-10-03
+"GTEX-13111-2226-SM-5LZUE.1","GTEX-13111-2226-SM-5LZUE.1","Muscle","Muscle - Skeletal","GTEX-13111","Male","50-59",7.9,"Ventilator Case","SRR1499566",2013-09-25
+"GTEX-12WSD-0526-SM-5EQ6F.1","GTEX-12WSD-0526-SM-5EQ6F.1","Muscle","Muscle - Skeletal","GTEX-12WSD","Female","60-69",8.5,"Fast death of natural causes","SRR1390027",2013-10-07
+"GTEX-13PVQ-0326-SM-5K7YF.1","GTEX-13PVQ-0326-SM-5K7YF.1","Muscle","Muscle - Skeletal","GTEX-13PVQ","Male","50-59",8.4,"Fast death of natural causes","SRR1430489",2013-12-12
+"GTEX-ZYFC-0526-SM-5GIDF.1","GTEX-ZYFC-0526-SM-5GIDF.1","Muscle","Muscle - Skeletal","GTEX-ZYFC","Male","50-59",8.1,"Fast death of natural causes","SRR1431083",2013-10-01
+"GTEX-ZC5H-0326-SM-5HL9F.1","GTEX-ZC5H-0326-SM-5HL9F.1","Muscle","Muscle - Skeletal","GTEX-ZC5H","Female","40-49",8.2,"Ventilator Case","SRR1452515",2013-11-01
+"GTEX-131XG-2326-SM-5HL8F.1","GTEX-131XG-2326-SM-5HL8F.1","Muscle","Muscle - Skeletal","GTEX-131XG","Female","50-59",8,"Ventilator Case","SRR1466512",2013-11-01
+"GTEX-ZYY3-0526-SM-5E45G.1","GTEX-ZYY3-0526-SM-5E45G.1","Muscle","Muscle - Skeletal","GTEX-ZYY3","Female","60-69",8.4,"Slow death","SRR1432453",2013-09-12
+"GTEX-11EI6-0326-SM-5EQ6G.1","GTEX-11EI6-0326-SM-5EQ6G.1","Muscle","Muscle - Skeletal","GTEX-11EI6","Male","60-69",8.2,"Slow death","SRR1447103",2013-10-08
+"GTEX-117XS-2526-SM-5H11G.1","GTEX-117XS-2526-SM-5H11G.1","Muscle","Muscle - Skeletal","GTEX-117XS","Male","60-69",8.3,"Fast death of natural causes","SRR1468162",2013-09-17
+"GTEX-11P81-2526-SM-5GU6H.1","GTEX-11P81-2526-SM-5GU6H.1","Muscle","Muscle - Skeletal","GTEX-11P81","Female","30-39",8,"Ventilator Case","SRR1401752",2013-10-04
+"GTEX-ZP4G-2026-SM-57WEH.1","GTEX-ZP4G-2026-SM-57WEH.1","Muscle","Muscle - Skeletal","GTEX-ZP4G","Female","20-29",8,"Ventilator Case","SRR1409130",2013-09-06
+"GTEX-13S7M-0326-SM-5S2PH.1","GTEX-13S7M-0326-SM-5S2PH.1","Muscle","Muscle - Skeletal","GTEX-13S7M","Female","60-69",8.5,"Fast death of natural causes","SRR1418561",2014-01-24
+"GTEX-ZXG5-0326-SM-5GICH.1","GTEX-ZXG5-0326-SM-5GICH.1","Muscle","Muscle - Skeletal","GTEX-ZXG5","Male","60-69",6.2,"Intermediate death","SRR1419110",2013-09-20
+"GTEX-12ZZX-0326-SM-5DUVH.1","GTEX-12ZZX-0326-SM-5DUVH.1","Muscle","Muscle - Skeletal","GTEX-12ZZX","Female","40-49",7.7,"Violent and fast death","SRR1444002",2013-10-08
+"GTEX-12WSH-2526-SM-5CVNH.1","GTEX-12WSH-2526-SM-5CVNH.1","Muscle","Muscle - Skeletal","GTEX-12WSH","Male","50-59",7.8,"Fast death of natural causes","SRR1488214",2013-10-08
+"GTEX-13FTZ-2226-SM-5LZXI.1","GTEX-13FTZ-2226-SM-5LZXI.1","Muscle","Muscle - Skeletal","GTEX-13FTZ","Male","60-69",7.7,"Fast death of natural causes","SRR1431927",2013-12-04
+"GTEX-12WSM-0326-SM-5LZVI.1","GTEX-12WSM-0326-SM-5LZVI.1","Muscle","Muscle - Skeletal","GTEX-12WSM","Male","60-69",8.1,"Fast death of natural causes","SRR1446564",2013-10-28
+"GTEX-13N1W-0526-SM-5MR4I.1","GTEX-13N1W-0526-SM-5MR4I.1","Muscle","Muscle - Skeletal","GTEX-13N1W","Male","70-79",8,"Ventilator Case","SRR1471594",2013-12-04
+"GTEX-ZYFD-0326-SM-5NQ8I.1","GTEX-ZYFD-0326-SM-5NQ8I.1","Muscle","Muscle - Skeletal","GTEX-ZYFD","Male","50-59",8,"Intermediate death","SRR1487570",2013-09-16
+"GTEX-131YS-0526-SM-5EGKJ.1","GTEX-131YS-0526-SM-5EGKJ.1","Muscle","Muscle - Skeletal","GTEX-131YS","Female","60-69",8.4,"Fast death of natural causes","SRR1397156",2013-10-22
+"GTEX-11P82-1826-SM-5PNYJ.1","GTEX-11P82-1826-SM-5PNYJ.1","Muscle","Muscle - Skeletal","GTEX-11P82","Male","20-29",7.6,"Violent and fast death","SRR1403133",2014-01-06
+"GTEX-13IVO-0626-SM-5LZYJ.1","GTEX-13IVO-0626-SM-5LZYJ.1","Muscle","Muscle - Skeletal","GTEX-13IVO","Male","70-79",7.1,"Slow death","SRR1433290",2013-12-04
+"GTEX-14A5I-0326-SM-5NQ9J.1","GTEX-14A5I-0326-SM-5NQ9J.1","Muscle","Muscle - Skeletal","GTEX-14A5I","Female","50-59",8.4,"Slow death","SRR1434502",2013-12-20
+"GTEX-ZDXO-0326-SM-4WKHJ.1","GTEX-ZDXO-0326-SM-4WKHJ.1","Muscle","Muscle - Skeletal","GTEX-ZDXO","Male","60-69",8.3,"Fast death of natural causes","SRR1442754",2013-08-21
+"GTEX-139D8-0726-SM-5P9GJ.1","GTEX-139D8-0726-SM-5P9GJ.1","Muscle","Muscle - Skeletal","GTEX-139D8","Female","30-39",8,"Ventilator Case","SRR1443003",2014-01-06
+"GTEX-13O61-2326-SM-5J1NJ.1","GTEX-13O61-2326-SM-5J1NJ.1","Muscle","Muscle - Skeletal","GTEX-13O61","Male","60-69",8.5,"Ventilator Case","SRR1454117",2013-12-13
+"GTEX-11ZU8-2326-SM-5EQMJ.1","GTEX-11ZU8-2326-SM-5EQMJ.1","Muscle","Muscle - Skeletal","GTEX-11ZU8","Male","60-69",7.1,"Slow death","SRR1467966",2013-10-04
+"GTEX-13CF3-1826-SM-5J1NK.1","GTEX-13CF3-1826-SM-5J1NK.1","Muscle","Muscle - Skeletal","GTEX-13CF3","Female","60-69",7.4,"Ventilator Case","SRR1413872",2013-12-03
+"GTEX-1497J-2626-SM-5SI9K.1","GTEX-1497J-2626-SM-5SI9K.1","Muscle","Muscle - Skeletal","GTEX-1497J","Male","60-69",8,"Ventilator Case","SRR1435248",2013-12-18
+"GTEX-13OVJ-0226-SM-5L3GK.1","GTEX-13OVJ-0226-SM-5L3GK.1","Muscle","Muscle - Skeletal","GTEX-13OVJ","Female","50-59",7.8,"Fast death of natural causes","SRR1459937",2013-12-17
+"GTEX-13OVG-2126-SM-5KM1K.1","GTEX-13OVG-2126-SM-5KM1K.1","Muscle","Muscle - Skeletal","GTEX-13OVG","Male","60-69",7.6,"Ventilator Case","SRR1472794",2013-12-11
+"GTEX-13NYS-0326-SM-5MR4L.1","GTEX-13NYS-0326-SM-5MR4L.1","Muscle","Muscle - Skeletal","GTEX-13NYS","Male","60-69",8.3,"Slow death","SRR1387222",2013-12-04
+"GTEX-13QBU-2426-SM-5LU4L.1","GTEX-13QBU-2426-SM-5LU4L.1","Muscle","Muscle - Skeletal","GTEX-13QBU","Female","40-49",7.6,"Ventilator Case","SRR1414314",2013-12-17
+"GTEX-1399U-2526-SM-5L3DL.1","GTEX-1399U-2526-SM-5L3DL.1","Muscle","Muscle - Skeletal","GTEX-1399U","Female","50-59",7.5,"Ventilator Case","SRR1440744",2013-11-05
+"GTEX-ZTPG-0126-SM-5O9AL.1","GTEX-ZTPG-0126-SM-5O9AL.1","Muscle","Muscle - Skeletal","GTEX-ZTPG","Female","20-29",8,"Ventilator Case","SRR1468658",2013-09-16
+"GTEX-133LE-2026-SM-5K7WM.1","GTEX-133LE-2026-SM-5K7WM.1","Muscle","Muscle - Skeletal","GTEX-133LE","Female","20-29",8.4,"Ventilator Case","SRR1406008",2013-11-05
+"GTEX-132NY-0726-SM-5KLZM.1","GTEX-132NY-0726-SM-5KLZM.1","Muscle","Muscle - Skeletal","GTEX-132NY","Male","60-69",7,"Violent and fast death","SRR1471117",2013-12-03
+"GTEX-Y8E5-0326-SM-57WBM.1","GTEX-Y8E5-0326-SM-57WBM.1","Muscle","Muscle - Skeletal","GTEX-Y8E5","Male","60-69",7.4,NA,"SRR1481396",2013-08-08
+"GTEX-11LCK-1226-SM-5Q5AM.1","GTEX-11LCK-1226-SM-5Q5AM.1","Muscle","Muscle - Skeletal","GTEX-11LCK","Male","30-39",8.1,"Ventilator Case","SRR1488470",2014-01-06
+"GTEX-ZAB5-2126-SM-5K7UN.1","GTEX-ZAB5-2126-SM-5K7UN.1","Muscle","Muscle - Skeletal","GTEX-ZAB5","Male","50-59",8,"Ventilator Case","SRR1444120",2013-11-05
+"GTEX-ZAB4-0426-SM-5HL7N.1","GTEX-ZAB4-0426-SM-5HL7N.1","Muscle","Muscle - Skeletal","GTEX-ZAB4","Male","40-49",8.1,"Slow death","SRR1473078",2013-11-01
+"GTEX-11TUW-2526-SM-5EQKN.1","GTEX-11TUW-2526-SM-5EQKN.1","Muscle","Muscle - Skeletal","GTEX-11TUW","Male","60-69",8.5,"Fast death of natural causes","SRR1478968",2013-09-30
+"GTEX-13NZ8-2126-SM-5L3EO.1","GTEX-13NZ8-2126-SM-5L3EO.1","Muscle","Muscle - Skeletal","GTEX-13NZ8","Female","60-69",6.4,"Slow death","SRR1402153",2013-12-06
+"GTEX-1399Q-2426-SM-5J2MO.1","GTEX-1399Q-2426-SM-5J2MO.1","Muscle","Muscle - Skeletal","GTEX-1399Q","Male","40-49",6.6,"Ventilator Case","SRR1444306",2013-12-03
+"GTEX-12WSG-2526-SM-5EQ4O.1","GTEX-12WSG-2526-SM-5EQ4O.1","Muscle","Muscle - Skeletal","GTEX-12WSG","Female","50-59",8.4,"Ventilator Case","SRR1468532",2013-10-07
+"GTEX-Y8DK-0326-SM-4TT3P.1","GTEX-Y8DK-0326-SM-4TT3P.1","Muscle","Muscle - Skeletal","GTEX-Y8DK","Male","60-69",8.6,"Fast death of natural causes","SRR1400823",2013-08-01
+"GTEX-11WQK-0726-SM-5GU71.1","GTEX-11WQK-0726-SM-5GU71.1","Muscle","Muscle - Skeletal","GTEX-11WQK","Male","50-59",8.3,"Fast death of natural causes","SRR1345760",2013-09-19
+"GTEX-13S86-2326-SM-5RQK1.1","GTEX-13S86-2326-SM-5RQK1.1","Muscle","Muscle - Skeletal","GTEX-13S86","Male","40-49",8.2,"Ventilator Case","SRR1345894",2014-01-22
+"GTEX-14BIL-0326-SM-5SI9Q.1","GTEX-14BIL-0326-SM-5SI9Q.1","Muscle","Muscle - Skeletal","GTEX-14BIL","Male","50-59",8.4,"Fast death of natural causes","SRR1349851",2013-12-19
+"GTEX-ZV7C-2426-SM-5NQ7Q.1","GTEX-ZV7C-2426-SM-5NQ7Q.1","Muscle","Muscle - Skeletal","GTEX-ZV7C","Male","50-59",7.6,"Ventilator Case","SRR1394231",2013-09-16
+"GTEX-12KS4-0826-SM-5BC5R.1","GTEX-12KS4-0826-SM-5BC5R.1","Muscle","Muscle - Skeletal","GTEX-12KS4","Male","30-39",6.5,"Ventilator Case","SRR1331922",2013-09-24
+"GTEX-YEC3-2126-SM-5CVLR.1","GTEX-YEC3-2126-SM-5CVLR.1","Muscle","Muscle - Skeletal","GTEX-YEC3","Male","50-59",6.7,"Ventilator Case","SRR1345284",2013-11-01
+"GTEX-131XH-2726-SM-5GCO2.1","GTEX-131XH-2726-SM-5GCO2.1","Muscle","Muscle - Skeletal","GTEX-131XH","Male","50-59",7.9,"Fast death of natural causes","SRR1353663",2013-10-01
+"GTEX-12WSA-0726-SM-5FQU2.1","GTEX-12WSA-0726-SM-5FQU2.1","Muscle","Muscle - Skeletal","GTEX-12WSA","Male","60-69",7.4,"Slow death","SRR1354489",2013-10-01
+"GTEX-ZVZP-2526-SM-57WBR.1","GTEX-ZVZP-2526-SM-57WBR.1","Muscle","Muscle - Skeletal","GTEX-ZVZP","Male","50-59",7.5,"Ventilator Case","SRR1359780",2013-09-10
+"GTEX-11P7K-1926-SM-5GU6R.1","GTEX-11P7K-1926-SM-5GU6R.1","Muscle","Muscle - Skeletal","GTEX-11P7K","Male","30-39",9,"Ventilator Case","SRR1368072",2013-10-04
+"GTEX-145LT-1626-SM-5O992.1","GTEX-145LT-1626-SM-5O992.1","Muscle","Muscle - Skeletal","GTEX-145LT","Male","40-49",8.7,"Ventilator Case","SRR1380716",2013-12-19
+"GTEX-11DZ1-0926-SM-5EQ5R.1","GTEX-11DZ1-0926-SM-5EQ5R.1","Muscle","Muscle - Skeletal","GTEX-11DZ1","Male","50-59",7.6,"Slow death","SRR1392901",2013-10-08
+"GTEX-13QIC-1226-SM-5K7YR.1","GTEX-13QIC-1226-SM-5K7YR.1","Muscle","Muscle - Skeletal","GTEX-13QIC","Female","60-69",7.9,"Fast death of natural causes","SRR1394637",2013-12-12
+"GTEX-13U4I-1826-SM-5IJD2.1","GTEX-13U4I-1826-SM-5IJD2.1","Muscle","Muscle - Skeletal","GTEX-13U4I","Female","40-49",8.6,"Ventilator Case","SRR1400551",2013-12-12
+"GTEX-ZUA1-0326-SM-5NQA3.1","GTEX-ZUA1-0326-SM-5NQA3.1","Muscle","Muscle - Skeletal","GTEX-ZUA1","Male","40-49",7.7,"Fast death of natural causes","SRR1336569",2013-09-16
+"GTEX-13FTW-2326-SM-5K7YS.1","GTEX-13FTW-2326-SM-5K7YS.1","Muscle","Muscle - Skeletal","GTEX-13FTW","Male","40-49",7.1,"Ventilator Case","SRR1360402",2013-12-05
+"GTEX-13JVG-0126-SM-5L3D3.1","GTEX-13JVG-0126-SM-5L3D3.1","Muscle","Muscle - Skeletal","GTEX-13JVG","Male","60-69",8.3,"Fast death of natural causes","SRR1367109",2013-12-11
+"GTEX-11H98-0326-SM-5HL4S.1","GTEX-11H98-0326-SM-5HL4S.1","Muscle","Muscle - Skeletal","GTEX-11H98","Male","50-59",8.1,"Fast death of natural causes","SRR1377006",2013-09-13
+"GTEX-11DXZ-2426-SM-5N9DT.1","GTEX-11DXZ-2426-SM-5N9DT.1","Muscle","Muscle - Skeletal","GTEX-11DXZ","Male","50-59",8.7,"Ventilator Case","SRR1349231",2013-09-25
+"GTEX-146FR-1726-SM-5Q5DT.1","GTEX-146FR-1726-SM-5Q5DT.1","Muscle","Muscle - Skeletal","GTEX-146FR","Female","60-69",8.4,"Ventilator Case","SRR1353900",2014-01-08
+"GTEX-ZE9C-2326-SM-5J1NT.1","GTEX-ZE9C-2326-SM-5J1NT.1","Muscle","Muscle - Skeletal","GTEX-ZE9C","Male","60-69",6.6,"Fast death of natural causes","SRR1388528",2013-11-05
+"GTEX-13OW8-1426-SM-5IJDT.1","GTEX-13OW8-1426-SM-5IJDT.1","Muscle","Muscle - Skeletal","GTEX-13OW8","Male","60-69",8.4,"Fast death of natural causes","SRR1393449",2013-12-13
+"GTEX-13O3P-0626-SM-5L3D5.1","GTEX-13O3P-0626-SM-5L3D5.1","Muscle","Muscle - Skeletal","GTEX-13O3P","Male","50-59",8.2,"Slow death","SRR1330327",2013-12-12
+"GTEX-Y8E4-1026-SM-4VBQ5.1","GTEX-Y8E4-1026-SM-4VBQ5.1","Muscle","Muscle - Skeletal","GTEX-Y8E4","Male","40-49",8.3,"Ventilator Case","SRR1342782",2013-08-08
+"GTEX-ZYW4-0526-SM-5GZZ5.1","GTEX-ZYW4-0526-SM-5GZZ5.1","Muscle","Muscle - Skeletal","GTEX-ZYW4","Male","60-69",8.5,"Intermediate death","SRR1349209",2013-09-17
+"GTEX-11NSD-2026-SM-5HL5U.1","GTEX-11NSD-2026-SM-5HL5U.1","Muscle","Muscle - Skeletal","GTEX-11NSD","Male","20-29",8.5,"Ventilator Case","SRR1356705",2013-09-18
+"GTEX-145ME-2026-SM-5SIA5.1","GTEX-145ME-2026-SM-5SIA5.1","Muscle","Muscle - Skeletal","GTEX-145ME","Female","40-49",8,"Ventilator Case","SRR1383259",2013-12-18
+"GTEX-11OC5-0326-SM-5PNW5.1","GTEX-11OC5-0326-SM-5PNW5.1","Muscle","Muscle - Skeletal","GTEX-11OC5","Male","60-69",9,"Fast death of natural causes","SRR1385101",2014-01-06
+"GTEX-13SLW-0326-SM-5RQK5.1","GTEX-13SLW-0326-SM-5RQK5.1","Muscle","Muscle - Skeletal","GTEX-13SLW","Male","70-79",7.4,"Fast death of natural causes","SRR1396250",2014-01-22
+"GTEX-13VXU-0326-SM-5LU36.1","GTEX-13VXU-0326-SM-5LU36.1","Muscle","Muscle - Skeletal","GTEX-13VXU","Male","50-59",8.5,"Fast death of natural causes","SRR1344382",2013-12-13
+"GTEX-13112-2626-SM-5BC66.1","GTEX-13112-2626-SM-5BC66.1","Muscle","Muscle - Skeletal","GTEX-13112","Male","50-59",6.7,"Fast death of natural causes","SRR1347937",2013-09-24
+"GTEX-13OVI-1726-SM-5L3DW.1","GTEX-13OVI-1726-SM-5L3DW.1","Muscle","Muscle - Skeletal","GTEX-13OVI","Female","60-69",8.4,"Ventilator Case","SRR1337173",2013-12-13
+"GTEX-13NZB-2626-SM-5J2M7.1","GTEX-13NZB-2626-SM-5J2M7.1","Muscle","Muscle - Skeletal","GTEX-13NZB","Male","30-39",7.7,"Ventilator Case","SRR1368264",2013-12-10
+"GTEX-13NZA-0526-SM-5L3D7.1","GTEX-13NZA-0526-SM-5L3D7.1","Muscle","Muscle - Skeletal","GTEX-13NZA","Male","60-69",7.6,"Fast death of natural causes","SRR1377862",2013-12-05
+"GTEX-131XE-2726-SM-5P9G7.1","GTEX-131XE-2726-SM-5P9G7.1","Muscle","Muscle - Skeletal","GTEX-131XE","Male","50-59",8.2,"Ventilator Case","SRR1385277",2014-01-06
+"GTEX-13D11-2526-SM-5KM28.1","GTEX-13D11-2526-SM-5KM28.1","Muscle","Muscle - Skeletal","GTEX-13D11","Female","50-59",8.4,"Ventilator Case","SRR1356290",2013-11-05
+"GTEX-Y5V6-2626-SM-5IFIX.1","GTEX-Y5V6-2626-SM-5IFIX.1","Muscle","Muscle - Skeletal","GTEX-Y5V6","Male","60-69",7.8,"Ventilator Case","SRR1358220",2013-10-29
+"GTEX-12WSN-2526-SM-5LZU8.1","GTEX-12WSN-2526-SM-5LZU8.1","Muscle","Muscle - Skeletal","GTEX-12WSN","Male","40-49",8,"Ventilator Case","SRR1365034",2013-10-28
+"GTEX-YF7O-2526-SM-5IFJX.1","GTEX-YF7O-2526-SM-5IFJX.1","Muscle","Muscle - Skeletal","GTEX-YF7O","Male","50-59",8.5,"Ventilator Case","SRR1388873",2013-10-29
+"GTEX-ZDYS-1726-SM-5HL4Y.1","GTEX-ZDYS-1726-SM-5HL4Y.1","Muscle","Muscle - Skeletal","GTEX-ZDYS","Male","50-59",7.9,"Ventilator Case","SRR1334889",2013-11-01
+"GTEX-ZZPU-2626-SM-5E45Y.1","GTEX-ZZPU-2626-SM-5E45Y.1","Muscle","Muscle - Skeletal","GTEX-ZZPU","Female","50-59",8.5,"Ventilator Case","SRR1350832",2013-09-13
+"GTEX-13FHP-0526-SM-5K7UY.1","GTEX-13FHP-0526-SM-5K7UY.1","Muscle","Muscle - Skeletal","GTEX-13FHP","Male","50-59",6.9,"Slow death","SRR1355396",2013-12-05
+"GTEX-ZTX8-1626-SM-51MRY.1","GTEX-ZTX8-1626-SM-51MRY.1","Muscle","Muscle - Skeletal","GTEX-ZTX8","Male","20-29",8.3,"Ventilator Case","SRR1367715",2013-09-10
+"GTEX-11ZTS-0526-SM-5CVL9.1","GTEX-11ZTS-0526-SM-5CVL9.1","Muscle","Muscle - Skeletal","GTEX-11ZTS","Female","60-69",7.2,"Fast death of natural causes","SRR1370572",2013-10-10
+"GTEX-ZDTS-0526-SM-4WKH9.1","GTEX-ZDTS-0526-SM-4WKH9.1","Muscle","Muscle - Skeletal","GTEX-ZDTS","Male","60-69",8,"Fast death of natural causes","SRR1391420",2013-08-22
+"GTEX-1313W-0526-SM-5P9FZ.1","GTEX-1313W-0526-SM-5P9FZ.1","Muscle","Muscle - Skeletal","GTEX-1313W","Female","50-59",8.6,"Fast death of natural causes","SRR1443436",2014-01-06
+"GTEX-145LV-2326-SM-5LU8Z.1","GTEX-145LV-2326-SM-5LU8Z.1","Muscle","Muscle - Skeletal","GTEX-145LV","Male","50-59",7.9,"Ventilator Case","SRR1464601",2013-12-18
+"GTEX-14ICL-1926-SM-5RQIZ.1","GTEX-14ICL-1926-SM-5RQIZ.1","Muscle","Muscle - Skeletal","GTEX-14ICL","Male","30-39",8.4,"Ventilator Case","SRR1488091",2014-01-22
+"GTEX-13O3Q-2726-SM-5KM51.1","GTEX-13O3Q-2726-SM-5KM51.1","Muscle","Muscle - Skeletal","GTEX-13O3Q","Male","50-59",8.1,"Fast death of natural causes","SRR1431288",2013-12-13
+"GTEX-ZVE1-0526-SM-5NQ71.1","GTEX-ZVE1-0526-SM-5NQ71.1","Muscle","Muscle - Skeletal","GTEX-ZVE1","Female","50-59",6,"Ventilator Case","SRR1432743",2013-09-16
+"GTEX-13OVL-1426-SM-5IJC1.1","GTEX-13OVL-1426-SM-5IJC1.1","Muscle","Muscle - Skeletal","GTEX-13OVL","Male","50-59",8.3,"Fast death of natural causes","SRR1439742",2013-12-12
+"GTEX-ZY6K-2026-SM-5GZXQ.1","GTEX-ZY6K-2026-SM-5GZXQ.1","Muscle","Muscle - Skeletal","GTEX-ZY6K","Male","50-59",8.3,"Ventilator Case","SRR1448029",2013-09-17
+"GTEX-ZVT2-2426-SM-57WCQ.1","GTEX-ZVT2-2426-SM-57WCQ.1","Muscle","Muscle - Skeletal","GTEX-ZVT2","Female","50-59",8.2,"Ventilator Case","SRR1458220",2013-09-10
+"GTEX-ZYVF-0626-SM-5E43Q.1","GTEX-ZYVF-0626-SM-5E43Q.1","Muscle","Muscle - Skeletal","GTEX-ZYVF","Female","50-59",6.9,"Ventilator Case","SRR1458683",2013-09-12
+"GTEX-13NYC-0726-SM-5J2NQ.1","GTEX-13NYC-0726-SM-5J2NQ.1","Muscle","Muscle - Skeletal","GTEX-13NYC","Male","60-69",7.2,"Fast death of natural causes","SRR1470093",2013-12-06
+"GTEX-ZQUD-1726-SM-51MRQ.1","GTEX-ZQUD-1726-SM-51MRQ.1","Muscle","Muscle - Skeletal","GTEX-ZQUD","Male","30-39",7.8,"Ventilator Case","SRR1475300",2013-09-09
+"GTEX-Y3I4-2326-SM-4TT81.1","GTEX-Y3I4-2326-SM-4TT81.1","Muscle","Muscle - Skeletal","GTEX-Y3I4","Male","50-59",8,"Ventilator Case","SRR1478386",2013-07-31
+"GTEX-ZLV1-2126-SM-4WWD2.1","GTEX-ZLV1-2126-SM-4WWD2.1","Muscle","Muscle - Skeletal","GTEX-ZLV1","Female","60-69",8.2,"Ventilator Case","SRR1402328",2013-08-29
+"GTEX-144GN-2426-SM-5LU4R.1","GTEX-144GN-2426-SM-5LU4R.1","Muscle","Muscle - Skeletal","GTEX-144GN","Male","50-59",8.2,"Ventilator Case","SRR1403280",2013-12-18
+"GTEX-11DXY-2726-SM-5GID2.1","GTEX-11DXY-2726-SM-5GID2.1","Muscle","Muscle - Skeletal","GTEX-11DXY","Male","60-69",7.1,"Fast death of natural causes","SRR1408161",2013-10-03
+"GTEX-13N11-2726-SM-5L3ER.1","GTEX-13N11-2726-SM-5L3ER.1","Muscle","Muscle - Skeletal","GTEX-13N11","Female","50-59",8.2,"Ventilator Case","SRR1415773",2013-12-11
+"GTEX-ZYT6-1626-SM-5E45R.1","GTEX-ZYT6-1626-SM-5E45R.1","Muscle","Muscle - Skeletal","GTEX-ZYT6","Male","30-39",7.9,"Violent and fast death","SRR1436651",2013-09-12
+"GTEX-1399R-2526-SM-5IFG2.1","GTEX-1399R-2526-SM-5IFG2.1","Muscle","Muscle - Skeletal","GTEX-1399R","Male","30-39",7.9,"Ventilator Case","SRR1442928",2013-12-03
+"GTEX-1399S-2726-SM-5KM22.1","GTEX-1399S-2726-SM-5KM22.1","Muscle","Muscle - Skeletal","GTEX-1399S","Female","30-39",7.2,"Ventilator Case","SRR1458852",2013-12-04
+"GTEX-111VG-2626-SM-5GZY2.1","GTEX-111VG-2626-SM-5GZY2.1","Muscle","Muscle - Skeletal","GTEX-111VG","Male","60-69",8.1,"Intermediate death","SRR1469014",2013-09-17
+"GTEX-13W3W-2626-SM-5SIA2.1","GTEX-13W3W-2626-SM-5SIA2.1","Muscle","Muscle - Skeletal","GTEX-13W3W","Female","60-69",7.6,"Ventilator Case","SRR1478053",2013-12-19
+"GTEX-Z93S-1326-SM-5CVMR.1","GTEX-Z93S-1326-SM-5CVMR.1","Muscle","Muscle - Skeletal","GTEX-Z93S","Male","50-59",7.6,"Fast death of natural causes","SRR1481083",2013-11-01
+"GTEX-14753-0526-SM-5QGPR.1","GTEX-14753-0526-SM-5QGPR.1","Muscle","Muscle - Skeletal","GTEX-14753","Male","60-69",8.3,"Slow death","SRR1489307",2014-01-08
+"GTEX-11PRG-0326-SM-5GU53.1","GTEX-11PRG-0326-SM-5GU53.1","Muscle","Muscle - Skeletal","GTEX-11PRG","Male","50-59",7.7,"Fast death of natural causes","SRR1418880",2013-10-04
+"GTEX-146FH-0526-SM-5QGQ3.1","GTEX-146FH-0526-SM-5QGQ3.1","Muscle","Muscle - Skeletal","GTEX-146FH","Female","50-59",8.6,"Ventilator Case","SRR1464681",2014-01-17
+"GTEX-Y5V5-2526-SM-4VBQ4.1","GTEX-Y5V5-2526-SM-4VBQ4.1","Muscle","Muscle - Skeletal","GTEX-Y5V5","Female","60-69",8.8,"Ventilator Case","SRR1403366",2013-08-08
+"GTEX-12WSB-0326-SM-5GCP4.1","GTEX-12WSB-0326-SM-5GCP4.1","Muscle","Muscle - Skeletal","GTEX-12WSB","Female","60-69",7.6,"Slow death","SRR1406112",2013-10-01
+"GTEX-139TS-2626-SM-5J1MT.1","GTEX-139TS-2626-SM-5J1MT.1","Muscle","Muscle - Skeletal","GTEX-139TS","Male","60-69",8,"Fast death of natural causes","SRR1406418",2013-12-05
+"GTEX-12126-0526-SM-5PNW4.1","GTEX-12126-0526-SM-5PNW4.1","Muscle","Muscle - Skeletal","GTEX-12126","Male","20-29",8.2,"Violent and fast death","SRR1417483",2014-01-06
+"GTEX-ZZPT-0626-SM-5GZXT.1","GTEX-ZZPT-0626-SM-5GZXT.1","Muscle","Muscle - Skeletal","GTEX-ZZPT","Male","50-59",7,"Slow death","SRR1444501",2013-09-17
+"GTEX-YJ8O-2826-SM-5CVM4.1","GTEX-YJ8O-2826-SM-5CVM4.1","Muscle","Muscle - Skeletal","GTEX-YJ8O","Female","40-49",7,"Violent and fast death","SRR1452912",2013-11-01
+"GTEX-11NUK-0226-SM-5A5L4.1","GTEX-11NUK-0226-SM-5A5L4.1","Muscle","Muscle - Skeletal","GTEX-11NUK","Male","50-59",8.2,"Fast death of natural causes","SRR1467567",2013-10-03
+"GTEX-ZA64-2026-SM-5PNXT.1","GTEX-ZA64-2026-SM-5PNXT.1","Muscle","Muscle - Skeletal","GTEX-ZA64","Male","20-29",8.2,"Ventilator Case","SRR1480038",2013-10-31
+"GTEX-YEC4-2226-SM-5IFJT.1","GTEX-YEC4-2226-SM-5IFJT.1","Muscle","Muscle - Skeletal","GTEX-YEC4","Male","40-49",7.2,"Ventilator Case","SRR1480547",2013-10-29
+"GTEX-13NYB-2726-SM-5J2MT.1","GTEX-13NYB-2726-SM-5J2MT.1","Muscle","Muscle - Skeletal","GTEX-13NYB","Male","40-49",7.8,"Fast death of natural causes","SRR1486156",2013-12-05
+"GTEX-ZAK1-0526-SM-5K7X4.1","GTEX-ZAK1-0526-SM-5K7X4.1","Muscle","Muscle - Skeletal","GTEX-ZAK1","Female","50-59",7.3,"Fast death of natural causes","SRR1487746",2013-11-05
+"GTEX-12ZZY-0626-SM-5EQ5T.1","GTEX-12ZZY-0626-SM-5EQ5T.1","Muscle","Muscle - Skeletal","GTEX-12ZZY","Male","60-69",8.4,"Fast death of natural causes","SRR1499764",2013-10-22
+"GTEX-13VXT-0326-SM-5LU4U.1","GTEX-13VXT-0326-SM-5LU4U.1","Muscle","Muscle - Skeletal","GTEX-13VXT","Female","20-29",8.6,"Ventilator Case","SRR1396786",2013-12-13
+"GTEX-YB5E-2226-SM-5IFJ5.1","GTEX-YB5E-2226-SM-5IFJ5.1","Muscle","Muscle - Skeletal","GTEX-YB5E","Male","40-49",8.2,"Ventilator Case","SRR1407950",2013-10-29
+"GTEX-ZT9X-1826-SM-57WDU.1","GTEX-ZT9X-1826-SM-57WDU.1","Muscle","Muscle - Skeletal","GTEX-ZT9X","Male","40-49",8.8,"Ventilator Case","SRR1430375",2013-09-11
+"GTEX-1339X-2426-SM-5KLYU.1","GTEX-1339X-2426-SM-5KLYU.1","Muscle","Muscle - Skeletal","GTEX-1339X","Male","40-49",8.1,"Ventilator Case","SRR1432390",2013-11-05
+"GTEX-13O1R-0526-SM-5K7XU.1","GTEX-13O1R-0526-SM-5K7XU.1","Muscle","Muscle - Skeletal","GTEX-13O1R","Male","60-69",8,"Fast death of natural causes","SRR1440101",2013-12-11
+"GTEX-ZVT4-0326-SM-51MS5.1","GTEX-ZVT4-0326-SM-51MS5.1","Muscle","Muscle - Skeletal","GTEX-ZVT4","Female","50-59",7.9,"Intermediate death","SRR1452864",2013-09-10
+"GTEX-14C39-2426-SM-5S2U5.1","GTEX-14C39-2426-SM-5S2U5.1","Muscle","Muscle - Skeletal","GTEX-14C39","Male","40-49",7.4,"Fast death of natural causes","SRR1478362",2014-01-24
+"GTEX-12ZZZ-0226-SM-59HKU.1","GTEX-12ZZZ-0226-SM-59HKU.1","Muscle","Muscle - Skeletal","GTEX-12ZZZ","Male","60-69",6.6,"Fast death of natural causes","SRR1487947",2013-10-11
+"GTEX-ZYWO-2626-SM-5E43V.1","GTEX-ZYWO-2626-SM-5E43V.1","Muscle","Muscle - Skeletal","GTEX-ZYWO","Female","40-49",7.9,"Ventilator Case","SRR1402172",2013-09-13
+"GTEX-13X6K-0326-SM-5Q5D6.1","GTEX-13X6K-0326-SM-5Q5D6.1","Muscle","Muscle - Skeletal","GTEX-13X6K","Female","60-69",8.7,"Slow death","SRR1402794",2014-01-08
+"GTEX-139YR-2526-SM-5IJC6.1","GTEX-139YR-2526-SM-5IJC6.1","Muscle","Muscle - Skeletal","GTEX-139YR","Male","50-59",7.8,"Ventilator Case","SRR1408682",2013-12-10
+"GTEX-13FXS-0326-SM-5K7TV.1","GTEX-13FXS-0326-SM-5K7TV.1","Muscle","Muscle - Skeletal","GTEX-13FXS","Male","50-59",8.3,"Fast death of natural causes","SRR1453416",2013-12-06
+"GTEX-12WSJ-1726-SM-5LZVV.1","GTEX-12WSJ-1726-SM-5LZVV.1","Muscle","Muscle - Skeletal","GTEX-12WSJ","Female","40-49",8.7,"Ventilator Case","SRR1454310",2013-10-28
+"GTEX-145MI-0326-SM-5Q5EV.1","GTEX-145MI-0326-SM-5Q5EV.1","Muscle","Muscle - Skeletal","GTEX-145MI","Female","60-69",7.1,"Fast death of natural causes","SRR1456027",2014-01-17
+"GTEX-14BMU-2026-SM-5S2W6.1","GTEX-14BMU-2026-SM-5S2W6.1","Muscle","Muscle - Skeletal","GTEX-14BMU","Female","20-29",7.5,"Ventilator Case","SRR1489030",2014-01-24
+"GTEX-13FTX-2026-SM-5L3D6.1","GTEX-13FTX-2026-SM-5L3D6.1","Muscle","Muscle - Skeletal","GTEX-13FTX","Female","20-29",6.2,"Ventilator Case","SRR1500323",2013-12-03
+"GTEX-ZF28-0526-SM-4WKGW.1","GTEX-ZF28-0526-SM-4WKGW.1","Muscle","Muscle - Skeletal","GTEX-ZF28","Male","60-69",8.3,"Slow death","SRR1408529",2013-08-29
+"GTEX-13CF2-2726-SM-5LZWW.1","GTEX-13CF2-2726-SM-5LZWW.1","Muscle","Muscle - Skeletal","GTEX-13CF2","Male","60-69",7.6,"Fast death of natural causes","SRR1416672",2013-11-14
+"GTEX-ZTTD-0326-SM-57WFW.1","GTEX-ZTTD-0326-SM-57WFW.1","Muscle","Muscle - Skeletal","GTEX-ZTTD","Male","50-59",6.8,"Intermediate death","SRR1442104",2013-09-11
+"GTEX-14BMV-0326-SM-5RQHW.1","GTEX-14BMV-0326-SM-5RQHW.1","Muscle","Muscle - Skeletal","GTEX-14BMV","Male","50-59",7.8,"Fast death of natural causes","SRR1490037",2014-01-22
+"GTEX-11GSO-2526-SM-5PNVX.1","GTEX-11GSO-2526-SM-5PNVX.1","Muscle","Muscle - Skeletal","GTEX-11GSO","Male","60-69",8.6,"Fast death of natural causes","SRR1400180",2014-01-06
+"GTEX-Y8LW-2026-SM-4V6G8.1","GTEX-Y8LW-2026-SM-4V6G8.1","Muscle","Muscle - Skeletal","GTEX-Y8LW","Female","50-59",8.1,"Ventilator Case","SRR1405123",2013-08-01
+"GTEX-ZQG8-1226-SM-51MRX.1","GTEX-ZQG8-1226-SM-51MRX.1","Muscle","Muscle - Skeletal","GTEX-ZQG8","Female","60-69",7.9,"Ventilator Case","SRR1405984",2013-09-10
+"GTEX-1477Z-1626-SM-5SIA8.1","GTEX-1477Z-1626-SM-5SIA8.1","Muscle","Muscle - Skeletal","GTEX-1477Z","Male","60-69",7.7,"Slow death","SRR1408183",2013-12-18
+"GTEX-139TU-0526-SM-5J2M8.1","GTEX-139TU-0526-SM-5J2M8.1","Muscle","Muscle - Skeletal","GTEX-139TU","Male","60-69",7.1,"Intermediate death","SRR1408595",2013-12-03
+"GTEX-13X6I-0526-SM-5QGP8.1","GTEX-13X6I-0526-SM-5QGP8.1","Muscle","Muscle - Skeletal","GTEX-13X6I","Male","60-69",7.1,"Slow death","SRR1419258",2014-01-08
+"GTEX-11UD1-0326-SM-5EQKX.1","GTEX-11UD1-0326-SM-5EQKX.1","Muscle","Muscle - Skeletal","GTEX-11UD1","Female","40-49",6.3,"Intermediate death","SRR1429265",2013-09-20
+"GTEX-11NV4-0326-SM-5HL58.1","GTEX-11NV4-0326-SM-5HL58.1","Muscle","Muscle - Skeletal","GTEX-11NV4","Male","60-69",7.5,"Fast death of natural causes","SRR1436563",2013-09-18
+"GTEX-145LU-2026-SM-5Q5E8.1","GTEX-145LU-2026-SM-5Q5E8.1","Muscle","Muscle - Skeletal","GTEX-145LU","Male","50-59",8.3,"Fast death of natural causes","SRR1452423",2014-01-08
+"GTEX-146FQ-0326-SM-5NQAX.1","GTEX-146FQ-0326-SM-5NQAX.1","Muscle","Muscle - Skeletal","GTEX-146FQ","Male","30-39",8,"Ventilator Case","SRR1475104",2013-12-20
+"GTEX-ZYFG-2426-SM-5GIE8.1","GTEX-ZYFG-2426-SM-5GIE8.1","Muscle","Muscle - Skeletal","GTEX-ZYFG","Female","60-69",8.6,"Ventilator Case","SRR1489950",2013-09-23
+"GTEX-13QJ3-0726-SM-5SI68.1","GTEX-13QJ3-0726-SM-5SI68.1","Muscle","Muscle - Skeletal","GTEX-13QJ3","Male","50-59",8.1,"Ventilator Case","SRR1499740",2014-01-24
+"GTEX-145MO-0726-SM-5NQB9.1","GTEX-145MO-0726-SM-5NQB9.1","Muscle","Muscle - Skeletal","GTEX-145MO","Male","60-69",9,"Intermediate death","SRR1397218",2013-12-20
+"GTEX-11I78-2426-SM-5A5K9.1","GTEX-11I78-2426-SM-5A5K9.1","Muscle","Muscle - Skeletal","GTEX-11I78","Female","50-59",8.3,"Ventilator Case","SRR1409575",2013-10-03
+"GTEX-ZF2S-2126-SM-4WWAY.1","GTEX-ZF2S-2126-SM-4WWAY.1","Muscle","Muscle - Skeletal","GTEX-ZF2S","Female","50-59",9,"Ventilator Case","SRR1414727",2013-09-06
+"GTEX-Y9LG-1926-SM-5IFHY.1","GTEX-Y9LG-1926-SM-5IFHY.1","Muscle","Muscle - Skeletal","GTEX-Y9LG","Male","30-39",7.3,"Ventilator Case","SRR1435311",2013-10-29
+"GTEX-145LS-0526-SM-5LU8Y.1","GTEX-145LS-0526-SM-5LU8Y.1","Muscle","Muscle - Skeletal","GTEX-145LS","Female","60-69",7.8,"Slow death","SRR1435626",2013-12-18
+"GTEX-12696-2826-SM-5FQTY.1","GTEX-12696-2826-SM-5FQTY.1","Muscle","Muscle - Skeletal","GTEX-12696","Male","60-69",7.7,"Intermediate death","SRR1452334",2013-09-30
+"GTEX-ZVT3-0526-SM-5GIE9.1","GTEX-ZVT3-0526-SM-5GIE9.1","Muscle","Muscle - Skeletal","GTEX-ZVT3","Female","60-69",8.6,"Fast death of natural causes","SRR1464915",2013-10-03
+"GTEX-Y5LM-2126-SM-4VDSY.1","GTEX-Y5LM-2126-SM-4VDSY.1","Muscle","Muscle - Skeletal","GTEX-Y5LM","Female","40-49",8.2,"Ventilator Case","SRR1480455",2013-07-31
+"GTEX-ZVTK-0626-SM-5GU6Y.1","GTEX-ZVTK-0626-SM-5GU6Y.1","Muscle","Muscle - Skeletal","GTEX-ZVTK","Male","20-29",8.2,"Violent and fast death","SRR1486799",2013-09-12
+"GTEX-13G51-2726-SM-5LZZ9.1","GTEX-13G51-2726-SM-5LZZ9.1","Muscle","Muscle - Skeletal","GTEX-13G51","Male","60-69",8.1,"Fast death of natural causes","SRR1489286",2013-12-04
+"GTEX-13O21-1726-SM-5MR5A.1","GTEX-13O21-1726-SM-5MR5A.1","Muscle","Muscle - Skeletal","GTEX-13O21","Male","50-59",8.2,"Ventilator Case","SRR1326161",2013-12-04
+"GTEX-11O72-0326-SM-5986D.1","GTEX-11O72-0326-SM-5986D.1","Muscle","Muscle - Skeletal","GTEX-11O72","Male","40-49",7.7,"Fast death of natural causes","SRR1323152",2013-10-22
+"GTEX-117YW-2426-SM-5Q5AE.1","GTEX-117YW-2426-SM-5Q5AE.1","Muscle","Muscle - Skeletal","GTEX-117YW","Male","50-59",6.1,"Intermediate death","SRR1310476",2013-10-03
+"GTEX-148VJ-0326-SM-5QGQE.1","GTEX-148VJ-0326-SM-5QGQE.1","Muscle","Muscle - Skeletal","GTEX-148VJ","Male","70-79",8.2,"Fast death of natural causes","SRR1318444",2014-01-17
+"GTEX-12BJ1-2526-SM-5FQUE.1","GTEX-12BJ1-2526-SM-5FQUE.1","Muscle","Muscle - Skeletal","GTEX-12BJ1","Male","60-69",7.9,"Ventilator Case","SRR1319626",2013-10-01
+"GTEX-11UD2-0326-SM-5EQLE.1","GTEX-11UD2-0326-SM-5EQLE.1","Muscle","Muscle - Skeletal","GTEX-11UD2","Male","50-59",8.1,"Fast death of natural causes","SRR1325225",2013-09-30
+"GTEX-1117F-0426-SM-5EGHI.1","GTEX-1117F-0426-SM-5EGHI.1","Muscle","Muscle - Skeletal","GTEX-1117F","Female","60-69",7.1,"Slow death","SRR1309070",2013-09-12
+"GTEX-11GSP-2726-SM-5A5LJ.1","GTEX-11GSP-2726-SM-5A5LJ.1","Muscle","Muscle - Skeletal","GTEX-11GSP","Female","60-69",8.4,"Fast death of natural causes","SRR1324496",2013-10-10
+"GTEX-111YS-2326-SM-5987L.1","GTEX-111YS-2326-SM-5987L.1","Muscle","Muscle - Skeletal","GTEX-111YS","Male","60-69",7.1,"Ventilator Case","SRR1307677",2013-10-11
+"GTEX-13O3O-0526-SM-5J1NL.1","GTEX-13O3O-0526-SM-5J1NL.1","Muscle","Muscle - Skeletal","GTEX-13O3O","Female","60-69",8.5,"Intermediate death","SRR1317920",2013-12-11
+"GTEX-132AR-1026-SM-5PNVL.1","GTEX-132AR-1026-SM-5PNVL.1","Muscle","Muscle - Skeletal","GTEX-132AR","Female","50-59",8.7,"Ventilator Case","SRR1320579",2014-01-06
+"GTEX-11OF3-2526-SM-5P9JL.1","GTEX-11OF3-2526-SM-5P9JL.1","Muscle","Muscle - Skeletal","GTEX-11OF3","Male","60-69",7.7,"Fast death of natural causes","SRR1322662",2014-01-06
+"GTEX-1122O-2426-SM-5GIDN.1","GTEX-1122O-2426-SM-5GIDN.1","Muscle","Muscle - Skeletal","GTEX-1122O","Female","60-69",7,"Ventilator Case","SRR1309942",2013-10-03
+"GTEX-139T4-0326-SM-5K7XN.1","GTEX-139T4-0326-SM-5K7XN.1","Muscle","Muscle - Skeletal","GTEX-139T4","Female","50-59",6.8,"Intermediate death","SRR1318839",2013-11-05
+"GTEX-13N2G-2326-SM-5J1ON.1","GTEX-13N2G-2326-SM-5J1ON.1","Muscle","Muscle - Skeletal","GTEX-13N2G","Male","60-69",8.2,"Fast death of natural causes","SRR1319753",2013-12-10
+"GTEX-11DXX-2726-SM-5PNXO.1","GTEX-11DXX-2726-SM-5PNXO.1","Muscle","Muscle - Skeletal","GTEX-11DXX","Female","60-69",8.7,"Ventilator Case","SRR1309702",2013-09-25
+"GTEX-144FL-0326-SM-5O99O.1","GTEX-144FL-0326-SM-5O99O.1","Muscle","Muscle - Skeletal","GTEX-144FL","Male","50-59",7.7,"Fast death of natural causes","SRR1328797",2013-12-19
+"GTEX-11ZVC-2726-SM-5FQSZ.1","GTEX-11ZVC-2726-SM-5FQSZ.1","Muscle","Muscle - Skeletal","GTEX-11ZVC","Female","50-59",8,"Fast death of natural causes","SRR1318560",2013-09-30

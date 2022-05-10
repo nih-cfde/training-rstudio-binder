@@ -5,7 +5,7 @@
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-0626-SM-5N9CS","Blood Vessel","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-0726-SM-5GIEN","Heart","BP-44261",2013-10-03,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-1326-SM-5EGHH","Adipose Tissue","BP-43495",2013-09-12,"TruSeq.v1","RNASEQ","B1",5.9,1
-"GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-2226-SM-5N9CH","Ovary","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","B1",6.6,1
+"GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-2226-SM-5N9CH","Ovary","BP-43956",2013-09-25,"TruSeq.v1","EXCLUDE","B1",6.6,1
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-2426-SM-5EGGH","Uterus","BP-44460",2013-10-08,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-2526-SM-5GZY6","Vagina","BP-43693",2013-09-17,"TruSeq.v1","RNASEQ","B1",6.5,2
 "GTEX-1117F","Female","60-69","Slow death","GTEX-1117F-2826-SM-5GZXL","Breast","BP-43507",2013-09-12,"TruSeq.v1","RNASEQ","B1",5.8,1
@@ -85,7 +85,7 @@
 "GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-2426-SM-5Q5AS","Adipose Tissue","BP-47888",2014-01-06,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-2526-SM-5P9JL","Muscle","BP-47888",2014-01-06,"TruSeq.v1","RNASEQ","B1",7.7,0
 "GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-2626-SM-5GU7F","Skin","BP-44312",2013-10-04,"TruSeq.v1","RNASEQ","B1",8.3,0
-"GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-2926-SM-5HL78","Brain","BP-43730",2013-09-18,"TruSeq.v1","EXCLUDE","B1",6.3,1
+"GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-2926-SM-5HL78","Brain","BP-43730",2013-09-18,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-3026-SM-5GU52","Pituitary","BP-44312",2013-10-04,"TruSeq.v1","RNASEQ","B1",7.1,2
 "GTEX-11OF3","Male","60-69","Fast death of natural causes","GTEX-11OF3-3126-SM-5GU5E","Brain","BP-44312",2013-10-04,"TruSeq.v1","EXCLUDE","B1",7.3,1
 "GTEX-11ONC","Male","60-69","Fast death of natural causes","GTEX-11ONC-0126-SM-5PNW6","Heart","BP-47888",2014-01-06,"TruSeq.v1","RNASEQ","B1",5.7,0
@@ -163,7 +163,8 @@
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1126-SM-5BC5K","Prostate","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1226-SM-5HL5P","Colon","BP-43753",2013-09-19,"TruSeq.v1","EXCLUDE","B1",7,1
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1326-SM-5HL62","Breast","BP-43753",2013-09-19,"TruSeq.v1","RNASEQ","B1",7.5,0
-"GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1426-SM-5BC5L","Skin","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",7.8,0
+"GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1426-SM-5BC5L","Skin","BP-44512",2013-10-10,"TruSeq.v1","EXCLUDE","B1",7.8,0
+"GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1426-SM-DTXFY","Skin","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","B1",7.4,0
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1526-SM-5BC5M","Testis","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",6.7,0
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1626-SM-59879","Skin","BP-44902",2013-10-22,"TruSeq.v1","RNASEQ","B1",6.2,0
 "GTEX-11P82","Male","20-29","Violent and fast death","GTEX-11P82-1726-SM-5Q5AT","Adipose Tissue","BP-47888",2014-01-06,"TruSeq.v1","RNASEQ","B1",7.6,0
@@ -225,7 +226,7 @@
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-1326-SM-5EQKV","Esophagus","BP-44312",2013-10-04,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-1726-SM-5BC5C","Liver","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",6.1,2
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-1826-SM-5BC5D","Breast","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",7.6,1
-"GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-1926-SM-5BC58","Small Intestine","BP-44512",2013-10-10,"TruSeq.v1","EXCLUDE","B1",6,3
+"GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-1926-SM-5BC58","Small Intestine","BP-44512",2013-10-10,"TruSeq.v1","RNASEQ","B1",6,3
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2026-SM-5EQL8","Colon","BP-44312",2013-10-04,"TruSeq.v1","RNASEQ","B1",6.7,3
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2126-SM-5GU7B","Prostate","BP-43753",2013-09-19,"TruSeq.v1","RNASEQ","B1",5.8,2
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2226-SM-5EQL9","Testis","BP-44312",2013-10-04,"TruSeq.v1","RNASEQ","B1",6.4,2
@@ -233,17 +234,18 @@
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2426-SM-5EQKB","Salivary Gland","BP-44114",2013-09-30,"TruSeq.v1","RNASEQ","B1",8.1,1
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2526-SM-5EQKN","Muscle","BP-44114",2013-09-30,"TruSeq.v1","RNASEQ","B1",8.5,1
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2626-SM-5EQKZ","Adipose Tissue","BP-44114",2013-09-30,"TruSeq.v1","RNASEQ","B1",6.8,0
-"GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2726-SM-5EQLC","Skin","BP-44114",2013-09-30,"TruSeq.v1","RNASEQ","B1",6.5,1
+"GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2726-SM-5EQLC","Skin","BP-44114",2013-09-30,"TruSeq.v1","EXCLUDE","B1",6.5,1
+"GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2726-SM-E9J4M","Skin","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","B1",8,1
 "GTEX-11TUW","Male","60-69","Fast death of natural causes","GTEX-11TUW-2926-SM-5BC59","Blood Vessel","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",6.6,1
 "GTEX-1269C","Female","60-69","Fast death of natural causes","GTEX-1269C-3126-SM-5EGI6","Brain","BP-45028",2013-10-24,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-1269C","Female","60-69","Fast death of natural causes","GTEX-1269C-3226-SM-5EGKT","Pituitary","BP-45028",2013-10-24,"TruSeq.v1","RNASEQ","B1",6.7,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0126-SM-5LU9P","Blood Vessel","BP-45139",2013-10-28,"TruSeq.v1","EXCLUDE","B1",7.3,1
-"GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0226-SM-5LUA2","Heart","BP-45139",2013-10-28,"TruSeq.v1","RNASEQ","B1",6.5,1
+"GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0226-SM-5LUA2","Heart","BP-45139",2013-10-28,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0326-SM-5FQUB","Heart","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",7.6,2
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0426-SM-5FQSO","Thyroid","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0526-SM-5FQUD","Adrenal Gland","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",7.9,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0726-SM-5EGGF","Spleen","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",6.3,1
-"GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0826-SM-5EQ5P","Adipose Tissue","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",7.5,1
+"GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0826-SM-5EQ5P","Adipose Tissue","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-0926-SM-5EQ62","Skin","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",6.2,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-1026-SM-5EGJA","Lung","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",8.8,1
 "GTEX-12BJ1","Male","60-69","Ventilator Case","GTEX-12BJ1-1126-SM-5EGGG","Pancreas","BP-44399",2013-10-07,"TruSeq.v1","RNASEQ","B1",6.3,1
@@ -300,7 +302,7 @@
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-0826-SM-5GCOF","Pancreas","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",6.8,0
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-0926-SM-5GCN1","Adrenal Gland","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",6.6,2
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-1326-SM-5GCNT","Breast","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",6.9,1
-"GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-1426-SM-5GCO6","Skin","BP-44157",2013-10-01,"TruSeq.v1","RNASEQ","B1",8,1
+"GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-1426-SM-5GCO6","Skin","BP-44157",2013-10-01,"TruSeq.v1","EXCLUDE","B1",8,1
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-1826-SM-5LZUT","Esophagus","BP-45139",2013-10-28,"TruSeq.v1","RNASEQ","B1",8.3,1
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-2226-SM-5DUXT","Salivary Gland","BP-44437",2013-10-08,"TruSeq.v1","RNASEQ","B1",6.7,1
 "GTEX-12WSN","Male","40-49","Ventilator Case","GTEX-12WSN-2326-SM-5DUVG","Skin","BP-44437",2013-10-08,"TruSeq.v1","EXCLUDE","B1",8,1
@@ -309,6 +311,7 @@
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-0126-SM-5DUVB","Skin","BP-44525",2013-10-10,"TruSeq.v1","EXCLUDE","C1",6,0
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-0426-SM-5GCO9","Blood Vessel","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","C1",6.7,0
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-0926-SM-5LZUD","Lung","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","C1",6.3,1
+"GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-0926-SM-CYKRH","Lung","BP-43956",2013-09-25,"RIP-Seq","","C1",6.3,1
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-1026-SM-5GCMM","Heart","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","C1",5.9,1
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-1726-SM-5DUVD","Esophagus","BP-44437",2013-10-08,"TruSeq.v1","RNASEQ","C1",5.9,2
 "GTEX-12ZZW","Male","50-59","Slow death","GTEX-12ZZW-2326-SM-5DUW2","Adipose Tissue","BP-44437",2013-10-08,"TruSeq.v1","RNASEQ","C1",6.4,1
@@ -334,6 +337,7 @@
 "GTEX-12ZZX","Female","40-49","Violent and fast death","GTEX-12ZZX-2726-SM-5N9FT","Colon","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","C1",5.7,1
 "GTEX-12ZZX","Female","40-49","Violent and fast death","GTEX-12ZZX-2826-SM-5BC6K","Brain","BP-43916",2013-09-24,"TruSeq.v1","RNASEQ","C1",7.3,1
 "GTEX-12ZZX","Female","40-49","Violent and fast death","GTEX-12ZZX-2926-SM-5GCOQ","Brain","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","C1",6.8,1
+"GTEX-12ZZX","Female","40-49","Violent and fast death","GTEX-12ZZX-2926-SM-CYKV2","Brain","BP-44172",2013-10-01,"RIP-Seq","","C1",6.8,1
 "GTEX-12ZZX","Female","40-49","Violent and fast death","GTEX-12ZZX-3026-SM-5GCP3","Pituitary","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","C1",7.5,1
 "GTEX-12ZZY","Male","60-69","Fast death of natural causes","GTEX-12ZZY-0126-SM-5LZV2","Testis","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","C1",7.1,2
 "GTEX-12ZZY","Male","60-69","Fast death of natural causes","GTEX-12ZZY-0226-SM-5LZVE","Skin","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","C1",8.7,0
@@ -342,7 +346,7 @@
 "GTEX-12ZZY","Male","60-69","Fast death of natural causes","GTEX-12ZZY-0526-SM-5EQ5H","Colon","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","C1",8.2,0
 "GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1526-SM-5EGHV","Salivary Gland","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","B1",8.6,1
 "GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1626-SM-5EQ4I","Skin","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","B1",7.8,0
-"GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1726-SM-5GCOO","Breast","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","B1",6.8,1
+"GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1726-SM-5GCOO","Breast","BP-44172",2013-10-01,"TruSeq.v1","EXCLUDE","B1",6.8,1
 "GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1826-SM-5LZW4","Adipose Tissue","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","B1",7.5,0
 "GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-1926-SM-5LZWG","Skin","BP-43956",2013-09-25,"TruSeq.v1","EXCLUDE","B1",7.5,0
 "GTEX-13113","Female","60-69","Ventilator Case","GTEX-13113-2026-SM-5LZU3","Nerve","BP-43956",2013-09-25,"TruSeq.v1","RNASEQ","B1",7.8,0
@@ -387,7 +391,7 @@
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1226-SM-5EGKF","Esophagus","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","B1",7.4,1
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1426-SM-5HL7V","Esophagus","BP-45247",2013-10-29,"TruSeq.v1","RNASEQ","B1",8.5,1
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1526-SM-5KM1A","Esophagus","BP-45485",2013-11-05,"TruSeq.v1","RNASEQ","B1",7,1
-"GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1626-SM-5K7VO","Skin","BP-45485",2013-11-05,"TruSeq.v1","RNASEQ","B1",6.4,1
+"GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1626-SM-5K7VO","Skin","BP-45485",2013-11-05,"TruSeq.v1","EXCLUDE","B1",6.4,1
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-1926-SM-5IFER","Pancreas","BP-45485",2013-11-05,"TruSeq.v1","RNASEQ","B1",7.4,1
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-2026-SM-5LZW1","Adipose Tissue","BP-45782",2013-11-14,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-131XE","Male","50-59","Ventilator Case","GTEX-131XE-2226-SM-5PNYX","Stomach","BP-47901",2014-01-06,"TruSeq.v1","RNASEQ","B1",6.2,1
@@ -403,7 +407,7 @@
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-0626-SM-5GIDS","Blood Vessel","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-0726-SM-5GIE5","Adipose Tissue","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-0826-SM-5GICG","Esophagus","BP-44172",2013-10-01,"TruSeq.v1","RNASEQ","B1",9.5,1
-"GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-0926-SM-5BC69","Esophagus","BP-43916",2013-09-24,"TruSeq.v1","RNASEQ","B1",8.4,0
+"GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-0926-SM-5BC69","Esophagus","BP-43916",2013-09-24,"TruSeq.v1","EXCLUDE","B1",8.4,0
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-1026-SM-5BC6A","Lung","BP-43916",2013-09-24,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-1126-SM-5HL8J","Esophagus","BP-45247",2013-10-29,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-1226-SM-5HL8V","Stomach","BP-45247",2013-10-29,"TruSeq.v1","RNASEQ","B1",6.9,1
@@ -412,7 +416,7 @@
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-1826-SM-5EGKG","Thyroid","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-1926-SM-5DUW4","Prostate","BP-44437",2013-10-08,"TruSeq.v1","EXCLUDE","B1",6,1
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2026-SM-5DUWG","Testis","BP-44437",2013-10-08,"TruSeq.v1","EXCLUDE","B1",6.3,1
-"GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2126-SM-5DUWS","Skin","BP-44437",2013-10-08,"TruSeq.v1","RNASEQ","B1",6.8,0
+"GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2126-SM-5DUWS","Skin","BP-44437",2013-10-08,"TruSeq.v1","EXCLUDE","B1",6.8,0
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2226-SM-5EQKG","Adipose Tissue","BP-44901",2013-10-22,"TruSeq.v1","RNASEQ","B1",5.8,0
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2326-SM-5BC6B","Muscle","BP-43916",2013-09-24,"TruSeq.v1","RNASEQ","B1",7.9,0
 "GTEX-131XF","Male","60-69","Ventilator Case","GTEX-131XF-2426-SM-5BC6C","Nerve","BP-43916",2013-09-24,"TruSeq.v1","RNASEQ","B1",6.6,1
@@ -491,6 +495,7 @@
 "GTEX-139T8","Male","60-69","Slow death","GTEX-139T8-1026-SM-5J2MC","Brain","BP-45499",2013-11-05,"TruSeq.v1","RNASEQ","C1",6.1,1
 "GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-0126-SM-5K7XJ","Thyroid","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-0226-SM-5K7W5","Blood Vessel","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",5.8,1
+"GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-0426-SM-CYKPU","Heart","BP-46589",2013-12-04,"RIP-Seq","","B1",5.6,0
 "GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-1426-SM-5IFJD","Liver","BP-46589",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.2,1
 "GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-1726-SM-5IJG5","Testis","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-139TS","Male","60-69","Fast death of natural causes","GTEX-139TS-1926-SM-5IJFO","Colon","BP-46482",2013-12-03,"TruSeq.v1","RNASEQ","B1",6.4,2
@@ -635,7 +640,8 @@
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-1626-SM-5J2O9","Colon","BP-46453",2013-12-03,"TruSeq.v1","RNASEQ","B1",7.1,0
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-1726-SM-5IJE7","Lung","BP-46453",2013-12-03,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-1926-SM-5J2OL","Adipose Tissue","BP-46453",2013-12-03,"TruSeq.v1","RNASEQ","B1",6.8,1
-"GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2026-SM-5IJCR","Skin","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.3,1
+"GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2026-SM-5IJCR","Skin","BP-46680",2013-12-05,"TruSeq.v1","EXCLUDE","B1",7.3,1
+"GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2026-SM-E9J4I","Skin","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2126-SM-5L3DJ","Muscle","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",8.7,0
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2226-SM-5IJD4","Adipose Tissue","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",8.2,1
 "GTEX-13FH7","Female","50-59","Ventilator Case","GTEX-13FH7-2326-SM-5KM1E","Blood Vessel","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.5,1
@@ -648,9 +654,11 @@
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-0826-SM-5L3E8","Breast","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","C1",6.3,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-0926-SM-5N9EW","Thyroid","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","C1",5.7,2
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1026-SM-5KM1Q","Lung","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","C1",6,1
+"GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1026-SM-CYKRK","Lung","BP-46680",2013-12-05,"RIP-Seq","","C1",6,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1226-SM-5L3EF","Heart","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",7.4,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1626-SM-5IJGB","Blood Vessel","BP-46589",2013-12-04,"TruSeq.v1","RNASEQ","C1",5.9,1
-"GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1726-SM-5IFGM","Esophagus","BP-46589",2013-12-04,"TruSeq.v1","RNASEQ","C1",8.2,1
+"GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1726-SM-5IFGM","Esophagus","BP-46589",2013-12-04,"TruSeq.v1","EXCLUDE","C1",8.2,1
+"GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1726-SM-DPRZX","Esophagus","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","C1",8.2,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-1826-SM-5K7Y6","Esophagus","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",6.3,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-2026-SM-5J1OA","Adipose Tissue","BP-46453",2013-12-03,"TruSeq.v1","RNASEQ","C1",5.8,1
 "GTEX-13FHO","Male","60-69","Ventilator Case","GTEX-13FHO-2726-SM-5K7VG","Colon","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","C1",6.7,1
@@ -664,9 +672,11 @@
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0426-SM-5J1O5","Blood Vessel","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","C1",5.9,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0526-SM-5K7UY","Muscle","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","C1",6.9,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0726-SM-5K7YI","Lung","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",6.7,1
+"GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0726-SM-CYKPV","Lung","BP-46978",2013-12-11,"RIP-Seq","","C1",6.7,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0826-SM-5K7V5","Heart","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","C1",7.3,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-0926-SM-5L3EC","Thyroid","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",7,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-1026-SM-5K7Y2","Heart","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6.1,1
+"GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-1026-SM-CYKPW","Heart","BP-46734",2013-12-06,"RIP-Seq","","C1",6.1,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-1126-SM-5IJDO","Blood Vessel","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-1526-SM-5IJGE","Esophagus","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6,1
 "GTEX-13FHP","Male","50-59","Slow death","GTEX-13FHP-1626-SM-5N9FK","Esophagus","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","C1",5.7,1
@@ -681,6 +691,7 @@
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-0426-SM-5KLZA","Lung","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.7,1
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-0626-SM-5IFEY","Pancreas","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.2,1
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-0926-SM-5L3DZ","Heart","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.6,1
+"GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-0926-SM-CYKRL","Heart","BP-46943",2013-12-10,"RIP-Seq","","B1",6.6,1
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-1126-SM-5J2NO","Esophagus","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",7.2,0
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-1226-SM-5IJBZ","Esophagus","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.7,2
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-1326-SM-5L3EJ","Esophagus","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.1,1
@@ -688,12 +699,14 @@
 "GTEX-13FLV","Male","50-59","Fast death of natural causes","GTEX-13FLV-2326-SM-5K7UK","Nerve","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.6,0
 "GTEX-13FLW","Male","50-59","Fast death of natural causes","GTEX-13FLW-0326-SM-5J2M4","Thyroid","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6,2
 "GTEX-13FLW","Male","50-59","Fast death of natural causes","GTEX-13FLW-1426-SM-5K7YE","Brain","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.8,1
+"GTEX-13FLW","Male","50-59","Fast death of natural causes","GTEX-13FLW-1426-SM-CYKSG","Brain","BP-46734",2013-12-06,"RIP-Seq","","B1",6.8,1
 "GTEX-13FLW","Male","50-59","Fast death of natural causes","GTEX-13FLW-2126-SM-5N9FD","Testis","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",5.7,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0126-SM-5IJED","Adrenal Gland","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",9.3,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0326-SM-5K7UW","Skin","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.2,0
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0426-SM-5K7X2","Adipose Tissue","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",8.2,0
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0526-SM-5IFIP","Pancreas","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0626-SM-5IFEX","Thyroid","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.6,0
+"GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0726-SM-9WG72","Blood Vessel","BP-60846",2015-02-24,"TruSeq.v1","RNASEQ","B1",8.7,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0826-SM-5K7XR","Heart","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.8,0
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-0926-SM-5J2NJ","Blood Vessel","BP-46482",2013-12-03,"TruSeq.v1","RNASEQ","B1",6.4,0
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-1026-SM-5L3E3","Heart","BP-46482",2013-12-03,"TruSeq.v1","RNASEQ","B1",7.1,0
@@ -710,6 +723,7 @@
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2126-SM-5K7YG","Colon","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.4,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2226-SM-5J1OH","Blood Vessel","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2326-SM-5K7YS","Muscle","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.1,1
+"GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2426-SM-9WG73","Nerve","BP-60846",2015-02-24,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2526-SM-5IJC8","Adipose Tissue","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-13FTW","Male","40-49","Ventilator Case","GTEX-13FTW-2626-SM-5K7WL","Skin","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.4,1
 "GTEX-13FTX","Female","20-29","Ventilator Case","GTEX-13FTX-0226-SM-5K7TX","Blood Vessel","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",8.1,0
@@ -737,6 +751,7 @@
 "GTEX-13FTY","Female","40-49","Fast death of natural causes","GTEX-13FTY-2826-SM-5J2ML","Pituitary","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0126-SM-5K7V3","Blood Vessel","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.5,2
 "GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0226-SM-5K7X6","Heart","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6,1
+"GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0226-SM-CYKR9","Heart","BP-46978",2013-12-11,"RIP-Seq","","B1",6,1
 "GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0326-SM-5J1O1","Heart","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.1,2
 "GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0526-SM-5IJCW","Lung","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.3,2
 "GTEX-13FTZ","Male","60-69","Fast death of natural causes","GTEX-13FTZ-0726-SM-5IFFY","Liver","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",5.8,2
@@ -750,7 +765,10 @@
 "GTEX-13FXS","Male","50-59","Fast death of natural causes","GTEX-13FXS-2826-SM-5LZYC","Prostate","BP-45782",2013-11-14,"TruSeq.v1","RNASEQ","B1",6.2,2
 "GTEX-13FXS","Male","50-59","Fast death of natural causes","GTEX-13FXS-3026-SM-5LZYO","Brain","BP-45782",2013-11-14,"TruSeq.v1","RNASEQ","B1",7.4,1
 "GTEX-13FXS","Male","50-59","Fast death of natural causes","GTEX-13FXS-3126-SM-5J2NN","Brain","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",7,1
+"GTEX-13FXS","Male","50-59","Fast death of natural causes","GTEX-13FXS-3126-SM-CYKQ2","Brain","BP-46943",2013-12-10,"RIP-Seq","","B1",7,1
+"GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0226-SM-CYKUT","Heart","BP-46978",2013-12-11,"RIP-Seq","","B1",5.6,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0426-SM-5K7Z5","Lung","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",7,1
+"GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0426-SM-CYKUU","Lung","BP-46650",2013-12-05,"RIP-Seq","","B1",7,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0526-SM-5IJCQ","Adipose Tissue","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0826-SM-5K7VB","Testis","BP-46650",2013-12-05,"TruSeq.v1","EXCLUDE","B1",6.3,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-0926-SM-5IFFU","Esophagus","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",7.3,0
@@ -763,15 +781,17 @@
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2526-SM-5LZYK","Skin","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",8.2,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2626-SM-5LZYW","Adipose Tissue","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2726-SM-5LZZ9","Muscle","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",8.1,1
+"GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2726-SM-CYKUZ","Muscle","BP-46529",2013-12-04,"RIP-Seq","","B1",8.1,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2826-SM-5LZWV","Nerve","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-2926-SM-5IJDL","Blood Vessel","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",7.7,1
-"GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-3026-SM-5IJB8","Brain","BP-46943",2013-12-10,"TruSeq.v1","EXCLUDE","B1",5.9,1
+"GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-3026-SM-5IJB8","Brain","BP-46943",2013-12-10,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-3126-SM-5IJG7","Brain","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13G51","Male","60-69","Fast death of natural causes","GTEX-13G51-3226-SM-5IFG7","Pituitary","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0126-SM-5J1NG","Skin","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","C1",6.7,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0226-SM-5LZXU","Adipose Tissue","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","C1",6.9,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0426-SM-5LZY7","Nerve","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","C1",6.5,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0626-SM-5LZYJ","Muscle","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","C1",7.1,1
+"GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0626-SM-CYKS8","Muscle","BP-46529",2013-12-04,"RIP-Seq","","C1",7.1,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0726-SM-5LZYV","Skin","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","C1",6.4,1
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-0926-SM-5KLZP","Thyroid","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","C1",6.1,2
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-2426-SM-5K7V9","Adipose Tissue","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6.5,1
@@ -779,6 +799,7 @@
 "GTEX-13IVO","Male","70-79","Slow death","GTEX-13IVO-3026-SM-5J2M2","Pituitary","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",7,2
 "GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-0226-SM-5IJCC","Heart","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-0526-SM-5K7XE","Lung","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.8,1
+"GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-0526-SM-CYKUW","Lung","BP-46734",2013-12-06,"RIP-Seq","","B1",6.8,1
 "GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-0626-SM-5J1MQ","Adipose Tissue","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.2,0
 "GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-2026-SM-5K7UA","Skin","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.7,0
 "GTEX-13JUV","Female","40-49","Ventilator Case","GTEX-13JUV-2326-SM-5IJCE","Muscle","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.4,1
@@ -798,7 +819,7 @@
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-1126-SM-5KM2M","Heart","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.9,0
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-1326-SM-5N9F8","Heart","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",5.7,0
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-1426-SM-5MR4W","Lung","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",5.8,1
-"GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-2026-SM-5KM1N","Esophagus","BP-46925",2013-12-10,"TruSeq.v1","EXCLUDE","B1",6.3,1
+"GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-2026-SM-5KM1N","Esophagus","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-2926-SM-5J2N9","Salivary Gland","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.9,0
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-3026-SM-5IJEV","Pituitary","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13JVG","Male","60-69","Fast death of natural causes","GTEX-13JVG-3126-SM-5L3FH","Brain","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6,0
@@ -845,6 +866,7 @@
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-0526-SM-5MR5L","Blood Vessel","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-0726-SM-5MR38","Thyroid","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-0826-SM-5IJE6","Lung","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",8,1
+"GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-0826-SM-CYKVY","Lung","BP-46978",2013-12-11,"RIP-Seq","","B1",8,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-0926-SM-5IFGJ","Liver","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-1226-SM-5IJCI","Esophagus","BP-46925",2013-12-10,"TruSeq.v1","EXCLUDE","B1",6,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-1826-SM-5KM1I","Prostate","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.2,1
@@ -854,6 +876,7 @@
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-2626-SM-5J1OT","Skin","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-2726-SM-5J1MG","Adipose Tissue","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",5.8,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-2926-SM-5IJEE","Pituitary","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.3,1
+"GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-3026-SM-CYKVX","Brain","BP-46650",2013-12-05,"RIP-Seq","","B1",5.6,1
 "GTEX-13N2G","Male","60-69","Fast death of natural causes","GTEX-13N2G-3126-SM-5IJGL","Brain","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0126-SM-5J1MD","Skin","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",7.6,0
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0226-SM-5N9G4","Heart","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",5.7,1
@@ -862,7 +885,7 @@
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0626-SM-5MR47","Lung","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0726-SM-5MR4J","Thyroid","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.8,2
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0826-SM-5MR4V","Esophagus","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.2,1
-"GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0926-SM-5IFFA","Esophagus","BP-46734",2013-12-06,"TruSeq.v1","EXCLUDE","B1",8,1
+"GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-0926-SM-5IFFA","Esophagus","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",8,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-1026-SM-5IFH3","Liver","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-1326-SM-5K7Y1","Esophagus","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.6,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-1726-SM-5N9G2","Kidney","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",5.7,2
@@ -870,12 +893,14 @@
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2226-SM-5MR58","Testis","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.4,3
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2426-SM-5IFF4","Salivary Gland","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.5,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2526-SM-5K7Z6","Skin","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.1,0
+"GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2626-SM-9YFMI","Adipose Tissue","BP-60908",2015-02-25,"TruSeq.v1","RNASEQ","B1",6.9,0
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2726-SM-5J2MT","Muscle","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.8,0
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-2926-SM-5K7VH","Blood Vessel","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",7,0
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-3026-SM-5IJD7","Brain","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13NYB","Male","40-49","Fast death of natural causes","GTEX-13NYB-3226-SM-5J2ND","Brain","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0126-SM-5L3F4","Skin","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.1,1
-"GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0326-SM-5K7WP","Skin","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.7,1
+"GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0326-SM-5K7WP","Skin","BP-46734",2013-12-06,"TruSeq.v1","EXCLUDE","B1",6.7,1
+"GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0326-SM-E9J4S","Skin","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","B1",8.1,1
 "GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0626-SM-5K7U8","Nerve","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0726-SM-5J2NQ","Muscle","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-13NYC","Male","60-69","Fast death of natural causes","GTEX-13NYC-0826-SM-5N9FP","Blood Vessel","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",5.7,1
@@ -885,15 +910,18 @@
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0126-SM-5MR3W","Skin","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",7.7,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0226-SM-5MR49","Adipose Tissue","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.6,0
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0326-SM-5MR4L","Muscle","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",8.3,1
-"GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0426-SM-5MR4X","Nerve","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.9,1
+"GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0326-SM-CYKVV","Muscle","BP-46529",2013-12-04,"RIP-Seq","","B1",8.3,1
+"GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0426-SM-5MR4X","Nerve","BP-46529",2013-12-04,"TruSeq.v1","EXCLUDE","B1",6.9,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0526-SM-5J1OF","Blood Vessel","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.7,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0626-SM-5L3F1","Skin","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-0726-SM-5J1OR","Adipose Tissue","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-1026-SM-5KLZT","Prostate","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","B1",6.1,2
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-1626-SM-5J2MU","Lung","BP-46925",2013-12-10,"TruSeq.v1","RNASEQ","B1",5.9,2
+"GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-1626-SM-CYKVW","Lung","BP-46925",2013-12-10,"RIP-Seq","","B1",5.9,2
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-1926-SM-5IJCB","Heart","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-2926-SM-5IFGH","Pituitary","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",6,2
 "GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-3126-SM-5KLYV","Brain","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.9,1
+"GTEX-13NYS","Male","60-69","Slow death","GTEX-13NYS-3126-SM-CYKVR","Brain","BP-46999",2013-12-11,"RIP-Seq","","B1",6.9,1
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-0126-SM-5IJCT","Breast","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",6.7,1
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-0226-SM-5J2OK","Thyroid","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",6.1,1
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-0326-SM-5L3DF","Lung","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",6,1
@@ -901,7 +929,7 @@
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-0926-SM-5MR3U","Adipose Tissue","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","C1",6,0
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-1226-SM-5KM4A","Skin","BP-46650",2013-12-05,"TruSeq.v1","RNASEQ","C1",6.1,1
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-1626-SM-5IJBC","Blood Vessel","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6.4,1
-"GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-2126-SM-5L3EO","Muscle","BP-46734",2013-12-06,"TruSeq.v1","RNASEQ","C1",6.4,0
+"GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-2126-SM-5L3EO","Muscle","BP-46734",2013-12-06,"TruSeq.v1","EXCLUDE","C1",6.4,0
 "GTEX-13NZ8","Female","60-69","Slow death","GTEX-13NZ8-3026-SM-5L3D4","Brain","BP-46925",2013-12-10,"TruSeq.v1","EXCLUDE","C1",6,1
 "GTEX-13NZ9","Male","50-59","Ventilator Case","GTEX-13NZ9-0126-SM-5K7XV","Heart","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",8.4,1
 "GTEX-13NZ9","Male","50-59","Ventilator Case","GTEX-13NZ9-0526-SM-5J1OX","Adipose Tissue","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",5.8,0
@@ -919,6 +947,7 @@
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-0226-SM-5K7Z7","Skin","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.5,2
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-0326-SM-5J1MK","Nerve","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-0526-SM-5L3D7","Muscle","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7.6,1
+"GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-0526-SM-CYKQV","Muscle","BP-46680",2013-12-05,"RIP-Seq","","B1",7.6,1
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-0826-SM-5K7WS","Heart","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",5.8,1
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-1026-SM-5MR48","Thyroid","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.3,2
 "GTEX-13NZA","Male","60-69","Fast death of natural causes","GTEX-13NZA-1126-SM-5MR4K","Blood Vessel","BP-46529",2013-12-04,"TruSeq.v1","RNASEQ","B1",6.1,1
@@ -950,7 +979,7 @@
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-1526-SM-5J1O7","Esophagus","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-1826-SM-5KM3B","Pancreas","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",6.5,2
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-2026-SM-5KM3N","Liver","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",6.6,1
-"GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-2326-SM-5IJF9","Adrenal Gland","BP-47051",2013-12-12,"TruSeq.v1","EXCLUDE","B1",6.4,2
+"GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-2326-SM-5IJF9","Adrenal Gland","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","B1",6.4,2
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-2426-SM-5KLZZ","Colon","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","B1",6.4,1
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-2526-SM-5N9FW","Kidney","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","B1",5.7,2
 "GTEX-13O1R","Male","60-69","Fast death of natural causes","GTEX-13O1R-3226-SM-5KM58","Pituitary","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",7,1
@@ -976,16 +1005,19 @@
 "GTEX-13O21","Male","50-59","Ventilator Case","GTEX-13O21-2926-SM-5J1OU","Blood Vessel","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-13O21","Male","50-59","Ventilator Case","GTEX-13O21-3026-SM-5J2NI","Lung","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.2,1
 "GTEX-13O21","Male","50-59","Ventilator Case","GTEX-13O21-3126-SM-5J1OI","Adipose Tissue","BP-46680",2013-12-05,"TruSeq.v1","RNASEQ","B1",6.9,1
-"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0126-SM-5KM4E","Skin","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","C1",6.6,0
+"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0126-SM-5KM4E","Skin","BP-47141",2013-12-13,"TruSeq.v1","EXCLUDE","C1",6.6,0
+"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0126-SM-E9J49","Skin","BP-80997",2016-11-29,"TruSeq.v1","RNASEQ","C1",6.9,0
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0326-SM-5K7W2","Nerve","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","C1",6.6,0
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0426-SM-5KM2Y","Blood Vessel","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",8,0
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0526-SM-5J1NL","Muscle","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",8.5,0
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0726-SM-5J1N7","Lung","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","C1",7.3,1
+"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0726-SM-CYKVH","Lung","BP-68724",2015-11-04,"RIP-Seq","","C1",7.9,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0826-SM-5K7WE","Breast","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","C1",6.2,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-0926-SM-5KM1F","Thyroid","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","C1",6.8,2
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1126-SM-5KM4Q","Blood Vessel","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","C1",6.6,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1426-SM-5KM2S","Heart","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",6.3,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1526-SM-5KM1C","Heart","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",6.9,1
+"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1526-SM-CYKUS","Heart","BP-47051",2013-12-12,"RIP-Seq","","C1",6.9,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1626-SM-5KM1O","Adrenal Gland","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",6.5,2
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-1826-SM-5IFGW","Liver","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",6.5,2
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-2326-SM-5IJD6","Skin","BP-46978",2013-12-11,"TruSeq.v1","RNASEQ","C1",8.2,0
@@ -993,6 +1025,7 @@
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-2726-SM-5KM35","Ovary","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",5.9,0
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-3026-SM-5KM42","Brain","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","C1",7.1,1
 "GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-3126-SM-5KM3H","Brain","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",6.3,1
+"GTEX-13O3O","Female","60-69","Intermediate death","GTEX-13O3O-3126-SM-CYKUY","Brain","BP-47524",2013-12-17,"RIP-Seq","","C1",6.3,1
 "GTEX-13O3P","Male","50-59","Slow death","GTEX-13O3P-0126-SM-5KM4S","Skin","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",7.4,0
 "GTEX-13O3P","Male","50-59","Slow death","GTEX-13O3P-0226-SM-5KM3Z","Adipose Tissue","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","C1",6,0
 "GTEX-13O3P","Male","50-59","Slow death","GTEX-13O3P-0326-SM-5K7VM","Nerve","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","C1",7.1,1
@@ -1024,6 +1057,7 @@
 "GTEX-13O3Q","Male","50-59","Fast death of natural causes","GTEX-13O3Q-2726-SM-5KM51","Muscle","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",8.1,1
 "GTEX-13O3Q","Male","50-59","Fast death of natural causes","GTEX-13O3Q-2826-SM-5KM2N","Salivary Gland","BP-47141",2013-12-13,"TruSeq.v1","EXCLUDE","B1",6.8,1
 "GTEX-13O3Q","Male","50-59","Fast death of natural causes","GTEX-13O3Q-2926-SM-5KM45","Brain","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","B1",6.1,2
+"GTEX-13O3Q","Male","50-59","Fast death of natural causes","GTEX-13O3Q-2926-SM-CYKRS","Brain","BP-47524",2013-12-17,"RIP-Seq","","B1",6.1,2
 "GTEX-13O3Q","Male","50-59","Fast death of natural causes","GTEX-13O3Q-3026-SM-5IJGD","Brain","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","B1",6.4,2
 "GTEX-13O61","Male","60-69","Ventilator Case","GTEX-13O61-0126-SM-5KM4P","Adrenal Gland","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",8.2,1
 "GTEX-13O61","Male","60-69","Ventilator Case","GTEX-13O61-0226-SM-5KM52","Thyroid","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",7.6,0
@@ -1071,6 +1105,7 @@
 "GTEX-13OVH","Male","70-79","Fast death of natural causes","GTEX-13OVH-0626-SM-5L3EI","Muscle","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",8.1,0
 "GTEX-13OVH","Male","70-79","Fast death of natural causes","GTEX-13OVH-0726-SM-5N9BU","Testis","BP-47051",2013-12-12,"TruSeq.v1","RNASEQ","C1",5.7,2
 "GTEX-13OVH","Male","70-79","Fast death of natural causes","GTEX-13OVH-1026-SM-5J2NP","Lung","BP-46999",2013-12-11,"TruSeq.v1","RNASEQ","C1",6.5,2
+"GTEX-13OVH","Male","70-79","Fast death of natural causes","GTEX-13OVH-1026-SM-CYKS2","Lung","BP-46999",2013-12-11,"RIP-Seq","","C1",6.5,2
 "GTEX-13OVH","Male","70-79","Fast death of natural causes","GTEX-13OVH-1126-SM-5K7YP","Blood Vessel","BP-48651",2014-01-24,"TruSeq.v1","RNASEQ","C1",7.6,1
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-0726-SM-5SI68","Muscle","BP-48651",2014-01-24,"TruSeq.v1","RNASEQ","C1",8.1,0
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-0826-SM-7DHKK","Breast","BP-48119",2014-01-09,"TruSeq.v1","RNASEQ","C1",6.9,0
@@ -1079,6 +1114,7 @@
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-1726-SM-5RQK9","Esophagus","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","C1",6.7,1
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-1826-SM-5S2PT","Esophagus","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","C1",5.8,1
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-1926-SM-5QGQM","Esophagus","BP-48448",2014-01-17,"TruSeq.v1","RNASEQ","C1",6,1
+"GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-2626-SM-9OSXQ","Colon","BP-60846",2015-02-24,"TruSeq.v1","RNASEQ","C1",7,3
 "GTEX-13QJ3","Male","50-59","Ventilator Case","GTEX-13QJ3-2726-SM-5SI6L","Stomach","BP-48651",2014-01-24,"TruSeq.v1","RNASEQ","C1",9.3,3
 "GTEX-13QJC","Female","60-69","Fast death of natural causes","GTEX-13QJC-0126-SM-5ZZWJ","Skin","BP-49102",2014-02-04,"TruSeq.v1","RNASEQ","B1",7.4,0
 "GTEX-13QJC","Female","60-69","Fast death of natural causes","GTEX-13QJC-0526-SM-5RQKB","Lung","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",7,1
@@ -1122,7 +1158,7 @@
 "GTEX-13RTL","Male","40-49","Slow death","GTEX-13RTL-0426-SM-7LG66","Blood Vessel","BP-53046",2014-05-21,"TruSeq.v1","RNASEQ","B1",5.7,1
 "GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0126-SM-5SI6A","Skin","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","C1",7.3,1
 "GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0226-SM-5S2UG","Adipose Tissue","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","C1",6,1
-"GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0326-SM-5S2PH","Muscle","BP-48647",2014-01-24,"TruSeq.v1","EXCLUDE","C1",8.5,1
+"GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0326-SM-5S2PH","Muscle","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","C1",8.5,1
 "GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0426-SM-5S2US","Nerve","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","C1",6.5,0
 "GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-0826-SM-5QGQX","Adipose Tissue","BP-48448",2014-01-17,"TruSeq.v1","RNASEQ","C1",6.2,0
 "GTEX-13S7M","Female","60-69","Fast death of natural causes","GTEX-13S7M-1726-SM-5RQK3","Uterus","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","C1",5.9,1
@@ -1140,7 +1176,7 @@
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-0826-SM-5SI6J","Esophagus","BP-48651",2014-01-24,"TruSeq.v1","RNASEQ","B1",9.7,0
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-0926-SM-5SI6I","Adipose Tissue","BP-48651",2014-01-24,"TruSeq.v1","RNASEQ","B1",7.4,0
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-1126-SM-5RQJX","Thyroid","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",5.7,1
-"GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-1226-SM-5S2OA","Breast","BP-48564",2014-01-22,"TruSeq.v1","EXCLUDE","B1",5.9,1
+"GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-1226-SM-5S2OA","Breast","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-1626-SM-5Q5C5","Colon","BP-48448",2014-01-17,"TruSeq.v1","RNASEQ","B1",7.6,1
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-2326-SM-5RQK1","Muscle","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",8.2,1
 "GTEX-13S86","Male","40-49","Ventilator Case","GTEX-13S86-2426-SM-5S2MX","Nerve","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",5.9,0
@@ -1148,18 +1184,22 @@
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0126-SM-5SI6C","Skin","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","B1",6.1,0
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0226-SM-5S2NA","Adipose Tissue","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",6.2,0
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0326-SM-5RQK5","Muscle","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",7.4,0
+"GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0326-SM-CYKUV","Muscle","BP-48564",2014-01-22,"RIP-Seq","","B1",7.4,0
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0626-SM-5Q5ER","Skin","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",7,0
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-0826-SM-5QGP7","Heart","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",7.4,1
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-1226-SM-5S2Q7","Lung","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","B1",6.4,2
+"GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-1226-SM-CYKW6","Lung","BP-48647",2014-01-24,"RIP-Seq","","B1",6.4,2
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-2526-SM-62LDQ","Breast","BP-49089",2014-02-04,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-2826-SM-5Q5ES","Colon","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",6.9,2
 "GTEX-13SLW","Male","70-79","Fast death of natural causes","GTEX-13SLW-2926-SM-5Q5BQ","Pituitary","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0126-SM-5S2MM","Nerve","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0326-SM-5Q5E4","Muscle","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",8.2,1
+"GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0326-SM-CYKVN","Muscle","BP-48057",2014-01-08,"RIP-Seq","","B1",8.2,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0426-SM-5QGRC","Adipose Tissue","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0526-SM-5S2ON","Skin","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",8,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-0926-SM-5S2NM","Heart","BP-48564",2014-01-22,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-1026-SM-5ZZUQ","Heart","BP-49089",2014-02-04,"TruSeq.v1","RNASEQ","B1",6.5,1
+"GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-1026-SM-CYKVQ","Heart","BP-49089",2014-02-04,"RIP-Seq","","B1",6.5,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-1226-SM-5S2Q6","Liver","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-1326-SM-5S2QS","Pancreas","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",6.1,3
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-1726-SM-5Q5E5","Esophagus","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",7,1
@@ -1171,7 +1211,7 @@
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-3126-SM-5S2Q5","Brain","BP-48647",2014-01-24,"TruSeq.v1","RNASEQ","B1",5.7,1
 "GTEX-13SLX","Female","50-59","Fast death of natural causes","GTEX-13SLX-3226-SM-5YYA6","Brain","BP-49102",2014-02-04,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0126-SM-5LU38","Skin","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",7.1,0
-"GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0226-SM-5SIB1","Adipose Tissue","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","C1",7.5,0
+"GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0226-SM-5SIB1","Adipose Tissue","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","C1",7,0
 "GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0426-SM-5LU4W","Blood Vessel","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",6.9,0
 "GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0526-SM-5LU59","Thyroid","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",6.7,1
 "GTEX-13U4I","Female","40-49","Ventilator Case","GTEX-13U4I-0626-SM-5LU5L","Heart","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","C1",6.8,1
@@ -1202,7 +1242,7 @@
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-0726-SM-5SIAD","Heart","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","B1",6.7,0
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-0826-SM-5SIAP","Blood Vessel","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","B1",5.9,1
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-0926-SM-5LU5K","Adipose Tissue","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","B1",7,1
-"GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-1026-SM-5LU37","Blood Vessel","BP-47524",2013-12-17,"TruSeq.v1","EXCLUDE","B1",6.5,1
+"GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-1026-SM-5LU37","Blood Vessel","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","B1",6.5,1
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-1126-SM-5LU3A","Heart","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",8.6,1
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-1226-SM-5LU3M","Pancreas","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",7,1
 "GTEX-13VXT","Female","20-29","Ventilator Case","GTEX-13VXT-1326-SM-5LU3Y","Spleen","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",6.4,2
@@ -1217,6 +1257,7 @@
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0126-SM-5SI9F","Skin","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0226-SM-5SI9R","Adipose Tissue","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0326-SM-5LU36","Muscle","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",8.5,0
+"GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0326-SM-CYKUJ","Muscle","BP-47141",2013-12-13,"RIP-Seq","","B1",8.5,0
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0426-SM-5LU3I","Nerve","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",7.7,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0526-SM-5K7V1","Blood Vessel","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","B1",8,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-0626-SM-5L3F9","Skin","BP-47125",2013-12-13,"TruSeq.v1","RNASEQ","B1",7.6,1
@@ -1227,6 +1268,7 @@
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-1126-SM-5LU3U","Esophagus","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-1926-SM-5LU5J","Blood Vessel","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",6.1,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-2726-SM-5LU4N","Lung","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",6,1
+"GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-2726-SM-CYKUK","Lung","BP-47486",2013-12-17,"RIP-Seq","","B1",6,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-2826-SM-664MA","Breast","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-2926-SM-5LU5C","Brain","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-13VXU","Male","50-59","Fast death of natural causes","GTEX-13VXU-3026-SM-5LU3K","Brain","BP-47524",2013-12-17,"TruSeq.v1","RNASEQ","B1",6,1
@@ -1246,9 +1288,9 @@
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-1626-SM-5LU35","Esophagus","BP-47141",2013-12-13,"TruSeq.v1","RNASEQ","B1",9,1
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-1726-SM-5LU4A","Esophagus","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",7.7,1
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-1826-SM-5IJDE","Esophagus","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","B1",8.2,1
-"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2026-SM-5K7UL","Small Intestine","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","B1",7.5,1
-"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2126-SM-5K7UX","Colon","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","B1",7.5,1
-"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2226-SM-5LU4M","Colon","BP-47486",2013-12-17,"TruSeq.v1","EXCLUDE","B1",7.3,1
+"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2026-SM-5K7UL","Small Intestine","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","B1",7,1
+"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2126-SM-5K7UX","Colon","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","B1",7,1
+"GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2226-SM-5LU4M","Colon","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",7.3,1
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2326-SM-5LU4Y","Vagina","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",7.1,1
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2426-SM-5LU5B","Skin","BP-47486",2013-12-17,"TruSeq.v1","RNASEQ","B1",6.5,0
 "GTEX-13W3W","Female","60-69","Ventilator Case","GTEX-13W3W-2526-SM-5SI9P","Adipose Tissue","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","B1",6.3,0
@@ -1264,7 +1306,7 @@
 "GTEX-13W46","Male","50-59","Ventilator Case","GTEX-13W46-1226-SM-5SIAS","Adipose Tissue","BP-47656",2013-12-19,"TruSeq.v1","RNASEQ","C1",7.6,1
 "GTEX-13W46","Male","50-59","Ventilator Case","GTEX-13W46-1826-SM-5K7VA","Blood Vessel","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","C1",6.9,1
 "GTEX-13W46","Male","50-59","Ventilator Case","GTEX-13W46-1926-SM-5J2MF","Esophagus","BP-47070",2013-12-12,"TruSeq.v1","RNASEQ","C1",6.1,2
-"GTEX-13X6H","Female","50-59","Ventilator Case","GTEX-13X6H-0126-SM-5QGOS","Blood Vessel","BP-48057",2014-01-08,"TruSeq.v1","EXCLUDE","B1",6.4,1
+"GTEX-13X6H","Female","50-59","Ventilator Case","GTEX-13X6H-0126-SM-5QGOS","Blood Vessel","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",6.4,1
 "GTEX-13X6H","Female","50-59","Ventilator Case","GTEX-13X6H-0426-SM-5LU4E","Heart","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","B1",6.7,1
 "GTEX-13X6H","Female","50-59","Ventilator Case","GTEX-13X6H-0526-SM-5LU4Q","Thyroid","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","B1",6.9,1
 "GTEX-13X6H","Female","50-59","Ventilator Case","GTEX-13X6H-0626-SM-5LU53","Pancreas","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","B1",7.7,1
@@ -1293,6 +1335,7 @@
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0126-SM-5QGOU","Skin","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","C1",7.8,1
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0226-SM-7EPGC","Adipose Tissue","BP-48137",2014-01-09,"TruSeq.v1","RNASEQ","C1",6.7,1
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0326-SM-7EPGD","Muscle","BP-48137",2014-01-09,"TruSeq.v1","RNASEQ","C1",8.9,1
+"GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0326-SM-CYKU6","Muscle","BP-48137",2014-01-09,"RIP-Seq","","C1",8.9,1
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0426-SM-5O9D3","Nerve","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","C1",6.5,1
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0626-SM-5LU5F","Skin","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","C1",7.2,1
 "GTEX-13X6J","Male","50-59","Fast death of natural causes","GTEX-13X6J-0826-SM-5LU32","Thyroid","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","C1",6.9,2
@@ -1331,7 +1374,7 @@
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-0926-SM-5O9C3","Thyroid","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","C1",5.9,1
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1026-SM-5O9CF","Lung","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","C1",7.6,2
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1126-SM-5TDC7","Adipose Tissue","BP-48852",2014-01-29,"TruSeq.v1","RNASEQ","C1",7.4,1
-"GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1326-SM-5Q5F1","Heart","BP-48057",2014-01-08,"TruSeq.v1","EXCLUDE","C1",6.3,1
+"GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1326-SM-5Q5F1","Heart","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","C1",6.3,1
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1426-SM-7EPG8","Heart","BP-48137",2014-01-09,"TruSeq.v1","RNASEQ","C1",5.8,1
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1526-SM-5LU3E","Blood Vessel","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","C1",5.8,1
 "GTEX-13YAN","Male","60-69","Ventilator Case","GTEX-13YAN-1826-SM-5LU3Q","Esophagus","BP-47591",2013-12-18,"TruSeq.v1","RNASEQ","C1",5.9,1
@@ -1463,6 +1506,7 @@
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-0226-SM-5S2QG","Heart","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",7.2,1
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-0326-SM-5Q5BW","Heart","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",6,1
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-1026-SM-5O9AE","Adipose Tissue","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","B1",6.9,0
+"GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-1126-SM-5Q5C1","Thyroid","BP-48057",2014-01-08,"TruSeq.v1","EXCLUDE","B1",8.4,1
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-1226-SM-5S2QH","Prostate","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",6.3,1
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-1326-SM-5S2QI","Esophagus","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",7.9,1
 "GTEX-145LV","Male","50-59","Ventilator Case","GTEX-145LV-1426-SM-5Q5BV","Esophagus","BP-48057",2014-01-08,"TruSeq.v1","RNASEQ","B1",6.5,1
@@ -1473,7 +1517,7 @@
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0226-SM-5S2QN","Lung","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",7.4,1
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0326-SM-5S2QO","Pancreas","BP-48818",2014-01-28,"TruSeq.v1","RNASEQ","B1",6.4,1
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0426-SM-5S2QP","Esophagus","BP-48818",2014-01-28,"TruSeq.v1","EXCLUDE","B1",7.8,1
-"GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0526-SM-5QGQV","Esophagus","BP-48437",2014-01-17,"TruSeq.v1","RNASEQ","B1",8.6,1
+"GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0526-SM-5QGQV","Esophagus","BP-48437",2014-01-17,"TruSeq.v1","EXCLUDE","B1",8.6,1
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0626-SM-5O99Q","Esophagus","BP-47675",2013-12-19,"TruSeq.v1","EXCLUDE","B1",8.5,1
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0726-SM-5O9A3","Adipose Tissue","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","B1",8,1
 "GTEX-145ME","Female","40-49","Ventilator Case","GTEX-145ME-0826-SM-5O9AF","Colon","BP-47675",2013-12-19,"TruSeq.v1","RNASEQ","B1",7.9,1

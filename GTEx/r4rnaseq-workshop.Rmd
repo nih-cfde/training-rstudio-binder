@@ -4,7 +4,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, 
-                      #cache = TRUE,
+                      cache = F,
                       fig.path = "./images/")
 ```
 
@@ -81,7 +81,7 @@ You can perform simple and advanced calculations in R.
 
 ```{r, appendix = TRUE}
 2 + 2 * 100
-log(202)
+log10(0.05)
 
 ```
 
@@ -187,7 +187,7 @@ samples <- read.csv("./data/samples.csv")
 After importing a file, there are multiple ways to view the data. `head()` to view the first few lines of each file. `names()` will print just the column names. `str` will compactly displaying the internal structure. `summary` will compute statistics. 
 
 ```{r, appendix = TRUE}
-View(samples)
+#View(samples)
 head(samples)
 tail(samples)
 str(samples)
@@ -264,7 +264,7 @@ How many samples are there per tissue and sex? Can we test the effect of sex on 
 
 ```{r, appendix = TRUE}
 
-dplyr::count(samples, SMTS, SEX) 
+head(dplyr::count(samples, SMTS, SEX))
 
 ```
 
@@ -273,7 +273,7 @@ How many samples are there per sex, age, and hardy scale? Do you have enough sam
 
 ```{r, appendix = TRUE}
 
-dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) 
+head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
 
 ```
 
@@ -543,18 +543,22 @@ To explore filtering data, let's answer the following question: What are the app
 
 ```{r wrangle11, appendix = TRUE}
 
-results %>% filter(adj.P.Val < 0.05) %>% head()
+results %>% 
+  filter(adj.P.Val < 0.05) %>% 
+  head()
 
 ```
 
 
 ```{r wrangle12, appendix = TRUE}
 
-results %>% filter(logFC > 1 | logFC < -1) %>% head()
+results %>% 
+  filter(logFC > 1 | logFC < -1) %>%
+  head()
 
 ```
 
-Sometimes its nice to arrange by pvalue.
+Sometimes its nice to arrange by p-value.
 
 ```{r wrangle13a, appendix = TRUE}
 
@@ -672,18 +676,18 @@ Let's read a file called "genes.txt" and combine this with our results file so t
 
 ```{r import-3, appendix = TRUE}
 
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+genes <- read.table("./data/ensembl_genes.tsv", sep = "\t",  header = T, fill = T)
 head(genes)
 
 ```
 
-The column with genes symbols is called `Approved.symbol`. To combine this data frame without results. We can use the mutate function to create a new column based off the row names. Let's save this as `resultsSymbol`.
+The column with genes symbols is called `name`. To combine this data frame without results. We can use the mutate function to create a new column based off the row names. Let's save this as `resultsSymbol`.
 
 
 ```{r addcoumn, appendix = TRUE}
 
 resultsSymbol <- results %>%
-  mutate(Approved.symbol = row.names(.))
+  mutate(name = row.names(.))
 head(resultsSymbol)
 
 ```
@@ -692,7 +696,7 @@ Now, we can use one of the join functions to combine two data frames. `left_join
 
 ```{r appendix = TRUE}
 
-resultsName <- left_join(resultsSymbol, genes, by = "Approved.symbol")
+resultsName <- left_join(resultsSymbol, genes, by = "name")
 head(resultsName)
 
 ```
@@ -707,11 +711,21 @@ resultsNameTidy <- resultsName %>%
   filter(adj.P.Val < 0.05,
                    logFC > 1 | logFC < -1) %>%
   arrange(adj.P.Val) %>%
-  select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, AveExpr, adj.P.Val)
+  select(name, description, id, logFC, AveExpr, adj.P.Val)
 head(resultsNameTidy)
 
 ```
 
+Now, let's make a list of the Ensemble IDs of the DEGs
+. 
+```{r appendix = TRUE}
+
+resultsNameTidyIds <- resultsNameTidy %>%
+  drop_na(id) %>%
+  pull(id)
+resultsNameTidyIds
+
+```
 
 
 
@@ -727,13 +741,14 @@ Because the count files are so large, it is good to filter the counts first. I'l
 ```{r question2c, appendix = TRUE}
 
 counts_tidy_slim <- counts_tidy %>%
-  filter(rowSums(.) >0 ) %>%
-  head() %>%
-  mutate(Ensembl.gene.ID = row.names(.) )
+  mutate(id = row.names(.)) %>%
+  filter(id %in% resultsNameTidyIds)
+dim(counts_tidy_slim)
 head(counts_tidy_slim)[1:5]
+tail(counts_tidy_slim)
 ```
 
-Now we can pivot longer. We use `cols` to specify with column names will be turned into observations and we use `names_to` to specify the name of the new column that contains those observations. We use `values_to` to name the column with the corresonding value, in this case we will call the new columns, `SAMPID` and `counts`.  
+Now we can pivot longer. We use `cols` to specify with column names will be turned into observations and we use `names_to` to specify the name of the new column that contains those observations. We use `values_to` to name the column with the corresponding value, in this case we will call the new columns, `SAMPID` and `counts`.  
 
 ```{r question2cb, appendix = TRUE}
 
@@ -741,15 +756,19 @@ counts_tidy_long <- counts_tidy_slim %>%
   pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") 
 head(counts_tidy_long)
+
 ```
 
-Now, that we have a `SAMPID` column, we can join this with our colData_tidy and then make some pretty plots.
+Now, that we have a `SAMPID` column, we can join this with our colData_tidy. We can also use the `id` column to join with genes.
 
 ```{r appendix = TRUE}
+
 counts_tidy_long_joined <- counts_tidy_long%>%
   inner_join(., colData_tidy, by = "SAMPID") %>%
+  inner_join(., genes, by = "id") %>%
   arrange(desc(counts))
 head(counts_tidy_long_joined)
+
 ```
 
 
@@ -763,8 +782,9 @@ counts_tidy_long_joined %>%
   ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
-  facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  theme(axis.text.x = element_text(angle = 45, hjust  = 1)) +
+  facet_wrap(~name, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1),
+        strip.text = element_text(face = "italic")) +
   scale_y_log10(labels = label_number_si()) 
 
 ```
