@@ -1,7 +1,7 @@
-### R code for today's workshop
+# today's R commands
 
 2 + 2 * 100
-log(202)
+log10(0.05)
 
 pval <- 0.05
 pval
@@ -21,7 +21,7 @@ library(dplyr)
 
 samples <- read.csv("./data/samples.csv")
 
-View(samples)
+#View(samples)
 head(samples)
 tail(samples)
 str(samples)
@@ -44,10 +44,10 @@ dim(samples)
 dplyr::count(samples, SMTS) 
 
 
-dplyr::count(samples, SMTS, SEX) 
+head(dplyr::count(samples, SMTS, SEX))
 
 
-dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) 
+head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
 
 
 ggplot(samples, aes(x = SMTS)) +
@@ -103,10 +103,14 @@ ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
   geom_jitter(aes(color = SMRIN))
 
 
-results %>% filter(adj.P.Val < 0.05) %>% head()
+results %>% 
+  filter(adj.P.Val < 0.05) %>% 
+  head()
 
 
-results %>% filter(logFC > 1 | logFC < -1) %>% head()
+results %>% 
+  filter(logFC > 1 | logFC < -1) %>%
+  head()
 
 
 results %>% filter(adj.P.Val < 0.05,
@@ -145,16 +149,16 @@ counts_tidy <- counts %>%
 head(rownames(colData_tidy) == colnames(counts_tidy))
 
 
-genes <- read.table("./data/genes.txt", sep = "\t",  header = T, fill = T)
+genes <- read.table("./data/ensembl_genes.tsv", sep = "\t",  header = T, fill = T)
 head(genes)
 
 
 resultsSymbol <- results %>%
-  mutate(Approved.symbol = row.names(.))
+  mutate(name = row.names(.))
 head(resultsSymbol)
 
 
-resultsName <- left_join(resultsSymbol, genes, by = "Approved.symbol")
+resultsName <- left_join(resultsSymbol, genes, by = "name")
 head(resultsName)
 
 
@@ -162,24 +166,35 @@ resultsNameTidy <- resultsName %>%
   filter(adj.P.Val < 0.05,
          logFC > 1 | logFC < -1) %>%
   arrange(adj.P.Val) %>%
-  select(Approved.symbol, Approved.name, Ensembl.gene.ID, logFC, AveExpr, adj.P.Val)
+  select(name, description, id, logFC, AveExpr, adj.P.Val)
 head(resultsNameTidy)
 
 
+resultsNameTidyIds <- resultsNameTidy %>%
+  drop_na(id) %>%
+  pull(id)
+resultsNameTidyIds
+
+
 counts_tidy_slim <- counts_tidy %>%
-  filter(rowSums(.) >0 ) %>%
-  head() %>%
-  mutate(Ensembl.gene.ID = row.names(.) )
+  mutate(id = row.names(.)) %>%
+  filter(id %in% resultsNameTidyIds)
+dim(counts_tidy_slim)
 head(counts_tidy_slim)[1:5]
+tail(counts_tidy_slim)[1:5]
 
 counts_tidy_long <- counts_tidy_slim %>%
   pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
                values_to = "counts") 
 head(counts_tidy_long)
+
+
 counts_tidy_long_joined <- counts_tidy_long%>%
   inner_join(., colData_tidy, by = "SAMPID") %>%
+  inner_join(., genes, by = "id") %>%
   arrange(desc(counts))
 head(counts_tidy_long_joined)
+
 
 library(scales)
 
@@ -187,6 +202,8 @@ counts_tidy_long_joined %>%
   ggplot(aes(x = AGE, y = counts)) +
   geom_boxplot() +
   geom_point() +
-  facet_wrap(~Ensembl.gene.ID, scales = "free_y") +
-  theme(axis.text.x = element_text(angle = 45, hjust  = 1)) +
+  facet_wrap(~name, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1),
+        strip.text = element_text(face = "italic")) +
   scale_y_log10(labels = label_number_si()) 
+

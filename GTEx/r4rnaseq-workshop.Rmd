@@ -745,7 +745,7 @@ counts_tidy_slim <- counts_tidy %>%
   filter(id %in% resultsNameTidyIds)
 dim(counts_tidy_slim)
 head(counts_tidy_slim)[1:5]
-tail(counts_tidy_slim)
+tail(counts_tidy_slim)[1:5]
 ```
 
 Now we can pivot longer. We use `cols` to specify with column names will be turned into observations and we use `names_to` to specify the name of the new column that contains those observations. We use `values_to` to name the column with the corresponding value, in this case we will call the new columns, `SAMPID` and `counts`.  

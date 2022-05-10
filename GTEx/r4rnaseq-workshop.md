@@ -36,7 +36,7 @@ questions.
 
 ![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
-:::info
+<div class="info">
 
 ### Learning Objectives
 
@@ -59,7 +59,7 @@ motivating questions?
 -   What is the effect of age on gene expression in the heart?
 -   How is my gene of interest affected by age in the heart and muscle?
 
-:::
+</div>
 
 ## Introduction
 
@@ -179,19 +179,19 @@ the `ggplot2` package.
 library(ggplot2)
 ```
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
 We will also use functions from the packages `tidyr` and `dplyr` to tidy
 and transform data. What command would you run to load these packages?
 
-:::spoiler
+<div class="spoiler">
 
 `library(tidyr)`  
 `library(dplyr)`
 
-:::
+</div>
 
 You can also navigate to the “Packages” tab in the bottom right pane of
 RStudio to view a list of available packages. Packages with a checked
@@ -199,7 +199,7 @@ box next to them have been successfully loaded. You can click a box to
 load installed packages. Clicking the “Help” Tab will provide a quick
 description of the package and its functions.
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -210,7 +210,7 @@ description of the package and its functions.
 | `install.packages()` | An R function to install packages            |
 | `library()`          | The command used to load installed packages  |
 
-:::
+</div>
 
 ## Importing and viewing data
 
@@ -418,7 +418,7 @@ head(results)
     ## A2ML1    0.58865741 -1.0412696 1.8263856 0.07173966 0.2328150 -4.065276
     ## A2MP1    0.31631081 -0.8994146 1.4061454 0.16377753 0.3730822 -4.583435
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -426,12 +426,12 @@ What commands could you use to read the following files: 1. GTEx results
 comparing the muscles of 20-29 year old to 70-79 year olds? 1. The csv
 file information describing the muscle samples?
 
-:::spoiler
+<div class="spoiler">
 
 1.  `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")`
 2.  `read.csv("./data/countData.MUSCLE.csv", row.names = 1)`
 
-:::
+</div>
 
 #### Quick summary statistics and sample size
 
@@ -515,7 +515,7 @@ head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
     ## 5 Adipose Tissue Female 40-49       Violent and fast death 2
     ## 6 Adipose Tissue Female 50-59 Fast death of natural causes 3
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -528,15 +528,15 @@ How many female muscles samples are there from age group 30-39?
 *Hint: use head() or names() after importing a file to verify the
 variable names.*
 
-:::spoiler
+<div class="spoiler">
 
 `df <- read.csv("./data/colData.MUSCLE.csv")`
 `dplyr::count(df, SMTS, SEX, AGE)`
 `# 3 samples are in the female group age 30-39`
 
-:::
+</div>
 
-:::success
+<div class="success">
 
 #### Key functions for importing and quickly viewing raw and summarized data
 
@@ -554,7 +554,7 @@ variable names.*
 | `str()`               | A function that prints the internal structure of an object      |
 | `summary()`           | A function that summarizes each variable                        |
 
-:::
+</div>
 
 ## Visualizing data with ggplot2
 
@@ -645,7 +645,7 @@ data (for good biological reasons). However, this plot doesn’t show us
 Hardy Scale. It’s hard to layer 4 variables, so let’s remove Tissue as a
 variable by focusing just on one Tissue.
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -653,7 +653,7 @@ Create a plot showing the total number of samples per Sex, Age Bracket,
 and Hardy Scale for *just* the Heart samples. Paste the code you used in
 the chat.
 
-:::spoiler
+<div class="spoiler">
 
 There are many options. Here are a few.
 
@@ -665,7 +665,7 @@ There are many options. Here are a few.
           geom_bar(stat = "count") +
           facet_wrap(~SEX) 
 
-:::
+</div>
 
 One thing these plots show us is that we don’t have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
@@ -724,7 +724,7 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 ![](./images/volcano4-1.png)<!-- -->
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -733,7 +733,7 @@ Create a volcano plot for the results comparing the heart tissue of
 differential expressed gene between 20 and 30 year olds or 20 and 70
 year olds?
 
-:::spoiler
+<div class="spoiler">
 
       df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
 
@@ -743,7 +743,7 @@ year olds?
       
       # more  
 
-:::
+</div>
 
 In addition to containing information about the donor tissue, the
 samples file contains has a column with a RIN score, which tells us
@@ -764,7 +764,7 @@ visualizing data. In the next section, we will tidy and transform our
 data so that we can make even better summaries and figures. In the last
 section, you will learn ggplot function for making fancier figures.
 
-:::success
+<div class="success">
 
 #### Key functions
 
@@ -778,7 +778,7 @@ section, you will learn ggplot function for making fancier figures.
 | `coord_flip()` | Flips the x and y axis                                                                                                  |
 | `geom_hline()` | Add a horizontal line to plots                                                                                          |
 
-:::
+</div>
 
 ## Tidy and Transform Data
 
@@ -911,7 +911,7 @@ resultsDEGs
     ## [36] "SGPP2"        "COL24A1"      "SEC24AP1"     "ANKRD1"       "CDO1"        
     ## [41] "CCL28"        "SLC5A10"      "XIRP2"
 
-:::warning
+<div class="warning">
 
 #### Challenge
 
@@ -919,7 +919,7 @@ Replace the input results file with a different file, such as the
 results of the comparison of 20-29 and 50-59 year old heart samples.
 What are the deferentially expressed genes?
 
-:::spoiler
+<div class="spoiler">
 
 You could use the following code to get this result below
 
@@ -940,7 +940,7 @@ You could use the following code to get this result below
     [37] "COL24A1"      "SEC24AP1"     "ANKRD1"       "CDO1"         "CCL28"        "SLC5A10"     
     [43] "XIRP2" 
 
-:::
+</div>
 
 ### Mutating Data
 
@@ -1263,7 +1263,7 @@ head(counts_tidy_slim)[1:5]
     ## ENSG00000239474                     688891
 
 ``` r
-tail(counts_tidy_slim)
+tail(counts_tidy_slim)[1:5]
 ```
 
     ##                 GTEX.12ZZX.0726.SM.5EGKA.1 GTEX.13D11.1526.SM.5J2NA.1
@@ -1280,1070 +1280,13 @@ tail(counts_tidy_slim)
     ## ENSG00000248713                       901                     175863
     ## ENSG00000244694                        76                        214
     ## ENSG00000022267                   1665270                    2438587
-    ##                 GTEX.13VXT.1126.SM.5LU3A.1 GTEX.14ASI.0826.SM.5Q5EB.1
-    ## ENSG00000239474                     688891                     613314
-    ## ENSG00000088882                       2889                      28415
-    ## ENSG00000196616                     263871                    1639802
-    ## ENSG00000248713                     128831                       8266
-    ## ENSG00000244694                        565                       2005
-    ## ENSG00000022267                   15867945                    3041048
-    ##                 GTEX.ZF3C.1226.SM.4WWCB.1 GTEX.Y8E4.0426.SM.4V6GB.1
-    ## ENSG00000239474                     13481                    610368
-    ## ENSG00000088882                      5097                    101871
-    ## ENSG00000196616                    122209                   2927462
-    ## ENSG00000248713                         0                     26525
-    ## ENSG00000244694                      9472                      7248
-    ## ENSG00000022267                    371084                   3123426
-    ##                 GTEX.13PVR.0926.SM.5S2RB.1 GTEX.12BJ1.0326.SM.5FQUB.1
-    ## ENSG00000239474                     229676                     366824
-    ## ENSG00000088882                       4127                      37191
-    ## ENSG00000196616                    1179181                     663248
-    ## ENSG00000248713                       7843                     137260
-    ## ENSG00000244694                       1075                        875
-    ## ENSG00000022267                     849117                    4948675
-    ##                 GTEX.131XH.0226.SM.5LZVB.1 GTEX.11O72.1026.SM.5986B.1
-    ## ENSG00000239474                      72999                     101511
-    ## ENSG00000088882                       2662                       7856
-    ## ENSG00000196616                     235872                     324722
-    ## ENSG00000248713                      18936                     391141
-    ## ENSG00000244694                       2555                       1672
-    ## ENSG00000022267                    1211671                    5234961
-    ##                 GTEX.12WSG.1226.SM.5EQ4C.1 GTEX.13PVQ.1226.SM.5IJDC.1
-    ## ENSG00000239474                     497687                     388504
-    ## ENSG00000088882                       8786                       4857
-    ## ENSG00000196616                    1422539                      25481
-    ## ENSG00000248713                      23572                      14606
-    ## ENSG00000244694                       2480                       1563
-    ## ENSG00000022267                    8012113                    4774692
-    ##                 GTEX.13112.0426.SM.5PNVC.1 GTEX.139TU.1926.SM.5J2OC.1
-    ## ENSG00000239474                     225676                     236078
-    ## ENSG00000088882                      10999                     161158
-    ## ENSG00000196616                     877517                     607501
-    ## ENSG00000248713                       1766                     379730
-    ## ENSG00000244694                       4792                       5841
-    ## ENSG00000022267                    3284862                   11594668
-    ##                 GTEX.1399U.0726.SM.5KM1D.1 GTEX.ZE7O.0626.SM.57WCD.1
-    ## ENSG00000239474                     335147                    242206
-    ## ENSG00000088882                       5872                     15962
-    ## ENSG00000196616                    1994178                    685834
-    ## ENSG00000248713                       6993                      1398
-    ## ENSG00000244694                        878                      2072
-    ## ENSG00000022267                     840440                   1828323
-    ##                 GTEX.13OVG.0526.SM.5K7YD.1 GTEX.11LCK.0826.SM.5PNYD.1
-    ## ENSG00000239474                     493480                     320314
-    ## ENSG00000088882                      11281                      23278
-    ## ENSG00000196616                     961743                    1284410
-    ## ENSG00000248713                       7438                      15308
-    ## ENSG00000244694                       2421                        852
-    ## ENSG00000022267                    2301776                    1326193
-    ##                 GTEX.11ZVC.0426.SM.5CVLD.1 GTEX.13W3W.0426.SM.5SI9D.1
-    ## ENSG00000239474                     100813                     660742
-    ## ENSG00000088882                       4464                      19722
-    ## ENSG00000196616                     362182                     457571
-    ## ENSG00000248713                       1759                    1135552
-    ## ENSG00000244694                       1769                       1596
-    ## ENSG00000022267                     922001                   25598354
-    ##                 GTEX.146FR.0926.SM.5QGPE.1 GTEX.ZVT2.0926.SM.5GICE.1
-    ## ENSG00000239474                     316669                    243183
-    ## ENSG00000088882                       4171                     22658
-    ## ENSG00000196616                    2571023                   2029661
-    ## ENSG00000248713                     298849                      7699
-    ## ENSG00000244694                       2446                       770
-    ## ENSG00000022267                    2619220                   1066416
-    ##                 GTEX.13O3Q.0326.SM.5L3FE.1 GTEX.14E6C.0326.SM.5Q5EE.1
-    ## ENSG00000239474                      90862                     164808
-    ## ENSG00000088882                      22234                      20693
-    ## ENSG00000196616                     308651                    2279576
-    ## ENSG00000248713                      58231                       1077
-    ## ENSG00000244694                       1704                        275
-    ## ENSG00000022267                    2651407                    1710616
-    ##                 GTEX.131XG.0526.SM.5DUWF.1 GTEX.1445S.1226.SM.5O9BF.1
-    ## ENSG00000239474                     279790                     451412
-    ## ENSG00000088882                       6336                       5992
-    ## ENSG00000196616                     902270                    6689956
-    ## ENSG00000248713                      18454                       4971
-    ## ENSG00000244694                       1817                       5483
-    ## ENSG00000022267                     898047                    2827815
-    ##                 GTEX.13FHO.1226.SM.5L3EF.1 GTEX.YEC4.0226.SM.4W1YG.1
-    ## ENSG00000239474                     327475                    700402
-    ## ENSG00000088882                       7799                      3622
-    ## ENSG00000196616                    2575719                   1015310
-    ## ENSG00000248713                       1319                     27948
-    ## ENSG00000244694                       1459                      1150
-    ## ENSG00000022267                    1655023                   4913484
-    ##                 GTEX.ZF3C.1126.SM.57WEG.1 GTEX.12WSC.1126.SM.5EQ4G.1
-    ## ENSG00000239474                    279302                     336994
-    ## ENSG00000088882                     11710                      69331
-    ## ENSG00000196616                    785593                     340208
-    ## ENSG00000248713                   1094381                       2911
-    ## ENSG00000244694                      7425                      10141
-    ## ENSG00000022267                   4427137                    2065900
-    ##                 GTEX.YECK.1226.SM.4W21G.1 GTEX.ZAB5.0226.SM.5CVMH.1
-    ## ENSG00000239474                    168986                    472408
-    ## ENSG00000088882                     17890                      1323
-    ## ENSG00000196616                    940500                    717344
-    ## ENSG00000248713                     85983                      6019
-    ## ENSG00000244694                      2371                      2242
-    ## ENSG00000022267                   5228009                   3557245
-    ##                 GTEX.12WSN.0226.SM.5DUXH.1 GTEX.ZF2S.0826.SM.4WWBI.1
-    ## ENSG00000239474                     187954                    335606
-    ## ENSG00000088882                       8778                     58002
-    ## ENSG00000196616                     992999                   1165488
-    ## ENSG00000248713                     149809                      8551
-    ## ENSG00000244694                       1113                      3925
-    ## ENSG00000022267                    3140505                   1575747
-    ##                 GTEX.ZYWO.0526.SM.5E45I.1 GTEX.12696.1126.SM.5FQTI.1
-    ## ENSG00000239474                    372883                    1017286
-    ## ENSG00000088882                     11388                       4626
-    ## ENSG00000196616                   1878353                     295854
-    ## ENSG00000248713                     90019                       5130
-    ## ENSG00000244694                      1429                        816
-    ## ENSG00000022267                   4999859                   10748217
-    ##                 GTEX.ZPIC.0826.SM.4WWFJ.1 GTEX.132NY.1426.SM.5J1MJ.1
-    ## ENSG00000239474                    354155                     282408
-    ## ENSG00000088882                     37638                      28115
-    ## ENSG00000196616                    212334                     721745
-    ## ENSG00000248713                    830070                      49497
-    ## ENSG00000244694                       672                       6125
-    ## ENSG00000022267                  34347895                   10683926
-    ##                 GTEX.12WSI.0426.SM.5EQ5J.1 GTEX.14C39.0726.SM.5RQIK.1
-    ## ENSG00000239474                     103717                      46146
-    ## ENSG00000088882                       3006                       7247
-    ## ENSG00000196616                    1139257                     447330
-    ## ENSG00000248713                       3869                        557
-    ## ENSG00000244694                        781                       5334
-    ## ENSG00000022267                    1564873                    1576617
-    ##                 GTEX.12ZZY.1226.SM.5GCNK.1 GTEX.13S86.0326.SM.5SI6K.1
-    ## ENSG00000239474                     134638                     441039
-    ## ENSG00000088882                      76376                      22044
-    ## ENSG00000196616                     439804                     748056
-    ## ENSG00000248713                       7293                     444405
-    ## ENSG00000244694                       7400                       5445
-    ## ENSG00000022267                    2804395                    8179210
-    ##                 GTEX.ZDYS.0226.SM.5HL4K.1 GTEX.ZUA1.0826.SM.4YCDL.1
-    ## ENSG00000239474                    915221                     16519
-    ## ENSG00000088882                      3118                      8815
-    ## ENSG00000196616                    748634                    129122
-    ## ENSG00000248713                     74839                       797
-    ## ENSG00000244694                      1667                      5786
-    ## ENSG00000022267                  10961346                    549579
-    ##                 GTEX.1497J.1226.SM.5Q5BL.1 GTEX.13OW6.1126.SM.5L3HL.1
-    ## ENSG00000239474                     133245                     143385
-    ## ENSG00000088882                       3997                       4802
-    ## ENSG00000196616                     492325                     222328
-    ## ENSG00000248713                       2233                       3108
-    ## ENSG00000244694                        151                       2129
-    ## ENSG00000022267                    2051950                    2432549
-    ##                 GTEX.13OW6.0926.SM.5L3GM.1 GTEX.1269C.0826.SM.5N9EM.1
-    ## ENSG00000239474                     357718                      27391
-    ## ENSG00000088882                      52799                       4781
-    ## ENSG00000196616                    2215985                     373352
-    ## ENSG00000248713                       7064                       2342
-    ## ENSG00000244694                       2289                       1109
-    ## ENSG00000022267                    1882985                     912105
-    ##                 GTEX.12ZZW.1026.SM.5GCMM.1 GTEX.11GSP.1226.SM.5985M.1
-    ## ENSG00000239474                       4849                     137007
-    ## ENSG00000088882                       5486                     158195
-    ## ENSG00000196616                    3578089                     273695
-    ## ENSG00000248713                        250                       2480
-    ## ENSG00000244694                       4316                       1408
-    ## ENSG00000022267                    1030583                    3124615
-    ##                 GTEX.ZPU1.0626.SM.4YCDM.1 GTEX.11TT1.1326.SM.5PNYM.1
-    ## ENSG00000239474                    604089                    1069084
-    ## ENSG00000088882                      1394                      14065
-    ## ENSG00000196616                    167233                     213331
-    ## ENSG00000248713                      2680                    2388441
-    ## ENSG00000244694                      1312                        131
-    ## ENSG00000022267                   2131657                   13781517
-    ##                 GTEX.12696.1226.SM.5FQSM.1 GTEX.1117F.0726.SM.5GIEN.1
-    ## ENSG00000239474                     439308                      82569
-    ## ENSG00000088882                       6337                      45985
-    ## ENSG00000196616                     977922                    2518466
-    ## ENSG00000248713                     211454                       1730
-    ## ENSG00000244694                       2058                       5581
-    ## ENSG00000022267                   10558254                    1726985
-    ##                 GTEX.ZEX8.0426.SM.4WWEN.1 GTEX.YF7O.0526.SM.5P9IO.1
-    ## ENSG00000239474                   1164001                    691180
-    ## ENSG00000088882                     23051                     10051
-    ## ENSG00000196616                    313681                    300010
-    ## ENSG00000248713                    673535                    853334
-    ## ENSG00000244694                       887                       399
-    ## ENSG00000022267                   9787814                  12017033
-    ##                 GTEX.11EMC.0726.SM.5EGJO.1 GTEX.13NYB.0326.SM.5IJDP.1
-    ## ENSG00000239474                     153105                     282697
-    ## ENSG00000088882                      23843                      59148
-    ## ENSG00000196616                    1228621                    1589828
-    ## ENSG00000248713                       1200                      59807
-    ## ENSG00000244694                       1848                       2636
-    ## ENSG00000022267                    1176550                    2540001
-    ##                 GTEX.11DYG.1026.SM.5A5JQ.1 GTEX.117XS.0726.SM.5H131.1
-    ## ENSG00000239474                     505701                     163439
-    ## ENSG00000088882                       4497                        873
-    ## ENSG00000196616                    2604348                     595528
-    ## ENSG00000248713                       4651                       3270
-    ## ENSG00000244694                        775                       4553
-    ## ENSG00000022267                    3428319                    1910797
-    ##                 GTEX.13OVL.0526.SM.5KLZQ.1 GTEX.13FTZ.0326.SM.5J1O1.1
-    ## ENSG00000239474                     356485                      88785
-    ## ENSG00000088882                      21289                      66765
-    ## ENSG00000196616                     784495                    1316346
-    ## ENSG00000248713                       3198                       1585
-    ## ENSG00000244694                       1460                      14674
-    ## ENSG00000022267                    2901578                    5727377
-    ##                 GTEX.11DXY.0826.SM.5EGGR.1 GTEX.11O72.1126.SM.5N9E2.1
-    ## ENSG00000239474                      39715                     171327
-    ## ENSG00000088882                      12627                      24186
-    ## ENSG00000196616                     288605                     251411
-    ## ENSG00000248713                        552                       1160
-    ## ENSG00000244694                       1252                       2235
-    ## ENSG00000022267                     567554                    1280833
-    ##                 GTEX.111YS.0326.SM.5GZZ3.1 GTEX.11P81.0526.SM.59873.1
-    ## ENSG00000239474                     359130                     356190
-    ## ENSG00000088882                       1183                      37392
-    ## ENSG00000196616                    2556352                    1372544
-    ## ENSG00000248713                      55387                       5388
-    ## ENSG00000244694                       1209                         22
-    ## ENSG00000022267                    2921282                    1180426
-    ##                 GTEX.YF7O.0426.SM.5P9FS.1 GTEX.1192W.0226.SM.5EGGT.1
-    ## ENSG00000239474                   1363449                     148335
-    ## ENSG00000088882                      7143                      27643
-    ## ENSG00000196616                    142542                     489673
-    ## ENSG00000248713                   2039123                       5282
-    ## ENSG00000244694                      3162                       4615
-    ## ENSG00000022267                  48334489                    1969620
-    ##                 GTEX.13NZB.0226.SM.5KM1T.1 GTEX.13OVG.0426.SM.5KM2T.1
-    ## ENSG00000239474                     426586                     157360
-    ## ENSG00000088882                       2571                      72884
-    ## ENSG00000196616                     719862                    2451158
-    ## ENSG00000248713                       2293                      13887
-    ## ENSG00000244694                       1479                       3907
-    ## ENSG00000022267                    2484708                    1466816
-    ##                 GTEX.11I78.0826.SM.5A5K4.1 GTEX.13O3P.1426.SM.5L3DT.1
-    ## ENSG00000239474                     668940                     319592
-    ## ENSG00000088882                       8764                       3929
-    ## ENSG00000196616                     429196                    1092105
-    ## ENSG00000248713                     293079                     223968
-    ## ENSG00000244694                       1752                       1412
-    ## ENSG00000022267                   11312473                    2942280
-    ##                 GTEX.13N1W.1026.SM.5IJC5.1 GTEX.13O1R.1226.SM.5J1NU.1
-    ## ENSG00000239474                     176115                     292168
-    ## ENSG00000088882                       5705                      31825
-    ## ENSG00000196616                     101967                     224828
-    ## ENSG00000248713                     185491                     237230
-    ## ENSG00000244694                       3519                       2316
-    ## ENSG00000022267                    2142494                    2896820
-    ##                 GTEX.13CF2.0226.SM.5L3DV.1 GTEX.1122O.0826.SM.5GICV.1
-    ## ENSG00000239474                     312345                     459072
-    ## ENSG00000088882                      22209                       7022
-    ## ENSG00000196616                     382304                     534088
-    ## ENSG00000248713                      75720                      49225
-    ## ENSG00000244694                       6058                       1004
-    ## ENSG00000022267                    5857194                    3412533
-    ##                 GTEX.14C5O.1326.SM.5S2UW.1 GTEX.12WS9.0826.SM.59HJX.1
-    ## ENSG00000239474                      26125                     144452
-    ## ENSG00000088882                       2002                      44951
-    ## ENSG00000196616                     324447                    3122262
-    ## ENSG00000248713                        591                       7508
-    ## ENSG00000244694                       4585                       1391
-    ## ENSG00000022267                     447812                    1357532
-    ##                 GTEX.11GSP.1326.SM.5A5KY.1 GTEX.1399S.1026.SM.5KLZ9.1
-    ## ENSG00000239474                      32102                     756447
-    ## ENSG00000088882                       9122                       7148
-    ## ENSG00000196616                     101497                     582136
-    ## ENSG00000248713                        845                       7756
-    ## ENSG00000244694                       3880                        152
-    ## ENSG00000022267                     775496                    5858339
-    ##                 GTEX.1339X.0426.SM.5KLZY.1 GTEX.Y5V5.0726.SM.4VBPY.1
-    ## ENSG00000239474                     954122                    382750
-    ## ENSG00000088882                       5170                     18856
-    ## ENSG00000196616                     204733                   1510442
-    ## ENSG00000248713                      50189                     14105
-    ## ENSG00000244694                        443                      2484
-    ## ENSG00000022267                    6464080                   6154362
-    ##                 GTEX.13FLV.0926.SM.5L3DZ.1 GTEX.14C38.1426.SM.5RQHZ.1
-    ## ENSG00000239474                     277303                     361825
-    ## ENSG00000088882                      32130                       7655
-    ## ENSG00000196616                     339926                    1019819
-    ## ENSG00000248713                       5116                      21382
-    ## ENSG00000244694                       2083                       2664
-    ## ENSG00000022267                    7001395                    4670998
-    ##                 GTEX.117YW.0426.SM.5GZZZ.1 GTEX.ZZPT.0926.SM.5GICZ.1
-    ## ENSG00000239474                      39616                    308654
-    ## ENSG00000088882                       1956                       730
-    ## ENSG00000196616                     282392                   6579731
-    ## ENSG00000248713                        689                      3731
-    ## ENSG00000244694                       1713                      3815
-    ## ENSG00000022267                     621654                   1216195
-    ##                 GTEX.11ZTT.0526.SM.5EQLA.1 GTEX.12WSK.0526.SM.5CVNA.1
-    ## ENSG00000239474                     256432                     363586
-    ## ENSG00000088882                      41379                       5568
-    ## ENSG00000196616                    1041493                    2274919
-    ## ENSG00000248713                       4585                      47960
-    ## ENSG00000244694                       1066                       5317
-    ## ENSG00000022267                    1122831                    2083047
-    ##                 GTEX.1212Z.0626.SM.5FQTB.1 GTEX.ZAJG.0926.SM.5Q5AB.1
-    ## ENSG00000239474                     104222                     90676
-    ## ENSG00000088882                       4001                      7782
-    ## ENSG00000196616                     212736                    812764
-    ## ENSG00000248713                       1161                     11711
-    ## ENSG00000244694                      10481                      1616
-    ## ENSG00000022267                    2264727                   1224570
-    ##                 GTEX.13NYS.1926.SM.5IJCB.1 GTEX.ZV7C.0526.SM.51MRB.1
-    ## ENSG00000239474                     373735                    199694
-    ## ENSG00000088882                        952                     11746
-    ## ENSG00000196616                    4645022                    415644
-    ## ENSG00000248713                       5542                     17311
-    ## ENSG00000244694                       6500                      1588
-    ## ENSG00000022267                    1410018                   1183971
-    ##                 GTEX.13JUV.0226.SM.5IJCC.1 GTEX.11DXX.0326.SM.5PNWC.1
-    ## ENSG00000239474                     172255                     454142
-    ## ENSG00000088882                      10342                        785
-    ## ENSG00000196616                    1729957                     167603
-    ## ENSG00000248713                     262735                       9444
-    ## ENSG00000244694                       2505                       2751
-    ## ENSG00000022267                    4627183                    1483377
-    ##                 GTEX.13O3O.1526.SM.5KM1C.1 GTEX.11TUW.1026.SM.5GU7D.1
-    ## ENSG00000239474                     183325                     395704
-    ## ENSG00000088882                       2035                      51729
-    ## ENSG00000196616                     229722                     106453
-    ## ENSG00000248713                       2161                     218712
-    ## ENSG00000244694                        907                       4680
-    ## ENSG00000022267                    1881067                    2837283
-    ##                 GTEX.13U4I.0826.SM.5SIBD.1 GTEX.13VXT.0726.SM.5SIAD.1
-    ## ENSG00000239474                     719565                     132639
-    ## ENSG00000088882                       6731                      12605
-    ## ENSG00000196616                     273232                    1063596
-    ## ENSG00000248713                       6186                       6764
-    ## ENSG00000244694                       2332                        286
-    ## ENSG00000022267                    4989125                     755719
-    ##                 GTEX.11GS4.0426.SM.5N9CD.1 GTEX.13X6H.0426.SM.5LU4E.1
-    ## ENSG00000239474                      75527                     560235
-    ## ENSG00000088882                      20698                       4284
-    ## ENSG00000196616                     823319                     736614
-    ## ENSG00000248713                       2001                       3244
-    ## ENSG00000244694                       4166                       1103
-    ## ENSG00000022267                    1830851                    1178872
-    ##                 GTEX.YB5K.0226.SM.5IFJE.1 GTEX.ZVT4.1326.SM.5NQ8E.1
-    ## ENSG00000239474                    485123                    131375
-    ## ENSG00000088882                     24465                    150643
-    ## ENSG00000196616                    728786                    728067
-    ## ENSG00000248713                      8652                    708759
-    ## ENSG00000244694                      1670                      2005
-    ## ENSG00000022267                    900339                   4589390
-    ##                 GTEX.ZYVF.1826.SM.5E44F.1 GTEX.146FH.1026.SM.5RQIF.1
-    ## ENSG00000239474                    220715                     594303
-    ## ENSG00000088882                     17891                       1769
-    ## ENSG00000196616                   1414337                     721493
-    ## ENSG00000248713                      4189                      12006
-    ## ENSG00000244694                      1628                       5727
-    ## ENSG00000022267                    738548                    4818282
-    ##                 GTEX.ZT9W.0526.SM.57WFG.1 GTEX.139YR.0526.SM.5L3DG.1
-    ## ENSG00000239474                    364244                     251237
-    ## ENSG00000088882                      8675                       7647
-    ## ENSG00000196616                   2359429                    1400996
-    ## ENSG00000248713                     20065                       9879
-    ## ENSG00000244694                      2027                       3076
-    ## ENSG00000022267                   2248454                    1005498
-    ##                 GTEX.14BIM.2726.SM.5Q5EG.1 GTEX.145LV.0226.SM.5S2QG.1
-    ## ENSG00000239474                     193731                     225024
-    ## ENSG00000088882                       3594                       4841
-    ## ENSG00000196616                    1144328                     982785
-    ## ENSG00000248713                      18005                       1678
-    ## ENSG00000244694                       1602                       2425
-    ## ENSG00000022267                    3109590                     605633
-    ##                 GTEX.145MN.0626.SM.5QGRH.1 GTEX.12WSG.0526.SM.5FQTH.1
-    ## ENSG00000239474                     993925                     868902
-    ## ENSG00000088882                      10326                      12833
-    ## ENSG00000196616                     141918                     415642
-    ## ENSG00000248713                     325779                     162205
-    ## ENSG00000244694                       1119                       2456
-    ## ENSG00000022267                   22335238                    5363354
-    ##                 GTEX.13CF2.0426.SM.5KM1H.1 GTEX.13OW7.1626.SM.5IJDH.1
-    ## ENSG00000239474                      68884                     312912
-    ## ENSG00000088882                       9070                      17151
-    ## ENSG00000196616                     111444                     516608
-    ## ENSG00000248713                       2215                      18742
-    ## ENSG00000244694                       8108                       1782
-    ## ENSG00000022267                     823262                    3112735
-    ##                 GTEX.117YX.0626.SM.5EGJI.1 GTEX.13PL6.0826.SM.5IJBI.1
-    ## ENSG00000239474                    1067862                      80682
-    ## ENSG00000088882                      50748                      30773
-    ## ENSG00000196616                    1227998                    1019818
-    ## ENSG00000248713                       8418                     284790
-    ## ENSG00000244694                        630                        846
-    ## ENSG00000022267                    2649744                    6877196
-    ##                 GTEX.11WQK.0226.SM.5EQLI.1 GTEX.11TUW.1126.SM.5EQKJ.1
-    ## ENSG00000239474                     507250                     341765
-    ## ENSG00000088882                       9761                      49182
-    ## ENSG00000196616                      35374                     231178
-    ## ENSG00000248713                    2383202                     102517
-    ## ENSG00000244694                        374                       4935
-    ## ENSG00000022267                    7145604                    2548390
-    ##                 GTEX.12WSK.0626.SM.5LZUJ.1 GTEX.13S86.0226.SM.5S2PJ.1
-    ## ENSG00000239474                     813984                    1597369
-    ## ENSG00000088882                      18240                        964
-    ## ENSG00000196616                     795138                      21566
-    ## ENSG00000248713                     767113                     494078
-    ## ENSG00000244694                       3553                       1625
-    ## ENSG00000022267                   22535513                    4765660
-    ##                 GTEX.YFC4.0426.SM.4TT3J.1 GTEX.13PVQ.1326.SM.5LU4J.1
-    ## ENSG00000239474                    306309                     647069
-    ## ENSG00000088882                     21865                       7144
-    ## ENSG00000196616                   1347632                     218323
-    ## ENSG00000248713                      5310                     158407
-    ## ENSG00000244694                      3302                        152
-    ## ENSG00000022267                   4944870                    3963852
-    ##                 GTEX.1399R.1726.SM.5K7YJ.1 GTEX.132NY.1726.SM.5EGKK.1
-    ## ENSG00000239474                     403206                     451382
-    ## ENSG00000088882                       4667                       5459
-    ## ENSG00000196616                    1160992                     323393
-    ## ENSG00000248713                      12482                       1008
-    ## ENSG00000244694                       2445                       3305
-    ## ENSG00000022267                    1167428                    2454519
-    ##                 GTEX.ZYWO.0626.SM.5E45K.1 GTEX.ZLFU.0326.SM.4WWBK.1
-    ## ENSG00000239474                    693849                    356191
-    ## ENSG00000088882                     21228                       551
-    ## ENSG00000196616                   2543128                    473691
-    ## ENSG00000248713                     24379                      4530
-    ## ENSG00000244694                       144                       371
-    ## ENSG00000022267                  11651690                   5475590
-    ##                 GTEX.ZDTT.0726.SM.4WKFK.1 GTEX.1314G.0126.SM.5LZUL.1
-    ## ENSG00000239474                   1046447                     105480
-    ## ENSG00000088882                      7810                       4766
-    ## ENSG00000196616                    903347                     381233
-    ## ENSG00000248713                     12308                       2034
-    ## ENSG00000244694                      2388                       1515
-    ## ENSG00000022267                  13479587                    1455304
-    ##                 GTEX.13U4I.0626.SM.5LU5L.1 GTEX.ZDTS.1226.SM.4WKGL.1
-    ## ENSG00000239474                     483716                    463334
-    ## ENSG00000088882                      22692                      5996
-    ## ENSG00000196616                    1135502                    390817
-    ## ENSG00000248713                       8310                     10058
-    ## ENSG00000244694                       3565                      3816
-    ## ENSG00000022267                    1712703                   2980629
-    ##                 GTEX.ZGAY.0226.SM.4WWAL.1 GTEX.ZYT6.0926.SM.5GIEM.1
-    ## ENSG00000239474                    411379                    438564
-    ## ENSG00000088882                     28065                     64771
-    ## ENSG00000196616                   5365960                   1773334
-    ## ENSG00000248713                     14776                      6472
-    ## ENSG00000244694                       878                      1293
-    ## ENSG00000022267                   1373545                   1631395
-    ##                 GTEX.13JVG.1126.SM.5KM2M.1 GTEX.ZG7Y.1426.SM.4WWBM.1
-    ## ENSG00000239474                     268028                    381437
-    ## ENSG00000088882                       5384                      8313
-    ## ENSG00000196616                     557497                   6755259
-    ## ENSG00000248713                      32638                     74897
-    ## ENSG00000244694                       1130                      2458
-    ## ENSG00000022267                    1248104                   2697710
-    ##                 GTEX.1399U.0526.SM.5K7YM.1 GTEX.ZYFG.0426.SM.5E43M.1
-    ## ENSG00000239474                     357249                    713824
-    ## ENSG00000088882                       1493                      4390
-    ## ENSG00000196616                    1121708                    809807
-    ## ENSG00000248713                       2875                      4387
-    ## ENSG00000244694                       2461                      2561
-    ## ENSG00000022267                    2490056                   3134954
-    ##                 GTEX.12584.0926.SM.5FQTN.1 GTEX.ZF29.0426.SM.4WKFN.1
-    ## ENSG00000239474                      73573                    403267
-    ## ENSG00000088882                        613                      1327
-    ## ENSG00000196616                     563118                   2535920
-    ## ENSG00000248713                       4289                     26063
-    ## ENSG00000244694                       2177                       887
-    ## ENSG00000022267                    1829429                   1436931
-    ##                 GTEX.13RTJ.0726.SM.5QGQN.1 GTEX.ZG7Y.0926.SM.5EQ6O.1
-    ## ENSG00000239474                      99401                   1394024
-    ## ENSG00000088882                       4434                      1082
-    ## ENSG00000196616                     677761                    491942
-    ## ENSG00000248713                       1900                    361991
-    ## ENSG00000244694                        617                      3337
-    ## ENSG00000022267                     822155                  18969149
-    ##                 GTEX.111FC.0826.SM.5GZWO.1 GTEX.ZTPG.1226.SM.4YCDO.1
-    ## ENSG00000239474                     315239                    772296
-    ## ENSG00000088882                      21736                      5484
-    ## ENSG00000196616                     658242                    154612
-    ## ENSG00000248713                      15600                     41096
-    ## ENSG00000244694                       1138                       152
-    ## ENSG00000022267                    2848950                   9357548
-    ##                 GTEX.ZF29.0226.SM.4WKHO.1 GTEX.ZPU1.0726.SM.5HL6O.1
-    ## ENSG00000239474                    847447                    306638
-    ## ENSG00000088882                      3767                     18718
-    ## ENSG00000196616                    718557                   1600167
-    ## ENSG00000248713                     16810                      8507
-    ## ENSG00000244694                      1295                      2318
-    ## ENSG00000022267                   4399367                   1782438
-    ##                 GTEX.145LS.1326.SM.5Q5EP.1 GTEX.ZYT6.1726.SM.5E44P.1
-    ## ENSG00000239474                     410710                     32226
-    ## ENSG00000088882                     109481                     28606
-    ## ENSG00000196616                     212319                    390925
-    ## ENSG00000248713                     202690                       484
-    ## ENSG00000244694                       5734                       617
-    ## ENSG00000022267                    8485695                    409959
-    ##                 GTEX.13N11.0726.SM.5L3DP.1 GTEX.ZV7C.0326.SM.57WB1.1
-    ## ENSG00000239474                     364357                    670813
-    ## ENSG00000088882                      29647                       843
-    ## ENSG00000196616                    3659007                    519929
-    ## ENSG00000248713                      22381                      2520
-    ## ENSG00000244694                       1863                      1955
-    ## ENSG00000022267                    3268680                   3756373
-    ##                 GTEX.12ZZY.1126.SM.5DUWQ.1 GTEX.13D11.1726.SM.5IFGQ.1
-    ## ENSG00000239474                      75251                     683728
-    ## ENSG00000088882                      12319                       5963
-    ## ENSG00000196616                     129039                     525328
-    ## ENSG00000248713                       1447                       2188
-    ## ENSG00000244694                       3082                        664
-    ## ENSG00000022267                     752292                    3320750
-    ##                 GTEX.YEC3.0726.SM.4YCD1.1 GTEX.YEC3.0426.SM.5IFK1.1
-    ## ENSG00000239474                    899677                    499773
-    ## ENSG00000088882                     13245                     12780
-    ## ENSG00000196616                    533819                   1924064
-    ## ENSG00000248713                      5095                     13070
-    ## ENSG00000244694                      3233                      2710
-    ## ENSG00000022267                   2900764                   1315576
-    ##                 GTEX.11EQ8.1326.SM.5EGJQ.1 GTEX.13OVI.0326.SM.5K7X1.1
-    ## ENSG00000239474                     412209                     293988
-    ## ENSG00000088882                       6949                       2486
-    ## ENSG00000196616                    1931809                    1604089
-    ## ENSG00000248713                       2487                       5354
-    ## ENSG00000244694                        901                       1456
-    ## ENSG00000022267                    1739448                    7156334
-    ##                 GTEX.ZF2S.1026.SM.4WWB1.1 GTEX.11ZVC.0526.SM.5N9G1.1
-    ## ENSG00000239474                    622760                      22367
-    ## ENSG00000088882                     22200                      69785
-    ## ENSG00000196616                     68154                    2020545
-    ## ENSG00000248713                     28507                       1385
-    ## ENSG00000244694                       873                       3156
-    ## ENSG00000022267                   6526618                    1747392
-    ##                 GTEX.12WSD.1226.SM.5HL9Q.1 GTEX.11DXZ.0326.SM.5EGH1.1
-    ## ENSG00000239474                     233959                     323938
-    ## ENSG00000088882                       2616                        462
-    ## ENSG00000196616                     564022                    1465352
-    ## ENSG00000248713                       3931                       4348
-    ## ENSG00000244694                       1034                       1641
-    ## ENSG00000022267                    2660493                    1017841
-    ##                 GTEX.13FH7.0926.SM.5J2MR.1 GTEX.1192X.0726.SM.5987R.1
-    ## ENSG00000239474                    1105396                     241295
-    ## ENSG00000088882                       7973                       1154
-    ## ENSG00000196616                     576361                    6545888
-    ## ENSG00000248713                     476040                      29017
-    ## ENSG00000244694                         85                       3478
-    ## ENSG00000022267                   18897056                    6243964
-    ##                 GTEX.13FHP.1026.SM.5K7Y2.1 GTEX.11DXX.0526.SM.5PNVR.1
-    ## ENSG00000239474                      14514                     267454
-    ## ENSG00000088882                       1781                       4576
-    ## ENSG00000196616                     180351                     617523
-    ## ENSG00000248713                        152                      84542
-    ## ENSG00000244694                        673                       2163
-    ## ENSG00000022267                     303492                    1852788
-    ##                 GTEX.Y8E4.0326.SM.4VBRR.1 GTEX.13X6K.1826.SM.5O9CR.1
-    ## ENSG00000239474                    750635                     152238
-    ## ENSG00000088882                     13708                      20132
-    ## ENSG00000196616                    415442                     603748
-    ## ENSG00000248713                      4407                       3734
-    ## ENSG00000244694                      4140                       3367
-    ## ENSG00000022267                   2607143                    2356134
-    ##                 GTEX.13112.0526.SM.5EQ4S.1 GTEX.14A5I.1026.SM.5Q5E3.1
-    ## ENSG00000239474                     202047                     118289
-    ## ENSG00000088882                       7851                      16297
-    ## ENSG00000196616                    1196631                    4930272
-    ## ENSG00000248713                       4091                      10578
-    ## ENSG00000244694                       3785                       2655
-    ## ENSG00000022267                    2406411                    2845223
-    ##                 GTEX.YJ8O.0826.SM.5CVM3.1 GTEX.ZVZP.0226.SM.5NQ73.1
-    ## ENSG00000239474                    165996                    561370
-    ## ENSG00000088882                     21913                      1530
-    ## ENSG00000196616                   3086460                    589944
-    ## ENSG00000248713                      5326                      5805
-    ## ENSG00000244694                      1105                      1003
-    ## ENSG00000022267                   2622700                   2182123
-    ##                 GTEX.12584.1026.SM.59HK3.1 GTEX.11NV4.0826.SM.5BC4S.1
-    ## ENSG00000239474                      58871                     416683
-    ## ENSG00000088882                      16278                       4489
-    ## ENSG00000196616                    2755089                    1732598
-    ## ENSG00000248713                      33688                      26199
-    ## ENSG00000244694                       3758                       3230
-    ## ENSG00000022267                    3251252                    4191868
-    ##                 GTEX.13NZA.0826.SM.5K7WS.1 GTEX.ZDXO.0726.SM.57WBT.1
-    ## ENSG00000239474                      70051                    320976
-    ## ENSG00000088882                      13060                      9385
-    ## ENSG00000196616                    1317565                    269973
-    ## ENSG00000248713                       1481                      2540
-    ## ENSG00000244694                       3660                      3077
-    ## ENSG00000022267                    2325042                   2984704
-    ##                 GTEX.13QBU.0426.SM.5J2O4.1 GTEX.132AR.2026.SM.5IJG4.1
-    ## ENSG00000239474                     375893                     395556
-    ## ENSG00000088882                       2152                       4721
-    ## ENSG00000196616                     915560                     158518
-    ## ENSG00000248713                      18919                      31616
-    ## ENSG00000244694                        521                        303
-    ## ENSG00000022267                    4384027                    8743164
-    ##                 GTEX.146FH.1126.SM.5NQAT.1 GTEX.12WSA.1126.SM.5EGKU.1
-    ## ENSG00000239474                     307329                     182894
-    ## ENSG00000088882                      18543                       2194
-    ## ENSG00000196616                    2169639                    2171542
-    ## ENSG00000248713                       9778                       1138
-    ## ENSG00000244694                       4362                       2202
-    ## ENSG00000022267                    1554420                     984939
-    ##                 GTEX.ZVT2.1026.SM.5GU55.1 GTEX.14E7W.1226.SM.5RQIU.1
-    ## ENSG00000239474                    545913                      21269
-    ## ENSG00000088882                     17295                       5160
-    ## ENSG00000196616                    515217                      42178
-    ## ENSG00000248713                      6478                        295
-    ## ENSG00000244694                      2066                       5003
-    ## ENSG00000022267                   4766612                     456630
-    ##                 GTEX.148VJ.1526.SM.5Q5DU.1 GTEX.ZGAY.0326.SM.57WF5.1
-    ## ENSG00000239474                      23194                   1157169
-    ## ENSG00000088882                       3708                      4976
-    ## ENSG00000196616                     143015                    357840
-    ## ENSG00000248713                       2317                    986741
-    ## ENSG00000244694                        297                      3773
-    ## ENSG00000022267                     533836                  26266931
-    ##                 GTEX.132AR.1926.SM.5EGK5.1 GTEX.13FTZ.0226.SM.5K7X6.1
-    ## ENSG00000239474                     472733                      82607
-    ## ENSG00000088882                       7516                      11118
-    ## ENSG00000196616                     548969                     329180
-    ## ENSG00000248713                      57091                       1550
-    ## ENSG00000244694                        152                       3901
-    ## ENSG00000022267                    4343375                     977506
-    ##                 GTEX.132QS.0426.SM.5KLZ6.1 GTEX.14E6D.0926.SM.5S2QV.1
-    ## ENSG00000239474                    1193136                      34136
-    ## ENSG00000088882                       1941                      11301
-    ## ENSG00000196616                     201354                     452624
-    ## ENSG00000248713                      17840                          0
-    ## ENSG00000244694                        593                        684
-    ## ENSG00000022267                   13509985                     505138
-    ##                 GTEX.ZDXO.0426.SM.4WKF6.1 GTEX.11DXY.1026.SM.5987V.1
-    ## ENSG00000239474                    222496                     261182
-    ## ENSG00000088882                     84288                      22268
-    ## ENSG00000196616                    816328                     809530
-    ## ENSG00000248713                     54162                       1981
-    ## ENSG00000244694                      1633                       2258
-    ## ENSG00000022267                   2978652                    3178690
-    ##                 GTEX.131YS.0826.SM.5PNYV.1 GTEX.148VI.0326.SM.5RQK7.1
-    ## ENSG00000239474                     602782                     164855
-    ## ENSG00000088882                      12910                      13526
-    ## ENSG00000196616                    1431668                     233134
-    ## ENSG00000248713                      10183                       1152
-    ## ENSG00000244694                       3595                        249
-    ## ENSG00000022267                    3927428                    1569717
-    ##                 GTEX.11NUK.0926.SM.5HL57.1 GTEX.145LV.0326.SM.5Q5BW.1
-    ## ENSG00000239474                     190263                     353376
-    ## ENSG00000088882                      41768                        853
-    ## ENSG00000196616                    2366794                     208030
-    ## ENSG00000248713                       3063                       4282
-    ## ENSG00000244694                       1325                       1412
-    ## ENSG00000022267                    2491722                    1370425
-    ##                 GTEX.13PVR.1026.SM.5QGQW.1 GTEX.11ZUS.0326.SM.5EQ4W.1
-    ## ENSG00000239474                     454376                     184799
-    ## ENSG00000088882                       2665                      22793
-    ## ENSG00000196616                     460552                     639109
-    ## ENSG00000248713                      69460                      13876
-    ## ENSG00000244694                        265                       1331
-    ## ENSG00000022267                    7513073                    2029970
-    ##                 GTEX.ZZPU.1126.SM.5N9CW.1 GTEX.117YX.1126.SM.5H128.1
-    ## ENSG00000239474                    254121                     635496
-    ## ENSG00000088882                     21753                        288
-    ## ENSG00000196616                   4556073                     341553
-    ## ENSG00000248713                     41578                       3652
-    ## ENSG00000244694                      5680                       1273
-    ## ENSG00000022267                   3466477                    3445295
-    ##                 GTEX.11ZUS.0226.SM.5FQT8.1 GTEX.ZYFG.0526.SM.5GZXX.1
-    ## ENSG00000239474                     316340                    411936
-    ## ENSG00000088882                      16505                      6583
-    ## ENSG00000196616                     155370                   1199625
-    ## ENSG00000248713                       4953                      9700
-    ## ENSG00000244694                       2045                      3089
-    ## ENSG00000022267                    2252900                   1216768
-    ##                 GTEX.1399R.1926.SM.5K7X8.1 GTEX.145MO.1126.SM.5NQBX.1
-    ## ENSG00000239474                     493966                      86191
-    ## ENSG00000088882                       1329                       5991
-    ## ENSG00000196616                     298081                     237779
-    ## ENSG00000248713                       3698                       1875
-    ## ENSG00000244694                       4181                       3159
-    ## ENSG00000022267                    4743696                    1248630
-    ##                 GTEX.1339X.0326.SM.5K7Z8.1 GTEX.13QBU.0226.SM.5LU48.1
-    ## ENSG00000239474                     351396                     570613
-    ## ENSG00000088882                       2635                       5377
-    ## ENSG00000196616                     425050                    1386234
-    ## ENSG00000248713                      14592                    4039652
-    ## ENSG00000244694                       1174                          0
-    ## ENSG00000022267                    2025256                    5366537
-    ##                 GTEX.14A6H.0226.SM.5Q5DX.1 GTEX.147F4.1226.SM.5NQAY.1
-    ## ENSG00000239474                     609619                      32509
-    ## ENSG00000088882                      51045                       1622
-    ## ENSG00000196616                     449070                     168972
-    ## ENSG00000248713                       3551                        817
-    ## ENSG00000244694                       1340                       1107
-    ## ENSG00000022267                    4294973                     505124
-    ##                 GTEX.13CF3.0726.SM.5J2MY.1 GTEX.13PDP.1326.SM.5K7U9.1
-    ## ENSG00000239474                    1063042                      99000
-    ## ENSG00000088882                       8907                       1631
-    ## ENSG00000196616                     381642                     888315
-    ## ENSG00000248713                     126371                      13004
-    ## ENSG00000244694                       2215                       2422
-    ## ENSG00000022267                   17917840                    2108658
-    ##                 GTEX.13OW5.0926.SM.5L3GZ.1 GTEX.13X6I.1426.SM.5SI9Z.1
-    ## ENSG00000239474                     168962                     179840
-    ## ENSG00000088882                       2699                      11461
-    ## ENSG00000196616                     217906                    2762505
-    ## ENSG00000248713                     117697                       2128
-    ## ENSG00000244694                       5243                       6194
-    ## ENSG00000022267                    4126669                     916642
-    ##                 GTEX.13CF3.0826.SM.5LZYZ.1 GTEX.11EM3.0426.SM.5N9BZ.1
-    ## ENSG00000239474                      28214                     349771
-    ## ENSG00000088882                     427711                      24119
-    ## ENSG00000196616                    4790959                    2015217
-    ## ENSG00000248713                       2594                      20145
-    ## ENSG00000244694                       7369                        811
-    ## ENSG00000022267                    2850103                    1205174
-    ##                 GTEX.1211K.0626.SM.5FQUZ.1 GTEX.11GS4.0526.SM.5A5KQ.1
-    ## ENSG00000239474                     816427                     123620
-    ## ENSG00000088882                       1386                      44964
-    ## ENSG00000196616                     292773                     180721
-    ## ENSG00000248713                     212051                       3593
-    ## ENSG00000244694                        701                       3609
-    ## ENSG00000022267                   11632768                    2061582
-    ##                 GTEX.ZTPG.1326.SM.51MSQ.1 GTEX.146FR.0626.SM.5RQJ1.1
-    ## ENSG00000239474                    404482                    1077588
-    ## ENSG00000088882                     25172                       1511
-    ## ENSG00000196616                   1028091                     515628
-    ## ENSG00000248713                     28113                       9839
-    ## ENSG00000244694                      1276                       2054
-    ## ENSG00000022267                   3219368                    7243214
-    ##                 GTEX.13YAN.1326.SM.5Q5F1.1 GTEX.13O61.0526.SM.5J2M1.1
-    ## ENSG00000239474                     113125                     466562
-    ## ENSG00000088882                        582                       1368
-    ## ENSG00000196616                     381522                    1324066
-    ## ENSG00000248713                       2349                      10147
-    ## ENSG00000244694                        774                       3264
-    ## ENSG00000022267                     338502                    5234775
-    ##                 GTEX.11ILO.2526.SM.5A5LQ.1 GTEX.12BJ1.0226.SM.5LUA2.1
-    ## ENSG00000239474                     262290                     450094
-    ## ENSG00000088882                       5201                       1872
-    ## ENSG00000196616                    1204311                     467904
-    ## ENSG00000248713                       3737                       3584
-    ## ENSG00000244694                       2123                        441
-    ## ENSG00000022267                    3282337                    1779235
-    ##                 GTEX.144GL.1026.SM.5O99R.1 GTEX.13FTW.0826.SM.5K7XR.1
-    ## ENSG00000239474                     520419                     318291
-    ## ENSG00000088882                       8684                       6560
-    ## ENSG00000196616                     329609                    1584761
-    ## ENSG00000248713                       9992                    3400790
-    ## ENSG00000244694                        751                       1815
-    ## ENSG00000022267                    2343480                   12652431
-    ##                 GTEX.139UC.0426.SM.5K7UR.1 GTEX.13OW5.1126.SM.5J1NR.1
-    ## ENSG00000239474                      62734                      23985
-    ## ENSG00000088882                       3115                       1905
-    ## ENSG00000196616                     448353                     130512
-    ## ENSG00000248713                        886                       2851
-    ## ENSG00000244694                       2631                       3133
-    ## ENSG00000022267                    1483999                     385160
-    ##                 GTEX.YB5K.0126.SM.5IFJ2.1 GTEX.11EMC.0826.SM.59862.1
-    ## ENSG00000239474                    598420                     157546
-    ## ENSG00000088882                      8035                       6952
-    ## ENSG00000196616                     32243                    1999779
-    ## ENSG00000248713                   2405910                       3276
-    ## ENSG00000244694                      2478                       2773
-    ## ENSG00000022267                  34121453                    1794613
-    ##                 GTEX.131XF.0326.SM.5DUVR.1 GTEX.132Q8.1126.SM.5K7XS.1
-    ## ENSG00000239474                     362406                     287714
-    ## ENSG00000088882                       1393                       7600
-    ## ENSG00000196616                     188273                    4614109
-    ## ENSG00000248713                       5671                      32731
-    ## ENSG00000244694                       2262                       3189
-    ## ENSG00000022267                    4534082                    6442347
-    ##                 GTEX.13FTW.1026.SM.5L3E3.1 GTEX.13PL7.0726.SM.5KM1S.1
-    ## ENSG00000239474                     770801                     275660
-    ## ENSG00000088882                       4039                       1203
-    ## ENSG00000196616                     653611                    1522541
-    ## ENSG00000248713                      21019                      10848
-    ## ENSG00000244694                       1170                        735
-    ## ENSG00000022267                    7156695                    2116898
-    ##                 GTEX.ZEX8.0326.SM.4WKGS.1 GTEX.1399S.0826.SM.5KM23.1
-    ## ENSG00000239474                    285092                     349912
-    ## ENSG00000088882                    116182                       1642
-    ## ENSG00000196616                   1147612                    1071713
-    ## ENSG00000248713                      7055                      27519
-    ## ENSG00000244694                      1827                        134
-    ## ENSG00000022267                   2381962                    3362252
-    ##                 GTEX.ZVZQ.0726.SM.51MR3.1 GTEX.13O3P.1626.SM.5K7X3.1
-    ## ENSG00000239474                    166443                      80132
-    ## ENSG00000088882                    144177                       5333
-    ## ENSG00000196616                   1596684                     260393
-    ## ENSG00000248713                      2488                       4251
-    ## ENSG00000244694                      6740                       3080
-    ## ENSG00000022267                   3869034                     464699
-    ##                 GTEX.13OW8.2126.SM.5J1OS.1 GTEX.13O1R.0926.SM.5L3DS.1
-    ## ENSG00000239474                      70607                     294069
-    ## ENSG00000088882                       8311                       3832
-    ## ENSG00000196616                     376434                     136335
-    ## ENSG00000248713                       4682                       4180
-    ## ENSG00000244694                       5602                        703
-    ## ENSG00000022267                    1216742                    1008736
-    ##                 GTEX.ZYW4.0926.SM.59HJS.1 GTEX.13O3O.1426.SM.5KM2S.1
-    ## ENSG00000239474                     63048                     179667
-    ## ENSG00000088882                     12279                      67291
-    ## ENSG00000196616                    621859                    2619621
-    ## ENSG00000248713                      1912                     145150
-    ## ENSG00000244694                      2000                       3668
-    ## ENSG00000022267                   1429877                    2969493
-    ##                 GTEX.13O61.0426.SM.5L3ET.1 GTEX.Z93S.0326.SM.5HL84.1
-    ## ENSG00000239474                      76416                    280252
-    ## ENSG00000088882                        951                     12594
-    ## ENSG00000196616                    2177532                   2156530
-    ## ENSG00000248713                      83297                      2228
-    ## ENSG00000244694                        664                      9427
-    ## ENSG00000022267                    3785731                   1826939
-    ##                 GTEX.11ONC.1026.SM.5GU64.1 GTEX.ZAB4.1026.SM.5HL7T.1
-    ## ENSG00000239474                     109805                    240845
-    ## ENSG00000088882                       4588                      6005
-    ## ENSG00000196616                     242501                   1646906
-    ## ENSG00000248713                       6655                      2207
-    ## ENSG00000244694                       9123                      2267
-    ## ENSG00000022267                    2386278                   1744073
-    ##                 GTEX.ZAB4.0926.SM.5CVN4.1 GTEX.ZZPU.0926.SM.5GZYT.1
-    ## ENSG00000239474                    409070                    320427
-    ## ENSG00000088882                      6270                      6730
-    ## ENSG00000196616                   1305537                   1556849
-    ## ENSG00000248713                      8391                      3346
-    ## ENSG00000244694                      1737                       804
-    ## ENSG00000022267                   4138388                   2218196
-    ##                 GTEX.131XE.0526.SM.5K7YT.1 GTEX.ZAB5.0126.SM.5CVMT.1
-    ## ENSG00000239474                     146578                    342833
-    ## ENSG00000088882                       5009                      7217
-    ## ENSG00000196616                     428937                   3474944
-    ## ENSG00000248713                      37589                      6860
-    ## ENSG00000244694                        823                      3029
-    ## ENSG00000022267                    3337622                   1663471
-    ##                 GTEX.13NYB.0226.SM.5N9G4.1 GTEX.1313W.1426.SM.5KLZU.1
-    ## ENSG00000239474                       3717                     326153
-    ## ENSG00000088882                       2704                      67139
-    ## ENSG00000196616                      38649                     790121
-    ## ENSG00000248713                        148                       2622
-    ## ENSG00000244694                       1162                       3130
-    ## ENSG00000022267                     221639                    2208213
-    ##                 GTEX.12ZZZ.1726.SM.59HK5.1 GTEX.ZAK1.1126.SM.5PNXU.1
-    ## ENSG00000239474                     230847                    611783
-    ## ENSG00000088882                       7881                     37386
-    ## ENSG00000196616                     955298                   3636735
-    ## ENSG00000248713                       1844                     22319
-    ## ENSG00000244694                       3307                      2390
-    ## ENSG00000022267                    1675728                   4503198
-    ##                 GTEX.1313W.1126.SM.5EQ5U.1 GTEX.1212Z.0726.SM.5EGI5.1
-    ## ENSG00000239474                     256402                     180257
-    ## ENSG00000088882                     167692                       4402
-    ## ENSG00000196616                    1308003                     136532
-    ## ENSG00000248713                       2055                       7389
-    ## ENSG00000244694                       3111                       7331
-    ## ENSG00000022267                    2005522                    2892692
-    ##                 GTEX.13FHP.0826.SM.5K7V5.1 GTEX.111FC.0626.SM.5N9CU.1
-    ## ENSG00000239474                     213910                     312805
-    ## ENSG00000088882                      27915                      37129
-    ## ENSG00000196616                    2614227                    1739255
-    ## ENSG00000248713                       8108                      10016
-    ## ENSG00000244694                       2677                       1285
-    ## ENSG00000022267                    3637139                    1732253
-    ##                 GTEX.Y5V6.0826.SM.4VBRU.1 GTEX.131XF.0426.SM.5HL7U.1
-    ## ENSG00000239474                   1022354                     209562
-    ## ENSG00000088882                      9746                       1784
-    ## ENSG00000196616                    510105                     872476
-    ## ENSG00000248713                      3525                      13311
-    ## ENSG00000244694                      1354                        881
-    ## ENSG00000022267                   4934262                    1749129
-    ##                 GTEX.ZXG5.0626.SM.5NQ85.1 GTEX.ZTTD.0526.SM.57WDV.1
-    ## ENSG00000239474                     26597                      8523
-    ## ENSG00000088882                     11002                     19948
-    ## ENSG00000196616                   2315572                   8538300
-    ## ENSG00000248713                      1621                      1595
-    ## ENSG00000244694                      7103                      5578
-    ## ENSG00000022267                   1369275                   6611857
-    ##                 GTEX.11UD2.0926.SM.5CVL6.1 GTEX.13NZ9.0126.SM.5K7XV.1
-    ## ENSG00000239474                     585547                     471652
-    ## ENSG00000088882                       5079                       4275
-    ## ENSG00000196616                     216618                     801133
-    ## ENSG00000248713                      75070                     114557
-    ## ENSG00000244694                       1405                       5046
-    ## ENSG00000022267                    2235736                    2970457
-    ##                 GTEX.13N1W.0926.SM.5MR36.1 GTEX.13NZB.0426.SM.5KM26.1
-    ## ENSG00000239474                     326425                     584764
-    ## ENSG00000088882                      30523                      13420
-    ## ENSG00000196616                    1033515                    1141934
-    ## ENSG00000248713                      26755                     260392
-    ## ENSG00000244694                       2405                       1085
-    ## ENSG00000022267                    4065716                    2880222
-    ##                 GTEX.11ONC.0126.SM.5PNW6.1 GTEX.YEC4.0326.SM.4W216.1
-    ## ENSG00000239474                      59023                   2287584
-    ## ENSG00000088882                      24233                      3766
-    ## ENSG00000196616                     307689                    248955
-    ## ENSG00000248713                       9811                    173733
-    ## ENSG00000244694                       9868                      2624
-    ## ENSG00000022267                    1155530                  28518290
-    ##                 GTEX.132QS.0526.SM.5IJC7.1 GTEX.13FH7.0826.SM.5J2NW.1
-    ## ENSG00000239474                     637847                     389482
-    ## ENSG00000088882                       8679                       8165
-    ## ENSG00000196616                     558709                    1077768
-    ## ENSG00000248713                      11203                      36579
-    ## ENSG00000244694                       1893                        139
-    ## ENSG00000022267                    8181022                     906142
-    ##                 GTEX.14A5I.1226.SM.5NQBW.1 GTEX.111VG.0326.SM.5GZX7.1
-    ## ENSG00000239474                       7434                     142994
-    ## ENSG00000088882                       1034                       9202
-    ## ENSG00000196616                     188665                    1571247
-    ## ENSG00000248713                        108                       3613
-    ## ENSG00000244694                        302                       3014
-    ## ENSG00000022267                     154380                    3375601
-    ##                 GTEX.ZYW4.1026.SM.5SI8W.1 GTEX.YEC3.0726.SM.5IFIW.1
-    ## ENSG00000239474                      6931                    659568
-    ## ENSG00000088882                    324532                      3340
-    ## ENSG00000196616                   3568911                    398939
-    ## ENSG00000248713                       152                      5211
-    ## ENSG00000244694                      3066                      2067
-    ## ENSG00000022267                   3306998                   2954213
-    ##                 GTEX.13SLW.0826.SM.5QGP7.1 GTEX.ZYFC.1126.SM.5E44W.1
-    ## ENSG00000239474                     157666                    235396
-    ## ENSG00000088882                       2313                     15603
-    ## ENSG00000196616                    1397323                    254667
-    ## ENSG00000248713                     233196                      2780
-    ## ENSG00000244694                       2270                      1104
-    ## ENSG00000022267                    4243336                   1323216
-    ##                 GTEX.11DXZ.0626.SM.5GU77.1 GTEX.ZDYS.0326.SM.5HL4W.1
-    ## ENSG00000239474                     441953                    244825
-    ## ENSG00000088882                       3948                      5536
-    ## ENSG00000196616                     326025                   1919359
-    ## ENSG00000248713                       4336                     45287
-    ## ENSG00000244694                       1459                       291
-    ## ENSG00000022267                    3534497                   1126119
-    ##                 GTEX.ZVT3.0826.SM.5GIC8.1 GTEX.131XE.0626.SM.5HL98.1
-    ## ENSG00000239474                    353194                     312322
-    ## ENSG00000088882                      5210                       1385
-    ## ENSG00000196616                    884359                     151164
-    ## ENSG00000248713                     23083                       2339
-    ## ENSG00000244694                      2162                       2948
-    ## ENSG00000022267                   1745546                    3043823
-    ##                 GTEX.12WSE.0926.SM.5S2VX.1 GTEX.13JVG.1326.SM.5N9F8.1
-    ## ENSG00000239474                     422826                       7837
-    ## ENSG00000088882                      47551                       2139
-    ## ENSG00000196616                    3549006                     180968
-    ## ENSG00000248713                      12514                        928
-    ## ENSG00000244694                        972                       1821
-    ## ENSG00000022267                    2034905                     462182
-    ##                 GTEX.Y5V5.0626.SM.4VBPX.1 GTEX.13W3W.0526.SM.5LU3X.1
-    ## ENSG00000239474                    237830                     244837
-    ## ENSG00000088882                      3244                      19620
-    ## ENSG00000196616                    669982                    2327448
-    ## ENSG00000248713                     12575                     177431
-    ## ENSG00000244694                      5405                        394
-    ## ENSG00000022267                   3751075                    2296955
-    ##                 GTEX.ZDTS.1326.SM.4WKGX.1 GTEX.13O21.2326.SM.5MR3X.1
-    ## ENSG00000239474                    220099                     416342
-    ## ENSG00000088882                      2849                       3856
-    ## ENSG00000196616                    283445                     292207
-    ## ENSG00000248713                      1875                       2796
-    ## ENSG00000244694                      1451                       1594
-    ## ENSG00000022267                   2753523                    1599614
-    ##                 GTEX.ZYFD.2026.SM.5E459.1 GTEX.13O21.0326.SM.5J1N9.1
-    ## ENSG00000239474                    302200                     356574
-    ## ENSG00000088882                     43550                       6985
-    ## ENSG00000196616                    157935                    2184125
-    ## ENSG00000248713                     54220                     491913
-    ## ENSG00000244694                      1014                       4836
-    ## ENSG00000022267                    884154                    3305648
-    ##                 GTEX.1211K.0226.SM.59HJY.1 GTEX.ZUA1.0726.SM.4YCD9.1
-    ## ENSG00000239474                     491567                    106073
-    ## ENSG00000088882                      11607                     30013
-    ## ENSG00000196616                    1903305                   2853118
-    ## ENSG00000248713                      19422                      2543
-    ## ENSG00000244694                        819                      5245
-    ## ENSG00000022267                    1542288                   3156305
-    ##                 GTEX.139YR.0826.SM.5LZXY.1 GTEX.117YW.0326.SM.5N9CY.1
-    ## ENSG00000239474                     312383                      40402
-    ## ENSG00000088882                       3995                       3668
-    ## ENSG00000196616                     338488                     491410
-    ## ENSG00000248713                       1615                        871
-    ## ENSG00000244694                       1891                       5485
-    ## ENSG00000022267                    1304722                    1052906
-    ##                 GTEX.ZYFC.1026.SM.5GZX9.1 GTEX.1122O.0626.SM.5N9B9.1
-    ## ENSG00000239474                    575777                     319280
-    ## ENSG00000088882                     19830                        913
-    ## ENSG00000196616                   1157718                    1317138
-    ## ENSG00000248713                      9549                      29387
-    ## ENSG00000244694                      3817                        940
-    ## ENSG00000022267                   2596497                    1419442
-    ##                 GTEX.ZTTD.0626.SM.4YCCY.1 GTEX.ZDTT.0326.SM.4WKF9.1
-    ## ENSG00000239474                    367289                    634877
-    ## ENSG00000088882                     10787                     78038
-    ## ENSG00000196616                   1122487                   1099649
-    ## ENSG00000248713                    158508                     38248
-    ## ENSG00000244694                      7016                      1232
-    ## ENSG00000022267                  10577081                   2713886
-    ##                 GTEX.12WSC.1026.SM.5EQ5Y.1 GTEX.11LCK.0926.SM.5A5KA.1
-    ## ENSG00000239474                     321180                     609968
-    ## ENSG00000088882                       8268                       1657
-    ## ENSG00000196616                     401323                     426742
-    ## ENSG00000248713                       7595                       3782
-    ## ENSG00000244694                       2864                        444
-    ## ENSG00000022267                    2681823                    5751501
-    ##                 GTEX.14BMV.1026.SM.5SI6B.1 GTEX.12WSD.1126.SM.5EGJD.1
-    ## ENSG00000239474                     982753                     280540
-    ## ENSG00000088882                      32032                       1311
-    ## ENSG00000196616                    1883631                      57901
-    ## ENSG00000248713                     190815                       1346
-    ## ENSG00000244694                        739                       2501
-    ## ENSG00000022267                    3090016                    5041687
-    ##                 GTEX.147JS.1326.SM.5SI6D.1 GTEX.ZQUD.1526.SM.51MRE.1
-    ## ENSG00000239474                     427797                    457105
-    ## ENSG00000088882                     115454                      2115
-    ## ENSG00000196616                     537204                    308394
-    ## ENSG00000248713                      41492                      5168
-    ## ENSG00000244694                       6939                       120
-    ## ENSG00000022267                    3756382                   2951894
-    ##                 GTEX.1399T.0726.SM.5J1MH.1 GTEX.145MN.0726.SM.5NQBH.1
-    ## ENSG00000239474                     364831                     962966
-    ## ENSG00000088882                      34300                       5796
-    ## ENSG00000196616                    2092336                     329670
-    ## ENSG00000248713                       3324                     114285
-    ## ENSG00000244694                       5624                        140
-    ## ENSG00000022267                    4413257                    9850992
-    ##                 GTEX.ZLFU.0226.SM.4WWFH.1 GTEX.1399T.0426.SM.5PNVJ.1
-    ## ENSG00000239474                    813200                       8166
-    ## ENSG00000088882                       247                       2098
-    ## ENSG00000196616                    298518                     285452
-    ## ENSG00000248713                      8712                        456
-    ## ENSG00000244694                      1210                       1265
-    ## ENSG00000022267                   8888799                     288178
-    ##                 GTEX.1477Z.1126.SM.5P9GK.1 GTEX.13SLX.0926.SM.5S2NM.1
-    ## ENSG00000239474                     233469                     201016
-    ## ENSG00000088882                       2767                     104885
-    ## ENSG00000196616                    3834368                     729229
-    ## ENSG00000248713                      11432                      57310
-    ## ENSG00000244694                       4623                       4649
-    ## ENSG00000022267                    3322214                    3260742
-    ##                 GTEX.14A6H.0326.SM.5NQAN.1 GTEX.111YS.0426.SM.5987O.1
-    ## ENSG00000239474                     361130                     584359
-    ## ENSG00000088882                     177623                        583
-    ## ENSG00000196616                    1675546                     515936
-    ## ENSG00000248713                       7531                       6686
-    ## ENSG00000244694                       1949                        586
-    ## ENSG00000022267                    1435091                    4049665
-    ##                 GTEX.13N11.0426.SM.5KM3O.1 GTEX.131XG.0626.SM.5GCMP.1
-    ## ENSG00000239474                     475357                     921762
-    ## ENSG00000088882                       7482                       6956
-    ## ENSG00000196616                     842259                     322141
-    ## ENSG00000248713                       2930                    1545570
-    ## ENSG00000244694                        561                       2592
-    ## ENSG00000022267                    3284297                   25502053
-    ##                 GTEX.YEC3.0426.SM.4YCEP.1 GTEX.11EM3.0626.SM.5H12Z.1
-    ## ENSG00000239474                    616217                     543453
-    ## ENSG00000088882                      3066                      25787
-    ## ENSG00000196616                   1778386                      86063
-    ## ENSG00000248713                     20422                    2354711
-    ## ENSG00000244694                      2608                        152
-    ## ENSG00000022267                   1408134                   40491641
-    ##                              id
-    ## ENSG00000239474 ENSG00000239474
-    ## ENSG00000088882 ENSG00000088882
-    ## ENSG00000196616 ENSG00000196616
-    ## ENSG00000248713 ENSG00000248713
-    ## ENSG00000244694 ENSG00000244694
-    ## ENSG00000022267 ENSG00000022267
+    ##                 GTEX.13VXT.1126.SM.5LU3A.1
+    ## ENSG00000239474                     688891
+    ## ENSG00000088882                       2889
+    ## ENSG00000196616                     263871
+    ## ENSG00000248713                     128831
+    ## ENSG00000244694                        565
+    ## ENSG00000022267                   15867945
 
 Now we can pivot longer. We use `cols` to specify with column names will
 be turned into observations and we use `names_to` to specify the name of
@@ -2422,7 +1365,7 @@ counts_tidy_long_joined %>%
 
 That completes our section on tidying and transforming data.
 
-:::success
+<div class="success">
 
 #### Key functions: Tidy and Transform
 
@@ -2440,7 +1383,7 @@ That completes our section on tidying and transforming data.
 | `drop_na()`      | Remove missing values                                                                           |
 | `separate()`     | Separate a column into two columns                                                              |
 
-:::
+</div>
 
 ## Communicate
 
@@ -2665,7 +1608,7 @@ counts_tidy_slim <- counts_tidy %>%
   filter(id %in% resultsNameTidyIds)
 dim(counts_tidy_slim)
 head(counts_tidy_slim)[1:5]
-tail(counts_tidy_slim)
+tail(counts_tidy_slim)[1:5]
 
 counts_tidy_long <- counts_tidy_slim %>%
   pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
