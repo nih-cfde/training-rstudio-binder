@@ -1,14 +1,39 @@
 ---
 title: "recount3"
-output: html_document
+output: md_document
 params: 
   #myproject: "MUSCLE"
   myproject: "HEART"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+This script is used to generate the files that are in the data directory. Reset the params to download and process files from different tissues.
+
+```{r setup1, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
 ```
+
+If you need to install recount 3, run the following chunk
+
+```{r eval = F}
+
+## Install tidyverse and lubridate
+
+install.packages("tidyverse")
+install.packages("lubridate")
+
+## Install the recount3 R/Bioconductor package
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("recount3")
+
+```
+
+Download data using recount3
+
 
 ```{r recount3}
 library(tidyverse)
@@ -34,7 +59,13 @@ head(gtex)
 rse_gtex <- create_rse(gtex)
 rse_gtex
 
-# format data for DESEq2
+```
+
+Generate files that describe the biosamples and provide the counts for each biosample. These are called colData and countData based on typical naming used by [DESeq2](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).  
+
+First, the colData.
+
+```{r}
 
 
 colData <- colData(rse_gtex) %>% 
@@ -74,10 +105,11 @@ colData <- colData(rse_gtex) %>%
 row.names(colData) <- colData$SAMPID
 head(colData)
 
+```
 
-# get countdata for this subset of colData
+Now the counts
 
-
+```{r}
 
 ## colData and countData must contain the exact same samples. 
 savecols <- as.character(rownames(colData)) #select the rowsname 
@@ -103,11 +135,9 @@ dim(countData)
 # check that rows and samples match
 head(rownames(colData) == colnames(countData))
 
-
-
-
 ```
 
+Save the col and count data files
 
 ```{r}
 # save files for later use
@@ -118,5 +148,5 @@ write.csv(colData, file = paste("../data/colData", params$myproject, "csv", sep 
 ```
 
 
-Afterwards, gzip the large csv files.
+Afterwards, gzip the large csv files using the following
 
