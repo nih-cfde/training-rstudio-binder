@@ -1,10 +1,7 @@
----
-tags: workshop
----
 
 # Introduction to R for RNA Sequencing Analysis with data from the Gene Expression Tissue Project (GTEx)
 
-**When:** Wednesday, May 11, 2022, 19 am - 12 pm PDT **Where:**
+**When:** Wednesday, May 11, 2022, 9 am - 12 pm PDT **Where:**
 [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09)
 and
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
@@ -83,7 +80,7 @@ will make it easier to reproduce. You will learn more as we go along!
 
 ![](https://hackmd.io/_uploads/H1a8-HHx5.png)
 
-For today’s lesson, wef will focus on data from the [Gene-Tissue
+For today’s lesson, we will focus on data from the [Gene-Tissue
 Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an
 ongoing effort to build a comprehensive public resource to study
 tissue-specific gene expression and regulation. Samples were collected
@@ -119,8 +116,6 @@ command enter.
 You can perform simple and advanced calculations in R.
 
 ``` r
-# Introduction
-
 2 + 2 * 100
 ```
 
@@ -245,8 +240,6 @@ the samples in the GTEx portal. Let’s import this file using
 `read.csv()`.
 
 ``` r
-# Importing and viewing data
-
 samples <- read.csv("./data/samples.csv")
 ```
 
@@ -803,7 +796,7 @@ section, you will learn ggplot function for making fancier figures.
 
 :::
 
-## Tidy and Transform Data
+## Tidying and Transforming Data
 
 [Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the
 process of tidying and transforming data to make it more appropriate and
@@ -1449,3 +1442,231 @@ R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`.
 [r4rnaseq-workshop.Rmd](https://github.com/nih-cfde/training-rstudio-binder/blob/data/GTEx/r4rnaseq-workshop.Rmd)
 was last modified 3 May, 2022.*
 
+------------------------------------------------------------------------
+
+### Appendix
+
+``` r
+# Introduction
+
+
+2 + 2 * 100
+log10(0.05)
+
+
+pval <- 0.05
+pval
+
+-log10(pval)
+
+
+favorite_genes <- c("BRCA1", "JUN",  "GNRH1", "TH", "AR")
+favorite_genes
+
+#install.packages("ggplot2")
+
+
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+
+# Importing and viewing data
+
+
+samples <- read.csv("./data/samples.csv")
+
+#View(samples)
+head(samples)
+tail(samples)
+str(samples)
+summary(samples)
+
+
+counts <- read.csv("./data/countData.HEART.csv", row.names = 1)
+dim(counts)
+head(counts)[1:5]
+
+
+results <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv")
+head(results)
+
+
+dim(samples)
+
+
+dplyr::count(samples, SMTS) 
+
+
+head(dplyr::count(samples, SMTS, SEX))
+
+
+head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
+
+
+# Visualizing data with ggplot2
+
+
+# Visualizing data with ggplot2
+
+ggplot(samples, aes(x = SMTS)) +
+  geom_bar(stat = "count")
+
+
+ggplot(samples, aes(x = SMTS)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, color = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip()
+
+
+ggplot(samples, aes(x = SMTS, fill = AGE)) +
+  geom_bar(stat = "count") + 
+  coord_flip() +
+  facet_wrap(~SEX)
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05))
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05)) 
+
+
+ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
+  geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
+  geom_hline(yintercept = -log10(0.05))  +
+  theme(legend.position = "bottom") +
+  labs(color = "20-29 vs 50-59 year olds", 
+       subtitle = "Heart Tissue Gene Expression")
+
+
+ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = SMRIN))
+
+
+# Tidying and Transforming Data
+
+
+# Tidy and Transform Data
+
+results %>% 
+  filter(adj.P.Val < 0.05) %>% 
+  head()
+
+
+results %>% 
+  filter(logFC > 1 | logFC < -1) %>%
+  head()
+
+
+results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  head()
+
+
+
+resultsDEGs <- results %>% filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>% 
+  rownames(.)
+resultsDEGs
+
+
+colData <- read.csv("./data/colData.HEART.csv", row.names = 1)
+head(colData)
+
+head(rownames(colData) == colnames(counts))
+head(colnames(counts))
+head(rownames(colData))
+
+
+colData_tidy <-  colData %>%
+  mutate(SAMPID = gsub("-", ".", SAMPID))  
+rownames(colData_tidy) <- colData_tidy$SAMPID
+
+mycols <- rownames(colData_tidy)
+head(mycols)
+
+
+counts_tidy <- counts %>%
+  select(all_of(mycols))
+
+head(rownames(colData_tidy) == colnames(counts_tidy))
+
+
+genes <- read.table("./data/ensembl_genes.tsv", sep = "\t",  header = T, fill = T)
+head(genes)
+
+
+resultsSymbol <- results %>%
+  mutate(name = row.names(.))
+head(resultsSymbol)
+
+
+resultsName <- left_join(resultsSymbol, genes, by = "name")
+head(resultsName)
+
+
+resultsNameTidy <- resultsName %>%
+  filter(adj.P.Val < 0.05,
+                   logFC > 1 | logFC < -1) %>%
+  arrange(adj.P.Val) %>%
+  select(name, description, id, logFC, AveExpr, adj.P.Val)
+head(resultsNameTidy)
+
+
+resultsNameTidyIds <- resultsNameTidy %>%
+  drop_na(id) %>%
+  pull(id)
+resultsNameTidyIds
+
+
+counts_tidy_slim <- counts_tidy %>%
+  mutate(id = row.names(.)) %>%
+  filter(id %in% resultsNameTidyIds)
+dim(counts_tidy_slim)
+head(counts_tidy_slim)[1:5]
+tail(counts_tidy_slim)[1:5]
+
+counts_tidy_long <- counts_tidy_slim %>%
+  pivot_longer(cols = all_of(mycols), names_to = "SAMPID", 
+               values_to = "counts") 
+head(counts_tidy_long)
+
+
+counts_tidy_long_joined <- counts_tidy_long%>%
+  inner_join(., colData_tidy, by = "SAMPID") %>%
+  inner_join(., genes, by = "id") %>%
+  arrange(desc(counts))
+head(counts_tidy_long_joined)
+
+
+library(scales)
+
+counts_tidy_long_joined %>%
+  ggplot(aes(x = AGE, y = counts)) +
+  geom_boxplot() +
+  geom_point() +
+  facet_wrap(~name, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 45, hjust  = 1),
+        strip.text = element_text(face = "italic")) +
+  scale_y_log10(labels = label_number_si()) 
+```
