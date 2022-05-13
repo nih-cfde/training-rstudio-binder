@@ -1,3 +1,15 @@
+# commands for installing packages (uncomment to run)
+
+#install.packages("dplyr")
+#install.packages("tidyr")
+#install.packages("tibble")
+#install.packages("readr")
+#install.packages("ggplot2")
+#install.packages("cowplot")
+#install.packages("scales")
+
+# load packages
+
 library(dplyr)
 library(tidyr)
 library(tibble)

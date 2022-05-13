@@ -13,7 +13,21 @@ curl -o subjects.txt https://storage.googleapis.com/gtex_analysis_v8/annotations
 curl -L genes.tsv https://osf.io/5sxvt/download > ensembl_genes.tsv
 ```
 
+If you need to install packages, run the following chunk
 
+```{r eval = F}
+
+## Install tidyverse and lubridate
+
+#install.packages("forcats")
+#install.packages("tidyr")
+#install.packages("dplyr")
+#install.packages("lubridate")
+
+
+```
+
+Load required backages
 
 ```{r setup, message = F}
 
@@ -25,6 +39,7 @@ library(lubridate)
 
 ```
 
+Create the subjects file
 
 ```{r prep data}
 
@@ -41,7 +56,7 @@ subjects <- read.table("../data/subjects.txt", header = T, sep = "\t") %>%
 head(subjects)
 ```
 
-
+Create the sampes file
 
 ```{r}
 
@@ -58,7 +73,7 @@ samples2 <- samples %>%
   right_join(subjects, ., by = "SUBJID")
 head(samples2)
 ```
-
+PLot the data
 
 ```{r, eval = F}
 ggplot(subjects, aes(x = SEX)) +
@@ -75,14 +90,14 @@ ggplot(subjects, aes(x = AGE, fill = DTHHRDY)) +
   geom_bar(stat = "count") +
   facet_wrap(~SEX)
 ```
-
+Check the genes file
 
 ```{r}
 genes <- read.table("../data/ensembl_genes.tsv", sep = "\t",  header = T, fill = T)
 head(genes)
 ```
 
-
+Save the subject and sample files
 
 ```{r}
 write.csv(subjects, "../data/subjects.csv", row.names = F)
