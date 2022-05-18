@@ -73,7 +73,7 @@ console and the output. When working in R, you can type directly into
 the console, or you can type into a script. Saving commands in a script
 will make it easier to reproduce. You will learn more as we go along!
 
-![](../rstudio-console.png)
+![](https://i.imgur.com/OQAQWr0.png)
 
 For today’s lesson, we will focus on data from the [Gene-Tissue
 Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an
@@ -218,7 +218,7 @@ the row names. For this workshop, we will use `read_csv()`, which means
 we may have to replace dashes with periods so that our sample names in
 all objects with sample name information.
 
-## Files
+### Files
 
 Today, I will show you how to import the following files:
 
@@ -662,7 +662,7 @@ data (for good biological reasons). However, this plot doesn’t show us
 Hardy Scale. It’s hard to layer 4 variables, so let’s remove Tissue as a
 variable by focusing just on one Tissue.
 
-## Exercise
+### Exercise
 
 :::warning
 
@@ -814,7 +814,7 @@ section, you will learn ggplot function for making fancier figures.
 
 :::
 
-## Wrangle (or Tidy and Tranform) Data
+## Wrangle Data
 
 [Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the
 process of tidying and transforming data to make it more appropriate and
@@ -822,6 +822,8 @@ valuable for a variety of downstream purposes such as analytics. The
 goal of data wrangling is to assure quality and useful data. Data
 analysts typically spend the majority of their time in the process of
 data wrangling compared to the actual analysis of the data.
+
+### Tidy Data
 
 **Tidying** your data means storing it in a consistent form. When your
 data is tidy, each column is a variable, and each row is an observation.
@@ -833,6 +835,8 @@ include `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`,
 functions for tidying dates. You may also use `mutate()` function to
 convert objects from, say, characters or integers to factors or rename
 observations and variables.
+
+### Transform Data
 
 **Transforming** your data includes narrowing in on observations of
 interest (like all people in one city, or all data from the last year),
@@ -1423,7 +1427,7 @@ That completes our section on tidying and transforming data.
 
 :::
 
-## Communicate
+## Wrap-up
 
 Files for this workshop can be downloaded from GitHub at
 <https://github.com/nih-cfde/training-rstudio-binder>. Specifically,
@@ -1578,7 +1582,7 @@ ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
   geom_jitter(aes(color = SMRIN))
 
 
-# Wrangle (or Tidy and Tranform) Data
+# Wrangle Data
 
 
 # Tidy and Transform Data

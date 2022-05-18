@@ -178,7 +178,7 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 
 Data can be imported using packages from base R or the tidyverse. What are some differences between the data objects imported by base R functions such as `read.csv()` and Tidyverse functions such as `read_csv()`? To begin with, `read.csv()` replaces spaces and dashes periods in column names, and it also preserves row.names. On the other hand, `read_csv()` preserves spaces and dashes in column names but drops the row names. For this workshop, we will use `read_csv()`, which means we may have to replace dashes with periods so that our sample names in all objects with sample name information.
 
-## Files
+### Files
 
 Today, I will show you how to import the following files:
 
@@ -438,7 +438,7 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
 
 With this graph, we have an excellent overview of the total numbers of RNA-Seq samples in the GTEx project, and we can see where we are missing data (for good biological reasons). However, this plot doesn't show us Hardy Scale. It's hard to layer 4 variables, so let's remove Tissue as a variable by focusing just on one Tissue.
 
-## Exercise
+### Exercise
 
 
 <div class="warning">
@@ -572,18 +572,21 @@ Now you know a handful of R functions for importing, summarizing, and visualizin
 
 </div>
 
-## Wrangle (or Tidy and Tranform) Data
+## Wrangle Data
 
 ```{r, include=FALSE, appendix = TRUE}
 
-# Wrangle (or Tidy and Tranform) Data
+# Wrangle Data
 
 ```
 
 [Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the process of tidying and transforming data to make it more appropriate and valuable for a variety of downstream purposes such as analytics. The goal of data wrangling is to assure quality and useful data. Data analysts typically spend the majority of their time in the process of data wrangling compared to the actual analysis of the data.
 
+### Tidy Data
+
 **Tidying** your data means storing it in a consistent form. When your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data, not fighting to get the data into the right form for different functions. Some tidying functions include `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`, `drop_na()`, `replace_na()`. The "lubridate" package has a number of functions for tidying dates. You may also use `mutate()` function to convert objects from, say, characters or integers to factors or rename observations and variables.
 
+### Transform Data
 
 **Transforming** your data includes narrowing in on observations of interest (like all people in one city, or all data from the last year), creating new variables that are functions of existing variables (like computing speed from distance and time), and calculating a set of summary statistics (like counts or means). Summary functions such as `summarize()` and `count()` to create new tables with statistics. Before summarizing or counting a whole data frame, you can use `group_by()`  to group variables.  You can use `filter()` and `select()` to isolate specific rows or columns, respectively. If you want to sort columns, `arrange()` and `arrange(desc())` are two functions to familiarize yourself with.
 
@@ -887,7 +890,7 @@ That completes our section on tidying and transforming data.
 </div>
 
 
-## Communicate
+## Wrap-up
 
 Files for this workshop can be downloaded from GitHub at <https://github.com/nih-cfde/training-rstudio-binder>. Specifically, scripts and data are in the `GTEx` directory.
 
