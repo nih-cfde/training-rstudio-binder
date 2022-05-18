@@ -1,9 +1,12 @@
-# Today's R Commands
+### Appendix
 
-## Introduction
+
+# Introduction
+
 
 2 + 2 * 100
 log10(0.05)
+
 
 pval <- 0.05
 pval
@@ -16,18 +19,20 @@ favorite_genes
 
 #install.packages("ggplot2")
 
+
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 
 
-## Importing and viewing data
+# Import Data
+
 
 samples <- read.csv("./data/samples.csv")
 
-#View(samples)
 head(samples)
 tail(samples)
+
 str(samples)
 summary(samples)
 
@@ -36,18 +41,27 @@ counts <- read.csv("./data/countData.HEART.csv", row.names = 1)
 dim(counts)
 head(counts)[1:5]
 
+
 results <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv")
 head(results)
 
+
 dim(samples)
+
 
 dplyr::count(samples, SMTS) 
 
+
 head(dplyr::count(samples, SMTS, SEX))
+
 
 head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
 
-## Visualizing data with ggplot2
+
+# Visualize Data 
+
+
+# Visualizing data with ggplot2
 
 ggplot(samples, aes(x = SMTS)) +
   geom_bar(stat = "count")
@@ -101,7 +115,10 @@ ggplot(samples, aes(x = SMCENTER, y = SMRIN)) +
   geom_jitter(aes(color = SMRIN))
 
 
-## Tidy and Transform Data
+# Wrangle Data
+
+
+# Tidy and Transform Data
 
 results %>% 
   filter(adj.P.Val < 0.05) %>% 
@@ -206,3 +223,4 @@ counts_tidy_long_joined %>%
   theme(axis.text.x = element_text(angle = 45, hjust  = 1),
         strip.text = element_text(face = "italic")) +
   scale_y_log10(labels = label_number_si()) 
+
