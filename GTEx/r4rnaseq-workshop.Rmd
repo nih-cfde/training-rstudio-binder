@@ -176,7 +176,10 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 
 ```
 
-Data can be imported using packages from base R or the tidyverse. What are some differences between the data objects imported by base R functions such as `read.csv()` and Tidyverse functions such as `read_csv()`? To begin with, `read.csv()` replaces spaces and dashes periods in column names, and it also preserves row.names. On the other hand, `read_csv()` preserves spaces and dashes in column names but drops the row names. For this workshop, we will use `read_csv()`, which means we may have to replace dashes with periods so that our sample names in all objects with sample name information.
+Data can be imported using functions from `base` R (such as `read.csv()` and 
+`read.table()`) or with with functions from `readr`(such as `read_csv()` and `read_tsv()`). 
+There are subtle differences in the default behavior these function, included how they treat dashes and spaces in column names, whether headers and row names are default. For this workshop, we will use `read.csv()` and `read.table()`. 
+
 
 ### Files
 
@@ -204,12 +207,23 @@ The `GTExPortal.csv` file in `./data/` contains information about all the sample
 samples <- read.csv("./data/samples.csv")
 
 ```
-After importing a file, there are multiple ways to view the data. `head()` to view the first few lines of each file. `names()` will print just the column names. `str` will compactly displaying the internal structure. `summary` will compute statistics. 
+
+### `head()` and `tail()`
+
+
+After importing a file, there are multiple ways to view the data. `head()` and `tail()` to view the first and last 6 lines of a file. 
 
 ```{r, appendix = TRUE}
-#View(samples)
 head(samples)
 tail(samples)
+
+```
+
+### `str()` and `summary()`
+
+`str` will compactly displaying the internal structure. `summary` will compute statistics. 
+
+```{r, appendix = TRUE}
 str(samples)
 summary(samples)
 
@@ -261,7 +275,7 @@ What commands could you use to read the following files:
 </div>
 
 
-### Summary statistics
+### `dim()`
 
 You have now seen a variety of options for importing files. You may use many more in your R-based RNA-seq workflow, but these basics will get you started. Let's now explore the functions `summary()`,  `length()`, `dim()`, and `count()` us to quickly summarize and compare data frames to answer the following questions.
 
@@ -273,6 +287,8 @@ How many samples do we have? Over 1400!
 dim(samples)
 
 ```
+
+### `count()`
 
 How many samples are there per tissue? 
 

@@ -208,15 +208,12 @@ description of the package and its functions.
 
 ## Import Data
 
-Data can be imported using packages from base R or the tidyverse. What
-are some differences between the data objects imported by base R
-functions such as `read.csv()` and Tidyverse functions such as
-`read_csv()`? To begin with, `read.csv()` replaces spaces and dashes
-periods in column names, and it also preserves row.names. On the other
-hand, `read_csv()` preserves spaces and dashes in column names but drops
-the row names. For this workshop, we will use `read_csv()`, which means
-we may have to replace dashes with periods so that our sample names in
-all objects with sample name information.
+Data can be imported using functions from `base` R (such as `read.csv()`
+and `read.table()`) or with with functions from `readr`(such as
+`read_csv()` and `read_tsv()`). There are subtle differences in the
+default behavior these function, included how they treat dashes and
+spaces in column names, whether headers and row names are default. For
+this workshop, we will use `read.csv()` and `read.table()`.
 
 ### Files
 
@@ -243,13 +240,12 @@ the samples in the GTEx portal. Let’s import this file using
 samples <- read.csv("./data/samples.csv")
 ```
 
+### `head()` and `tail()`
+
 After importing a file, there are multiple ways to view the data.
-`head()` to view the first few lines of each file. `names()` will print
-just the column names. `str` will compactly displaying the internal
-structure. `summary` will compute statistics.
+`head()` and `tail()` to view the first and last 6 lines of a file.
 
 ``` r
-#View(samples)
 head(samples)
 ```
 
@@ -293,6 +289,11 @@ tail(samples)
     ## 1526        1
     ## 1527        1
     ## 1528        1
+
+### `str()` and `summary()`
+
+`str` will compactly displaying the internal structure. `summary` will
+compute statistics.
 
 ``` r
 str(samples)
@@ -434,7 +435,7 @@ csv file information describing the muscle samples?
 
 :::
 
-### Summary statistics
+### `dim()`
 
 You have now seen a variety of options for importing files. You may use
 many more in your R-based RNA-seq workflow, but these basics will get
@@ -449,6 +450,8 @@ dim(samples)
 ```
 
     ## [1] 1528   13
+
+### `count()`
 
 How many samples are there per tissue?
 
@@ -1497,9 +1500,9 @@ library(dplyr)
 
 samples <- read.csv("./data/samples.csv")
 
-#View(samples)
 head(samples)
 tail(samples)
+
 str(samples)
 summary(samples)
 
