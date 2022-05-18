@@ -4,22 +4,19 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, 
-                      cache = F,
+                      cache = F, warning = FALSE,
                       fig.path = "./images/")
 ```
 
-# Introduction to R for RNA Sequencing Analysis  with data from the Gene Expression Tissue Project (GTEx)
+# Introduction to R for RNA Sequencing Analysis   
 
-**When:** Wednesday,  May 11, 2022, 9 am - 12 pm PDT
+**When:**    
 **Where:** [Zoom](https://zoom.us/j/7575820324?pwd=d2UyMEhYZGNiV3kyUFpUL1EwQmthQT09) and [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nih-cfde/training-rstudio-binder/data?urlpath=rstudio)  
-**Instructors:** Dr. Rayna Harris  
+**Instructors:**   
 **Organizer:** [The Common Fund Data Ecosystem](https://training.nih-cfde.org/)
 
-**Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 3 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. Familiarity with R is not required but would be useful. 
+**Description:** RNA-Sequencing (RNA-Seq) is a popular method for determining the presence and quantity of RNA in biological samples. In this 3 hour workshop, we will use R to explore publicly-available RNA-Seq data from the [Gene Expression Tissue Project (GTEx)](https://gtexportal.org/home/). Attendees will be introduced to the R syntax, variables, functions, packages, and data structures common to RNA-Seq projects. We will use RStudio to import, tidy, transform, and visualize RNA-Seq count data. Attendees will learn tips and tricks for making the processes of data wrangling and data harmonization more manageable. This workshop will not cover cloud-based workflows for processing RNA-seq reads or statistics and modeling because these topics are covered in our [RNA-Seq Concepts](https://osf.io/kj5av/) and [RNA-Seq in the Cloud](https://github.com/nih-cfde/rnaseq-in-the-cloud/blob/stable/rnaseq-workflow.pdf) workshops. Rather, this workshop will focus on general R concepts applied to RNA-Seq data. 
 
-This event is part of the [CFDE May Hackathon](https://nih-cfde.github.io/2022-may-hackathon/). Join us tomorrow at the Social Co-Working Sessions to practice and ask questions.
-
-![](https://hackmd.io/_uploads/SkkxxSHeq.png)
 
 
 <div class="info">
@@ -34,14 +31,14 @@ In this workshop, you will learn how to use R and RStudio to:
 * join data frames by common variables (harmonize)
 * visualize data using bar graphs, scatter plots, and box plots 
 
-You will produce graphs and tables to answer the of the following motivating questions?
-
-* How many RNA-sequencing samples are in the GTEx project? 
-* Do you have enough samples to test the effects of sex, age, hardy scale, and their interactions for all tissues? 
-* What is the effect of age on gene expression in the heart?
-* How is my gene of interest affected by age in the heart and muscle?
-
 </div>
+
+### Prerequisites 
+Familiarity with R and RNA Sequencing is not required but would be useful.
+
+### Tutorial Resources 
+Please refer to the [RStudio cheat sheets](https://www.rstudio.com/resources/cheatsheets/) for commonly used R functions!
+
 
 
 ## Introduction 
@@ -59,9 +56,9 @@ The book [“R for Data Science”](https://r4ds.had.co.nz/index.html) provides 
 When you start RStudio, you’ll see two key regions in the interface: the console and the output. When working in R, you can type directly into the console, or you can type into a script. Saving commands in a script will make it easier to reproduce. You will learn more as we go along! 
 
 
-![](https://hackmd.io/_uploads/H1a8-HHx5.png)
+![](../rstudio-console.png)
 
-For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals, primarily for molecular assays including WGS, WES, and RNA-Seq. 
+For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals. 
 
 ![](https://i.imgur.com/AfjBaPE.png)
 
@@ -131,6 +128,8 @@ After installing packages, we need to load the functions and tools we want to us
 library(ggplot2)
 ```
 
+### Exercise
+
 <div class="warning">
 
 #### Challenge
@@ -156,7 +155,7 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 
 <div class="success">
 
-#### Key functions
+### Key functions
 
 | Function | Description |
 | --- | --- |
@@ -168,30 +167,34 @@ You can also navigate to the "Packages" tab in the bottom right pane of RStudio 
 </div>
 
 
-## Importing and viewing data
+## Import Data
 
 ```{r, include=FALSE, appendix = TRUE}
 
-# Importing and viewing data
+# Import Data
 
 ```
 
-Data can be imported using packages from base R or the tidyverse. What are some differences between the data objects imported by base R functions such as `read.csv()` and Tidyverse functions such as `read_csv()`? To begin with, `read.csv()` replaces spaces and dashes periods in column names, and it also preserves row.names. On the other hand, `read_csv()` preserves spaces and dashes in column names but drops row.names. For this workshop, we will use `read_csv()`, which means we may have to replace dashes with periods so that our sample names in all objects with sample name information.
+Data can be imported using packages from base R or the tidyverse. What are some differences between the data objects imported by base R functions such as `read.csv()` and Tidyverse functions such as `read_csv()`? To begin with, `read.csv()` replaces spaces and dashes periods in column names, and it also preserves row.names. On the other hand, `read_csv()` preserves spaces and dashes in column names but drops the row names. For this workshop, we will use `read_csv()`, which means we may have to replace dashes with periods so that our sample names in all objects with sample name information.
+
+## Files
 
 Today, I will show you how to import the following files:
 
 1. data/samples.csv
-1. data/GTExHeart_20-29_vs_70-79.tsv
+1. data/GTExHeart_20-29_vs_50-59.tsv
 1. data/colData.HEART.csv
 1. data/countData.HEART.csv.gz
 
 
 Later, you can practice on your own using the following files:
 
-1. data/GTExMuscle_20-29_vs_70-79.tsv
+1. data/GTExMuscle_20-29_vs_50-59.tsv
 1. data/colData.MUSCLE.csv
 1. data/countData.MUSCLE.csv.gz
 
+
+### `read.csv()`
 
 The `GTExPortal.csv` file in `./data/` contains information about all the samples in the GTEx portal. Let's import this file using `read.csv()`. 
 
@@ -227,6 +230,7 @@ head(counts)[1:5]
 
 This "countData" was generated by using `recount3` as described in the file `scripts/recount3.Rmd`. It comes from a Ranged Summarized Experiment (rse) which contains quantitative information about read counts as well as quality control information and sample descriptions. The "colData" from an rse can also be obtained. This information _should_ match the information in our samples file, but there can be subtle differences in formatting We will read the colData in a later section. 
 
+### `read.table()`
 
 Very large tabular files are often saved as .tsv files. These can be imported with `read.table()` or  `read_tsv()`. You can also specify the tab delimiter as well as the row and column names. You can import files using the default parameters or you can change them. Because the first column in the .tsv files does not have a row name, by default, `read.table()`, imports the first column as the row.names. When `sep = "\t", header = TRUE` is specified, the fist column is imported as column one and given the column name  `X`.
 
@@ -237,24 +241,26 @@ head(results)
 
 ```
 
+### Exercise
+
 <div class="warning">
 
 #### Challenge
 
 What commands could you use to read the following files:
-1. GTEx results comparing the muscles of 20-29 year old to 70-79 year olds?
+1. GTEx results comparing the **muscle** of 20-29 year old to 50-59 year olds?
 1. The csv file information describing the muscle samples? 
 
 
 <div class="spoiler">
 
-1. `read.table("./data/GTEx_Muscle_20-29_vs_70-79.tsv")` 
+1. `read.table("./data/GTEx_Muscle_20-29_vs_50-59.tsv")` 
 1. `read.csv("./data/countData.MUSCLE.csv", row.names = 1)`  
 
 </div>
 
 
-#### Quick summary statistics and sample size
+### Summary statistics
 
 You have now seen a variety of options for importing files. You may use many more in your R-based RNA-seq workflow, but these basics will get you started. Let's now explore the functions `summary()`,  `length()`, `dim()`, and `count()` us to quickly summarize and compare data frames to answer the following questions.
 
@@ -291,7 +297,7 @@ How many samples are there per sex, age, and hardy scale? Do you have enough sam
 head(dplyr::count(samples, SMTS, SEX, AGE, DTHHRDY ) )
 
 ```
-
+### Exercise
 
 <div class="warning">
 
@@ -316,7 +322,7 @@ _Hint: use head() or names() after importing a file to verify the variable names
 
 <div class="success">
 
-#### Key functions for importing and quickly viewing raw and summarized data
+### Key functions 
 
 | Function | Description |
 | --- | --- |
@@ -335,15 +341,17 @@ _Hint: use head() or names() after importing a file to verify the variable names
 </div>
 
 
-## Visualizing data with ggplot2
+## Visualize Data 
 
 
 
 ```{r, include=FALSE, appendix = TRUE}
 
-# Visualizing data with ggplot2
+# Visualize Data 
 
 ```
+
+### `ggplot()`
 
 
 `ggplot2` is a very popular package for making visualization. It is built on the "grammar of graphics". Any plot can be expressed from the same set of components: a data set, a coordinate system, and a set of "geoms" or the visual representation of data points such as points, bars, line, or boxes. This is the template we build on:
@@ -355,7 +363,7 @@ ggplot(data = <DATA>, aes(<MAPPINGS>)) +
   ...
 ```
 
-
+### `geom_bar()`
 
 We just used the `count()` function to calculate how many samples are in each group. The function for creating bar graphs (`geom_bar()`) also makes use of `stat = "count"` to plot the total number of observations per variable. Let's use ggplot2 to create a visual representation of how many samples there are per tissue, sex, and hardiness.
 
@@ -429,6 +437,8 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
 
 With this graph, we have an excellent overview of the total numbers of RNA-Seq samples in the GTEx project, and we can see where we are missing data (for good biological reasons). However, this plot doesn't show us Hardy Scale. It's hard to layer 4 variables, so let's remove Tissue as a variable by focusing just on one Tissue.
 
+## Exercise
+
 
 <div class="warning">
 
@@ -454,8 +464,9 @@ There are many options. Here are a few.
 
 One thing these plots show us is that we don't have enough samples to test the effects of all our experimental variables (age, sex, tissue, and hardy scale) and their interactions on gene expression. We can, however, focus on one or two variables or groups at a time. 
 
+### `geom_point()`
 
-Earlier, we imported the file "data/GTEx_Heart_20-29_vs_70-79.tsv")" and saved it as "results".  This file contains the results of a differential gene expression analysis comparing heart tissue from 20-29 to heart tissue from 30-39 year olds. This is a one-way design investigating only the effect of age (but not sex or hardy scale) on gene expression in the heart.  Let's visualize these results.
+Earlier, we imported the file "data/GTEx_Heart_20-29_vs_50-59.tsv")" and saved it as "results".  This file contains the results of a differential gene expression analysis comparing heart tissue from 20-29 to heart tissue from 50-59 year olds. This is a one-way design investigating only the effect of age (but not sex or hardy scale) on gene expression in the heart.  Let's visualize these results.
 
 [Volcano Plots](https://en.wikipedia.org/wiki/Volcano_plot_(statistics)) are a type of scatter plots that show the log fold change (logFC) on the x axis and the inverse log (`-log10()`) of a  p-value that has been corrected for multiple hypothesis testing (adj.P.Val). Let's create a Volcano Plot using the `gplot()` and `geom_point()`. _Note: this may take a minute because there are 15,000 points that must be plotted_
 
@@ -505,23 +516,27 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 
 ![](https://i.imgur.com/6bTe8TY.png)
 
+### Exercise
+
 <div class="warning">
 
 #### Challenge
 
-Create a volcano plot for the results comparing the heart tissue of 20-29 year olds to that of 70-70 year olds? Are there more or less differential expressed gene between 20 and 30 year olds or 20 and 70 year olds?
+Create a volcano plot for the results comparing the **muscle** tissue of 20-29 year olds to that of 50-59 year olds? Are there more or less differential expressed genes in the muscle compared to the heart for this age group?
 
 <div class="spoiler">
 
 ```
-  df <- read.table("./data/GTEx_Heart_20-29_vs_70-79.tsv")
+  df <- read.table("./data/GTEx_Muscle_20-29_vs_50-59.tsv")
 
   ggplot(df, aes(x = logFC, y = -log10(adj.P.Val))) +
     geom_point() +
     geom_hline(yintercept = -log10(0.05))
   
-  # more  
+  # More  
 ```
+
+### `geom_boxplot()`
 
 </div>
 
@@ -542,7 +557,7 @@ Now you know a handful of R functions for importing, summarizing, and visualizin
 
 <div class="success">
 
-#### Key functions
+### Key functions
 
 | Function | Description |
 | --- | --- |
@@ -556,14 +571,13 @@ Now you know a handful of R functions for importing, summarizing, and visualizin
 
 </div>
 
-## Tidying and Transforming Data
+## Wrangle (or Tidy and Tranform) Data
 
 ```{r, include=FALSE, appendix = TRUE}
 
-# Tidying and Transforming Data
+# Wrangle (or Tidy and Tranform) Data
 
 ```
-
 
 [Data wrangling](https://en.wikipedia.org/wiki/Data_wrangling) is the process of tidying and transforming data to make it more appropriate and valuable for a variety of downstream purposes such as analytics. The goal of data wrangling is to assure quality and useful data. Data analysts typically spend the majority of their time in the process of data wrangling compared to the actual analysis of the data.
 
@@ -579,7 +593,7 @@ For each downstream analysis, you will likely use a series of tidying and transf
 
 Instead of going into each function or each process in detail in isolation, let's start with some typical research questions and then piece together R functions to get the desired information
 
-###  Filtering Data
+### `filter()`
 
 Filter is done in a few different ways depending on the type of variable. You can use `>` and less `<` to filter greater or less than a number. `==` and `!=` are used to filter by characters or factors that match or do not match a specific pattern. `%in% c()` is used to filter by things in a list. Let's filter by adjusted p-value. You can use `|` and `&` to mean "or" or "and"
 
@@ -608,8 +622,9 @@ results %>%
   head()
 
 ```
+### `filter()`
 
-Sometimes its nice to arrange by p-value.
+Sometimes its nice to arrange by p-value. By default, the `arrange()` function will sort characters alphabetically and numbers in ascending order. Use `arrange(desc())` to sort in the reverse order.
 
 ```{r wrangle13a, appendix = TRUE}
 
@@ -632,6 +647,8 @@ resultsDEGs
 
 ```
 
+#### Exercise
+
 <div class="warning">
 
 #### Challenge
@@ -642,7 +659,7 @@ Replace the input results file with a different file, such as the results of the
 
 You could use the following code to get this result below
 
-```
+```r
 
 resultsDEGs2 <- read.table("./data/GTEx_Heart_20-29_vs_50-59.tsv") %>% 
   filter(adj.P.Val < 0.05,
@@ -669,9 +686,7 @@ resultsDEGs2
 
 
 
-###  Mutating Data
-
-
+###  `mutate()`
 
 Most RNA-Seq pipelines require that the counts file to be in a matrix format where each sample is a column and each gene is a row and all the values are integers or doubles with all the experimental factors in a separate file. More over, we need a corresponding file where the row names are the sample id and they match the column names of the counts file. 
 
@@ -718,7 +733,7 @@ head(rownames(colData_tidy) == colnames(counts_tidy))
 ```
 
 
-### Joining Data 
+### `left_join()`
 
 Genes can be identified by their name, their symbol, an Ensemble ID, or any number of other identifiers. Our results file uses gene symbols, but our counts file uses Ensemble IDs. 
 
@@ -767,7 +782,9 @@ head(resultsNameTidy)
 
 ```
 
-Now, let's make a list of the Ensemble IDs of the DEGs
+### `drop_na()` and `pull()`
+
+Now, let's make a list of the Ensemble IDs of the DEGs. We can use the `drop_na()` function to drop genes without Ensemble IDs, and we can use `pull()` to convert a column in a data frame to a list.
 . 
 ```{r appendix = TRUE}
 
@@ -780,7 +797,7 @@ resultsNameTidyIds
 
 
 
-### Lengthen data
+### `pivot_longer()`
 
 The matrix form of the count data is required for some pipelines, but many R programs are better suited to data in a long format where each row is an observation. I like to create  `counts_tidy_long` file that can be easily subset by variables or genes of interest. 
 
@@ -822,10 +839,13 @@ head(counts_tidy_long_joined)
 
 ```
 
+### More `ggplot()`
 
+Now, that we have successfully joined three data frames, we can plot the counts for our differentially expressed genes. 
 
+The package `scales` makes it easy to use scientific notation for the axes. We can also modify the `theme()` to change the text angle and font face.lly expressed genes. 
 
-```{r boxplot2, appendix = TRUE}
+```{r boxplot2, appendix = TRUE, message = F, warning = F}
 
 library(scales)
 
@@ -868,9 +888,7 @@ That completes our section on tidying and transforming data.
 
 ## Communicate
 
-### R Markdown
-
-The workshop notes for using this repository to teach an Introduction to R for RNA-seq are crated with the file `r4rnaseq-workshop.Rmd`. 
+Files for this workshop can be downloaded from GitHub at <https://github.com/nih-cfde/training-rstudio-binder>. Specifically, scripts and data are in the `GTEx` directory.
 
 ### References
 
