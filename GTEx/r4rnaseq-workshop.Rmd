@@ -56,7 +56,8 @@ The book [“R for Data Science”](https://r4ds.had.co.nz/index.html) provides 
 When you start RStudio, you’ll see two key regions in the interface: the console and the output. When working in R, you can type directly into the console, or you can type into a script. Saving commands in a script will make it easier to reproduce. You will learn more as we go along! 
 
 
-![](../rstudio-console.png)
+![](https://i.imgur.com/OQAQWr0.png)
+
 
 For today's lesson, we will focus on data from the [Gene-Tissue Expression (GTEx) Project](https://commonfund.nih.gov/gtex). GTEx is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation. Samples were collected from 54 non-diseased tissue sites across nearly 1000 individuals. 
 
