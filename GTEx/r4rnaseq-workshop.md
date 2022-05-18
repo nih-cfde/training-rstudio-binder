@@ -292,8 +292,8 @@ tail(samples)
 
 ### `str()` and `summary()`
 
-`str` will compactly displaying the internal structure. `summary` will
-compute statistics.
+`str()` will compactly displaying the internal structure. `summary()`
+will compute statistics.
 
 ``` r
 str(samples)
@@ -661,7 +661,7 @@ ggplot(samples, aes(x = SMTS, fill = AGE)) +
 
 With this graph, we have an excellent overview of the total numbers of
 RNA-Seq samples in the GTEx project, and we can see where we are missing
-data (for good biological reasons). However, this plot doesn’t show us
+data (for good biological reasons). However, this plot does not show us
 Hardy Scale. It’s hard to layer 4 variables, so let’s remove Tissue as a
 variable by focusing just on one Tissue.
 
@@ -689,14 +689,14 @@ There are many options. Here are a few.
 
 :::
 
-One thing these plots show us is that we don’t have enough samples to
+One thing these plots show us is that we do not have enough samples to
 test the effects of all our experimental variables (age, sex, tissue,
 and hardy scale) and their interactions on gene expression. We can,
 however, focus on one or two variables or groups at a time.
 
 ### `geom_point()`
 
-Earlier, we imported the file “data/GTEx_Heart_20-29_vs_50-59.tsv”)” and
+Earlier, we imported the file “data/GTEx_Heart_20-29_vs_50-59.tsv” and
 saved it as “results”. This file contains the results of a differential
 gene expression analysis comparing heart tissue from 20-29 to heart
 tissue from 50-59 year olds. This is a one-way design investigating only
@@ -732,6 +732,17 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 ![](./images/volcano2-1.png)<!-- -->
 ![](https://i.imgur.com/iWB7NQz.png)
 
+We can add color to a plot by specifying the color and/or fill. If we
+wanted to color all the points blue, we could do this by specifying
+`aes(color = "blue")`. Alternatively, we could color points along a
+gradient by specifying `aes(color = adj.P.Val)`.
+
+I find it useful to color the points by whether or not the genes are
+significant. We can do this by adding an if else statement:
+`aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))`. This
+essentially create two factors called “p \< 0.05” and “NS” and gives
+each factor a color different color on the plot.
+
 ``` r
 ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point(aes(color = ifelse( adj.P.Val < 0.05, "p < 0.05", "NS"))) +
@@ -741,6 +752,12 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 ![](./images/volcano3-1.png)<!-- -->
 
 ![](https://i.imgur.com/wi736ce.png)
+
+To clean up the plot, we can move the legend to the bottom with
+`theme(legend.position = "bottom")`.
+
+Then, we can add titles, subtitles and captions and rename axes and
+legends with `labs()`.
 
 ``` r
 ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
@@ -754,6 +771,9 @@ ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
 ![](./images/volcano4-1.png)<!-- -->
 
 ![](https://i.imgur.com/6bTe8TY.png)
+
+We have only scratched the surface of plotting, but these basics will
+get you started. Try to craete a plot on your own.
 
 ### Exercise
 
@@ -862,7 +882,7 @@ identifiers, then you can use the family of join functions
 
 For each downstream analysis, you will likely use a series of tidying
 and transforming steps in various order to get your data in the
-appropriate format. Interest of creating dozens of intermediate files
+appropriate format. Instead of creating dozens of intermediate files
 after each step, we will use the `%>%` operator to “pipe” the output of
 one function to the input of the other.
 
@@ -997,7 +1017,7 @@ resultsDEGs2
 Most RNA-Seq pipelines require that the counts file to be in a matrix
 format where each sample is a column and each gene is a row and all the
 values are integers or doubles with all the experimental factors in a
-separate file. More over, we need a corresponding file where the row
+separate file. Moreover, we need a corresponding file where the row
 names are the sample id and they match the column names of the counts
 file.
 
