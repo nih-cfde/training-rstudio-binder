@@ -7,3 +7,8 @@ GTEx/data/countData.HEART.csv
 GTEx/data/countData.MUSCLE.csv
 GTEx/r4rnaseq-workshop_cache/
 GTEx/scripts/.DS_Store
+docs
+mkdocs.yml
+ribbity-docs.dmp
+site
+*~

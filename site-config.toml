@@ -1,0 +1,20 @@
+# site title
+title = "training-examples"
+
+# site name
+site_name = "Training Examples"
+
+# where site will be served from
+site_url = "https://nih-cfde.github.io/training-examples/"
+
+# the github repository from which to pull the issues:
+github_repo = "nih-cfde/training-rstudio-binder"
+
+# site-specific templates (MORE HERE)
+add_pages = [ "index.md", "examples.md", "labels.md" ]
+
+# username on github (if you want to use authentication with the API; leave empty if not)
+github_username = 'nih-cfde'
+
+# local output file to which to pull issues.
+issues_dump = 'ribbity-docs.dmp'
