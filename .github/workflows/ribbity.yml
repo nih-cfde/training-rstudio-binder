@@ -1,0 +1,29 @@
+name: build and deploy ribbity/mkdocs to github pages
+
+on:
+  issues:
+      types: [opened, edited, deleted, closed, reopened, labeled, unlabeled,
+              transferred]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip     # install pip
+          python3 -m pip install --upgrade ribbity           # install ribbity
+      - name: Build docs/ with ribbity
+        run: ribbity do
+      - name: Build site/ with mkdocs
+        run: mkdocs build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site          
