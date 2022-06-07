@@ -1,3 +1,9 @@
 #!/bin/bash
 
+## uncompress large file
+
 gunzip -k GTEx/data/*gz
+
+## remove ribbity repos
+
+rm -rf site*
