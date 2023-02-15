@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/index.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/3-a-volcano-plot-example/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/3-a-volcano-plot-example.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/3-an-volcano-plot-example/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/4-binder.pangeo.io-binder-links-connection-timing-out.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/examples/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/examples.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/l-example/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/l-ggplot2.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/l-ggplot2/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/l-rstats.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nih-cfde.github.io/training-examples/l-rstats/</loc>
-         <lastmod>2022-05-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nih-cfde.github.io/training-examples/labels/</loc>
-         <lastmod>2022-05-19</lastmod>
+         <loc>https://nih-cfde.github.io/training-examples/labels.html</loc>
+         <lastmod>2023-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
